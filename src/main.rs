@@ -1,7 +1,7 @@
 // #![allow(unused_variables)]
 // #![allow(unused_imports)]
 
-use anyhow::{Context, Ok, Result, bail};
+use anyhow::{Ok, Result, bail};
 use flate2::read::GzDecoder;
 use indexmap::{IndexMap, IndexSet};
 use regex::Regex;
@@ -133,16 +133,19 @@ fn filter_jsonl(args: &Args) -> Result<()> {
         return Ok(());
     }
 
+    // rust default is 8 * (1 << 10) := 8KB
+    let capacity = 256 * (1 << 10);
+
     let reader_path = args.path_raw_jsonl();
     let reader_file = File::open(&reader_path)?;
-    let reader = BufReader::new(reader_file);
+    let mut reader = BufReader::with_capacity(capacity, reader_file);
     let writer_path = args.path_jsonl();
     let writer_file = File::create(&writer_path)?;
-    let mut writer = BufWriter::new(writer_file);
+    let mut writer = BufWriter::with_capacity(capacity, writer_file);
     debug!("Filtering: {reader_path:?} > {writer_path:?}",);
 
-    let print_interval = 1000;
-    let mut line_count = 1; // enumerate can't start at 1, and forces usize
+    let print_interval = 5000;
+    let mut line_count = 1;
     let mut extracted_lines_counter = 0;
     let mut printed_progress = false;
 
@@ -152,12 +155,19 @@ fn filter_jsonl(args: &Args) -> Result<()> {
     filter.push(lang_code_filter);
     debug!("Filter {filter:?} - Reject {reject:?}");
 
-    for line in reader.lines() {
+    let mut line = String::with_capacity(1 << 10);
+
+    loop {
+        line.clear();
+        match reader.read_line(&mut line)? {
+            0 => break, // EOF
+            _ => {}
+        }
+
         line_count += 1;
 
-        let line = line?;
         // Only relevant for tests. Kaikki jsonlines should not contain empty lines
-        if line.is_empty() {
+        if line.trim().is_empty() {
             continue;
         }
 
@@ -188,8 +198,10 @@ fn filter_jsonl(args: &Args) -> Result<()> {
         }
 
         extracted_lines_counter += 1;
-        writeln!(writer, "{line}")?;
+        writer.write_all(line.as_bytes())?;
     }
+
+    writer.flush()?;
 
     if printed_progress {
         println!();
@@ -439,10 +451,10 @@ impl Tidy {
 
 #[tracing::instrument(skip_all)]
 fn tidy(args: &Args, path_jsonl: &Path) -> Result<Tidy> {
-    let input_file =
-        File::open(path_jsonl).with_context(|| format!("Failed to open: {path_jsonl:?} @ tidy"))?;
-    let reader = BufReader::new(input_file);
-    let ret = tidy_run(args, reader)?;
+    if !path_jsonl.exists() {
+        bail!("{path_jsonl:?} does not exist @ tidy")
+    }
+    let ret = tidy_run(args, path_jsonl)?;
     if args.keep_files {
         debug!("Writing Tidy result to disk");
         write_tidy(args, &ret)?;
@@ -453,17 +465,25 @@ fn tidy(args: &Args, path_jsonl: &Path) -> Result<Tidy> {
 static PARENS_RE: LazyLock<Regex> = LazyLock::new(|| Regex::new(r"\(.+?\)").unwrap());
 
 #[tracing::instrument(skip_all)]
-fn tidy_run(args: &Args, reader: BufReader<File>) -> Result<Tidy> {
+fn tidy_run(args: &Args, reader_path: &Path) -> Result<Tidy> {
     let mut ret = Tidy::default();
 
-    for line in reader.lines() {
-        let line = line?;
-        // We can not remove the is_empty check and the deserialization error handling, because
-        // the tests will call directly this function without previously filtering.
-        // This is only relevant for tests - the kaikki jsonlines should not contain empty lines.
-        if line.is_empty() {
+    let reader_file = File::open(&reader_path)?;
+    let mut reader = BufReader::new(reader_file);
+    let mut line = String::with_capacity(1 << 10);
+
+    loop {
+        line.clear();
+        match reader.read_line(&mut line)? {
+            0 => break, // EOF
+            _ => {}
+        }
+
+        // Only relevant for tests. Kaikki jsonlines should not contain empty lines
+        if line.trim().is_empty() {
             continue;
         }
+
         let mut word_entry: WordEntry = match serde_json::from_str(&line) {
             core::result::Result::Ok(v) => v,
             Err(e) => {
