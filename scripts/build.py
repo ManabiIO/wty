@@ -84,7 +84,7 @@ def generate_lang_rs(langs: list[Lang], f) -> None:
     w("use serde::{Deserialize, Serialize};\n\n")
 
     # pub enum Lang { En, Fr, ... }
-    w("#[derive(Debug, Clone, Copy, Serialize, Deserialize, Default, PartialEq)]\n")
+    w("#[derive(Debug, Clone, Copy, Serialize, Deserialize, Default, PartialEq, Eq)]\n")
     w("pub enum Lang {\n")
     # Add English on top as the default variant
     w(f"{idt}/// English\n")  # doc

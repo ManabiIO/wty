@@ -2,7 +2,7 @@
 /// The source code can be found at scripts/build.py
 use serde::{Deserialize, Serialize};
 
-#[derive(Debug, Clone, Copy, Serialize, Deserialize, Default, PartialEq)]
+#[derive(Debug, Clone, Copy, Serialize, Deserialize, Default, PartialEq, Eq)]
 pub enum Lang {
     /// English
     #[default]

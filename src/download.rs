@@ -35,7 +35,7 @@ pub fn url_raw_jsonl_gz(source: Lang, target: Lang) -> String {
     }
 }
 
-/// Download the raw jsonl from kaikki and write it to path_jsonl_raw.
+/// Download the raw jsonl from kaikki and write it to `path_jsonl_raw`.
 ///
 /// Does not write the .gz file to disk.
 pub fn download_jsonl(
@@ -45,7 +45,7 @@ pub fn download_jsonl(
     redownload: bool,
 ) -> Result<()> {
     if path_jsonl_raw.exists() && !redownload {
-        skip_because_file_exists("download", &path_jsonl_raw);
+        skip_because_file_exists("download", path_jsonl_raw);
         return Ok(());
     }
 
@@ -75,10 +75,10 @@ pub fn download_jsonl(
     // https://github.com/tatuylonen/wiktextract/issues/1482
     let mut decoder = GzDecoder::new(reader);
 
-    let mut writer = BufWriter::new(File::create(&path_jsonl_raw)?);
+    let mut writer = BufWriter::new(File::create(path_jsonl_raw)?);
     std::io::copy(&mut decoder, &mut writer)?;
 
-    pretty_println_at_path(&format!("{CHECK_C} Downloaded"), &path_jsonl_raw);
+    pretty_println_at_path(&format!("{CHECK_C} Downloaded"), path_jsonl_raw);
 
     Ok(())
 }

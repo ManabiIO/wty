@@ -70,7 +70,7 @@ fn filter_jsonl(args: &Args, path_jsonl_raw: &Path, path_jsonl: PathBuf) -> Resu
     let capacity = 256 * (1 << 10);
 
     let reader_path = path_jsonl_raw;
-    let reader_file = File::open(&reader_path)?;
+    let reader_file = File::open(reader_path)?;
     let mut reader = BufReader::with_capacity(capacity, reader_file);
     let writer_path = match args.edition {
         Lang::En => path_jsonl.with_extension("tmp.jsonl"),
@@ -1921,7 +1921,7 @@ fn make_dict_glossary(args: &Args, pm: &PathManager) -> Result<()> {
 ///
 /// It downloads (or loads from disk) the *monolingual edition* file for `<source>`
 /// (i.e. `<source>-<source>-extract.jsonl`), referenced by `path_jsonl_raw`. Then we look for
-/// translations such that lang_code = <target>
+/// translations such that `lang_code` = <target>
 #[tracing::instrument(skip_all)]
 fn make_glossary_run(args: &Args, pm: &PathManager, path_jsonl_raw: &Path) -> Result<()> {
     // rust default is 8 * (1 << 10) := 8KB
@@ -2016,7 +2016,7 @@ fn make_glossary_run(args: &Args, pm: &PathManager, path_jsonl_raw: &Path) -> Re
             args,
             entries.clone(),
             &mut bank_index,
-            &entry_ty,
+            entry_ty,
             &out_dir,
             out_sink,
         )?;
@@ -2030,7 +2030,7 @@ fn make_glossary_run(args: &Args, pm: &PathManager, path_jsonl_raw: &Path) -> Re
         args,
         entries,
         &mut bank_index,
-        &entry_ty,
+        entry_ty,
         &out_dir,
         out_sink,
     )?;
@@ -2107,7 +2107,7 @@ fn make_glossary_yomitan_entry(args: &Args, word_entry: &WordEntry) -> Option<Yo
 
     Some(YomitanEntry(
         word_entry.word.clone(),
-        reading.to_string(),
+        reading,
         definition_tags,
         found_pos,
         0,
@@ -2192,8 +2192,8 @@ fn make_dict_main(args: &Args, pm: &PathManager) -> Result<()> {
 
     let mut path_jsonl = pm.path_jsonl(args.source, args.target);
     if !args.skip_filter {
-        path_jsonl = filter_jsonl(args, &path_jsonl_raw, path_jsonl)?
-    };
+        path_jsonl = filter_jsonl(args, &path_jsonl_raw, path_jsonl)?;
+    }
 
     let tidy_cache = if args.skip_tidy {
         None
@@ -2266,18 +2266,13 @@ mod tests {
     // test via snapshots and commits like the original
     #[test]
     fn snapshot() {
-        tracing_subscriber::fmt()
-            .with_env_filter(
-                EnvFilter::try_from_default_env().unwrap_or_else(|_| EnvFilter::new("warn")),
-            )
-            .init();
+        setup_tracing(false);
 
         let fixture_dir = PathBuf::from("tests");
         // have to hardcode this since we have not initialized args
         let fixture_input_dir = fixture_dir.join("kaikki");
 
         // iterdir and search for source-target-extract.jsonl files
-        // issues no errors on wrong filenames and just ignores them
         let mut cases = Vec::new();
         let mut langs_in_testsuite = Vec::new();
 
@@ -2311,7 +2306,7 @@ mod tests {
                 target,
                 keep_files: true,
                 pretty: true,
-                root_dir: fixture_dir.to_path_buf(),
+                root_dir: fixture_dir.clone(),
                 ..Default::default()
             };
             let pm = PathManager::from_args(&args, kty::cli::DictionaryType::Main);
@@ -2334,7 +2329,7 @@ mod tests {
                     target: *possible_target,
                     keep_files: true,
                     pretty: true,
-                    root_dir: fixture_dir.to_path_buf(),
+                    root_dir: fixture_dir.clone(),
                     ..Default::default()
                 };
                 let pm = PathManager::from_args(&args, kty::cli::DictionaryType::Glossary);
@@ -2364,12 +2359,12 @@ mod tests {
         }
         eprintln!("***** Starting test @ {fixture_path:?}");
 
-        delete_previous_output(&pm)?;
+        delete_previous_output(pm)?;
 
         pm.setup_dirs().unwrap(); // this makes some noise but ok
-        tidy(&args, pm, &fixture_path)?;
+        tidy(args, pm, &fixture_path)?;
         let mut diagnostics = Diagnostics::new();
-        make_yomitan(&args, pm, &mut diagnostics, None)?;
+        make_yomitan(args, pm, &mut diagnostics, None)?;
         write_diagnostics(pm, &diagnostics)?;
 
         // check git --diff for charges in the generated json

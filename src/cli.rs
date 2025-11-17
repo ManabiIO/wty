@@ -181,7 +181,7 @@ impl Cli {
 }
 
 impl Args {
-    pub fn has_filter_params(&self) -> bool {
+    pub const fn has_filter_params(&self) -> bool {
         !self.filter.is_empty() || !self.reject.is_empty() || self.first != -1
     }
 }
@@ -227,12 +227,12 @@ pub struct PathManager {
 
 impl PathManager {
     pub fn from_args(args: &Args, dict_ty: DictionaryType) -> Self {
-        PathManager {
+        Self {
             edition: args.edition,
             source: args.source,
             target: args.target,
             dict_name: args.dict_name.clone(),
-            dict_ty: dict_ty,
+            dict_ty,
             root_dir: args.root_dir.clone(),
             keep_files: args.keep_files,
         }
@@ -293,7 +293,7 @@ impl PathManager {
     /// Example (en-el): `data/kaikki/en-el-extract.jsonl`
     pub fn path_jsonl(&self, source: Lang, target: Lang) -> PathBuf {
         self.dir_kaik()
-            .join(format!("{}-{}-extract.jsonl", source, target))
+            .join(format!("{source}-{target}-extract.jsonl"))
     }
 
     /// `data/dict/source/target/temp/tidy/source-target-lemmas.json`
@@ -328,7 +328,7 @@ impl PathManager {
             DictionaryType::Main => self.dict_name.clone(),
             DictionaryType::Glossary => format!("{}-glossary", self.dict_name),
         };
-        self.dir_dict().join(format!("{}.zip", final_dict_name))
+        self.dir_dict().join(format!("{final_dict_name}.zip"))
     }
 
     // Assets paths
