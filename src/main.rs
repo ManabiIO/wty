@@ -2329,6 +2329,38 @@ mod tests {
                 make_glossary_run(&args, &pm, &path_monolingual).unwrap();
             }
         }
+
+        // Clean empty folders and zip artifacts under folder "dict" recursively
+
+        fn clean_empty_dirs(root: &Path) -> bool {
+            let entries = fs::read_dir(root).unwrap();
+
+            let mut is_empty = true;
+
+            for entry in entries.flatten() {
+                let path = entry.path();
+                if path.is_dir() {
+                    let child_empty = clean_empty_dirs(&path);
+                    if child_empty {
+                        fs::remove_dir(&path).unwrap();
+                    } else {
+                        is_empty = false;
+                    }
+                } else if path
+                    .extension()
+                    .and_then(|e| e.to_str())
+                    .map_or(false, |ext| ext.eq_ignore_ascii_case("zip"))
+                {
+                    fs::remove_file(&path).unwrap();
+                } else {
+                    is_empty = false;
+                }
+            }
+
+            is_empty
+        }
+
+        clean_empty_dirs(&fixture_dir.join("dict"));
     }
 
     /// Delete generated artifacts from previous tests runs, if any
