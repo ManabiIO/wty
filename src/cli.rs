@@ -344,19 +344,6 @@ impl PathManager {
             .join(format!("{}.zip", self.dict_name_expanded()))
     }
 
-    // Assets paths
-
-    fn dir_assets(&self) -> PathBuf {
-        PathBuf::from("assets")
-    }
-
-    /// Example: `assets/styles.css`
-    pub fn path_styles(&self) -> PathBuf {
-        self.dir_assets().join("styles.css")
-    }
-
-    // Diagnostics paths
-
     /// Example: `data/dict/el/el/temp/diagnostics`
     pub fn dir_diagnostics(&self) -> PathBuf {
         self.dir_temp().join("diagnostics")

@@ -1746,6 +1746,8 @@ fn make_yomitan(
     write_yomitan(args, pm, yomitan_entries, yomitan_forms)
 }
 
+const STYLES_CSS: &[u8] = include_bytes!("../assets/styles.css"); // = ../args.path_styles()
+
 fn write_yomitan(
     args: &Args,
     pm: &PathManager,
@@ -1770,11 +1772,8 @@ fn write_yomitan(
     zip.start_file("index.json", options)?;
     zip.write_all(index_string.as_bytes())?;
 
-    // Copy paste styles.css (include_bytes! to append them to the binary)
-    let input_path = pm.path_styles();
-    const STYLES_CSS: &[u8] = include_bytes!("../assets/styles.css"); // = ../args.path_styles()
-    let fname = input_path.file_name().and_then(|s| s.to_str()).unwrap();
-    zip.start_file(fname, options)?;
+    // Copy paste styles.css
+    zip.start_file("styles.css", options)?;
     zip.write_all(STYLES_CSS)?;
 
     // Copy paste tag_bank.json
