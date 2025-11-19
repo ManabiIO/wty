@@ -1654,6 +1654,7 @@ fn get_structured_examples(args: &Args, examples: &[Example]) -> Option<Node> {
     ))
 }
 
+#[tracing::instrument(skip_all)]
 fn make_yomitan_forms(args: &Args, form_map: FormMap) -> Vec<YomitanEntry> {
     let mut yomitan_entries = Vec::new();
 
@@ -2018,6 +2019,14 @@ fn make_glossary_run(args: &Args, pm: &PathManager, path_jsonl_raw: &Path) -> Re
     let index_string = get_index(&pm.dict_name_expanded(), args.source, args.target);
     zip.start_file("index.json", options)?;
     zip.write_all(index_string.as_bytes())?;
+
+    zip.start_file("styles.css", options)?;
+    zip.write_all(STYLES_CSS)?;
+
+    let tag_bank = get_tag_bank_as_tag_info();
+    let tag_bank_bytes = serde_json::to_vec_pretty(&tag_bank)?;
+    zip.start_file("tag_bank_1.json", options)?; // it needs to end in _1
+    zip.write_all(&tag_bank_bytes)?;
 
     if args.keep_files {
         // also write to disk for debugging
