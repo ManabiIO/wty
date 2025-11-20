@@ -1005,119 +1005,233 @@
           ],
           "derived": [
             {
+              "tags": [
+                "adjective"
+              ],
               "word": "přivý"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "pře"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "napřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "odepřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "opřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "podepřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "popřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "rozepřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "sepřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "upřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "vypřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "vzepřít"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "zapřít"
             }
           ],
           "related": [
             {
+              "tags": [
+                "noun"
+              ],
               "word": "nápor"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "opěra"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "opora"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "podpěra"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "podpor"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "podpora"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "rozepře"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "rozpěra"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "rozpor"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "spor"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "vzpěra"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "vzpor"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "vzpoura"
             },
             {
+              "tags": [
+                "noun"
+              ],
               "word": "zápor"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "napírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "odpírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "opírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "podpírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "popírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "rozpírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "spírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "upírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "vypírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "vzpírat"
             },
             {
+              "tags": [
+                "verb"
+              ],
               "word": "zapírat"
             },
             {
@@ -7163,11 +7277,6 @@
               "word": "Wüstenfuchs"
             }
           ],
-          "coordinate_terms": [
-            {
-              "word": "canids: Hund: Fuchs · Hund · Kojote · Schakal · Wolf [edit]"
-            }
-          ],
           "derived": [
             {
               "word": "fuchsig"
@@ -7708,39 +7817,6 @@
           "related": [
             {
               "word": "Kardia"
-            },
-            {
-              "word": "Karo"
-            },
-            {
-              "word": "Pik"
-            },
-            {
-              "word": "Schippe"
-            },
-            {
-              "word": "Kreuz"
-            },
-            {
-              "word": "Treff"
-            },
-            {
-              "word": "Rot"
-            },
-            {
-              "word": "Schellen"
-            },
-            {
-              "word": "Laub"
-            },
-            {
-              "word": "Grün"
-            },
-            {
-              "word": "Eichel"
-            },
-            {
-              "word": "Eckern"
             }
           ],
           "sounds": [
@@ -10022,6 +10098,482 @@
             }
           ]
         }
+      },
+      {
+        "url": "https://kaikki.org/elwiktionary/All%20languages%20combined/meaning/ψ/ψη/ψηφίσας.html",
+        "download_url": "https://kaikki.org/elwiktionary/All%20languages%20combined/meaning/ψ/ψη/ψηφίσας.jsonl",
+        "json": {
+          "word": "ψηφίσας",
+          "forms": [
+            {
+              "form": "el-κλίση-'λήξας'",
+              "tags": [
+                "inflection-template"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσας",
+              "tags": [
+                "masculine",
+                "singular",
+                "nominative"
+              ],
+              "raw_tags": [
+                "αρσενικό",
+                "ενικός",
+                "ονομαστική"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντας",
+              "tags": [
+                "masculine",
+                "singular",
+                "nominative"
+              ],
+              "raw_tags": [
+                "αρσενικό",
+                "ενικός",
+                "ονομαστική"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσασα",
+              "tags": [
+                "singular",
+                "feminine",
+                "nominative"
+              ],
+              "raw_tags": [
+                "ενικός",
+                "θηλυκό",
+                "ονομαστική"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαν",
+              "tags": [
+                "singular",
+                "nominative",
+                "neuter"
+              ],
+              "raw_tags": [
+                "ενικός",
+                "ονομαστική",
+                "ουδέτερο"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντος",
+              "tags": [
+                "masculine",
+                "genitive",
+                "singular"
+              ],
+              "raw_tags": [
+                "αρσενικό",
+                "γενική",
+                "ενικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντα",
+              "tags": [
+                "masculine",
+                "genitive",
+                "singular"
+              ],
+              "raw_tags": [
+                "αρσενικό",
+                "γενική",
+                "ενικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσασας",
+              "tags": [
+                "genitive",
+                "singular",
+                "feminine"
+              ],
+              "raw_tags": [
+                "γενική",
+                "ενικός",
+                "θηλυκό"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφισάσης",
+              "tags": [
+                "genitive",
+                "singular",
+                "feminine"
+              ],
+              "raw_tags": [
+                "γενική",
+                "ενικός",
+                "θηλυκό"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντος",
+              "tags": [
+                "genitive",
+                "singular",
+                "neuter"
+              ],
+              "raw_tags": [
+                "γενική",
+                "ενικός",
+                "ουδέτερο"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντα",
+              "tags": [
+                "accusative",
+                "masculine",
+                "singular"
+              ],
+              "raw_tags": [
+                "αιτιατική",
+                "αρσενικό",
+                "ενικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσασα",
+              "tags": [
+                "accusative",
+                "singular",
+                "feminine"
+              ],
+              "raw_tags": [
+                "αιτιατική",
+                "ενικός",
+                "θηλυκό"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαν",
+              "tags": [
+                "accusative",
+                "singular",
+                "neuter"
+              ],
+              "raw_tags": [
+                "αιτιατική",
+                "ενικός",
+                "ουδέτερο"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσας",
+              "tags": [
+                "masculine",
+                "singular",
+                "vocative"
+              ],
+              "raw_tags": [
+                "αρσενικό",
+                "ενικός",
+                "κλητική"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντα",
+              "tags": [
+                "masculine",
+                "singular",
+                "vocative"
+              ],
+              "raw_tags": [
+                "αρσενικό",
+                "ενικός",
+                "κλητική"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσασα",
+              "tags": [
+                "singular",
+                "feminine",
+                "vocative"
+              ],
+              "raw_tags": [
+                "ενικός",
+                "θηλυκό",
+                "κλητική"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαν",
+              "tags": [
+                "singular",
+                "vocative",
+                "neuter"
+              ],
+              "raw_tags": [
+                "ενικός",
+                "κλητική",
+                "ουδέτερο"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντες",
+              "tags": [
+                "masculine",
+                "nominative",
+                "plural"
+              ],
+              "raw_tags": [
+                "αρσενικό",
+                "ονομαστική",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσασες",
+              "tags": [
+                "feminine",
+                "nominative",
+                "plural"
+              ],
+              "raw_tags": [
+                "θηλυκό",
+                "ονομαστική",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντα",
+              "tags": [
+                "nominative",
+                "neuter",
+                "plural"
+              ],
+              "raw_tags": [
+                "ονομαστική",
+                "ουδέτερο",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφισάντων",
+              "tags": [
+                "masculine",
+                "genitive",
+                "plural"
+              ],
+              "raw_tags": [
+                "αρσενικό",
+                "γενική",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφισασών",
+              "tags": [
+                "genitive",
+                "feminine",
+                "plural"
+              ],
+              "raw_tags": [
+                "γενική",
+                "θηλυκό",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφισάντων",
+              "tags": [
+                "genitive",
+                "neuter",
+                "plural"
+              ],
+              "raw_tags": [
+                "γενική",
+                "ουδέτερο",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντες",
+              "tags": [
+                "accusative",
+                "masculine",
+                "plural"
+              ],
+              "raw_tags": [
+                "αιτιατική",
+                "αρσενικό",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσασες",
+              "tags": [
+                "accusative",
+                "feminine",
+                "plural"
+              ],
+              "raw_tags": [
+                "αιτιατική",
+                "θηλυκό",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντα",
+              "tags": [
+                "accusative",
+                "neuter",
+                "plural"
+              ],
+              "raw_tags": [
+                "αιτιατική",
+                "ουδέτερο",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντες",
+              "tags": [
+                "masculine",
+                "vocative",
+                "plural"
+              ],
+              "raw_tags": [
+                "αρσενικό",
+                "κλητική",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσασες",
+              "tags": [
+                "feminine",
+                "vocative",
+                "plural"
+              ],
+              "raw_tags": [
+                "θηλυκό",
+                "κλητική",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσαντα",
+              "tags": [
+                "vocative",
+                "neuter",
+                "plural"
+              ],
+              "raw_tags": [
+                "κλητική",
+                "ουδέτερο",
+                "πληθυντικός"
+              ],
+              "source": "declension"
+            },
+            {
+              "form": "ψηφίσας",
+              "tags": [
+                "masculine",
+                "singular",
+                "nominative"
+              ],
+              "source": "header"
+            },
+            {
+              "form": "ψηφίσασα",
+              "tags": [
+                "feminine",
+                "singular",
+                "nominative"
+              ],
+              "source": "header"
+            },
+            {
+              "form": "ψηφίσαν",
+              "tags": [
+                "neuter",
+                "singular",
+                "nominative"
+              ],
+              "source": "header"
+            }
+          ],
+          "lang_code": "el",
+          "lang": "Greek",
+          "pos": "verb",
+          "etymology_text": "ψηφίσας < (διαχρονικό δάνειο) αρχαία ελληνική ψηφίσας",
+          "senses": [
+            {
+              "glosses": [
+                "μετοχή ενεργητικού αορίστου (ψήφισα) του ρήματος ψηφίζω: που ψήφισε"
+              ],
+              "tags": [
+                "formal"
+              ],
+              "raw_tags": [
+                "λόγιο"
+              ],
+              "form_of": [
+                {
+                  "word": "ψηφίζω"
+                }
+              ],
+              "categories": [
+                "Λόγιοι όροι (νέα ελληνικά)",
+                "Μετοχές ενεργητικού αορίστου (νέα ελληνικά)"
+              ],
+              "examples": [
+                {
+                  "text": "Αποτελέσματα των εκλογών. Εγγεγραμμένοι: 2.000. Ψηφίσαντες: 1.900. Έγκυρα:..."
+                },
+                {
+                  "text": "άλλες μορφές: ψηφίσαντας με νεότερες καταλήξεις"
+                }
+              ]
+            }
+          ],
+          "categories": [
+            "Λόγια διαχρονικά δάνεια από τα αρχαία ελληνικά (νέα ελληνικά)",
+            "Προέλευση λέξεων από τα αρχαία ελληνικά (νέα ελληνικά)"
+          ],
+          "tags": [
+            "participle"
+          ]
+        }
       }
     ]
   },
@@ -11058,306 +11610,407 @@
           ],
           "derived": [
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "April showers bring May flowers"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring about"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring a knife to a gunfight"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring along"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring a lump to someone's throat"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring-and-braai"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring-and-buy"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring-and-buy sale"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring an end to"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring around"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring away"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring back"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring centre"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring coals to Newcastle"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bringdown"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring down"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring down a notch"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring down a peg"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring down on"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring down the curtain"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring down the hammer"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring down the house"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring down to size"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bringer"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring forth"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring forward"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring forwards"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring home"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring home the bacon"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring in"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring-in"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring into being"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring into line"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring into play"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring it"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring it on"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring it weak"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring low"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring off"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring on"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring one's arse to an anchor"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring one's arse to anchor"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring one's ass to an anchor"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring one's ass to anchor"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring oneself away"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring oneself to"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring one's own hide to market"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring out"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring out in a rash"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring out of oneself"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring over"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring owls to Athens"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring round"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring sand to the beach"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring someone to their knees"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring suit"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring the curtain down"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring the house down"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring the lumber"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring the wood"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring through"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to a boil"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to a close"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to a head"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to an end"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to bear"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to bed"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to book"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring together"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to ground"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to heel"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to justice"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to life"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to light"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to mind"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to naught"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to nought"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to one's knees"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to order"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to pass"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to terms"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to the hammer"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring to the table"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring under"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring up"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring up against"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring upon"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring up short"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring up the rear"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring up to"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "bring with"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "carry-go-bring-come"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "forebring"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "forthbring"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "fullbring"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "inbring"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "interbring"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "outbring"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "underbring"
             },
             {
+              "sense": "Terms derived from \"bring\"",
               "word": "upbring"
             }
           ],
@@ -24789,7 +25442,7 @@
           ],
           "forms": [
             {
-              "form": "楽しい -i",
+              "form": "楽しい",
               "ruby": [
                 [
                   "楽",
@@ -25610,7 +26263,7 @@
           ],
           "forms": [
             {
-              "form": "好き -na",
+              "form": "好き",
               "ruby": [
                 [
                   "好",
@@ -30716,212 +31369,6 @@
               "tags": [
                 "hanja"
               ]
-            }
-          ],
-          "coordinate_terms": [
-            {
-              "roman": "Geuriseu",
-              "word": "그리스"
-            },
-            {
-              "roman": "Nedeollandeu",
-              "word": "네덜란드"
-            },
-            {
-              "roman": "Noreuwei",
-              "word": "노르웨이"
-            },
-            {
-              "roman": "Denmakeu",
-              "word": "덴마크"
-            },
-            {
-              "roman": "Rateubia",
-              "word": "라트비아"
-            },
-            {
-              "roman": "Reosia",
-              "word": "러시아"
-            },
-            {
-              "english": "Rumania",
-              "translation": "Rumania",
-              "word": "루마니아"
-            },
-            {
-              "roman": "Ruksembureukeu",
-              "word": "룩셈부르크"
-            },
-            {
-              "roman": "Rituania",
-              "word": "리투아니아"
-            },
-            {
-              "roman": "Rihitensyutain",
-              "word": "리히텐슈타인"
-            },
-            {
-              "roman": "Monako",
-              "word": "모나코"
-            },
-            {
-              "roman": "Montenegeuro",
-              "word": "몬테네그로"
-            },
-            {
-              "roman": "Moldoba",
-              "word": "몰도바"
-            },
-            {
-              "roman": "Molta",
-              "word": "몰타"
-            },
-            {
-              "roman": "Batikan siguk",
-              "word": "바티칸 시국"
-            },
-            {
-              "roman": "Belgie",
-              "word": "벨기에"
-            },
-            {
-              "roman": "Bellaruseu",
-              "word": "벨라루스"
-            },
-            {
-              "roman": "Boseunia hereuchegobina",
-              "word": "보스니아 헤르체고비나"
-            },
-            {
-              "roman": "Bungmakedonia",
-              "word": "북마케도니아"
-            },
-            {
-              "tags": [
-                "Bulgaria"
-              ],
-              "word": "불가리아"
-            },
-            {
-              "roman": "Sanmarino",
-              "word": "산마리노"
-            },
-            {
-              "roman": "Sereubia",
-              "word": "세르비아"
-            },
-            {
-              "roman": "Seuweden",
-              "word": "스웨덴"
-            },
-            {
-              "roman": "Seuwiseu",
-              "word": "스위스"
-            },
-            {
-              "roman": "Seupein",
-              "word": "스페인"
-            },
-            {
-              "roman": "Seullobakia",
-              "word": "슬로바키아"
-            },
-            {
-              "roman": "Seullobenia",
-              "word": "슬로베니아"
-            },
-            {
-              "roman": "Areumenia",
-              "word": "아르메니아"
-            },
-            {
-              "roman": "Aiseullandeu",
-              "word": "아이슬란드"
-            },
-            {
-              "roman": "Aillaendeu",
-              "word": "아일랜드"
-            },
-            {
-              "roman": "Ajereubaijan",
-              "word": "아제르바이잔"
-            },
-            {
-              "roman": "Andora",
-              "word": "안도라"
-            },
-            {
-              "english": "Albania",
-              "translation": "Albania",
-              "word": "알바니아"
-            },
-            {
-              "roman": "Eseutonia",
-              "word": "에스토니아"
-            },
-            {
-              "roman": "Yeongguk",
-              "word": "영국"
-            },
-            {
-              "roman": "Oseuteuria",
-              "word": "오스트리아"
-            },
-            {
-              "roman": "Ukeuraina",
-              "word": "우크라이나"
-            },
-            {
-              "roman": "Itallia",
-              "word": "이탈리아"
-            },
-            {
-              "roman": "Jojia",
-              "word": "조지아"
-            },
-            {
-              "roman": "Cheko",
-              "word": "체코"
-            },
-            {
-              "roman": "Kajaheuseutan",
-              "word": "카자흐스탄"
-            },
-            {
-              "roman": "Kosobo",
-              "word": "코소보"
-            },
-            {
-              "roman": "Keuroatia",
-              "word": "크로아티아"
-            },
-            {
-              "roman": "Kipeuroseu",
-              "word": "키프로스"
-            },
-            {
-              "roman": "Twireukiye",
-              "word": "튀르키예"
-            },
-            {
-              "roman": "Poreutugal",
-              "word": "포르투갈"
-            },
-            {
-              "roman": "Pollandeu",
-              "word": "폴란드"
-            },
-            {
-              "roman": "Peurangseu",
-              "word": "프랑스"
-            },
-            {
-              "roman": "Pillandeu",
-              "word": "핀란드"
-            },
-            {
-              "roman": "Heonggari",
-              "word": "헝가리"
             }
           ],
           "sounds": [
@@ -43463,117 +43910,155 @@
               "word": "shumëgjuhësh"
             },
             {
+              "sense": "multiword terms",
               "word": "gjuhë letrare"
             },
             {
+              "sense": "multiword terms",
               "word": "gjuhë nëne"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëbilbil"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëbrisk"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëçarë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëdele"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëdreri"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëgjarpër"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëgjatë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëhelm"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëkrijues"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëkuq"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëlashtë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëlëshuar"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëlidhur"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëlopatë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëlopë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëllomkë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëmbajtur"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëmite"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëmpirë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëmprehtë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhënepërkë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhënuse"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëpremë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëprerë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëqen"
             },
             {
+              "sense": "compounds",
               "word": "gjuhërrënduar"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëshkurtër"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëshkurtuar"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëshpatë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhështhurur"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëtrashë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëtharë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëthikë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhëzënë"
             },
             {
+              "sense": "compounds",
               "word": "gjuhujëse"
             },
             {
+              "sense": "compounds",
               "word": "gjuhustër"
             }
           ],
