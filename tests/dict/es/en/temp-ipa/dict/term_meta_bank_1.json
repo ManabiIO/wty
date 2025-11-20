@@ -1,0 +1,38 @@
+[
+  [
+    "vivir",
+    "ipa",
+    {
+      "reading": "vivir",
+      "transcriptions": [
+        {
+          "ipa": "/biˈbiɾ/"
+        },
+        {
+          "ipa": "[biˈβ̞iɾ]"
+        }
+      ]
+    }
+  ],
+  [
+    "reciba",
+    "ipa",
+    {
+      "reading": "reciba",
+      "transcriptions": [
+        {
+          "ipa": "/reˈθiba/"
+        },
+        {
+          "ipa": "[reˈθi.β̞a]"
+        },
+        {
+          "ipa": "/reˈsiba/"
+        },
+        {
+          "ipa": "[reˈsi.β̞a]"
+        }
+      ]
+    }
+  ]
+]

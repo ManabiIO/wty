@@ -1,0 +1,77 @@
+[
+  [
+    "楽しい",
+    "ipa",
+    {
+      "reading": "たのしい",
+      "transcriptions": [
+        {
+          "ipa": "[ta̠no̞ɕiː]"
+        }
+      ]
+    }
+  ],
+  [
+    "好き",
+    "ipa",
+    {
+      "reading": "すき",
+      "transcriptions": [
+        {
+          "ipa": "[sɨ̥kʲi]"
+        }
+      ]
+    }
+  ],
+  [
+    "狸",
+    "ipa",
+    {
+      "reading": "たぬき",
+      "transcriptions": [
+        {
+          "ipa": "[ta̠nɯ̟kʲi]"
+        }
+      ]
+    }
+  ],
+  [
+    "走る",
+    "ipa",
+    {
+      "reading": "はしる",
+      "transcriptions": [
+        {
+          "ipa": "[ha̠ɕiɾɯ̟]"
+        }
+      ]
+    }
+  ],
+  [
+    "五色",
+    "ipa",
+    {
+      "reading": "ごしき",
+      "transcriptions": [
+        {
+          "ipa": "[ɡo̞ɕikʲi]"
+        },
+        {
+          "ipa": "[ɡo̞ɕo̞kɯ̟]"
+        }
+      ]
+    }
+  ],
+  [
+    "お腹が空いた",
+    "ipa",
+    {
+      "reading": "おなかがすいた",
+      "transcriptions": [
+        {
+          "ipa": "[o̞na̠ka̠ ɡa̠ sɨita̠]"
+        }
+      ]
+    }
+  ]
+]

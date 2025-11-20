@@ -38,7 +38,7 @@ use zip::write::SimpleFileOptions;
 #[allow(unused)]
 use tracing::{Level, debug, error, info, span, trace, warn};
 
-use kty::cli::{Args, Cli, FilterKey, PathManager};
+use kty::cli::{Args, Cli, DictionaryType, FilterKey, PathManager};
 use kty::download::download_jsonl;
 use kty::lang::Lang;
 use kty::locale::get_locale_examples_string;
@@ -1166,10 +1166,19 @@ fn get_index(dict_name: &str, source: Lang, target: Lang) -> String {
     )
 }
 
+#[derive(Debug, Serialize, Clone)]
+#[serde(untagged)]
+enum YomitanEntry {
+    TermBank(TermBank),
+    TermBankMeta(TermBankMeta),
+}
+
+// https://github.com/yomidevs/yomitan/blob/f271fc0da3e55a98fa91c9834d75fccc96deae27/ext/data/schemas/dictionary-term-bank-v3-schema.json
+//
 // https://github.com/MarvNC/yomichan-dict-builder/blob/master/src/types/yomitan/termbank.ts
 // @ TermInformation
 #[derive(Debug, Serialize, Clone)]
-pub struct YomitanEntry(
+pub struct TermBank(
     pub String,                  // term
     pub String,                  // reading
     pub String,                  // definition_tags
@@ -1179,6 +1188,22 @@ pub struct YomitanEntry(
     pub u32,                     // sequence
     pub String,                  // term_tags
 );
+
+// https://github.com/yomidevs/yomitan/blob/f271fc0da3e55a98fa91c9834d75fccc96deae27/ext/data/schemas/dictionary-term-meta-bank-v3-schema.json
+//
+// https://github.com/MarvNC/yomichan-dict-builder/blob/master/src/types/yomitan/termbankmeta.ts
+#[derive(Debug, Serialize, Clone)]
+struct TermBankMeta(
+    String,                // term
+    String,                // static: "ipa"
+    PhoneticTranscription, // phonetic transcription
+);
+
+#[derive(Debug, Serialize, Clone)]
+struct PhoneticTranscription {
+    reading: String,
+    transcriptions: Vec<Ipa>,
+}
 
 // https://github.com/MarvNC/yomichan-dict-builder/blob/master/src/types/yomitan/termbank.ts
 // @ StructuredContentNode
@@ -1469,7 +1494,7 @@ fn make_yomitan_lemma(
 
     let detailed_definition = DetailedDefinition::structured(detailed_definition_content);
 
-    YomitanEntry(
+    YomitanEntry::TermBank(TermBank(
         lemma.to_string(),
         yomitan_reading.to_string(),
         definition_tags,
@@ -1478,7 +1503,7 @@ fn make_yomitan_lemma(
         vec![detailed_definition],
         0,
         String::new(),
-    )
+    ))
 }
 
 fn get_recognized_tags(
@@ -1741,7 +1766,7 @@ fn make_yomitan_forms(args: &Args, form_map: FormMap) -> Vec<YomitanEntry> {
             inflected
         };
 
-        let yomitan_entry = YomitanEntry(
+        let yomitan_entry = YomitanEntry::TermBank(TermBank(
             normalized_inflected,
             reading.into(),
             "non-lemma".into(),
@@ -1750,7 +1775,7 @@ fn make_yomitan_forms(args: &Args, form_map: FormMap) -> Vec<YomitanEntry> {
             deinflection_definitions,
             0,
             String::new(),
-        );
+        ));
 
         yomitan_entries.push(yomitan_entry);
     }
@@ -1914,7 +1939,23 @@ fn write_banks(
         *bank_index += 1;
         bank_num += 1;
 
-        let bank_name = format!("term_bank_{bank_index}.json");
+        let end = (start + bank_size).min(total_entries);
+        let bank = &yomitan_entries[start..end];
+        let upto = end - start;
+
+        // NOTE: should be passed as argument?
+        // NOTE: this assumes that once a type is passed, all the remaining entries are of same type
+        //
+        // SAFETY:
+        // * if end = start + bank_size, then end > start (bank_size > 0)
+        // * if end = total_entries    , then end > start (while condition)
+        // In both cases end > start, so there is always a bank.first();
+        let bank_name_prefix = match bank.first().unwrap() {
+            YomitanEntry::TermBank(_) => "term_bank",
+            YomitanEntry::TermBankMeta(_) => "term_meta_bank",
+        };
+
+        let bank_name = format!("{bank_name_prefix}_{bank_index}.json");
         let file_path = out_dir.join(&bank_name);
 
         let mut writer: Box<dyn Write> = match out_sink {
@@ -1924,10 +1965,6 @@ fn write_banks(
                 Box::new(BufWriter::new(zip))
             }
         };
-
-        let end = (start + bank_size).min(total_entries);
-        let bank = &yomitan_entries[start..end];
-        let upto = end - start;
 
         if args.pretty {
             serde_json::to_writer_pretty(&mut writer, &bank)?;
@@ -1976,22 +2013,46 @@ fn make_dict_glossary(args: &Args, pm: &PathManager) -> Result<()> {
     debug_assert!(path_jsonl.exists());
 
     download_jsonl(source, target, &path_jsonl, args.redownload)?;
-    make_glossary_run(args, pm, &path_jsonl)?;
+    make_simple_dict(DictionaryType::Glossary, args, pm, &path_jsonl)?;
 
     Ok(())
 }
 
-/// Build a glossary (short dictionary) from a monolingual edition JSONL file.
-///
-/// This function generates a *translation glossary* for a given `<source> → <target>`
-/// language pair. Unlike the main dictionary pipeline, this performs all steps
-/// (filtering, tidying, and Yomitan conversion) in a single operation.
-///
-/// It downloads (or loads from disk) the *monolingual edition* file for `<source>`
-/// (i.e. `<source>-<source>-extract.jsonl`), referenced by `path_jsonl_raw`. Then we look for
-/// translations such that `lang_code` = <target>
-#[tracing::instrument(skip_all)]
-fn make_glossary_run(args: &Args, pm: &PathManager, path_jsonl_raw: &Path) -> Result<()> {
+fn make_dict_ipa(args: &Args, pm: &PathManager) -> Result<()> {
+    pm.setup_dirs()?;
+
+    let source = args.source;
+    let target = args.target;
+
+    // we are not filtering, so use path_jsonl
+    let path_jsonl = pm.path_jsonl(source, target);
+    debug_assert!(path_jsonl.exists());
+
+    download_jsonl(source, target, &path_jsonl, args.redownload)?;
+    make_simple_dict(DictionaryType::Ipa, args, pm, &path_jsonl)?;
+
+    Ok(())
+}
+
+impl SimpleDictionary for DictionaryType {
+    fn make_yomitan_entry(&self, args: &Args, entry: &WordEntry) -> Option<YomitanEntry> {
+        match self {
+            Self::Main => unimplemented!("Main dictionary is made differently"),
+            Self::Glossary => make_glossary_yomitan_entry(args, entry),
+            Self::Ipa => make_ipa_yomitan_entry(args, entry),
+        }
+    }
+}
+
+// Abstracts the writing process for simple dictionaries that do not require Tidy
+trait SimpleDictionary {
+    fn make_yomitan_entry(&self, args: &Args, entry: &WordEntry) -> Option<YomitanEntry>;
+}
+
+fn make_simple_dict<D>(dict: D, args: &Args, pm: &PathManager, path_jsonl_raw: &Path) -> Result<()>
+where
+    D: SimpleDictionary,
+{
     // rust default is 8 * (1 << 10) := 8KB
     let capacity = 256 * (1 << 10);
 
@@ -2050,7 +2111,7 @@ fn make_glossary_run(args: &Args, pm: &PathManager, path_jsonl_raw: &Path) -> Re
             continue;
         }
 
-        let yomitan_entry = make_glossary_yomitan_entry(args, &word_entry);
+        let yomitan_entry = dict.make_yomitan_entry(args, &word_entry);
         if let Some(yomitan_entry) = yomitan_entry {
             entries.push(yomitan_entry);
         }
@@ -2167,7 +2228,7 @@ fn make_glossary_yomitan_entry(args: &Args, word_entry: &WordEntry) -> Option<Yo
     };
     let definition_tags = found_pos.clone();
 
-    Some(YomitanEntry(
+    Some(YomitanEntry::TermBank(TermBank(
         word_entry.word.clone(),
         reading,
         definition_tags,
@@ -2176,7 +2237,23 @@ fn make_glossary_yomitan_entry(args: &Args, word_entry: &WordEntry) -> Option<Yo
         definitions,
         0,
         String::new(),
-    ))
+    )))
+}
+
+fn make_ipa_yomitan_entry(args: &Args, word_entry: &WordEntry) -> Option<YomitanEntry> {
+    let reading = get_reading(args, word_entry);
+    let ipas = get_ipas(word_entry);
+
+    let phonetic_transcription = PhoneticTranscription {
+        reading,
+        transcriptions: ipas,
+    };
+
+    Some(YomitanEntry::TermBankMeta(TermBankMeta(
+        word_entry.word.clone(),
+        "ipa".to_string(),
+        phonetic_transcription,
+    )))
 }
 
 fn write_diagnostics(pm: &PathManager, diagnostics: &Diagnostics) -> Result<()> {
@@ -2316,6 +2393,11 @@ fn main() -> Result<()> {
             debug!("{args:#?}");
             make_dict_glossary(&args, &pm)
         }
+        kty::cli::Command::Ipa(args) => {
+            debug!("Making ipa");
+            debug!("{args:#?}");
+            make_dict_ipa(&args, &pm)
+        }
     }
 }
 
@@ -2391,23 +2473,25 @@ mod tests {
         debug!("Found {} cases: {cases:?}", cases.len());
 
         // failfast
-        for (source, target) in cases.clone() {
+        // main
+        for (source, target) in &cases {
             let args = Args {
-                source,
-                target,
+                source: *source,
+                target: *target,
                 keep_files: true,
                 pretty: true,
                 root_dir: fixture_dir.clone(),
                 ..Default::default()
             };
-            let pm = PathManager::from_args(&args, kty::cli::DictionaryType::Main);
+            let pm = PathManager::from_args(&args, DictionaryType::Main);
 
             if let Err(e) = shapshot_main(&args, &pm) {
                 panic!("({source}): {e}");
             }
         }
 
-        for (source, target) in cases {
+        // glossary
+        for (source, target) in &cases {
             if source != target {
                 continue;
             }
@@ -2416,17 +2500,33 @@ mod tests {
 
             for possible_target in &langs_in_testsuite {
                 let args = Args {
-                    source,
+                    source: *source,
                     target: *possible_target,
                     keep_files: true,
                     pretty: true,
                     root_dir: fixture_dir.clone(),
                     ..Default::default()
                 };
-                let pm = PathManager::from_args(&args, kty::cli::DictionaryType::Glossary);
+                let pm = PathManager::from_args(&args, DictionaryType::Glossary);
                 pm.setup_dirs().unwrap(); // this makes some noise but ok
-                make_glossary_run(&args, &pm, &path_monolingual).unwrap();
+                make_simple_dict(DictionaryType::Glossary, &args, &pm, &path_monolingual).unwrap();
             }
+        }
+
+        // ipa
+        for (source, target) in &cases {
+            let args = Args {
+                source: *source,
+                target: *target,
+                keep_files: true,
+                pretty: true,
+                root_dir: fixture_dir.clone(),
+                ..Default::default()
+            };
+            let pm = PathManager::from_args(&args, DictionaryType::Ipa);
+            pm.setup_dirs().unwrap(); // this makes some noise but ok
+            let fixture_path = pm.path_jsonl(args.source, args.target);
+            make_simple_dict(DictionaryType::Ipa, &args, &pm, &fixture_path).unwrap();
         }
 
         clean_empty_dirs(&fixture_dir.join("dict"));

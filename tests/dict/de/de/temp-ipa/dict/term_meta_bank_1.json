@@ -1,0 +1,71 @@
+[
+  [
+    "befruchteten",
+    "ipa",
+    {
+      "reading": "befruchteten",
+      "transcriptions": [
+        {
+          "ipa": "[bəˈfʁʊxtətn̩]"
+        }
+      ]
+    }
+  ],
+  [
+    "Rock",
+    "ipa",
+    {
+      "reading": "Rock",
+      "transcriptions": [
+        {
+          "ipa": "[ʁɔk]"
+        },
+        {
+          "ipa": "[ɹɔk]"
+        }
+      ]
+    }
+  ],
+  [
+    "Rock",
+    "ipa",
+    {
+      "reading": "Rock",
+      "transcriptions": [
+        {
+          "ipa": "[ʁɔk]"
+        }
+      ]
+    }
+  ],
+  [
+    "Garage",
+    "ipa",
+    {
+      "reading": "Garage",
+      "transcriptions": [
+        {
+          "ipa": "[ɡaˈʁaːʒə]",
+          "tags": [
+            "Germany"
+          ]
+        },
+        {
+          "ipa": "[ɡaˈʁaːʃ]",
+          "tags": [
+            "Austrian German"
+          ]
+        },
+        {
+          "ipa": "[ɡaˈʁaːʃə]",
+          "tags": [
+            "Swiss Standard German"
+          ]
+        },
+        {
+          "ipa": "[ˈɡaʁaːʃ]"
+        }
+      ]
+    }
+  ]
+]

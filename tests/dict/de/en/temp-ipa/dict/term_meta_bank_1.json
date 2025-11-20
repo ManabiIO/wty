@@ -1,0 +1,110 @@
+[
+  [
+    "pflegen",
+    "ipa",
+    {
+      "reading": "pflegen",
+      "transcriptions": [
+        {
+          "ipa": "/ˈpfleːɡən/"
+        },
+        {
+          "ipa": "[ˈpfleːɡən]"
+        },
+        {
+          "ipa": "[ˈpfleːɡŋ̩]",
+          "tags": [
+            "standard"
+          ]
+        },
+        {
+          "ipa": "/ˈfleːɡən/",
+          "tags": [
+            "most speakers in northern and central Germany"
+          ]
+        }
+      ]
+    }
+  ],
+  [
+    "Fuchs",
+    "ipa",
+    {
+      "reading": "Fuchs",
+      "transcriptions": [
+        {
+          "ipa": "/fʊks/"
+        }
+      ]
+    }
+  ],
+  [
+    "Herz",
+    "ipa",
+    {
+      "reading": "Herz",
+      "transcriptions": [
+        {
+          "ipa": "/hɛrts/"
+        },
+        {
+          "ipa": "[hɛʁt͡s]"
+        },
+        {
+          "ipa": "[hɛɐ̯t͡s]"
+        }
+      ]
+    }
+  ],
+  [
+    "Fahrer",
+    "ipa",
+    {
+      "reading": "Fahrer",
+      "transcriptions": [
+        {
+          "ipa": "/ˈfaːʁɐ/"
+        }
+      ]
+    }
+  ],
+  [
+    "von",
+    "ipa",
+    {
+      "reading": "von",
+      "transcriptions": [
+        {
+          "ipa": "/fɔn/"
+        },
+        {
+          "ipa": "[fɔn]"
+        }
+      ]
+    }
+  ],
+  [
+    "Base",
+    "ipa",
+    {
+      "reading": "Base",
+      "transcriptions": [
+        {
+          "ipa": "/ˈbaːzə/"
+        }
+      ]
+    }
+  ],
+  [
+    "Base",
+    "ipa",
+    {
+      "reading": "Base",
+      "transcriptions": [
+        {
+          "ipa": "/ˈbaːzə/"
+        }
+      ]
+    }
+  ]
+]

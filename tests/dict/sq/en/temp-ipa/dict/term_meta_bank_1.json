@@ -1,0 +1,77 @@
+[
+  [
+    "akull",
+    "ipa",
+    {
+      "reading": "akull",
+      "transcriptions": [
+        {
+          "ipa": "/ˈakuɫ/"
+        }
+      ]
+    }
+  ],
+  [
+    "ik",
+    "ipa",
+    {
+      "reading": "ik",
+      "transcriptions": []
+    }
+  ],
+  [
+    "gjuhë",
+    "ipa",
+    {
+      "reading": "gjuhë",
+      "transcriptions": [
+        {
+          "ipa": "/ˈɟuhə/",
+          "tags": [
+            "northern Tosk, Lab"
+          ]
+        },
+        {
+          "ipa": "[ˈɟuh]",
+          "tags": [
+            "southern Gheg, central Gheg"
+          ]
+        },
+        {
+          "ipa": "[ˈɡjuː(h)]",
+          "tags": [
+            "Gheg",
+            "Northern"
+          ]
+        },
+        {
+          "ipa": "[ˈɡuː(h)]",
+          "tags": [
+            "Gheg",
+            "Northern"
+          ]
+        },
+        {
+          "ipa": "[ˈɡũː]",
+          "tags": [
+            "Kosovo"
+          ]
+        },
+        {
+          "ipa": "[ˈɡʎuhə]",
+          "tags": [
+            "Arbëresh",
+            "Arvanitika",
+            "Cham"
+          ]
+        },
+        {
+          "ipa": "[ˈɡʎuɣə]",
+          "tags": [
+            "Calabria"
+          ]
+        }
+      ]
+    }
+  ]
+]

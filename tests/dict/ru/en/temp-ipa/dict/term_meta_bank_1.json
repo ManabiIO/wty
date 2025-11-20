@@ -1,0 +1,50 @@
+[
+  [
+    "снег",
+    "ipa",
+    {
+      "reading": "снег",
+      "transcriptions": [
+        {
+          "ipa": "[sʲnʲek]"
+        }
+      ]
+    }
+  ],
+  [
+    "возник",
+    "ipa",
+    {
+      "reading": "возни́к",
+      "transcriptions": [
+        {
+          "ipa": "[vɐzʲˈnʲik]"
+        }
+      ]
+    }
+  ],
+  [
+    "простынёй",
+    "ipa",
+    {
+      "reading": "простынёй",
+      "transcriptions": [
+        {
+          "ipa": "[prəstɨˈnʲɵj]"
+        }
+      ]
+    }
+  ],
+  [
+    "побелеть",
+    "ipa",
+    {
+      "reading": "побеле́ть",
+      "transcriptions": [
+        {
+          "ipa": "[pəbʲɪˈlʲetʲ]"
+        }
+      ]
+    }
+  ]
+]

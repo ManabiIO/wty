@@ -32,6 +32,8 @@ pub enum Command {
     //
     /// Short dictionary made from translations
     Glossary(Args),
+
+    Ipa(Args),
 }
 
 #[derive(Parser, Debug, Default)]
@@ -176,6 +178,10 @@ impl Cli {
                 args.edition = args.target;
                 PathManager::from_args(args, DictionaryType::Glossary)
             }
+            Command::Ipa(ref mut args) => {
+                args.edition = args.target;
+                PathManager::from_args(args, DictionaryType::Ipa)
+            }
         };
         (cli, pm)
     }
@@ -191,6 +197,7 @@ impl Args {
 pub enum DictionaryType {
     Main,
     Glossary,
+    Ipa,
 }
 
 impl From<&Command> for DictionaryType {
@@ -198,6 +205,7 @@ impl From<&Command> for DictionaryType {
         match cmd {
             Command::Main(_) => Self::Main,
             Command::Glossary(_) => Self::Glossary,
+            Command::Ipa(_) => Self::Ipa,
         }
     }
 }
@@ -207,6 +215,7 @@ impl fmt::Display for DictionaryType {
         match self {
             Self::Main => write!(f, "main"),
             Self::Glossary => write!(f, "glossary"),
+            Self::Ipa => write!(f, "ipa"),
         }
     }
 }
@@ -332,6 +341,9 @@ impl PathManager {
             DictionaryType::Main => format!("{}-{}-{}", self.dict_name, self.source, self.target),
             DictionaryType::Glossary => {
                 format!("{}-{}-{}-gloss", self.dict_name, self.source, self.target)
+            }
+            DictionaryType::Ipa => {
+                format!("{}-{}-{}-ipa", self.dict_name, self.source, self.target)
             }
         }
     }

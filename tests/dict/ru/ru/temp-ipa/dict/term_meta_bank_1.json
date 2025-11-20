@@ -1,0 +1,35 @@
+[
+  [
+    "снег",
+    "ipa",
+    {
+      "reading": "снег",
+      "transcriptions": [
+        {
+          "ipa": "[sʲnʲek]",
+          "tags": [
+            "singular"
+          ]
+        },
+        {
+          "ipa": "[sʲnʲɪˈɡa]",
+          "tags": [
+            "plural"
+          ]
+        }
+      ]
+    }
+  ],
+  [
+    "продолжать",
+    "ipa",
+    {
+      "reading": "продолжать",
+      "transcriptions": [
+        {
+          "ipa": "[prədɐɫˈʐatʲ]"
+        }
+      ]
+    }
+  ]
+]

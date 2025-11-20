@@ -1,0 +1,69 @@
+[
+  [
+    "bring",
+    "ipa",
+    {
+      "reading": "bring",
+      "transcriptions": [
+        {
+          "ipa": "/ˈbɹɪŋ/"
+        }
+      ]
+    }
+  ],
+  [
+    "wain",
+    "ipa",
+    {
+      "reading": "wain",
+      "transcriptions": [
+        {
+          "ipa": "/weɪn/"
+        }
+      ]
+    }
+  ],
+  [
+    "falcon",
+    "ipa",
+    {
+      "reading": "falcon",
+      "transcriptions": [
+        {
+          "ipa": "/ˈfɔː(l)kən/",
+          "tags": [
+            "Received-Pronunciation"
+          ]
+        },
+        {
+          "ipa": "/ˈfɒlkən/",
+          "tags": [
+            "Received-Pronunciation"
+          ]
+        },
+        {
+          "ipa": "/ˈfælkən/",
+          "tags": [
+            "US",
+            "General-Australian"
+          ]
+        },
+        {
+          "ipa": "/ˈfɑːlkən/",
+          "tags": [
+            "US"
+          ]
+        },
+        {
+          "ipa": "/ˈfoːlkən/"
+        },
+        {
+          "ipa": "/ˈfɛlkən/",
+          "tags": [
+            "New-Zealand"
+          ]
+        }
+      ]
+    }
+  ]
+]

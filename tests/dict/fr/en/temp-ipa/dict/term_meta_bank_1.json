@@ -1,0 +1,62 @@
+[
+  [
+    "prendre",
+    "ipa",
+    {
+      "reading": "prendre",
+      "transcriptions": [
+        {
+          "ipa": "/pʁɑ̃.dʁə/"
+        }
+      ]
+    }
+  ],
+  [
+    "sembler",
+    "ipa",
+    {
+      "reading": "sembler",
+      "transcriptions": [
+        {
+          "ipa": "/sɑ̃.ble/"
+        }
+      ]
+    }
+  ],
+  [
+    "démarche",
+    "ipa",
+    {
+      "reading": "démarche",
+      "transcriptions": [
+        {
+          "ipa": "/de.maʁʃ/"
+        }
+      ]
+    }
+  ],
+  [
+    "chambre",
+    "ipa",
+    {
+      "reading": "chambre",
+      "transcriptions": [
+        {
+          "ipa": "/ʃɑ̃bʁ/"
+        }
+      ]
+    }
+  ],
+  [
+    "d'accord",
+    "ipa",
+    {
+      "reading": "d'accord",
+      "transcriptions": [
+        {
+          "ipa": "/d‿a.kɔʁ/"
+        }
+      ]
+    }
+  ]
+]

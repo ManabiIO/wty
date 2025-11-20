@@ -1,0 +1,123 @@
+[
+  [
+    "fama",
+    "ipa",
+    {
+      "reading": "fāma",
+      "transcriptions": [
+        {
+          "ipa": "[ˈfaː.ma]",
+          "tags": [
+            "Classical-Latin",
+            "modern Italianate Ecclesiastical"
+          ]
+        }
+      ]
+    }
+  ],
+  [
+    "lego",
+    "ipa",
+    {
+      "reading": "legō",
+      "transcriptions": [
+        {
+          "ipa": "[ˈɫɛ.ɡoː]",
+          "tags": [
+            "Classical-Latin"
+          ]
+        },
+        {
+          "ipa": "[ˈlɛː.ɡo]",
+          "tags": [
+            "modern Italianate Ecclesiastical"
+          ]
+        }
+      ]
+    }
+  ],
+  [
+    "lilium",
+    "ipa",
+    {
+      "reading": "līlium",
+      "transcriptions": [
+        {
+          "ipa": "[ˈliː.li.ũː]",
+          "tags": [
+            "Classical-Latin"
+          ]
+        },
+        {
+          "ipa": "[ˈliː.li.um]",
+          "tags": [
+            "modern Italianate Ecclesiastical"
+          ]
+        }
+      ]
+    }
+  ],
+  [
+    "usque",
+    "ipa",
+    {
+      "reading": "usque",
+      "transcriptions": [
+        {
+          "ipa": "[ˈʊs.kʷɛ]",
+          "tags": [
+            "Classical-Latin"
+          ]
+        },
+        {
+          "ipa": "[ˈus.kʷe]",
+          "tags": [
+            "modern Italianate Ecclesiastical"
+          ]
+        }
+      ]
+    }
+  ],
+  [
+    "rectus",
+    "ipa",
+    {
+      "reading": "rēctus",
+      "transcriptions": [
+        {
+          "ipa": "[ˈreːk.tʊs]",
+          "tags": [
+            "Classical-Latin"
+          ]
+        },
+        {
+          "ipa": "[ˈrɛk.t̪us]",
+          "tags": [
+            "modern Italianate Ecclesiastical"
+          ]
+        }
+      ]
+    }
+  ],
+  [
+    "domus",
+    "ipa",
+    {
+      "reading": "domus",
+      "transcriptions": [
+        {
+          "ipa": "[ˈdɔ.mʊs]",
+          "tags": [
+            "Classical-Latin"
+          ]
+        },
+        {
+          "ipa": "[ˈd̪ɔː.mus]",
+          "tags": [
+            "modern Italianate Ecclesiastical"
+          ]
+        }
+      ]
+    }
+  ]
+]
