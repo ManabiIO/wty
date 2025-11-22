@@ -31,8 +31,8 @@ PosAliases = list[str]
 
 
 def write_warning(f) -> None:
-    f.write("/// This file was generated and should not be edited directly.\n")
-    f.write("/// The source code can be found at scripts/build.py\n")
+    f.write("//! This file was generated and should not be edited directly.\n")
+    f.write("//! The source code can be found at scripts/build.py\n\n")
 
 
 def generate_tags_rs(
@@ -83,7 +83,9 @@ def generate_lang_rs(langs: list[Lang], f) -> None:
 
     w("use serde::{Deserialize, Serialize};\n\n")
 
-    # pub enum Lang { En, Fr, ... }
+    ### Lang start
+
+    # Lang
     w("#[derive(Debug, Clone, Copy, Serialize, Deserialize, Default, PartialEq, Eq)]\n")
     w("pub enum Lang {\n")
     # Add English on top as the default variant
@@ -96,27 +98,42 @@ def generate_lang_rs(langs: list[Lang], f) -> None:
             w(f"{idt}{lang.iso.title()},\n")
     w("}\n\n")
 
+    # Lang: From<EditionLang>
+    w("impl From<EditionLang> for Lang {\n")
+    w(f"{idt}fn from(e: EditionLang) -> Self {{\n")
+    w(f"{idt * 2}match e {{\n")
+    for lang in langs:
+        if lang.has_edition:
+            w(
+                f"{idt * 3}EditionLang::{lang.iso.title()} => Self::{lang.iso.title()},\n"
+            )
+    w(f"{idt * 2}}}\n")
+    w(f"{idt}}}\n")
+    w("}\n\n")
+
     w("impl Lang {\n")
 
+    # Lang: help_messages
     is_supported = " | ".join(lang.iso for lang in langs)
-    w(f"{idt}pub const fn is_supported_iso_help_message() -> &'static str {{\n")
+    fn_name = "help_supported_isos"
+    w(f"{idt}pub const fn {fn_name}() -> &'static str {{\n")
     w(f'{idt * 2}"Supported isos: {is_supported}"\n')
     w(f"{idt}}}\n\n")
 
-    # has_edition
-    w(f"{idt}pub const fn has_edition(&self) -> bool {{\n")
-    with_edition_title = " | ".join(
-        f"Self::{lang.iso.title()}" for lang in langs if lang.has_edition
-    )
-    w(f"{idt * 2}matches!(self, {with_edition_title})\n")
+    coloured_parts = [
+        f"\x1b[32m{lang.iso}\x1b[0m" if lang.has_edition else lang.iso for lang in langs
+    ]
+    isos_colored = " | ".join(coloured_parts)
+    w(f"{idt}pub const fn help_supported_isos_coloured() -> &'static str {{\n")
+    w(f'{idt * 2}"Supported isos: {isos_colored}"\n')
     w(f"{idt}}}\n\n")
 
     with_edition = " | ".join(lang.iso for lang in langs if lang.has_edition)
-    w(f"{idt}pub const fn has_edition_help_message() -> &'static str {{\n")
-    w(f'{idt * 2}"Valid editions: {with_edition}"\n')
+    w(f"{idt}pub const fn help_supported_editions() -> &'static str {{\n")
+    w(f'{idt * 2}"Supported editions: {with_edition}"\n')
     w(f"{idt}}}\n\n")
 
-    # long: Lang::El => "Greek"
+    # Lang: long. long: Lang::El => "Greek"
     w(f"{idt}pub const fn long(&self) -> &'static str {{\n")
     w(f"{idt * 2}match self {{\n")
     for lang in langs:
@@ -125,7 +142,7 @@ def generate_lang_rs(langs: list[Lang], f) -> None:
     w(f"{idt}}}\n")
     w("}\n\n")
 
-    # FromStr impl
+    # Lang: FromStr
     w("impl std::str::FromStr for Lang {\n")
     w(f"{idt}type Err = String;\n\n")
     w(f"{idt}fn from_str(s: &str) -> Result<Self, Self::Err> {{\n")
@@ -133,16 +150,68 @@ def generate_lang_rs(langs: list[Lang], f) -> None:
     for lang in langs:
         w(f'{idt * 3}"{lang.iso.lower()}" => Ok(Self::{lang.iso.title()}),\n')
     w(
-        f"{idt * 3}_ => Err(format!(\"unsupported iso code '{{s}}'\\n{{}}\", Self::is_supported_iso_help_message())),\n"
+        f"{idt * 3}_ => Err(format!(\"unsupported iso code '{{s}}'\\n{{}}\", Self::{fn_name}())),\n"
     )
     w(f"{idt * 2}}}\n")
     w(f"{idt}}}\n")
     w("}\n\n")
 
-    # Display impl
+    # Lang: Display
     w("impl std::fmt::Display for Lang {\n")
     w(f"{idt}fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {{\n")
-    w(f'{idt * 2}write!(f, "{{}}", format!("{{self:?}}").to_lowercase())\n')
+    w(f'{idt * 2}let debug_str = format!("{{self:?}}");\n')
+    w(f'{idt * 2}write!(f, "{{}}", debug_str.to_lowercase())\n')
+    w(f"{idt}}}\n")
+    w("}\n\n")
+
+    ### EditionLang start
+
+    # EditionLang
+    w("#[derive(Debug, Clone, Copy, Serialize, Deserialize, Default, PartialEq, Eq)]\n")
+    w("pub enum EditionLang {\n")
+    # Add English on top as the default variant
+    w(f"{idt}/// English\n")  # doc
+    w(f"{idt}#[default]\n")
+    w(f"{idt}En,\n")
+    for lang in langs:
+        if lang.iso != "en" and lang.has_edition:
+            w(f"{idt}/// {lang.language}\n")  # doc
+            w(f"{idt}{lang.iso.title()},\n")
+    w("}\n\n")
+
+    # EditionLang: TryFrom<Lang>
+    w("impl std::convert::TryFrom<Lang> for EditionLang {\n")
+    w(f"{idt}type Error = &'static str;\n\n")
+    w(f"{idt}fn try_from(lang: Lang) -> Result<Self, Self::Error> {{\n")
+    w(f"{idt * 2}match lang {{\n")
+    for lang in langs:
+        if lang.has_edition:
+            w(
+                f"{idt * 3}Lang::{lang.iso.title()} => Ok(Self::{lang.iso.title()}),\n"
+            )
+    w(f'{idt * 3}_ => Err("language has no edition"),\n')
+    w(f"{idt * 2}}}\n")
+    w(f"{idt}}}\n")
+    w("}\n\n")
+
+    # EditionLang: FromStr
+    w("impl std::str::FromStr for EditionLang {\n")
+    w(f"{idt}type Err = String;\n\n")
+    w(f"{idt}fn from_str(s: &str) -> Result<Self, Self::Err> {{\n")
+    w(f"{idt * 2}match s.to_lowercase().as_str() {{\n")
+    for lang in langs:
+        if lang.has_edition:
+            w(f'{idt * 3}"{lang.iso.lower()}" => Ok(Self::{lang.iso.title()}),\n')
+    w(f"{idt * 3}_ => Err(format!(\"invalid edition '{{s}}'\")),\n")
+    w(f"{idt * 2}}}\n")
+    w(f"{idt}}}\n")
+    w("}\n\n")
+
+    # EditionLang: Display
+    w("impl std::fmt::Display for EditionLang {\n")
+    w(f"{idt}fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {{\n")
+    w(f'{idt * 2}let debug_str = format!("{{:?}}", Lang::from(*self));\n')
+    w(f'{idt * 2}write!(f, "{{}}", debug_str.to_lowercase())\n')
     w(f"{idt}}}\n")
     w("}\n")
 

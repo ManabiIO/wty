@@ -1,5 +1,6 @@
-/// This file was generated and should not be edited directly.
-/// The source code can be found at scripts/build.py
+//! This file was generated and should not be edited directly.
+//! The source code can be found at scripts/build.py
+
 pub const TAG_ORDER: [&str; 74] = [
     "informal",
     "formal",

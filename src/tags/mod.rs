@@ -278,7 +278,7 @@ mod tests {
 
     // This imitates the original. Can be removed if sort_tags logic changes.
     #[test]
-    fn test_sort_tag() {
+    fn sort_tags_base() {
         let tag_not_found = "__sentinel";
         assert!(!TAG_ORDER.contains(&tag_not_found));
         let mut received = to_string_vec(&[tag_not_found, "Gheg"]);
@@ -295,12 +295,12 @@ mod tests {
     }
 
     #[test]
-    fn test_sort_tags_by_similar1() {
+    fn sort_tags_by_similar1() {
         make_test_sort_tags_by_similar(&["singular", "accusative"], &["accusative", "singular"]);
     }
 
     #[test]
-    fn test_sort_tags_by_similar2() {
+    fn sort_tags_by_similar2() {
         make_test_sort_tags_by_similar(
             &["accusative", "singular", "neuter", "nominative", "vocative"],
             &["accusative", "neuter", "nominative", "singular", "vocative"],
@@ -308,7 +308,7 @@ mod tests {
     }
 
     #[test]
-    fn test_sort_tags_by_similar3() {
+    fn sort_tags_by_similar3() {
         make_test_sort_tags_by_similar(
             &["dual nominative", "accusative dual", "dual vocative"],
             &["accusative dual", "dual nominative", "dual vocative"],
@@ -323,7 +323,7 @@ mod tests {
     }
 
     #[test]
-    fn test_merge_person_tags1() {
+    fn merge_person_tags1() {
         make_test_merge_person_tags(
             &[
                 "first-person singular present",
@@ -337,7 +337,7 @@ mod tests {
     // "first/second-person singular past",
     // "third-person singular past",
     #[test]
-    fn test_merge_person_tags2() {
+    fn merge_person_tags2() {
         make_test_merge_person_tags(
             &[
                 "first-person singular past",
@@ -349,7 +349,7 @@ mod tests {
     }
 
     #[test]
-    fn test_remove_redundant_tags1() {
+    fn remove_redundant_tags1() {
         let mut received = to_string_vec(&["foo", "bar", "foo bar", "foo bar zee"]);
         let expected = to_string_vec(&["foo bar zee"]);
         remove_redundant_tags(&mut received);
@@ -357,7 +357,7 @@ mod tests {
     }
 
     #[test]
-    fn test_remove_redundant_tags2() {
+    fn remove_redundant_tags2() {
         let mut received = to_string_vec(&[
             "first-person singular indicative preterite",
             "first-person singular preterite",

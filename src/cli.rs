@@ -4,7 +4,7 @@ use std::fmt;
 use std::fs;
 use std::path::PathBuf;
 
-use crate::lang::Lang;
+use crate::lang::{EditionLang, Lang};
 use crate::models::WordEntry;
 
 #[derive(Debug, Parser)]
@@ -22,20 +22,29 @@ pub struct Cli {
 
 #[derive(Debug, Subcommand)]
 pub enum Command {
-    /// Main dictionary
-    Main(Args),
+    /// Main dictionary using target as the edition
+    Main(MainArgs),
 
-    /// Short dictionary made from translations
-    Glossary(SimpleArgs),
+    /// Short dictionary made from translations using source as the edition
+    Glossary(GlossaryArgs),
 
-    // Phonetic transcription dictionary
-    Ipa(SimpleArgs),
+    // Don't take the monolingual <source>-<source>
+    //
+    // Maybe in the future it could be merged with Glossary
+    /// Short dictionary made from translations (supports any language pair)
+    GlossaryExtended(GlossaryExtendedArgs),
+
+    /// Phonetic transcription dictionary
+    Ipa(IpaArgs),
+
+    /// Show supported iso codes, with coloured editions
+    Iso,
 }
 
 #[derive(Parser, Debug, Default)]
-pub struct Args {
+pub struct MainArgs {
     #[command(flatten)]
-    pub lang: ArgsLang,
+    pub langs: MainLangs,
 
     /// Dictionary name
     #[arg(default_value = "kty")]
@@ -50,9 +59,9 @@ pub struct Args {
 }
 
 #[derive(Parser, Debug, Default)]
-pub struct SimpleArgs {
+pub struct IpaArgs {
     #[command(flatten)]
-    pub lang: ArgsLang,
+    pub langs: MainLangs,
 
     /// Dictionary name
     #[arg(default_value = "kty")]
@@ -63,21 +72,69 @@ pub struct SimpleArgs {
 }
 
 #[derive(Parser, Debug, Default)]
-pub struct ArgsLang {
-    // We hide this for simplicity and because for our purposes, this is always equal to the target
-    // language. We still keep this around in case it becomes useful later down the road.
-    //
-    // Internally, this is just set to target.
-    //
+pub struct GlossaryArgs {
+    #[command(flatten)]
+    pub langs: GlossaryLangs,
+
+    /// Dictionary name
+    #[arg(default_value = "kty")]
+    pub dict_name: String,
+
+    #[command(flatten)]
+    pub options: ArgsOptions,
+}
+
+#[derive(Parser, Debug, Default)]
+pub struct GlossaryExtendedArgs {
+    #[command(flatten)]
+    pub langs: GlossaryExtendedLangs,
+
+    /// Dictionary name
+    #[arg(default_value = "kty")]
+    pub dict_name: String,
+
+    #[command(flatten)]
+    pub options: ArgsOptions,
+}
+
+/// Langs-like struct that validates edition for `target` and skips `edition`.
+#[derive(Parser, Debug, Default)]
+pub struct MainLangs {
     /// Edition language
     #[arg(skip)]
-    pub edition: Lang,
+    pub edition: EditionLang,
 
     /// Source language
     pub source: Lang,
 
     /// Target language
-    #[arg(value_parser = validate_edition)]
+    pub target: EditionLang,
+}
+
+/// Langs-like struct that validates edition for `source` and skips `edition`.
+#[derive(Parser, Debug, Default)]
+pub struct GlossaryLangs {
+    /// Edition language
+    #[arg(skip)]
+    pub edition: EditionLang,
+
+    /// Source language
+    pub source: EditionLang,
+
+    /// Target language
+    pub target: Lang,
+}
+
+/// Langs-like struct that validates edition for `edition`.
+#[derive(Parser, Debug, Default)]
+pub struct GlossaryExtendedLangs {
+    /// Edition language
+    pub edition: EditionLang,
+
+    /// Source language
+    pub source: Lang,
+
+    /// Target language
     pub target: Lang,
 }
 
@@ -146,18 +203,6 @@ pub struct ArgsSkip {
     pub yomitan: bool,
 }
 
-fn validate_edition(s: &str) -> Result<Lang, String> {
-    let lang: Lang = s.parse().map_err(|e: String| e)?;
-    if lang.has_edition() {
-        core::result::Result::Ok(lang)
-    } else {
-        Err(format!(
-            "{s} is not a language with an edition.\n{}",
-            Lang::has_edition_help_message()
-        ))
-    }
-}
-
 fn parse_tuple(s: &str) -> Result<(FilterKey, String), String> {
     let parts: Vec<_> = s.split(',').map(|x| x.trim().to_string()).collect();
     if parts.len() != 2 {
@@ -194,24 +239,8 @@ impl FilterKey {
 }
 
 impl Cli {
-    pub fn parse_cli() -> (Self, PathManager) {
-        let mut cli = Self::parse();
-        // we should be getting rid of edition at some point...
-        let pm = match cli.command {
-            Command::Main(ref mut args) => {
-                args.lang.edition = args.lang.target;
-                PathManager::from_args(DictionaryType::Main, args)
-            }
-            Command::Glossary(ref mut args) => {
-                args.lang.edition = args.lang.target;
-                PathManager::from_simple_args(DictionaryType::Glossary, args)
-            }
-            Command::Ipa(ref mut args) => {
-                args.lang.edition = args.lang.target;
-                PathManager::from_simple_args(DictionaryType::Ipa, args)
-            }
-        };
-        (cli, pm)
+    pub fn parse_cli() -> Self {
+        Self::parse()
     }
 }
 
@@ -221,21 +250,12 @@ impl ArgsOptions {
     }
 }
 
-#[derive(Debug)]
+#[derive(Debug, Clone, Copy)]
 pub enum DictionaryType {
     Main,
     Glossary,
+    GlossaryExtended,
     Ipa,
-}
-
-impl From<&Command> for DictionaryType {
-    fn from(cmd: &Command) -> Self {
-        match cmd {
-            Command::Main(_) => Self::Main,
-            Command::Glossary(_) => Self::Glossary,
-            Command::Ipa(_) => Self::Ipa,
-        }
-    }
 }
 
 impl fmt::Display for DictionaryType {
@@ -243,8 +263,108 @@ impl fmt::Display for DictionaryType {
         match self {
             Self::Main => write!(f, "main"),
             Self::Glossary => write!(f, "glossary"),
+            Self::GlossaryExtended => write!(f, "glossary-ext"), // should be just glossary
             Self::Ipa => write!(f, "ipa"),
         }
+    }
+}
+
+/// Helper trait to support CLI edition validation, while treating them as equal later on.
+pub trait Langs {
+    fn edition(&self) -> EditionLang;
+    fn source(&self) -> Lang;
+    fn target(&self) -> Lang;
+}
+
+impl Langs for MainLangs {
+    fn edition(&self) -> EditionLang {
+        self.edition
+    }
+    fn source(&self) -> Lang {
+        self.source
+    }
+    fn target(&self) -> Lang {
+        self.target.into()
+    }
+}
+
+impl Langs for GlossaryExtendedLangs {
+    fn edition(&self) -> EditionLang {
+        self.edition
+    }
+    fn source(&self) -> Lang {
+        self.source
+    }
+    fn target(&self) -> Lang {
+        self.target
+    }
+}
+
+impl Langs for GlossaryLangs {
+    fn edition(&self) -> EditionLang {
+        self.edition
+    }
+    fn source(&self) -> Lang {
+        self.source.into()
+    }
+    fn target(&self) -> Lang {
+        self.target
+    }
+}
+
+pub trait SimpleArgs {
+    fn dict_name(&self) -> &str;
+    fn langs(&self) -> &impl Langs;
+    fn options(&self) -> &ArgsOptions;
+}
+
+impl SimpleArgs for MainArgs {
+    fn dict_name(&self) -> &str {
+        &self.dict_name
+    }
+    fn langs(&self) -> &impl Langs {
+        &self.langs
+    }
+    fn options(&self) -> &ArgsOptions {
+        &self.options
+    }
+}
+
+impl SimpleArgs for GlossaryArgs {
+    fn dict_name(&self) -> &str {
+        &self.dict_name
+    }
+    fn langs(&self) -> &impl Langs {
+        &self.langs
+    }
+    fn options(&self) -> &ArgsOptions {
+        &self.options
+    }
+}
+
+impl SimpleArgs for GlossaryExtendedArgs {
+    fn dict_name(&self) -> &str {
+        &self.dict_name
+    }
+    fn langs(&self) -> &impl Langs {
+        &self.langs
+    }
+    fn options(&self) -> &ArgsOptions {
+        &self.options
+    }
+}
+
+impl SimpleArgs for IpaArgs {
+    fn dict_name(&self) -> &str {
+        &self.dict_name
+    }
+
+    fn langs(&self) -> &impl Langs {
+        &self.langs
+    }
+
+    fn options(&self) -> &ArgsOptions {
+        &self.options
     }
 }
 
@@ -257,7 +377,7 @@ pub struct PathManager {
     dict_name: String,
     dict_ty: DictionaryType,
 
-    edition: Lang,
+    edition: EditionLang,
     source: Lang,
     target: Lang,
 
@@ -266,29 +386,26 @@ pub struct PathManager {
 }
 
 impl PathManager {
-    pub fn new(
-        dict_ty: DictionaryType,
-        dict_name: &str,
-        lang: &ArgsLang,
-        options: &ArgsOptions,
-    ) -> Self {
+    pub fn new(dict_ty: DictionaryType, args: &impl SimpleArgs) -> Self {
         Self {
-            dict_name: dict_name.to_string(),
+            dict_name: args.dict_name().to_string(),
             dict_ty,
-            edition: lang.edition,
-            source: lang.source,
-            target: lang.target,
-            root_dir: options.root_dir.clone(),
-            keep_files: options.keep_files,
+            edition: args.langs().edition(),
+            source: args.langs().source(),
+            target: args.langs().target(),
+            root_dir: args.options().root_dir.clone(),
+            keep_files: args.options().keep_files,
         }
     }
 
-    pub fn from_args(dict_ty: DictionaryType, args: &Args) -> Self {
-        Self::new(dict_ty, &args.dict_name, &args.lang, &args.options)
+    // Seems a bit hacky to get it from the PathManager...
+    pub const fn dict_ty(&self) -> DictionaryType {
+        self.dict_ty
     }
 
-    pub fn from_simple_args(dict_ty: DictionaryType, args: &SimpleArgs) -> Self {
-        Self::new(dict_ty, &args.dict_name, &args.lang, &args.options)
+    // Seems a bit hacky to get it from the PathManager...
+    pub const fn langs(&self) -> (EditionLang, Lang, Lang) {
+        (self.edition, self.source, self.target)
     }
 
     /// Example: `data/kaikki`
@@ -333,7 +450,7 @@ impl PathManager {
     /// Example (de-en): `data/kaikki/de-en-extract.jsonl`
     pub fn path_jsonl_raw(&self) -> PathBuf {
         self.dir_kaik().join(match self.edition {
-            Lang::En => format!("{}-{}-extract.jsonl", self.source, self.target),
+            EditionLang::En => format!("{}-{}-extract.jsonl", self.source, self.target),
             _ => format!("{}-extract.jsonl", self.edition),
         })
     }
@@ -385,6 +502,12 @@ impl PathManager {
             DictionaryType::Glossary => {
                 format!("{}-{}-{}-gloss", self.dict_name, self.source, self.target)
             }
+            DictionaryType::GlossaryExtended => {
+                format!(
+                    "{}-{}-{}-{}-gloss",
+                    self.dict_name, self.edition, self.source, self.target
+                )
+            }
             DictionaryType::Ipa => {
                 format!("{}-{}-{}-ipa", self.dict_name, self.source, self.target)
             }
@@ -435,8 +558,8 @@ mod tests {
 
     #[test]
     fn filter_flag() {
-        assert!(Args::try_parse_from(["_pname", "el", "el", "--filter", "foo,bar"]).is_err());
-        assert!(Args::try_parse_from(["_pname", "el", "el", "--filter", "word,hello"]).is_ok());
-        assert!(Args::try_parse_from(["_pname", "el", "el", "--reject", "pos,name"]).is_ok());
+        assert!(MainArgs::try_parse_from(["_pname", "el", "el", "--filter", "foo,bar"]).is_err());
+        assert!(MainArgs::try_parse_from(["_pname", "el", "el", "--filter", "word,hello"]).is_ok());
+        assert!(MainArgs::try_parse_from(["_pname", "el", "el", "--reject", "pos,name"]).is_ok());
     }
 }

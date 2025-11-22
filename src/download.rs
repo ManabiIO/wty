@@ -1,22 +1,22 @@
-use anyhow::{Result, bail};
+use anyhow::Result;
 use flate2::read::GzDecoder;
 use std::fs::File;
 use std::io::BufWriter;
 use std::path::Path;
 
-use crate::lang::Lang;
+use crate::lang::{EditionLang, Lang};
 use crate::utils::{CHECK_C, pretty_println_at_path, skip_because_file_exists};
 
 /// Different in English and non-English editions.
 ///
 /// Example (el):    `https://kaikki.org/elwiktionary/raw-wiktextract-data.jsonl.gz`
 /// Example (sh-en): `https://kaikki.org/dictionary/Serbo-Croatian/kaikki.org-dictionary-SerboCroatian.jsonl.gz`
-pub fn url_raw_jsonl_gz(edition: Lang, source: Lang) -> String {
+pub fn url_raw_jsonl_gz(edition: EditionLang, source: Lang) -> String {
     let root = "https://kaikki.org";
 
     match edition {
         // Default download name is: kaikki.org-dictionary-TARGET_LANGUAGE.jsonl.gz
-        Lang::En => {
+        EditionLang::En => {
             let long = source.long();
             // Serbo-Croatian, Ancient Greek and such cases
             let language_no_special_chars: String =
@@ -35,7 +35,7 @@ pub fn url_raw_jsonl_gz(edition: Lang, source: Lang) -> String {
 ///
 /// Does not write the .gz file to disk.
 pub fn download_jsonl(
-    edition: Lang,
+    edition: EditionLang,
     source: Lang,
     path_jsonl_raw: &Path,
     redownload: bool,
@@ -48,19 +48,7 @@ pub fn download_jsonl(
     let url = url_raw_jsonl_gz(edition, source);
     println!("⬇ Downloading {url}");
 
-    let response = match ureq::get(url).call() {
-        Ok(response) => response,
-        Err(err @ ureq::Error::StatusCode(404)) => {
-            // Normally this is caught at CLI time, but in case language.json or lang.rs
-            // are outdated / wrong it may reach this...
-            bail!(
-                "{err}. Does the language {} ({}) have an edition?",
-                edition.long(),
-                edition
-            )
-        }
-        Err(err) => bail!(err),
-    };
+    let response = ureq::get(url).call()?;
 
     if let Some(last_modified) = response.headers().get("last-modified") {
         tracing::info!("Download was last modified: {:?}", last_modified);
