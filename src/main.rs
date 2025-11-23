@@ -39,7 +39,8 @@ use zip::write::SimpleFileOptions;
 use tracing::{Level, debug, error, info, span, trace, warn};
 
 use kty::cli::{
-    ArgsOptions, Cli, Command, DictionaryType, FilterKey, MainArgs, MainLangs, PathManager,
+    ArgsOptions, Cli, Command, DGlossary, DGlossaryExtended, DIpa, DictionaryType, FilterKey,
+    MainArgs, MainLangs, PathManager,
 };
 use kty::download::download_jsonl;
 use kty::lang::{EditionLang, Lang};
@@ -165,6 +166,7 @@ fn filter_jsonl(
 // Tidy: internal types
 
 type Map<K, V> = IndexMap<K, V>; // Preserve insertion order
+type Set<K> = IndexSet<K>;
 
 type LemmaMap = Map<
     String, // lemma
@@ -2047,73 +2049,163 @@ fn write_banks(
     Ok(())
 }
 
-impl SimpleDictionary for DictionaryType {
-    fn make_yomitan_entry(
+impl SimpleDictionary for DGlossary {
+    type I = YomitanEntry; // default: when we don't want tidy
+
+    fn process(
         &self,
+        _edition: EditionLang,
         source: Lang,
         target: Lang,
         entry: &WordEntry,
-    ) -> Vec<YomitanEntry> {
-        match self {
-            Self::Main => unimplemented!("Main dictionary is made differently"),
-            Self::Glossary => make_yomitan_entries_glossary(source, target, entry),
-            Self::GlossaryExtended => make_yomitan_entries_glossary_extended(source, target, entry),
-            Self::Ipa => make_yomitan_entries_ipa(source, entry),
-        }
+    ) -> Vec<Self::I> {
+        make_yomitan_entries_glossary(source, target, entry)
     }
 
     fn paths_jsonl_raw(&self, pm: &PathManager) -> Vec<(EditionLang, PathBuf)> {
-        match self {
-            Self::Main => unimplemented!("Main dictionary is made differently"),
-            Self::Glossary => {
-                let (edition, source, _) = pm.langs();
-                let edition_lang = edition.try_into().unwrap(); // edition is never Edition::All
-                vec![(edition_lang, pm.path_jsonl(source, source))]
-            }
-            Self::GlossaryExtended => {
-                let (edition, _, _) = pm.langs();
-                let mut paths = Vec::new();
-                for edition_lang in edition.variants() {
-                    let lang = edition_lang.into();
-                    paths.push((edition_lang, pm.path_jsonl(lang, lang)));
-                }
-                paths
-            }
-            Self::Ipa => {
-                let (edition, source, target) = pm.langs();
-                let edition_lang = edition.try_into().unwrap(); // edition is never Edition::All
-                vec![(edition_lang, pm.path_jsonl(source, target))]
-            }
-        }
+        let (edition, source, _) = pm.langs();
+        let edition_lang = edition.try_into().unwrap(); // edition is never Edition::All
+        vec![(edition_lang, pm.path_jsonl(source, source))]
+    }
+
+    fn to_yomitan(&self, tidy: Self::I) -> YomitanEntry {
+        tidy
     }
 }
 
-// Abstracts the writing process for simple dictionaries that do not require Tidy
-//
-// Ideally this should support DictionaryType::Main at some point
-trait SimpleDictionary {
-    /// Slice of paths to jsonl raw dumps.
-    ///
-    /// Most dictionaries only use a single path. For instance, Glossary will only use the `source`
-    /// edition. It is possible, though, to make a yomitan dictionary by using information from
-    /// multiple dumps.
-    fn paths_jsonl_raw(&self, pm: &PathManager) -> Vec<(EditionLang, PathBuf)>;
+impl SimpleDictionary for DGlossaryExtended {
+    type I = IGlossaryExtended;
 
-    /// How to transform a `WordEntry` into `YomitanEntry`s.
-    ///
-    /// Most dictionaries will only make *at most one* `YomitanEntry` from a `WordEntry`. It is
-    /// possible, though, to make *more than one* from a single `WordEntry`.
-    fn make_yomitan_entry(
+    fn paths_jsonl_raw(&self, pm: &PathManager) -> Vec<(EditionLang, PathBuf)> {
+        let (edition, _, _) = pm.langs();
+        let mut paths = Vec::new();
+        for edition_lang in edition.variants() {
+            let lang = edition_lang.into();
+            paths.push((edition_lang, pm.path_jsonl(lang, lang)));
+        }
+        paths
+    }
+
+    fn process(
         &self,
+        edition: EditionLang,
         source: Lang,
         target: Lang,
         entry: &WordEntry,
-    ) -> Vec<YomitanEntry>;
+    ) -> Vec<Self::I> {
+        make_ir_glossary_extended(edition, source, target, entry)
+    }
+
+    fn write_temp(&self) -> bool {
+        true
+    }
+
+    fn compact(&self, tidies: &mut Vec<Self::I>) {
+        let mut map = Map::new();
+
+        for (lemma, pos, edition, translations) in tidies.drain(..) {
+            let entry = map
+                .entry(lemma.clone())
+                .or_insert_with(|| (pos.clone(), edition, Set::new()));
+
+            for tr in translations {
+                entry.2.insert(tr);
+            }
+        }
+
+        tidies.extend(map.into_iter().map(|(lemma, (pos, edition, set))| {
+            (lemma, pos, edition, set.into_iter().collect::<Vec<_>>())
+        }));
+    }
+
+    fn to_yomitan(&self, tidy: Self::I) -> YomitanEntry {
+        make_yomitan_glossary_extended(tidy)
+    }
 }
 
-fn make_simple_dict(options: &ArgsOptions, pm: &PathManager) -> Result<()> {
+impl SimpleDictionary for DIpa {
+    type I = IIpa;
+
+    fn process(
+        &self,
+        _edition: EditionLang,
+        source: Lang,
+        _target: Lang,
+        entry: &WordEntry,
+    ) -> Vec<Self::I> {
+        make_ir_ipa(source, entry)
+    }
+
+    fn paths_jsonl_raw(&self, pm: &PathManager) -> Vec<(EditionLang, PathBuf)> {
+        let (edition, source, target) = pm.langs();
+        let edition_lang = edition.try_into().unwrap(); // edition is never Edition::All
+        vec![(edition_lang, pm.path_jsonl(source, target))]
+    }
+
+    fn to_yomitan(&self, tidy: Self::I) -> YomitanEntry {
+        make_yomitan_ipa(tidy)
+    }
+}
+
+// Ideally this should support Main at some point
+//
+// If this ends up having too much overhead for dictionaries that do not use Self::I, consider this
+// other trait:
+//
+// trait SimpleDictionary {
+//     fn paths_jsonl_raw(&self, pm: &PathManager) -> Vec<(EditionLang, PathBuf)>;
+//     fn process(&self, source: Lang, target: Lang, entry: &WordEntry) -> Vec<YomitanEntry>;
+// }
+//
+// and rewrite write_simple_dict to instead just store YomitanEntries.
+//
+/// Trait to abstract the process of writing a dictionary.
+trait SimpleDictionary {
+    /// Intermediate representation. Used for postprocessing (merge, etc.) and debugging via snapshots.
+    ///
+    /// It can be set to YomitanEntry if we don't want to do anything fancy.
+    type I: Serialize;
+
+    /// Vector of paths to jsonl raw dumps.
+    ///
+    /// Most dictionaries only use a single path. For instance, Glossary will only use the `source`
+    /// edition.
+    fn paths_jsonl_raw(&self, pm: &PathManager) -> Vec<(EditionLang, PathBuf)>;
+
+    /// How to transform a `WordEntry` into intermediate representation.
+    ///
+    /// Most dictionaries only make *at most one* `Self::I` from a `WordEntry`.
+    fn process(
+        &self,
+        edition: EditionLang,
+        source: Lang,
+        target: Lang,
+        word_entry: &WordEntry,
+    ) -> Vec<Self::I>;
+
+    /// Whether to write or not the Vec<Self::I> to disk
+    fn write_temp(&self) -> bool {
+        false
+    }
+
+    /// How to compact the intermediate representation.
+    ///
+    /// This can be implemented, for instance, to merge entries from different editions.
+    ///
+    /// If left unimplemented, it does nothing.
+    #[allow(unused_variables)]
+    fn compact(&self, irs: &mut Vec<Self::I>) {}
+
+    // Does not have access to WordEntry!
+    fn to_yomitan(&self, ir: Self::I) -> YomitanEntry;
+}
+
+fn make_simple_dict<D: SimpleDictionary>(
+    dict: D,
+    options: &ArgsOptions,
+    pm: &PathManager,
+) -> Result<()> {
     let (_, source, target) = pm.langs();
-    let dict = pm.dict_ty();
 
     pm.setup_dirs()?;
 
@@ -2169,8 +2261,8 @@ fn make_simple_dict(options: &ArgsOptions, pm: &PathManager) -> Result<()> {
                 continue;
             }
 
-            let yomitan_entry = dict.make_yomitan_entry(source, target, &word_entry);
-            entries.extend(yomitan_entry);
+            let entry = dict.process(edition, source, target, &word_entry);
+            entries.extend(entry);
         }
 
         if printed_progress {
@@ -2186,7 +2278,28 @@ fn make_simple_dict(options: &ArgsOptions, pm: &PathManager) -> Result<()> {
         return Ok(());
     }
 
-    let labelled_entries = [("term", entries)];
+    dict.compact(&mut entries);
+    println!("Compacted down to {} entries", entries.len());
+
+    // dump ir if some flag is passed, save_temps I guess
+    if options.save_temps && dict.write_temp() {
+        let writer_path = pm.dir_tidy().join("tidy.jsonl");
+        let writer_file = File::create(&writer_path)?;
+        let writer = BufWriter::new(&writer_file);
+        if options.pretty {
+            serde_json::to_writer_pretty(writer, &entries)?;
+        } else {
+            serde_json::to_writer(writer, &entries)?;
+        }
+        pretty_print_at_path("Wrote tidy", &writer_path);
+    }
+
+    let yomitan_entries: Vec<YomitanEntry> = entries
+        .into_iter()
+        .map(|entry| dict.to_yomitan(entry))
+        .collect();
+
+    let labelled_entries = [("term", yomitan_entries)];
     write_yomitan(source, target, options, pm, &labelled_entries)?;
 
     Ok(())
@@ -2199,8 +2312,6 @@ fn make_yomitan_entries_glossary(
 ) -> Vec<YomitanEntry> {
     // rg: process translations processtranslations
     let target_str = target.to_string();
-
-    // TODO: could not clone here below: check glossary_extended
 
     // The original was fetching translations from the Senses too, but those are documented nowhere
     // and there is not a single occurence in the testsuite.
@@ -2274,31 +2385,34 @@ fn make_yomitan_entries_glossary(
     ))]
 }
 
-fn make_yomitan_entries_glossary_extended(
+type IGlossaryExtended = (String, String, EditionLang, Vec<String>);
+
+// Should consume the WordEntry really
+fn make_ir_glossary_extended(
+    edition: EditionLang,
     source: Lang,
     target: Lang,
     word_entry: &WordEntry,
-) -> Vec<YomitanEntry> {
+) -> Vec<IGlossaryExtended> {
     let target_str = target.to_string();
     let source_str = source.to_string();
 
     // Compared to glossary, we don't care about the Senses content themselves but the translation
     // must at least match the same sense.
 
-    let mut translations: Map<&str, (Vec<String>, Vec<String>)> = Map::new();
-    let _: kty::models::Translation;
+    let mut translations: Map<String, (Vec<String>, Vec<String>)> = Map::new();
     for translation in &word_entry.translations {
         if translation.word.is_empty() {
             continue;
         }
 
         if translation.lang_code == target_str {
-            let sense_translations = translations.entry(&translation.sense).or_default();
+            let sense_translations = translations.entry(translation.sense.clone()).or_default();
             sense_translations.0.push(translation.word.clone());
         }
 
         if translation.lang_code == source_str {
-            let sense_translations = translations.entry(&translation.sense).or_default();
+            let sense_translations = translations.entry(translation.sense.clone()).or_default();
             sense_translations.1.push(translation.word.clone());
         }
     }
@@ -2311,49 +2425,56 @@ fn make_yomitan_entries_glossary_extended(
         return vec![];
     }
 
-    // error!("{:?}", translations);
-
     let found_pos = match find_pos(&word_entry.pos) {
         Some(short_pos) => short_pos.to_string(),
         None => word_entry.pos.clone(),
     };
 
-    let mut yomitan_entries = Vec::new();
+    let mut translations_product = Vec::new();
 
     for (_sense, translations) in translations {
-        // TODO: a "semi" cartesian product:
+        // A "semi" cartesian product:
         // {"British overseas territory": (["Gjibraltar", "Gjibraltari"], ["Ἡράκλειαι στῆλαι", "Κάλπη"])}
         //     source                            target (what we search)
         // >>> ["Gjibraltar", "Gjibraltari"]  <> "Ἡράκλειαι στῆλαι"
         // >>> ["Gjibraltar", "Gjibraltari"]  <> "Κάλπη"
-        // for source_t in translations.1 {
-        //
-        // }
 
         for lemma in translations.1 {
             let mut definitions = Vec::new();
             for translation in &translations.0 {
-                definitions.push(DetailedDefinition::Text(translation.to_string()));
+                definitions.push(translation.to_string());
             }
-            let yomitan_entry = YomitanEntry::TermBank(TermBank(
-                // word_entry.word.clone(),
-                lemma.to_string(),
-                String::new(),
-                found_pos.clone(),
-                found_pos.clone(),
-                0,
-                definitions,
-                0,
-                String::new(),
-            ));
-            yomitan_entries.push(yomitan_entry);
+            let entry = (lemma, found_pos.clone(), edition, definitions);
+            translations_product.push(entry);
         }
     }
 
-    yomitan_entries
+    translations_product
 }
 
-fn make_yomitan_entries_ipa(source: Lang, word_entry: &WordEntry) -> Vec<YomitanEntry> {
+fn make_yomitan_glossary_extended(ir: IGlossaryExtended) -> YomitanEntry {
+    let (lemma, found_pos, _, translations) = ir;
+
+    let mut definitions = Vec::new();
+    for translation in &translations {
+        definitions.push(DetailedDefinition::Text(translation.to_string()));
+    }
+
+    YomitanEntry::TermBank(TermBank(
+        lemma,
+        String::new(),
+        found_pos.clone(),
+        found_pos,
+        0,
+        definitions,
+        0,
+        String::new(),
+    ))
+}
+
+type IIpa = (String, PhoneticTranscription);
+
+fn make_ir_ipa(source: Lang, word_entry: &WordEntry) -> Vec<IIpa> {
     let ipas = get_ipas(word_entry);
 
     if ipas.is_empty() {
@@ -2365,11 +2486,16 @@ fn make_yomitan_entries_ipa(source: Lang, word_entry: &WordEntry) -> Vec<Yomitan
         transcriptions: ipas,
     };
 
-    vec![YomitanEntry::TermBankMeta(TermBankMeta(
-        word_entry.word.clone(),
+    vec![(word_entry.word.clone(), phonetic_transcription)]
+}
+
+fn make_yomitan_ipa(ir: IIpa) -> YomitanEntry {
+    let (lemma, phonetic_transcription) = ir;
+    YomitanEntry::TermBankMeta(TermBankMeta(
+        lemma,
         "ipa".to_string(),
         phonetic_transcription,
-    ))]
+    ))
 }
 
 fn write_diagnostics(pm: &PathManager, diagnostics: &Diagnostics) -> Result<()> {
@@ -2438,7 +2564,6 @@ fn write_sorted_json(
     Ok(())
 }
 
-#[tracing::instrument(skip_all)]
 fn make_dict_main(args: &MainArgs, pm: &PathManager) -> Result<()> {
     debug_assert_eq!(args.langs.edition, args.langs.target);
 
@@ -2511,6 +2636,9 @@ fn main() -> Result<()> {
 
     setup_tracing(cli.verbose);
 
+    let span = tracing::info_span!("main");
+    let _guard = span.enter();
+
     debug!("{:#?}", cli.command);
 
     match cli.command {
@@ -2535,7 +2663,7 @@ fn main() -> Result<()> {
             args.langs.edition = args.langs.source;
             push_filter_key_lang(&mut args.options.filter, source_as_lang);
             let pm = PathManager::new(DictionaryType::Glossary, args);
-            make_simple_dict(&args.options, &pm)
+            make_simple_dict(DGlossary, &args.options, &pm)
         }
         Command::GlossaryExtended(ref mut args) => {
             ensure!(
@@ -2544,13 +2672,13 @@ fn main() -> Result<()> {
             );
 
             let pm = PathManager::new(DictionaryType::GlossaryExtended, args);
-            make_simple_dict(&args.options, &pm)
+            make_simple_dict(DGlossaryExtended, &args.options, &pm)
         }
         Command::Ipa(ref mut args) => {
             args.langs.edition = args.langs.target;
             push_filter_key_lang(&mut args.options.filter, args.langs.source);
             let pm = PathManager::new(DictionaryType::Ipa, args);
-            make_simple_dict(&args.options, &pm)
+            make_simple_dict(DIpa, &args.options, &pm)
         }
         Command::Iso => {
             println!("{}", Lang::help_supported_isos_coloured());
@@ -2707,7 +2835,7 @@ mod tests {
             for possible_target in &langs_in_testsuite {
                 let args = fixture_glossary_args(source, source, *possible_target, &fixture_dir);
                 let pm = PathManager::new(DictionaryType::Glossary, &args);
-                make_simple_dict(&args.options, &pm).unwrap();
+                make_simple_dict(DGlossary, &args.options, &pm).unwrap();
             }
         }
 
@@ -2718,7 +2846,7 @@ mod tests {
             };
             let args = fixture_main_args(target, *source, target, &fixture_dir);
             let pm = PathManager::new(DictionaryType::Ipa, &args);
-            make_simple_dict(&args.options, &pm).unwrap();
+            make_simple_dict(DIpa, &args.options, &pm).unwrap();
         }
 
         cleanup(&fixture_dir.join("dict"));

@@ -23,7 +23,7 @@ A list of supported languages isos can be found at `assets/language.json`
 Output of `kty main --help` (may be outdated):
 
 ```
-Main dictionary
+Main dictionary. Uses target for the edition
 
 Usage: kty main [OPTIONS] <SOURCE> <TARGET> [DICT_NAME]
 
@@ -33,18 +33,20 @@ Arguments:
   [DICT_NAME]  Dictionary name [default: kty]
 
 Options:
-  -k, --keep-files           Write intermediate files to disk
+  -s, --save-temps           Write temporary files to disk and skip zipping
   -r, --redownload           Redownload kaikki files
-      --skip-filter          Skip filtering the jsonl
+      --first <FIRST>        Only keep the first n jsonlines before filtering. -1 keeps all [default: -1]
+      --filter <FILTER>      Only keep entries matching certain key–value filters
+      --reject <REJECT>      Only keep entries not matching certain key–value filters
+  -p, --pretty               Write jsons with whitespace
   -v, --verbose              Verbose output
-      --skip-tidy            Skip running tidy (IR generation)
-      --skip-yomitan         Skip running yomitan (mainly for testing)
-      --first <FIRST>        (debug) Only take the first n jsonlines before filtering. -1 for taking all jsonlines [default: -1]
-      --filter <FILTER>      (debug) Only include entries matching certain key–value filters
-      --reject <REJECT>      (debug) Exclude entries matching certain key–value filters
-      --pretty               Write jsons with whitespace
-      --root-dir <ROOT_DIR>  (test) Modify the root directory. For testing, set this to "tests" [default: data]
+      --root-dir <ROOT_DIR>  Change the root directory [default: data]
   -h, --help                 Print help
+
+Skip:
+      --skip-filtering  Skip filtering the jsonl
+      --skip-tidy       Skip running tidy (IR generation)
+      --skip-yomitan    Skip running yomitan (mainly for testing)
 ```
 
 ## Tests

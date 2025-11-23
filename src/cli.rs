@@ -23,19 +23,16 @@ pub struct Cli {
 
 #[derive(Debug, Subcommand)]
 pub enum Command {
-    /// Main dictionary using target as the edition
+    /// Main dictionary. Uses target for the edition
     Main(MainArgs),
 
-    /// Short dictionary made from translations using source as the edition
+    /// Short dictionary made from translations. Uses source for the edition
     Glossary(GlossaryArgs),
 
-    // Don't take the monolingual <source>-<source>
-    //
-    // Maybe in the future it could be merged with Glossary
-    /// Short dictionary made from translations (supports any language pair)
+    /// Short dictionary made from translations. Supports any language pair
     GlossaryExtended(GlossaryExtendedArgs),
 
-    /// Phonetic transcription dictionary
+    /// Phonetic transcription dictionary. Uses target for the edition
     Ipa(IpaArgs),
 
     /// Show supported iso codes, with coloured editions
@@ -253,6 +250,17 @@ impl ArgsOptions {
     }
 }
 
+// Empty structs to implement the SimpleDictionary trait on.
+#[derive(Debug, Clone, Copy)]
+pub struct DGlossary;
+
+#[derive(Debug, Clone, Copy)]
+pub struct DGlossaryExtended;
+
+#[derive(Debug, Clone, Copy)]
+pub struct DIpa;
+
+/// Enum used by PathManager to dispatch filetree operations (folder names etc.)
 #[derive(Debug, Clone, Copy)]
 pub enum DictionaryType {
     Main,
@@ -400,11 +408,6 @@ impl PathManager {
     }
 
     // Seems a bit hacky to get it from the PathManager...
-    pub const fn dict_ty(&self) -> DictionaryType {
-        self.dict_ty
-    }
-
-    // Seems a bit hacky to get it from the PathManager...
     pub const fn langs(&self) -> (Edition, Lang, Lang) {
         (self.edition, self.source, self.target)
     }
@@ -428,7 +431,7 @@ impl PathManager {
         self.dir_dict().join(format!("temp-{}", self.dict_ty))
     }
     /// Example: `data/dict/el/el/temp/tidy`
-    fn dir_tidy(&self) -> PathBuf {
+    pub fn dir_tidy(&self) -> PathBuf {
         self.dir_temp().join("tidy")
     }
 
