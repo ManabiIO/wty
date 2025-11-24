@@ -8,9 +8,10 @@ The registry is only intended to be used via git diffs, to check for updates.
 
 import argparse
 import json
+import re
 from difflib import SequenceMatcher
 from pathlib import Path
-from typing import Any, Literal, TypedDict
+from typing import Any, Literal, TypedDict, cast, get_args
 
 import requests
 
@@ -37,6 +38,8 @@ L = Literal[
 ]
 """A language code."""
 
+ALLOWED_LANGS = frozenset(get_args(L))
+
 
 class RegValue(TypedDict):
     url: str
@@ -46,25 +49,6 @@ class RegValue(TypedDict):
 
 Reg = dict[L, dict[L, list[RegValue]]]
 """A registry that we will dump as JSON at REGISTRY_PATH."""
-
-
-TO_UPDATE: dict[L, list[L]] = {
-    "cs": ["en"],
-    "de": ["de", "en"],
-    "el": ["el"],
-    "en": ["de", "en", "es"],
-    "es": ["en"],
-    "fa": ["en"],
-    "fr": ["en", "fr"],
-    "grc": ["en"],
-    "ja": ["en"],
-    "ko": ["en"],
-    "la": ["en"],
-    "ru": ["en", "ru"],
-    "sq": ["en"],
-    "zh": ["en"],
-}
-"""Hardcoded testsuite. We may want to "iterdir" in the future."""
 
 
 def read_jsonl(text: str) -> list[Any]:
@@ -155,9 +139,38 @@ def update_registry_for_pair(source: L, target: L) -> Reg:
     return registry
 
 
+def validate_lang(lang: str) -> L:
+    if lang not in ALLOWED_LANGS:
+        raise ValueError(f"String {lang} was not found in L")
+    return cast(L, lang)
+
+
+FNAME_RE = re.compile(r"^([a-zA-Z]+)-([a-zA-Z]+)-extract\.jsonl$")
+
+
+def get_lang_pairs_to_update() -> dict[L, list[L]]:
+    lang_pairs: dict[L, list[L]] = {}
+
+    for file in TESTS_PATH.iterdir():
+        m = FNAME_RE.match(file.name)
+        if not m:
+            raise ValueError(f"Unexpected filename in {TESTS_PATH}: {file.name}")
+
+        source = validate_lang(m.group(1))
+        target = validate_lang(m.group(2))
+
+        if source not in lang_pairs:
+            lang_pairs[source] = []
+        lang_pairs[source].append(target)
+
+    lang_pairs = {src: sorted(lang_pairs[src]) for src in sorted(lang_pairs)}
+
+    return lang_pairs
+
+
 def update_registry() -> None:
     registry: Reg = {}
-    for source, targets in TO_UPDATE.items():
+    for source, targets in get_lang_pairs_to_update().items():
         if source not in registry:
             registry[source] = {}
 

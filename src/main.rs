@@ -304,8 +304,6 @@ struct RawSenseEntry {
     #[serde(rename = "wlink")]
     link_wiktionary: String,
 
-    // This is not included in the dictionary and is only used for debugging
-    // * Should we include it in the dictionary though? Seems useful
     #[serde(rename = "klink")]
     link_kaikki: String,
 }
