@@ -695,9 +695,13 @@ fn process_forms(word_entry: &WordEntry, ret: &mut Tidy) {
 // There are potentially more than one, but I haven't seen that happen
 fn get_reading(edition: EditionLang, source: Lang, word_entry: &WordEntry) -> String {
     match (edition, source) {
+        (EditionLang::Ja, _) => match get_transliteration_form(word_entry) {
+            Some(form) => form.form.clone(),
+            None => word_entry.word.clone(),
+        },
         (EditionLang::En, Lang::Ja) => get_japanese_reading(word_entry),
         (EditionLang::En, Lang::Fa) => match get_romanization_form(word_entry) {
-            Some(romanization_form) => romanization_form.form.clone(),
+            Some(form) => form.form.clone(),
             None => word_entry.word.clone(),
         },
         _ => get_canonical_word(source, word_entry).to_string(),
@@ -719,20 +723,29 @@ fn get_canonical_word(source: Lang, word_entry: &WordEntry) -> &str {
     }
 }
 
-// Guarantees that form.form is not empty
-fn get_canonical_form(word_entry: &WordEntry) -> Option<&Form> {
-    word_entry
-        .forms
-        .iter()
-        .find(|form| form.tags.iter().any(|tag| tag == "canonical") && !form.form.is_empty())
+/// Return all non-empty forms that contain all given tags.
+fn get_tagged_forms<'a>(
+    word_entry: &'a WordEntry,
+    tags: &[&str],
+) -> impl Iterator<Item = &'a Form> {
+    word_entry.forms.iter().filter(|form| {
+        !form.form.is_empty() && tags.iter().all(|tag| form.tags.iter().any(|t| t == tag))
+    })
 }
 
-// Guarantees that form.form is not empty
+/// Return the first non-empty form with the `canonical` tag.
+fn get_canonical_form(word_entry: &WordEntry) -> Option<&Form> {
+    get_tagged_forms(word_entry, &["canonical"]).next()
+}
+
+/// Return the first non-empty form with the `romanization` tag.
 fn get_romanization_form(word_entry: &WordEntry) -> Option<&Form> {
-    word_entry
-        .forms
-        .iter()
-        .find(|form| form.tags.iter().any(|tag| tag == "romanization") && !form.form.is_empty())
+    get_tagged_forms(word_entry, &["romanization"]).next()
+}
+
+/// Return the first non-empty form with the `transliteration` tag.
+fn get_transliteration_form(word_entry: &WordEntry) -> Option<&Form> {
+    get_tagged_forms(word_entry, &["transliteration"]).next()
 }
 
 // Does not support multiple readings
