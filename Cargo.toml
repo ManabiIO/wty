@@ -26,4 +26,4 @@ unicode-normalization = "0.1.25"
 # We are not using the gzip feature; instead, we directly use flat2
 # https://docs.rs/ureq/latest/ureq/#features
 ureq = { version = "3.1.4", default-features = false, features = ["rustls"] }
-zip = "6.0.0"
+zip = { version = "6.0.0", default-features = false, features = ["deflate"] }
