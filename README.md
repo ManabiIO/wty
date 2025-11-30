@@ -1,4 +1,4 @@
-Converts wiktionary data from https://kaikki.org/ to [yomitan](https://github.com/yomidevs/yomitan)-compatible dictionaries.
+Converts wiktionary data from [kaikki](https://kaikki.org/) ([wiktextract](https://github.com/tatuylonen/wiktextract)) to [yomitan](https://github.com/yomidevs/yomitan)-compatible dictionaries.
 
 This is a port of [kaikki-to-yomitan](https://github.com/yomidevs/kaikki-to-yomitan).
 
