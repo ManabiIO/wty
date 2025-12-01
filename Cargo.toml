@@ -16,6 +16,7 @@ anyhow = "1.0.100"
 chrono = { version = "0.4.42", default-features = false, features = ["now"] }
 clap = { version = "4.5.51", features = ["derive"] }
 flate2 = "1.1.5"
+fxhash = "0.2.1"
 indexmap = { version = "2.12.0", features = ["serde"] }
 regex = "1.12.2"
 serde = { version = "1.0.228", features = ["derive"] }

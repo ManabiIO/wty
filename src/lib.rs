@@ -7,6 +7,7 @@ pub mod tags;
 pub mod utils;
 
 use anyhow::{Context, Ok, Result, bail, ensure};
+use fxhash::FxBuildHasher;
 use indexmap::{IndexMap, IndexSet};
 use regex::Regex;
 use serde::de::DeserializeOwned;
@@ -40,8 +41,8 @@ use crate::tags::{
 };
 use crate::utils::{CHECK_C, SKIP_C, pretty_print_at_path, pretty_println_at_path};
 
-pub type Map<K, V> = IndexMap<K, V>; // Preserve insertion order
-pub type Set<K> = IndexSet<K>;
+pub type Map<K, V> = IndexMap<K, V, FxBuildHasher>; // Preserve insertion order
+pub type Set<K> = IndexSet<K, FxBuildHasher>;
 
 // Schema of the main dictionary.
 //
@@ -920,7 +921,7 @@ fn get_head_info(head_templates: &[HeadTemplate]) -> Option<String> {
 }
 
 fn get_gloss_tree(entry: &WordEntry) -> GlossTree {
-    let mut gloss_tree = GlossTree::new();
+    let mut gloss_tree = GlossTree::default();
 
     for sense in &entry.senses {
         // rg: examplefiltering
@@ -964,7 +965,7 @@ fn insert_glosses(
     let node = gloss_tree.entry(head.clone()).or_insert_with(|| GlossInfo {
         tags: tags.to_vec(),
         examples: vec![],
-        children: GlossTree::new(),
+        children: GlossTree::default(),
     });
 
     // intersect tags if node already exists
@@ -1957,12 +1958,12 @@ impl SimpleDictionary for DGlossaryExtended {
     }
 
     fn compact(&self, tidies: &mut Vec<Self::I>) {
-        let mut map = Map::new();
+        let mut map = Map::default();
 
         for (lemma, pos, edition, translations) in tidies.drain(..) {
             let entry = map
                 .entry(lemma.clone())
-                .or_insert_with(|| (pos.clone(), edition, Set::new()));
+                .or_insert_with(|| (pos.clone(), edition, Set::default()));
 
             for tr in translations {
                 entry.2.insert(tr);
@@ -2220,7 +2221,7 @@ fn make_yomitan_entries_glossary(
 
     // The original was fetching translations from the Senses too, but those are documented nowhere
     // and there is not a single occurence in the testsuite.
-    let mut translations: Map<Option<String>, Vec<String>> = Map::new();
+    let mut translations: Map<Option<String>, Vec<String>> = Map::default();
     for translation in &word_entry.translations {
         if translation.lang_code != target_str || translation.word.is_empty() {
             continue;
@@ -2305,7 +2306,7 @@ fn make_ir_glossary_extended(
     // Compared to glossary, we don't care about the Senses content themselves but the translation
     // must at least match the same sense.
 
-    let mut translations: Map<String, (Vec<String>, Vec<String>)> = Map::new();
+    let mut translations: Map<String, (Vec<String>, Vec<String>)> = Map::default();
     for translation in &word_entry.translations {
         if translation.word.is_empty() {
             continue;
