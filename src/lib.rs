@@ -96,12 +96,12 @@ fn filter_jsonl(
     let reader_path = path_jsonl_raw;
     let reader_file = File::open(reader_path)?;
     let mut reader = BufReader::with_capacity(capacity, reader_file);
+
     let writer_path = match edition {
         EditionLang::En => path_jsonl.with_extension("tmp.jsonl"),
         _ => path_jsonl,
     };
     debug_assert_ne!(reader_path, writer_path);
-
     let writer_file = File::create(&writer_path)?;
     let mut writer = BufWriter::with_capacity(capacity, writer_file);
     debug!("Filtering: {reader_path:?} > {writer_path:?}",);
@@ -119,11 +119,6 @@ fn filter_jsonl(
         }
 
         line_count += 1;
-
-        // Only relevant for tests. Kaikki jsonlines should not contain empty lines
-        if line.trim().is_empty() {
-            continue;
-        }
 
         let word_entry: WordEntry =
             serde_json::from_str(&line).with_context(|| "Error decoding JSON @ filter")?;
@@ -455,11 +450,6 @@ fn tidy_run(langs: &MainLangs, options: &ArgsOptions, reader_path: &Path) -> Res
         line.clear();
         if reader.read_line(&mut line)? == 0 {
             break; // EOF
-        }
-
-        // Only relevant for tests. Kaikki jsonlines should not contain empty lines
-        if line.trim().is_empty() {
-            continue;
         }
 
         let mut word_entry: WordEntry =
@@ -2138,11 +2128,6 @@ pub fn make_simple_dict<D: SimpleDictionary>(
             }
 
             line_count += 1;
-
-            // Only relevant for tests. Kaikki jsonlines should not contain empty lines
-            if line.trim().is_empty() {
-                continue;
-            }
 
             let word_entry: WordEntry =
                 serde_json::from_str(&line).with_context(|| "Error decoding JSON @ filter")?;
