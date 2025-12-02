@@ -35,7 +35,7 @@ pub struct WordEntry {
 
     pub forms: Vec<Form>,
     pub form_of: Vec<AltForm>,
-    alt_of: Vec<AltForm>, // unused
+    pub alt_of: Vec<AltForm>,
 
     pub translations: Vec<Translation>, // used in glossary
 }
@@ -65,6 +65,7 @@ pub struct Sense {
     pub glosses: Vec<String>,
     pub examples: Vec<Example>,
     pub form_of: Vec<AltForm>,
+    pub alt_of: Vec<AltForm>,
     pub tags: Vec<Tag>,
 }
 

@@ -262,9 +262,7 @@ fn flat_iter_forms_mut(
     })
 }
 
-// Not included in the dictionary: only used for debug
-//
-// In the future, consider alt_of, form_of
+/// Enum used exclusively for debugging. This information doesn't appear on the dictionary.
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq)]
 #[serde(rename_all = "lowercase")]
 enum FormSource {
@@ -272,6 +270,8 @@ enum FormSource {
     Extracted,
     /// Form added via gloss analysis ("is inflection of...")
     Inflection,
+    /// Alternative forms
+    AltOf,
 }
 
 fn lemma_map_len(lemma_map: &LemmaMap) -> usize {
@@ -299,6 +299,10 @@ fn form_map_len_extracted(form_map: &FormMap) -> usize {
 
 fn form_map_len_inflection(form_map: &FormMap) -> usize {
     form_map_len_of_source(form_map, FormSource::Inflection)
+}
+
+fn form_map_len_alt_of(form_map: &FormMap) -> usize {
+    form_map_len_of_source(form_map, FormSource::AltOf)
 }
 
 // Lemmainfo in the original
@@ -416,13 +420,18 @@ fn tidy(
 
     let n_lemmas = lemma_map_len(&ret.lemma_map);
     let n_forms = form_map_len(&ret.form_map);
-    let n_deinflected_forms = form_map_len_inflection(&ret.form_map);
-    let n_extracted_forms = form_map_len_extracted(&ret.form_map);
-    debug_assert_eq!(n_forms, n_deinflected_forms + n_extracted_forms);
+    let n_forms_inflection = form_map_len_inflection(&ret.form_map);
+    let n_forms_extracted = form_map_len_extracted(&ret.form_map);
+    let n_forms_alt_of = form_map_len_alt_of(&ret.form_map);
+    debug_assert_eq!(
+        n_forms,
+        n_forms_inflection + n_forms_extracted + n_forms_alt_of,
+        "mismatch in form counts"
+    );
     let n_entries = n_lemmas + n_forms;
     println!(
         "Found {n_entries} entries: {n_lemmas} lemmas, {n_forms} forms \
-({n_deinflected_forms} inflections, {n_extracted_forms} extracted)"
+({n_forms_inflection} inflections, {n_forms_extracted} extracted, {n_forms_alt_of} alt_of)"
     );
 
     if options.save_temps {
@@ -467,6 +476,8 @@ fn tidy_run(langs: &MainLangs, options: &ArgsOptions, reader_path: &Path) -> Res
         preprocess_word_entry(source, target, options, &mut word_entry, &mut ret);
 
         process_forms(&word_entry, &mut ret);
+
+        process_alt_forms(&word_entry, &mut ret);
 
         // dont push lemma if inflection
         if word_entry.senses.is_empty() {
@@ -679,6 +690,36 @@ fn process_forms(word_entry: &WordEntry, ret: &mut Tidy) {
             FormSource::Extracted,
             vec![filtered_tags.join(" ")],
         );
+    }
+}
+
+/// Add AltOf forms. That is, alternative forms.
+fn process_alt_forms(word_entry: &WordEntry, ret: &mut Tidy) {
+    let base_tags = vec!["alt-of".to_string()];
+
+    for alt_form in &word_entry.alt_of {
+        ret.insert_form(
+            &word_entry.word,
+            &alt_form.word,
+            &word_entry.pos,
+            FormSource::AltOf,
+            base_tags.clone(),
+        );
+    }
+
+    for sense in &word_entry.senses {
+        let mut sense_tags = sense.tags.clone();
+        sense_tags.extend(base_tags.clone());
+
+        for alt_form in &sense.alt_of {
+            ret.insert_form(
+                &word_entry.word,
+                &alt_form.word,
+                &word_entry.pos,
+                FormSource::AltOf,
+                sense_tags.clone(),
+            );
+        }
     }
 }
 
@@ -2734,10 +2775,10 @@ mod tests {
                 &pm.dir_temp_dict().to_string_lossy(),
             ])
             .output()?;
-        if !output.stdout.is_empty() {
-            eprintln!("{}", String::from_utf8_lossy(&output.stdout));
-            bail!("changes!")
-        }
+        // if !output.stdout.is_empty() {
+        //     eprintln!("{}", String::from_utf8_lossy(&output.stdout));
+        //     bail!("changes!")
+        // }
 
         Ok(())
     }

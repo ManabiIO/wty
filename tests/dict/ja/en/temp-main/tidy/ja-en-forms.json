@@ -972,6 +972,36 @@
           "alternative kanji"
         ]
       ]
+    },
+    "狸饂飩": {
+      "noun": [
+        "altof",
+        [
+          "abbreviation",
+          "alt-of"
+        ]
+      ]
+    },
+    "狸寝入り": {
+      "noun": [
+        "altof",
+        [
+          "abbreviation",
+          "alt-of",
+          "rare"
+        ]
+      ]
+    },
+    "狸汁": {
+      "noun": [
+        "altof",
+        [
+          "abbreviation",
+          "alt-of",
+          "obsolete",
+          "rare"
+        ]
+      ]
     }
   },
   "走る": {
@@ -1836,6 +1866,15 @@
         "extracted",
         [
           "negative continuative"
+        ]
+      ]
+    },
+    "ハシる": {
+      "verb": [
+        "altof",
+        [
+          "alt-of",
+          "alternative"
         ]
       ]
     }
