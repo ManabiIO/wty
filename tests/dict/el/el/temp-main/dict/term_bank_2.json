@@ -244,13 +244,13 @@
       [
         "αζωικός",
         [
-          "nominative singular plural masculine"
+          "nominative plural masculine"
         ]
       ],
       [
         "αζωικός",
         [
-          "vocative singular plural masculine"
+          "vocative plural masculine"
         ]
       ]
     ],
@@ -267,19 +267,19 @@
       [
         "αζωικός",
         [
-          "accusative singular plural feminine"
+          "accusative plural feminine"
         ]
       ],
       [
         "αζωικός",
         [
-          "nominative singular plural feminine"
+          "nominative plural feminine"
         ]
       ],
       [
         "αζωικός",
         [
-          "vocative singular plural feminine"
+          "vocative plural feminine"
         ]
       ]
     ],
@@ -296,19 +296,19 @@
       [
         "αζωικός",
         [
-          "accusative singular plural neuter"
+          "accusative plural neuter"
         ]
       ],
       [
         "αζωικός",
         [
-          "nominative singular plural neuter"
+          "nominative plural neuter"
         ]
       ],
       [
         "αζωικός",
         [
-          "vocative singular plural neuter"
+          "vocative plural neuter"
         ]
       ]
     ],
@@ -325,19 +325,19 @@
       [
         "αζωικός",
         [
-          "genitive singular plural feminine"
+          "genitive plural feminine"
         ]
       ],
       [
         "αζωικός",
         [
-          "genitive singular plural masculine"
+          "genitive plural masculine"
         ]
       ],
       [
         "αζωικός",
         [
-          "genitive singular plural neuter"
+          "genitive plural neuter"
         ]
       ]
     ],
@@ -354,7 +354,7 @@
       [
         "αζωικός",
         [
-          "accusative singular plural masculine"
+          "accusative plural masculine"
         ]
       ]
     ],
@@ -447,23 +447,6 @@
         "γορίλλας",
         [
           "genitive plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "γορίλας",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "γορίλλας",
-        [
-          "transliteration"
         ]
       ]
     ],
@@ -595,13 +578,25 @@
       [
         "ψηφίσας",
         [
-          "accusative singular masculine"
+          "accusative plural neuter"
         ]
       ],
       [
         "ψηφίσας",
         [
-          "accusative singular plural neuter"
+          "nominative plural neuter"
+        ]
+      ],
+      [
+        "ψηφίσας",
+        [
+          "vocative plural neuter"
+        ]
+      ],
+      [
+        "ψηφίσας",
+        [
+          "accusative singular masculine"
         ]
       ],
       [
@@ -613,19 +608,7 @@
       [
         "ψηφίσας",
         [
-          "nominative singular plural neuter"
-        ]
-      ],
-      [
-        "ψηφίσας",
-        [
           "vocative singular masculine"
-        ]
-      ],
-      [
-        "ψηφίσας",
-        [
-          "vocative singular plural neuter"
         ]
       ]
     ],
@@ -676,19 +659,19 @@
       [
         "ψηφίσας",
         [
-          "accusative singular plural masculine"
+          "accusative plural masculine"
         ]
       ],
       [
         "ψηφίσας",
         [
-          "nominative singular plural masculine"
+          "nominative plural masculine"
         ]
       ],
       [
         "ψηφίσας",
         [
-          "vocative singular plural masculine"
+          "vocative plural masculine"
         ]
       ]
     ],
@@ -705,19 +688,19 @@
       [
         "ψηφίσας",
         [
-          "accusative singular plural feminine"
+          "accusative plural feminine"
         ]
       ],
       [
         "ψηφίσας",
         [
-          "nominative singular plural feminine"
+          "nominative plural feminine"
         ]
       ],
       [
         "ψηφίσας",
         [
-          "vocative singular plural feminine"
+          "vocative plural feminine"
         ]
       ]
     ],
@@ -734,13 +717,13 @@
       [
         "ψηφίσας",
         [
-          "genitive singular plural masculine"
+          "genitive plural masculine"
         ]
       ],
       [
         "ψηφίσας",
         [
-          "genitive singular plural neuter"
+          "genitive plural neuter"
         ]
       ]
     ],
@@ -757,7 +740,7 @@
       [
         "ψηφίσας",
         [
-          "genitive singular plural feminine"
+          "genitive plural feminine"
         ]
       ]
     ],

@@ -9627,13 +9627,11 @@
               "form": "αζωικοί",
               "tags": [
                 "masculine",
-                "singular",
                 "nominative",
                 "plural"
               ],
               "raw_tags": [
                 "αρσενικό",
-                "ενικός",
                 "ονομαστική",
                 "πληθυντικός"
               ],
@@ -9642,13 +9640,11 @@
             {
               "form": "αζωικές",
               "tags": [
-                "singular",
                 "feminine",
                 "nominative",
                 "plural"
               ],
               "raw_tags": [
-                "ενικός",
                 "θηλυκό",
                 "ονομαστική",
                 "πληθυντικός"
@@ -9658,13 +9654,11 @@
             {
               "form": "αζωικά",
               "tags": [
-                "singular",
                 "nominative",
                 "neuter",
                 "plural"
               ],
               "raw_tags": [
-                "ενικός",
                 "ονομαστική",
                 "ουδέτερο",
                 "πληθυντικός"
@@ -9676,13 +9670,11 @@
               "tags": [
                 "masculine",
                 "genitive",
-                "singular",
                 "plural"
               ],
               "raw_tags": [
                 "αρσενικό",
                 "γενική",
-                "ενικός",
                 "πληθυντικός"
               ],
               "source": "declension"
@@ -9691,13 +9683,11 @@
               "form": "αζωικών",
               "tags": [
                 "genitive",
-                "singular",
                 "feminine",
                 "plural"
               ],
               "raw_tags": [
                 "γενική",
-                "ενικός",
                 "θηλυκό",
                 "πληθυντικός"
               ],
@@ -9707,13 +9697,11 @@
               "form": "αζωικών",
               "tags": [
                 "genitive",
-                "singular",
                 "neuter",
                 "plural"
               ],
               "raw_tags": [
                 "γενική",
-                "ενικός",
                 "ουδέτερο",
                 "πληθυντικός"
               ],
@@ -9724,13 +9712,11 @@
               "tags": [
                 "accusative",
                 "masculine",
-                "singular",
                 "plural"
               ],
               "raw_tags": [
                 "αιτιατική",
                 "αρσενικό",
-                "ενικός",
                 "πληθυντικός"
               ],
               "source": "declension"
@@ -9739,13 +9725,11 @@
               "form": "αζωικές",
               "tags": [
                 "accusative",
-                "singular",
                 "feminine",
                 "plural"
               ],
               "raw_tags": [
                 "αιτιατική",
-                "ενικός",
                 "θηλυκό",
                 "πληθυντικός"
               ],
@@ -9755,13 +9739,11 @@
               "form": "αζωικά",
               "tags": [
                 "accusative",
-                "singular",
                 "neuter",
                 "plural"
               ],
               "raw_tags": [
                 "αιτιατική",
-                "ενικός",
                 "ουδέτερο",
                 "πληθυντικός"
               ],
@@ -9771,13 +9753,11 @@
               "form": "αζωικοί",
               "tags": [
                 "masculine",
-                "singular",
                 "vocative",
                 "plural"
               ],
               "raw_tags": [
                 "αρσενικό",
-                "ενικός",
                 "κλητική",
                 "πληθυντικός"
               ],
@@ -9786,13 +9766,11 @@
             {
               "form": "αζωικές",
               "tags": [
-                "singular",
                 "feminine",
                 "vocative",
                 "plural"
               ],
               "raw_tags": [
-                "ενικός",
                 "θηλυκό",
                 "κλητική",
                 "πληθυντικός"
@@ -9802,13 +9780,11 @@
             {
               "form": "αζωικά",
               "tags": [
-                "singular",
                 "vocative",
                 "neuter",
                 "plural"
               ],
               "raw_tags": [
-                "ενικός",
                 "κλητική",
                 "ουδέτερο",
                 "πληθυντικός"
@@ -10062,13 +10038,6 @@
                 "αρσενικό"
               ],
               "source": "header"
-            },
-            {
-              "form": "γορίλας",
-              "tags": [
-                "transliteration"
-              ],
-              "source": "linkage"
             }
           ],
           "lang_code": "el",
@@ -10114,6 +10083,11 @@
             "Λόγια ενδογενή δάνεια (νέα ελληνικά)",
             "Προέλευση λέξεων από τα αρχαία ελληνικά (νέα ελληνικά)",
             "Προέλευση λέξεων από τα νεολατινικά (νέα ελληνικά)"
+          ],
+          "alt_of": [
+            {
+              "word": "γορίλας"
+            }
           ],
           "translations": [
             {
@@ -10406,13 +10380,11 @@
               "form": "ψηφίσαντες",
               "tags": [
                 "masculine",
-                "singular",
                 "nominative",
                 "plural"
               ],
               "raw_tags": [
                 "αρσενικό",
-                "ενικός",
                 "ονομαστική",
                 "πληθυντικός"
               ],
@@ -10421,13 +10393,11 @@
             {
               "form": "ψηφίσασες",
               "tags": [
-                "singular",
                 "feminine",
                 "nominative",
                 "plural"
               ],
               "raw_tags": [
-                "ενικός",
                 "θηλυκό",
                 "ονομαστική",
                 "πληθυντικός"
@@ -10437,13 +10407,11 @@
             {
               "form": "ψηφίσαντα",
               "tags": [
-                "singular",
                 "nominative",
                 "neuter",
                 "plural"
               ],
               "raw_tags": [
-                "ενικός",
                 "ονομαστική",
                 "ουδέτερο",
                 "πληθυντικός"
@@ -10455,13 +10423,11 @@
               "tags": [
                 "masculine",
                 "genitive",
-                "singular",
                 "plural"
               ],
               "raw_tags": [
                 "αρσενικό",
                 "γενική",
-                "ενικός",
                 "πληθυντικός"
               ],
               "source": "declension"
@@ -10470,13 +10436,11 @@
               "form": "ψηφισασών",
               "tags": [
                 "genitive",
-                "singular",
                 "feminine",
                 "plural"
               ],
               "raw_tags": [
                 "γενική",
-                "ενικός",
                 "θηλυκό",
                 "πληθυντικός"
               ],
@@ -10486,13 +10450,11 @@
               "form": "ψηφισάντων",
               "tags": [
                 "genitive",
-                "singular",
                 "neuter",
                 "plural"
               ],
               "raw_tags": [
                 "γενική",
-                "ενικός",
                 "ουδέτερο",
                 "πληθυντικός"
               ],
@@ -10503,13 +10465,11 @@
               "tags": [
                 "accusative",
                 "masculine",
-                "singular",
                 "plural"
               ],
               "raw_tags": [
                 "αιτιατική",
                 "αρσενικό",
-                "ενικός",
                 "πληθυντικός"
               ],
               "source": "declension"
@@ -10518,13 +10478,11 @@
               "form": "ψηφίσασες",
               "tags": [
                 "accusative",
-                "singular",
                 "feminine",
                 "plural"
               ],
               "raw_tags": [
                 "αιτιατική",
-                "ενικός",
                 "θηλυκό",
                 "πληθυντικός"
               ],
@@ -10534,13 +10492,11 @@
               "form": "ψηφίσαντα",
               "tags": [
                 "accusative",
-                "singular",
                 "neuter",
                 "plural"
               ],
               "raw_tags": [
                 "αιτιατική",
-                "ενικός",
                 "ουδέτερο",
                 "πληθυντικός"
               ],
@@ -10550,13 +10506,11 @@
               "form": "ψηφίσαντες",
               "tags": [
                 "masculine",
-                "singular",
                 "vocative",
                 "plural"
               ],
               "raw_tags": [
                 "αρσενικό",
-                "ενικός",
                 "κλητική",
                 "πληθυντικός"
               ],
@@ -10565,13 +10519,11 @@
             {
               "form": "ψηφίσασες",
               "tags": [
-                "singular",
                 "feminine",
                 "vocative",
                 "plural"
               ],
               "raw_tags": [
-                "ενικός",
                 "θηλυκό",
                 "κλητική",
                 "πληθυντικός"
@@ -10581,13 +10533,11 @@
             {
               "form": "ψηφίσαντα",
               "tags": [
-                "singular",
                 "vocative",
                 "neuter",
                 "plural"
               ],
               "raw_tags": [
-                "ενικός",
                 "κλητική",
                 "ουδέτερο",
                 "πληθυντικός"

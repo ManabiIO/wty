@@ -102,8 +102,8 @@
       "adj": [
         "extracted",
         [
-          "nominative singular plural masculine",
-          "vocative singular plural masculine"
+          "nominative plural masculine",
+          "vocative plural masculine"
         ]
       ]
     },
@@ -111,9 +111,9 @@
       "adj": [
         "extracted",
         [
-          "accusative singular plural feminine",
-          "nominative singular plural feminine",
-          "vocative singular plural feminine"
+          "accusative plural feminine",
+          "nominative plural feminine",
+          "vocative plural feminine"
         ]
       ]
     },
@@ -121,9 +121,9 @@
       "adj": [
         "extracted",
         [
-          "accusative singular plural neuter",
-          "nominative singular plural neuter",
-          "vocative singular plural neuter"
+          "accusative plural neuter",
+          "nominative plural neuter",
+          "vocative plural neuter"
         ]
       ]
     },
@@ -131,9 +131,9 @@
       "adj": [
         "extracted",
         [
-          "genitive singular plural feminine",
-          "genitive singular plural masculine",
-          "genitive singular plural neuter"
+          "genitive plural feminine",
+          "genitive plural masculine",
+          "genitive plural neuter"
         ]
       ]
     },
@@ -141,7 +141,7 @@
       "adj": [
         "extracted",
         [
-          "accusative singular plural masculine"
+          "accusative plural masculine"
         ]
       ]
     }
@@ -182,14 +182,6 @@
         "extracted",
         [
           "genitive plural"
-        ]
-      ]
-    },
-    "γορίλας": {
-      "noun": [
-        "extracted",
-        [
-          "transliteration"
         ]
       ]
     }
@@ -246,12 +238,12 @@
       "verb": [
         "extracted",
         [
+          "accusative plural neuter",
+          "nominative plural neuter",
+          "vocative plural neuter",
           "accusative singular masculine",
-          "accusative singular plural neuter",
           "genitive singular masculine",
-          "nominative singular plural neuter",
-          "vocative singular masculine",
-          "vocative singular plural neuter"
+          "vocative singular masculine"
         ]
       ]
     },
@@ -275,9 +267,9 @@
       "verb": [
         "extracted",
         [
-          "accusative singular plural masculine",
-          "nominative singular plural masculine",
-          "vocative singular plural masculine"
+          "accusative plural masculine",
+          "nominative plural masculine",
+          "vocative plural masculine"
         ]
       ]
     },
@@ -285,9 +277,9 @@
       "verb": [
         "extracted",
         [
-          "accusative singular plural feminine",
-          "nominative singular plural feminine",
-          "vocative singular plural feminine"
+          "accusative plural feminine",
+          "nominative plural feminine",
+          "vocative plural feminine"
         ]
       ]
     },
@@ -295,8 +287,8 @@
       "verb": [
         "extracted",
         [
-          "genitive singular plural masculine",
-          "genitive singular plural neuter"
+          "genitive plural masculine",
+          "genitive plural neuter"
         ]
       ]
     },
@@ -304,7 +296,7 @@
       "verb": [
         "extracted",
         [
-          "genitive singular plural feminine"
+          "genitive plural feminine"
         ]
       ]
     }
