@@ -15,7 +15,7 @@ $ kty main de en
 ✓ Wrote yomitan dict @ data/dict/de/en/kty-de-en.zip (20.94 MB)
 ```
 
-A list of supported languages isos can be found at `assets/language.json`
+A list of supported languages isos can be found at `assets/language.json`. It contains every (and possibly more!) language [supported by yomitan](https://raw.githubusercontent.com/yomidevs/yomitan/master/ext/js/language/language-descriptors.js).
 
 ## Other options
 

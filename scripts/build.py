@@ -2,6 +2,7 @@
 
 # Note that there is also the isolang.rs crate
 
+import argparse
 import json
 from dataclasses import dataclass
 from pathlib import Path
@@ -311,7 +312,84 @@ def sort_languages_json(path: Path) -> None:
         f.write("]\n")
 
 
+def check_yomitan_langs(langs: list[Lang]) -> None:
+    """Check if we support at least what is supported by yomitan.
+
+    Since it sends a request to github, it is gated under the --check-yomitan flag.
+    """
+    import re
+    import requests
+
+    url = "https://raw.githubusercontent.com/yomidevs/yomitan/master/ext/js/language/language-descriptors.js"
+    response = requests.get(url)
+    response.raise_for_status()
+    js_text = response.text
+
+    # Get iso and names
+    # ~ we assume that there is no inner lists [] in the descriptors.
+    mch = re.search(r"const languageDescriptors\s*=\s*\[(.*?)\];", js_text, re.DOTALL)
+    if not mch:
+        print("Regex didn't match")
+        return
+    content = mch.group(1)
+
+    # Quick and dirty regex to get iso/names
+    iso_re = re.compile(r"iso: '(.*)',")
+    name_re = re.compile(r"name: '(.*)',")
+    isos = []
+    names = []
+
+    for line in content.splitlines():
+        if iso_match := iso_re.search(line):
+            isos.append(iso_match.group(1))
+        if name_match := name_re.search(line):
+            names.append(name_match.group(1))
+    assert len(isos) == len(names)
+
+    our_iso_map = {lang.iso: lang for lang in langs}
+    missing_isos = []
+    different_names = []
+
+    for ymt_iso, ymt_name in zip(isos, names):
+        if ymt_iso not in our_iso_map:
+            # This iso is supported by yomitan but not us
+            missing_iso = f"[missing iso] {ymt_iso} ({ymt_name})"
+            missing_isos.append(missing_iso)
+        else:
+            our_lang = our_iso_map[ymt_iso]
+            if ymt_name != our_lang.language:
+                # For Arabic (and relatives), we have:
+                # * yomitan: name='Arabic (MSA)'
+                # * we:      language='Arabic', display_name='Arabic, MSA',
+                #
+                # In this case the name is different but it is fine.
+                if ", " in our_lang.display_name:
+                    main, variant = our_lang.display_name.split(", ")
+                    rebuilt = f"{main} ({variant})"
+                    if ymt_name == rebuilt:
+                        continue
+
+                # We have this iso, but the name is different
+                different_name = f"[different name] {ymt_name=} but {our_lang=}"
+                different_names.append(different_name)
+
+    for logs, label in (
+        (missing_isos, "missing_isos"),
+        (different_names, "different_names"),
+    ):
+        if logs:
+            for log in logs:
+                print(log)
+        else:
+            print(f"✓ No {label}")
+
+
 def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-c", "--check-yomitan", action="store_true")
+    args = parser.parse_args()
+    check_yomitan = args.check_yomitan
+
     src = Path("src")
     path_lang_rs = src / "lang.rs"
     path_tags_rs = src / "tags" / "tags_constants.rs"
@@ -336,6 +414,9 @@ def main() -> None:
     with path_languages_json.open() as f:
         data = json.load(f)
         langs = [load_lang(row) for row in data]
+
+    if check_yomitan:
+        check_yomitan_langs(langs)
 
     tag_order: list[str] = []
     with path_tag_order_json.open() as f:
