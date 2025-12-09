@@ -423,9 +423,15 @@ def main() -> None:
         data = json.load(f)
         for _, tags in data.items():
             tag_order.extend(tags)
+    # Overwrite to ensure formatting
+    with path_tag_order_json.open("w") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
     with path_tag_bank_json.open() as f:
         data = json.load(f)
     whitelisted_tags = [WhitelistedTag(*row) for row in data]
+    # Overwrite to ensure formatting
+    with path_tag_bank_json.open("w") as f:
+        json.dump(data, f, indent=4, ensure_ascii=False)
     with path_pos_json.open() as f:
         data = json.load(f)
     poses: list[PosAliases] = data
