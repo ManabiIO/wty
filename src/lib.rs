@@ -2100,8 +2100,8 @@ pub fn make_dict_simple<D: SimpleDictionary>(
         let reader_file = File::open(&reader_path)?;
         let mut reader = BufReader::with_capacity(capacity, reader_file);
 
-        let mut line_count = 1;
-        let mut printed_progress = false;
+        let mut line_count = 0;
+        let mut accepted_count = 0;
 
         loop {
             line.clear();
@@ -2115,13 +2115,8 @@ pub fn make_dict_simple<D: SimpleDictionary>(
                 .with_context(|| "Error decoding JSON @ make_dict_simple")?;
 
             if line_count % CONSOLE_PRINT_INTERVAL == 0 {
-                printed_progress = true;
                 print!("Processed {line_count} lines...\r");
                 std::io::stdout().flush()?;
-            }
-
-            if line_count == options.first {
-                break;
             }
 
             if options
@@ -2140,6 +2135,11 @@ pub fn make_dict_simple<D: SimpleDictionary>(
                 continue;
             }
 
+            accepted_count += 1;
+            if accepted_count == options.first {
+                break;
+            }
+
             dict.preprocess(
                 edition,
                 source_pm,
@@ -2152,9 +2152,7 @@ pub fn make_dict_simple<D: SimpleDictionary>(
             dict.process(edition, source_pm, target_pm, &word_entry, &mut entries);
         }
 
-        if printed_progress {
-            println!("Processed {} lines...", line_count - 1);
-        }
+        println!("Processed {} lines...", line_count);
     }
 
     dict.found_ir_message(&entries);

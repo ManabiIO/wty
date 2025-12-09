@@ -181,7 +181,7 @@ pub struct ArgsOptions {
     #[arg(long, short)]
     pub redownload: bool,
 
-    /// Only keep the first n jsonlines before filtering. -1 keeps all
+    /// Only keep the first n filtered lines. -1 keeps all
     #[arg(long, default_value_t = -1)]
     pub first: i32,
 
