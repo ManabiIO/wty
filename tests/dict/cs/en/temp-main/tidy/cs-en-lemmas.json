@@ -3,7 +3,7 @@
     "zpráva": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "message": {
               "tags": [
                 "feminine"
@@ -47,7 +47,7 @@
     "pro": {
       "prep": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "for": {
               "examples": [
                 {
@@ -68,7 +68,7 @@
     "přít": {
       "verb": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "to dispute": {
               "tags": [
                 "imperfective",

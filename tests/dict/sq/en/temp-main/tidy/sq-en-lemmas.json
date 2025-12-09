@@ -3,7 +3,7 @@
     "akull": {
       "adv": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "very": {}
           },
           "etymology_text": "Uncertain. Possibly:\n# A derivation from Proto-Indo-European *keHl- whence also Proto-Celtic *kaletos (“hard”), Proto-Slavic *kaliti (“to temper, harden”), Latin callum (“hardened skin”).\n# Borrowed from Germanic, ultimately from Proto-Germanic *jekulaz (“icicle”).\n# Akin Old Armenian ոյծ (oyc, “cold, frost”), suffixed with -ull, though the two terms are phonologically incompatible.",
@@ -17,7 +17,7 @@
     "gjuhë": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "tongue (organ)": {
               "tags": [
                 "feminine"

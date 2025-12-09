@@ -3,7 +3,7 @@
     "снег": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "snow": {
               "tags": [
                 "inanimate",
@@ -71,7 +71,7 @@
     "побеле́ть": {
       "verb": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "to turn white, (intransitive) to whiten": {
               "tags": [
                 "perfective"
@@ -109,7 +109,7 @@
     "зи́мний": {
       "adj": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "cold": {}
           },
           "etymology_text": "From Proto-Slavic *zimьnъ. Morphologically, from зима́ (zymá) + -ний (-nyj).\nRelated to зи́мній (zýmnij).",

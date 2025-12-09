@@ -3,7 +3,7 @@
     "pflegen": {
       "verb": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "providing care or service for someone/something": {
               "tags": [
                 "class-4",
@@ -188,7 +188,7 @@
     "Fuchs": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "fox (animal)": {
               "tags": [
                 "masculine",
@@ -297,7 +297,7 @@
     "Herz": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "heart": {
               "tags": [
                 "also",
@@ -332,7 +332,7 @@
     "Fahrer": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "agent noun of fahren; driver (person)": {
               "tags": [
                 "agent",
@@ -354,7 +354,7 @@
     "von": {
       "prep": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "from": {
               "examples": [
                 {
@@ -423,7 +423,7 @@
     "Base": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "A female cousin.": {
               "tags": [
                 "archaic",
@@ -443,7 +443,7 @@
           "klink": "https://kaikki.org/dictionary/German/meaning/B/Ba/Base.html"
         },
         "1": {
-          "glossTree": {
+          "gloss_tree": {
             "base (compound that will neutralize an acid)": {
               "tags": [
                 "feminine"

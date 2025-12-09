@@ -3,7 +3,7 @@
     "たのしい": {
       "adj": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "pleasant, delightful, fun, enjoyable": {}
           },
           "etymology_text": "⟨tano₁siki₁⟩ → */tanʷosikʲi/ → /tanoshii/\nFrom Old Japanese. First attested in the Kojiki of 712 CE. No Ryukyuan cognates exist; as a result, further derivation unknown. Theories include:\n* A compound of 手 (ta, “hand”, combining form) + 伸す (nosu, “to extend”)\n*: This is problematic, as nosu has first been attested starting from the early 900s, with no A/B distinction (see Jōdai Tokushu Kanazukai for details).\n* From 田神 (tano, literally “rice paddy god”)\n*: No reading of 神 (*no, “god”) exists.\n* A borrowing from an unknown language\n*: No words resemble *tanV meaning \"fun\" or \"to enjoy\".",
@@ -18,7 +18,7 @@
     "すき": {
       "adj": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "liked, likable": {
               "examples": [
                 {
@@ -52,7 +52,7 @@
     "たぬき": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "a raccoon dog, Nyctereutes procyonoides": {
               "examples": [
                 {
@@ -116,7 +116,7 @@
     "はしる": {
       "verb": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "to run (move fast on foot)": {
               "examples": [
                 {
@@ -225,7 +225,7 @@
     "ごしき": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "five colors (usu. red (赤), blue (青), yellow (黄), white (白) and black (黒))": {},
             "synonym of 瓜 (uri, “melon, gourd”)": {}
           },
@@ -240,7 +240,7 @@
     "おなかがすいた": {
       "phrase": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "[I am / someone is] hungry": {}
           },
           "etymology_text": "The perfective form of お腹が空く (onaka ga suku, “to become hungry”, literally “one's stomach becomes empty”).",
@@ -255,7 +255,7 @@
     "きょう": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "today": {
               "examples": [
                 {

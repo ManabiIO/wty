@@ -3,7 +3,7 @@
     "prendre": {
       "verb": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "to take": {
               "tags": [
                 "transitive"
@@ -267,7 +267,7 @@
     "sembler": {
       "verb": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "to seem, to resemble": {
               "tags": [
                 "impersonal",
@@ -297,7 +297,7 @@
     "chambre": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "a chamber in its various senses, including:": {
               "tags": [
                 "feminine"
@@ -338,7 +338,7 @@
     "d'accord": {
       "adv": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "in agreement": {
               "examples": [
                 {

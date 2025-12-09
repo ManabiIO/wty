@@ -3,7 +3,7 @@
     "bring": {
       "verb": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "To transport toward somebody/somewhere.": {
               "tags": [
                 "ditransitive",
@@ -89,7 +89,7 @@
     "wain": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "A wagon; a four-wheeled cart for hauling loads, usually pulled by horses or oxen.": {
               "tags": [
                 "archaic",
@@ -115,7 +115,7 @@
     "falcon": {
       "noun": {
         "0": {
-          "glossTree": {
+          "gloss_tree": {
             "Any bird of the genus Falco, all of which are birds of prey.": {},
             "Any bird of prey of the subfamilies Falconinae and Herpetotherinae.": {},
             "A female such bird, a male being a tiercel.": {},

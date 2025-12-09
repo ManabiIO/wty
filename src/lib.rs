@@ -184,7 +184,6 @@ fn form_map_len_alt_of(form_map: &FormMap) -> usize {
 // yomitan side of things. It all depends on what we may or may not consider useful for debugging.
 #[derive(Debug, Serialize, Deserialize, Clone)]
 struct RawSenseEntry {
-    #[serde(rename = "glossTree")]
     gloss_tree: GlossTree,
 
     #[serde(skip_serializing_if = "Option::is_none")]
