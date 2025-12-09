@@ -452,6 +452,23 @@
                   {
                     "tag": "div",
                     "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "sports",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "sports"
+                          }
+                        ]
+                      },
                       "To pitch, often referring to a particularly hard thrown fastball.",
                       {
                         "tag": "details",
@@ -756,6 +773,23 @@
                   {
                     "tag": "div",
                     "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "hunting",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "hunt"
+                          }
+                        ]
+                      },
                       "A female such bird, a male being a tiercel."
                     ]
                   }

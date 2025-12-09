@@ -69,6 +69,14 @@
               ]
             },
             "To pitch, often referring to a particularly hard thrown fastball.": {
+              "topics": [
+                "ball-games",
+                "baseball",
+                "games",
+                "hobbies",
+                "lifestyle",
+                "sports"
+              ],
               "examples": [
                 {
                   "text": "The closer Jones can really bring it.",
@@ -118,7 +126,14 @@
           "gloss_tree": {
             "Any bird of the genus Falco, all of which are birds of prey.": {},
             "Any bird of prey of the subfamilies Falconinae and Herpetotherinae.": {},
-            "A female such bird, a male being a tiercel.": {},
+            "A female such bird, a male being a tiercel.": {
+              "topics": [
+                "falconry",
+                "hobbies",
+                "hunting",
+                "lifestyle"
+              ]
+            },
             "A light cannon used from the 15th to the 17th century.": {
               "tags": [
                 "historical"

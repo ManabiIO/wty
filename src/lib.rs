@@ -209,6 +209,9 @@ struct GlossInfo {
     tags: Vec<Tag>,
 
     #[serde(skip_serializing_if = "Vec::is_empty")]
+    topics: Vec<Tag>,
+
+    #[serde(skip_serializing_if = "Vec::is_empty")]
     examples: Vec<Example>,
 
     #[serde(skip_serializing_if = "Map::is_empty")]
@@ -745,6 +748,7 @@ fn get_gloss_tree(entry: &WordEntry) -> GlossTree {
             &mut gloss_tree,
             &sense.glosses,
             &sense.tags,
+            &sense.topics,
             &filtered_examples,
         );
     }
@@ -757,6 +761,7 @@ fn insert_glosses(
     gloss_tree: &mut GlossTree,
     glosses: &[String],
     tags: &[Tag],
+    topics: &[Tag],
     examples: &[Example],
 ) {
     if glosses.is_empty() {
@@ -769,6 +774,7 @@ fn insert_glosses(
     // get or insert node with only tags at this level
     let node = gloss_tree.entry(head.clone()).or_insert_with(|| GlossInfo {
         tags: tags.to_vec(),
+        topics: topics.to_vec(),
         examples: vec![],
         children: GlossTree::default(),
     });
@@ -788,7 +794,7 @@ fn insert_glosses(
         return;
     }
 
-    insert_glosses(&mut node.children, tail, tags, examples);
+    insert_glosses(&mut node.children, tail, tags, topics, examples);
 }
 
 // rg: isinflection
@@ -1199,6 +1205,7 @@ fn get_recognized_tags(
     diagnostics: &mut Diagnostics,
 ) -> Vec<Tag> {
     // common tags to all glosses (this is an English edition reasoning really...)
+    // it should also support tags at the WordEntry level
     let common_tags: Vec<Tag> = gloss_tree
         .values()
         .map(|g| IndexSet::from_iter(g.tags.iter().cloned()))
@@ -1261,7 +1268,6 @@ fn get_structured_preamble(
     wrap(NTag::Div, "", preamble.into_array_node())
 }
 
-#[allow(unused_variables)]
 fn get_structured_backlink(wlink: &str, klink: &str, options: &ArgsOptions) -> Node {
     let mut links = Node::new_array();
 
@@ -1304,9 +1310,11 @@ fn get_structured_glosses_go(
     let mut nested = Vec::new();
 
     for (gloss, gloss_info) in gloss_tree {
-        let level_tags = gloss_info.tags.clone();
+        let mut level_tags = gloss_info.tags.clone();
+        // Also include topics
+        level_tags.extend(gloss_info.topics.clone());
 
-        // processglosstags: skip
+        // Tags that are not common to all glosses (that is, specific to this gloss)
         let minimal_tags: Vec<_> = level_tags
             .into_iter()
             .filter(|tag| !common_short_tags_recognized.contains(tag))
@@ -1353,13 +1361,13 @@ fn get_structured_tags(tags: &[Tag], common_short_tags_recognized: &[Tag]) -> Op
     let mut structured_tags_content = Vec::new();
 
     for tag in tags {
-        let Some(full_tag) = find_tag_in_bank(tag) else {
+        let Some(tag_info) = find_tag_in_bank(tag) else {
             continue;
         };
 
         // minimaltags
         // HACK: the conversion to short tag is done differently in the original
-        let short_tag = full_tag.short_tag;
+        let short_tag = tag_info.short_tag;
 
         if common_short_tags_recognized.contains(&short_tag) {
             // We dont want "masculine" appear twice...
@@ -1368,10 +1376,10 @@ fn get_structured_tags(tags: &[Tag], common_short_tags_recognized: &[Tag]) -> Op
 
         let structured_tag_content = GenericNode {
             tag: NTag::Span,
-            title: Some(full_tag.long_tag),
+            title: Some(tag_info.long_tag),
             data: Some(NodeData::from_iter([
                 ("content", "tag"),
-                ("category", &full_tag.category),
+                ("category", &tag_info.category),
             ])),
             content: Node::Text(short_tag),
         }

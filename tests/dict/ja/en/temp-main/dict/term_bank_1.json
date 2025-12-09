@@ -1387,6 +1387,23 @@
                   {
                     "tag": "div",
                     "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "music",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "music"
+                          }
+                        ]
+                      },
                       "alternative spelling of ハシる"
                     ]
                   }

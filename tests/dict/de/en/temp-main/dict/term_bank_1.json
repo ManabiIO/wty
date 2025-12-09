@@ -92,6 +92,15 @@
                               "category": "partOfSpeech"
                             },
                             "content": "vt"
+                          },
+                          {
+                            "tag": "span",
+                            "title": "medicine",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "med"
                           }
                         ]
                       },
@@ -1170,6 +1179,24 @@
                               "category": ""
                             },
                             "content": "sl"
+                          },
+                          {
+                            "tag": "span",
+                            "title": "military",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "mil"
+                          },
+                          {
+                            "tag": "span",
+                            "title": "politics",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "polit"
                           }
                         ]
                       },
@@ -1238,6 +1265,32 @@
                   {
                     "tag": "div",
                     "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "military",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "mil"
+                          },
+                          {
+                            "tag": "span",
+                            "title": "politics",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "polit"
+                          }
+                        ]
+                      },
                       "a tank Transportpanzer Fuchs"
                     ]
                   }
@@ -1316,6 +1369,32 @@
                   {
                     "tag": "div",
                     "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "biology",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "biol"
+                          },
+                          {
+                            "tag": "span",
+                            "title": "entomology",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "entom"
+                          }
+                        ]
+                      },
                       "tortoiseshell"
                     ]
                   }
@@ -2250,6 +2329,23 @@
                   {
                     "tag": "div",
                     "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "chemistry",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "chem"
+                          }
+                        ]
+                      },
                       "base (compound that will neutralize an acid)"
                     ]
                   }

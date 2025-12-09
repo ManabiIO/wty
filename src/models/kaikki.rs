@@ -33,7 +33,9 @@ pub struct WordEntry {
     pub sounds: Vec<Sound>,
 
     pub senses: Vec<Sense>,
+
     pub tags: Vec<Tag>,
+    pub topics: Vec<Tag>,
 
     pub forms: Vec<Form>,
     pub form_of: Vec<AltForm>,
@@ -69,6 +71,7 @@ pub struct Sense {
     pub form_of: Vec<AltForm>,
     pub alt_of: Vec<AltForm>,
     pub tags: Vec<Tag>,
+    pub topics: Vec<Tag>,
 }
 
 #[derive(Debug, Serialize, Deserialize, Default, Clone)]
