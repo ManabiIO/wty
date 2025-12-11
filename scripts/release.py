@@ -11,17 +11,27 @@ import argparse
 import datetime
 import json
 import os
+import re
 import subprocess
 import time
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
 from pprint import pprint
-from typing import Any
+from typing import Any, Literal
 
 REPO_ID_HF = "daxida/test-dataset"
 """Full url: https://huggingface.co/datasets/daxida/test-dataset"""
 REPO_ID_GH = "https://github.com/daxida/kty"
+
+BINARY_PATH = "target/release/kty"
+LOG_PATH = Path("log.txt")
+
+ANSI_ESCAPE_RE = re.compile(r"\x1B[@-_][0-?]*[ -/]*[@-~]")
+
+
+def clean(line: str) -> str:
+    return ANSI_ESCAPE_RE.sub("", line)
 
 
 def double_check(msg: str = "") -> None:
@@ -32,8 +42,16 @@ def double_check(msg: str = "") -> None:
         exit(1)
 
 
-def directory_size_bytes(path: Path) -> int:
-    return sum(f.stat().st_size for f in path.rglob("*") if f.is_file())
+def stats(path: Path, *, endswith: str | None = None) -> tuple[int, int]:
+    n_files = 0
+    size_files = 0
+    for f in path.rglob("*"):
+        if f.is_file():
+            if endswith is not None and not f.name.endswith(endswith):
+                continue
+            n_files += 1
+            size_files += f.stat().st_size
+    return n_files, size_files
 
 
 def release_version() -> str:
@@ -65,7 +83,7 @@ def upload_to_huggingface(odir: Path) -> None:
         print(f"✗ Login failed: {e}")
         return
 
-    size_bytes = directory_size_bytes(dict_dir)
+    _, size_bytes = stats(dict_dir)
     size_mb = size_bytes / 1024 / 1024
     version = release_version()
     git_cmd = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=".")
@@ -157,122 +175,231 @@ def load_lang(item: Any) -> Lang:
 
 
 def build_binary() -> None:
-    print("Building Rust binary...")
     subprocess.run(
         ["cargo", "build", "--release", "--quiet"],
         check=True,
     )
 
 
+def binary_version() -> str:
+    result = subprocess.run(
+        [BINARY_PATH, "--version"],
+        capture_output=True,
+        text=True,
+        check=True,
+    )
+    return result.stdout.strip()
+
+
 def run_cmd(
     root_dir: Path,
     dict_ty: str,
-    source: str,
-    target: str,
-    verbose: bool,
-) -> int:
+    # <source>-<target>, <source>-<source>, all, etc.
+    # they are expected to be space separated
+    params: str,
+    args,
+    *,
+    print_download_status: bool = False,
+) -> tuple[int, list[str]]:
     cmd = [
-        "target/release/kty",
+        BINARY_PATH,
         dict_ty,
-        source,
-        target,
+        *params.split(" "),
         f"--root-dir={root_dir}",
     ]
-    if verbose:
-        print(f"Running {' '.join(cmd)}")
+    # Return logs to guarantee some order
+    logs = []
+
+    if args.dry_run:
+        line = " ".join(cmd)
+        logs.append(clean(line))
+        return 0, logs
 
     result = subprocess.run(
         cmd,
         capture_output=True,
-        # check=True, # ignore errors atm
+        check=True,  # ignore errors atm
     )
 
-    if verbose:
+    if args.verbose:
         out = result.stdout.decode("utf-8")
         for line in out.splitlines():
-            if "ownload" in line or "Wrote yomitan dict" in line:
-                print(line)
-        # err = result.stderr.decode("utf-8")
-        # print(err)
+            line = clean(line)
+            if "Wrote yomitan dict" in line:
+                logs.append(line)
+            if print_download_status and "ownload" in line:
+                logs.append(line)
 
-    return result.returncode
-
-
-def run_matrix(odir: Path, langs: list[Lang], verbose: bool) -> None:
-    build_binary()
-
-    max_workers = min(8, os.cpu_count() or 1)
-    isos = [lang.iso for lang in langs]
-
-    for lang in langs:
-        if not lang.has_edition:
-            continue
-        source = lang.iso
-        if source != "zh":
-            continue  # only greek atm
-
-        start = time.perf_counter()
-
-        # We first download the jsonl because otherwise each worker will not find it in disk
-        # and will try to download it itself... This way, we guarantee only one download happens.
-        print(f"[{source}] Downloading...")
-        run_cmd(odir, "download", isos[0], source, True)
-        print(f"[{source}] Finished download")
-
-        def worker(iso: str) -> int:
-            return run_cmd(odir, "main", iso, source, verbose)
-
-        with ThreadPoolExecutor(max_workers=max_workers) as executor:
-            for target, code in zip(isos, executor.map(worker, isos)):
-                if handle_returncode(source, target, code):
-                    return
-
-        # Sum sizes of all *-{source}.zip files
-        total_size = sum(
-            f.stat().st_size
-            for f in odir.rglob("*")
-            if f.is_file() and f.name.endswith(f"-{source}.zip")
-        )
-        elapsed = time.perf_counter() - start
-        print(
-            f"[{source}] Finished dictionaries "
-            f"(size: {total_size / 1024 / 1024:.2f}MB, time: {elapsed:.2f}s)"
-        )
+    return (result.returncode, logs)
 
 
-def handle_returncode(source: str, target: str, code: int) -> bool:
-    """Return 'True' if we should abort."""
-    match code:
-        case 0 | 1:
-            # [1] > it didn't found any entries (and therefore there is no zip)
+def log(*values, **kwargs) -> None:
+    """Poor man's loguru"""
+    line = ""
+
+    match values:
+        case []:
             pass
-        case 2:
-            # [2] > no edition or wrong lang etc.
-            pass
+        case [one]:
+            line = one
+        case [label, msg]:
+            label = f"[{label}]"
+            line = f"{label:<15} {msg}"
         case _:
-            print(f"Unknown error code {code} for {source}-{target}: aborting")
-            return True
-    return False
+            raise RuntimeError
+
+    print(line, **kwargs)
+
+    # Bad bad bad
+    with LOG_PATH.open("a") as f:
+        f.write(line + "\n")
 
 
-def main() -> None:
-    parser = argparse.ArgumentParser()
-    parser.add_argument("-v", "--verbose", action="store_true")
-    args = parser.parse_args()
-    verbose = args.verbose
+type DictTy = Literal["main", "ipa", "ipa-merged", "glossary", "glossary-extended"]
 
-    odir = Path("data/release")
-    odir.mkdir(exist_ok=True)
 
-    # upload_to_huggingface(odir)
+def run_matrix(odir: Path, langs: list[Lang], args) -> None:
+    n_workers = min(args.jobs, os.cpu_count() or 1)
 
+    # Clear logs
+    with LOG_PATH.open("w") as f:
+        f.write("")
+
+    start = time.perf_counter()
+
+    rversion = release_version()
+    log("prelude", f"n_workers {n_workers}")
+    log("prelude", f"dic {rversion}")
+    log("prelude", "Building Rust binary...")
+    build_binary()
+    log("prelude", binary_version())
+    log()
+
+    isos = [lang.iso for lang in langs]
+    # A subset for testing
+    isos = [
+        "sq",
+        "arz",
+        "el",
+        "en",
+    ]
+
+    with_edition = [lang.iso for lang in langs if lang.has_edition]
+    # A subset for testing
+    with_edition = [
+        "el",
+        "en",
+        # "zh",
+        # "ja",
+    ]
+
+    matrix = [
+        ["ipa", with_edition, isos],
+        ["main", with_edition, isos],
+        ["glossary", with_edition, isos],
+        ["ipa-merged", with_edition, ["__target"]],
+        # ["glossary-extended", isos, isos], # unsupported yet, since experimental
+    ]
+
+    log("ALL", f"Editions:  {' '.join(sorted(with_edition))}")
+    log("ALL", f"Languages: {' '.join(sorted(isos))}")
+    # dictionary_types: list[DictTy] = [
+    #     # The order is relevant to prevent multiple workers downloading
+    #     # "ipa",
+    #     # "main",
+    #     # "ipa-merged",
+    # ]
+    # log("ALL", f"Dictionaries: {' '.join(sorted(dictionary_types))}")
+    log("ALL", f"Dictionaries: {' '.join(sorted(run[0] for run in matrix))}")
+    log()
+
+    # We first download the jsonl because otherwise each worker will not find it in disk
+    # and will try to download it itself... This way, we guarantee only one download happens.
+    log("dl", "Downloading editions...")
+    for source in with_edition:
+        label = f"dl-{source}"
+        params = f"{source} {source}"
+        _, logs = run_cmd(odir, "download", params, args, print_download_status=True)
+        for logline in logs:
+            log(logline)
+        log(label, "Finished download")
+
+    _, total_size = stats(odir / "kaikki")
+    elapsed = time.perf_counter() - start
+    msg = f"Finished downloads ({elapsed:.2f}s, {total_size / 1024 / 1024:.2f}MB)\n"
+    log("dl", msg)
+
+    log("ALL", "Starting...")
+    for dict_ty, sources, targets in matrix:
+        dict_start = time.perf_counter()
+        log(dict_ty, "Making dictionaries...")
+
+        for source in sources:
+            source_start = time.perf_counter()
+            label = f"{source}-{dict_ty}"
+            all_logs: list[str] = []
+
+            def worker(target: str) -> tuple[int, list[str]]:
+                match dict_ty:
+                    case "main" | "ipa":
+                        params = f"{target} {source}"
+                    case "glossary":
+                        # Ignore these
+                        if source == target:
+                            return 0, []
+                        params = f"{source} {target}"
+                    case "ipa-merged":
+                        params = f"{source}"
+                return run_cmd(odir, dict_ty, params, args)
+
+            with ThreadPoolExecutor(max_workers=n_workers) as executor:
+                for target, (_, logs) in zip(targets, executor.map(worker, targets)):
+                    # log("DONE", f"{dict_ty} {source} {target}")
+                    all_logs.extend(logs)
+
+            for logline in sorted(all_logs):
+                log(logline)
+
+            elapsed = time.perf_counter() - source_start
+            log(label, f"Finished dict ({elapsed:.2f}s)")
+
+        # may not work:
+        # glossary extended > gloss
+        # main > nothing
+        _, total_size = stats(odir, endswith=f"-{dict_ty}.zip")
+        elapsed = time.perf_counter() - dict_start
+        msg = f"Finished dicts ({elapsed:.2f}s, {total_size / 1024 / 1024:.2f}MB)"
+        log(dict_ty, msg)
+
+    n_dictionaries, total_size = stats(odir, endswith=".zip")
+    elapsed = time.perf_counter() - start
+    msg = f"Finished! ({elapsed:.2f}s, {total_size / 1024 / 1024:.2f}MB, {n_dictionaries} dicts)"
+    log("ALL", msg)
+
+
+def build_release(odir: Path, args) -> None:
     assets_path = Path("assets")
     path_languages_json = assets_path / "languages.json"
     with path_languages_json.open() as f:
         data = json.load(f)
         langs = [load_lang(row) for row in data]
 
-    run_matrix(odir, langs, verbose)
+    run_matrix(odir, langs, args)
+
+
+def main() -> None:
+    parser = argparse.ArgumentParser()
+    parser.add_argument("-v", "--verbose", action="store_true")
+    parser.add_argument("-n", "--dry-run", action="store_true")
+    parser.add_argument("-j", "--jobs", type=int, default=8)
+    args = parser.parse_args()
+
+    odir = Path("data/release")
+    odir.mkdir(exist_ok=True)
+
+    build_release(odir, args)
+
+    # upload_to_huggingface(odir)
 
 
 if __name__ == "__main__":
