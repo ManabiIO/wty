@@ -382,7 +382,7 @@ pub trait SimpleArgs {
     fn options(&self) -> &ArgsOptions;
 }
 
-/// Implement the SimpleArgs trait.
+/// Implement the `SimpleArgs` trait.
 macro_rules! simple_args {
     ($($ty:ty),* $(,)?) => {
         $( impl SimpleArgs for $ty {
@@ -425,7 +425,7 @@ mod tests {
     fn glossary_can_not_be_monolingual() {
         let res = Cli::try_parse_from(["kty", "glossary", "el", "el"]);
         let mut cli = res.unwrap(); // The parsing should be ok
-        assert!(prepare_command(&mut cli.command).is_err())
+        assert!(prepare_command(&mut cli.command).is_err());
     }
 
     #[test]

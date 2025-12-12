@@ -2,7 +2,8 @@ use anyhow::Result;
 use std::fs;
 use std::path::Path;
 
-// Some pretty printing codepoints
+use crate::lang::{EditionLang, Lang};
+
 pub const SKIP_C: &str = "⏭";
 pub const CHECK_C: &str = "✓";
 
@@ -49,4 +50,42 @@ pub fn pretty_print_at_path(msg: &str, path: &Path) {
 pub fn skip_because_file_exists(skipped: &str, path: &Path) {
     let msg = format!("{SKIP_C} Skipping {skipped}: file already exists");
     pretty_println_at_path(&msg, path);
+}
+
+/// Return a link to the wiktionary page of this word.
+pub fn link_wiktionary(edition: EditionLang, source: Lang, word: &str) -> String {
+    format!(
+        "https://{}.wiktionary.org/wiki/{}#{}",
+        edition,
+        word,
+        source.long()
+    )
+}
+
+/// Return a link to the kaikki page of this word.
+pub fn link_kaikki(edition: EditionLang, source: Lang, word: &str) -> String {
+    // 楽しい >> 楽/楽し/楽しい
+    // 伸す >> 伸/伸す/伸す (when word.chars().count() < 2)
+    // up >> u/up/up (word.len() is irrelevant, only char count matters)
+    let chars: Vec<_> = word.chars().collect();
+    let first = chars[0]; // word can't be empty
+    let first_two = if chars.len() < 2 {
+        word.to_string()
+    } else {
+        chars[0..2].iter().collect::<String>()
+    };
+
+    let dictionary = match edition {
+        EditionLang::En => "dictionary",
+        other => &format!("{other}wiktionary"),
+    };
+    let localized_source = match edition {
+        EditionLang::En | EditionLang::El => &source.long().replace(' ', "%20"),
+        // https://github.com/tatuylonen/wiktextract/issues/1497
+        _ => "All%20languages%20combined",
+    };
+
+    format!(
+        "https://kaikki.org/{dictionary}/{localized_source}/meaning/{first}/{first_two}/{word}.html"
+    )
 }

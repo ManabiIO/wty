@@ -90,16 +90,20 @@ pub fn sort_tags_by_similar(tags: &mut [Tag]) {
 /// Then, remove tag1 if there is a tag2 such that tag1 <= tag2
 ///
 /// Expects (but does not check) tags WITH spaces.
+///
+/// Examples:
+/// * ["a b", "b a"] > ["a b"]
+/// * ["s no ne", "ne s no", "ne", "no"] > ["ne s no"]
 pub fn remove_redundant_tags(tags: &mut Vec<Tag>) {
     // We can't just sort because lexicographical sort does not guarantee the correct order to then
     // dedup.
     // cf. tags = ["ne", "ne s no", "no", "s no ne"] (this is sorted by "tags.sort()")
     tags.sort_by(|a, b| {
         let by_count = a.matches(' ').count().cmp(&b.matches(' ').count());
-        if by_count != Ordering::Equal {
-            by_count
-        } else {
+        if by_count == Ordering::Equal {
             a.cmp(b)
+        } else {
+            by_count
         }
     });
     // We can't just call dedup, because the inner words may not be sorted

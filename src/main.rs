@@ -1,35 +1,35 @@
 use anyhow::Result;
 
 use kty::cli::{Cli, Command, Langs, SimpleArgs};
-use kty::download::html::download_jsonl;
+use kty::dict::{DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain};
+use kty::download::download_jsonl;
 use kty::lang::{EditionLang, Lang};
 use kty::path::{DictionaryType, PathManager};
 use kty::utils::skip_because_file_exists;
-use kty::{DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain};
-use kty::{make_dict_simple, setup_tracing};
+use kty::{make_dict, setup_tracing};
 
 fn run_command(cmd: &Command) -> Result<()> {
     match cmd {
         Command::Main(args) => {
             let pm = PathManager::new(DictionaryType::Main, args);
             // make_dict_main(args, &pm)
-            make_dict_simple(DMain, args.options(), &pm)
+            make_dict(DMain, args.options(), &pm)
         }
         Command::Glossary(args) => {
             let pm = PathManager::new(DictionaryType::Glossary, args);
-            make_dict_simple(DGlossary, args.options(), &pm)
+            make_dict(DGlossary, args.options(), &pm)
         }
         Command::GlossaryExtended(args) => {
             let pm = PathManager::new(DictionaryType::GlossaryExtended, args);
-            make_dict_simple(DGlossaryExtended, &args.options, &pm)
+            make_dict(DGlossaryExtended, &args.options, &pm)
         }
         Command::Ipa(args) => {
             let pm = PathManager::new(DictionaryType::Ipa, args);
-            make_dict_simple(DIpa, &args.options, &pm)
+            make_dict(DIpa, &args.options, &pm)
         }
         Command::IpaMerged(args) => {
             let pm = PathManager::new(DictionaryType::IpaMerged, args);
-            make_dict_simple(DIpaMerged, &args.options, &pm)
+            make_dict(DIpaMerged, &args.options, &pm)
         }
         Command::Download(args) => {
             let pm = PathManager::new(DictionaryType::Main, args);

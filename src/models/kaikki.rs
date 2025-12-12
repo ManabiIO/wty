@@ -134,7 +134,7 @@ impl WordEntry {
     }
 
     /// Return the first sound.zh_pron with the `Pinyin` tag.
-    pub fn pinyin<'a>(&'a self) -> Option<&'a str> {
+    pub fn pinyin(&self) -> Option<&str> {
         self.sounds.iter().find_map(|sound| {
             if sound.tags.iter().any(|t| t == "Pinyin") {
                 Some(sound.zh_pron.as_ref())
@@ -187,7 +187,7 @@ impl WordEntry {
         })
     }
 
-    pub fn etymology_texts<'a>(&'a self) -> Option<Vec<&'a str>> {
+    pub fn etymology_texts(&self) -> Option<Vec<&str>> {
         if !self.etymology_texts.is_empty() {
             Some(self.etymology_texts.iter().map(|s| s.as_ref()).collect())
         } else if !self.etymology_text.is_empty() {

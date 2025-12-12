@@ -1,7 +1,9 @@
 use criterion::{Criterion, criterion_group, criterion_main};
-use kty::cli::{ArgsOptions, DictionaryType, MainArgs, MainLangs, PathManager};
+use kty::cli::{ArgsOptions, MainArgs, MainLangs};
+use kty::dict::DMain;
 use kty::lang::{EditionLang, Lang};
-use kty::{DMain, make_dict_simple};
+use kty::make_dict;
+use kty::path::{DictionaryType, PathManager};
 use std::path::Path;
 
 const BENCH_FIXTURES_DIR_100: &str = "benches/fixtures";
@@ -41,7 +43,7 @@ fn bench_monolingual(c: &mut Criterion, edition: EditionLang, label: &str) {
     let pm = PathManager::new(DictionaryType::Main, &args);
 
     c.bench_function(label, |b| {
-        b.iter(|| make_dict_simple(DMain, &args.options, &pm));
+        b.iter(|| make_dict(DMain, &args.options, &pm));
     });
 
     std::fs::remove_dir_all(pm.dir_dicts()).unwrap();

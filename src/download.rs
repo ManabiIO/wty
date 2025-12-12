@@ -27,7 +27,10 @@ pub fn url_jsonl_raw_gz(edition: EditionLang, source: Lang) -> String {
 }
 
 #[cfg(feature = "html")]
-pub mod html {
+pub use html::*;
+
+#[cfg(feature = "html")]
+mod html {
     use super::{EditionLang, Lang, url_jsonl_raw_gz};
 
     use anyhow::Result;
