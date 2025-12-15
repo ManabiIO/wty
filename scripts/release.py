@@ -5,6 +5,17 @@
 - Then, use huggingface_hub API to:
   - update the huggingface README
   - upload the data/release folder
+
+Uploading to the hub requires:
+pip install python-dotenv huggingface-hub
+
+To modify the hug repo:
+git clone https://huggingface.co/datasets/daxida/test-dataset
+...
+changes
+...
+git push
+(when it says enter password, actually type the token...)
 """
 
 import argparse
@@ -14,7 +25,6 @@ import os
 import re
 import subprocess
 import time
-from argparse import Namespace
 from concurrent.futures import ThreadPoolExecutor
 from dataclasses import dataclass
 from pathlib import Path
@@ -27,8 +37,16 @@ REPO_ID_GH = "https://github.com/daxida/kty"
 
 BINARY_PATH = "target/release/kty"
 LOG_PATH = Path("log.txt")
+ODIR_PATH = Path("data/release")
 
 ANSI_ESCAPE_RE = re.compile(r"\x1B[@-_][0-?]*[ -/]*[@-~]")
+
+
+@dataclass
+class Args:
+    verbose: int
+    dry_run: bool
+    jobs: int
 
 
 def clean(line: str) -> str:
@@ -126,6 +144,21 @@ def upload_to_huggingface(odir: Path) -> None:
         exit(1)
 
     try:
+        api.upload_file(
+            path_or_fileobj=str(LOG_PATH),
+            path_in_repo="log.txt",
+            repo_id=REPO_ID_HF,
+            repo_type="dataset",
+            commit_message="Update logs",
+        )
+    except Exception as e:
+        print(e)
+        exit(1)
+
+    try:
+        # Huggingface may complain that we should be using upload_large_folder instead,
+        # but this worked fine, and upload_large_folder polutes the git history and messes
+        # up the file tree.
         api.upload_folder(**kwargs)  # type: ignore
         print(f"Upload complete @ https://huggingface.co/datasets/{REPO_ID_HF}")
     except Exception as e:
@@ -143,7 +176,7 @@ license: cc-by-sa-4.0
 ---
 ⚠️ **This dataset is automatically uploaded.**
 
-For source code and issue tracking, visit the GitHub repo at [kty] ({REPO_ID_GH})
+For source code and issue tracking, visit the GitHub repo at [kty]({REPO_ID_GH})
 
 version: {version}
 
@@ -198,7 +231,7 @@ def run_cmd(
     # <source>-<target>, <source>-<source>, all, etc.
     # they are expected to be space separated
     params: str,
-    args: Namespace,
+    args: Args,
     *,
     print_download_status: bool = False,
 ) -> tuple[int, list[str]]:
@@ -239,13 +272,20 @@ def run_cmd(
         log("[err-stderr]", e.stderr)
         raise
 
-    if args.verbose:
-        out = result.stdout.decode("utf-8")
-        for line in out.splitlines():
-            line = clean(line)
-            if "Wrote yomitan dict" in line:
-                logs.append(line)
-            if print_download_status and "ownload" in line:
+    match args.verbose:
+        case 1:
+            out = result.stdout.decode("utf-8")
+            for line in out.splitlines():
+                line = clean(line)
+                if "Wrote yomitan dict" in line:
+                    logs.append(line)
+                if print_download_status and "ownload" in line:
+                    logs.append(line)
+        case 2:
+            out = result.stdout.decode("utf-8")
+            for line in out.splitlines():
+                line = clean(line)
+                print(line)
                 logs.append(line)
 
     return (result.returncode, logs)
@@ -276,12 +316,13 @@ def log(*values, **kwargs) -> None:
 type DictTy = Literal["main", "ipa", "ipa-merged", "glossary", "glossary-extended"]
 
 
-def run_matrix(odir: Path, langs: list[Lang], args) -> None:
+def run_matrix(odir: Path, langs: list[Lang], args: Args) -> None:
     start = time.perf_counter()
 
     n_workers = min(args.jobs, os.cpu_count() or 1)
 
     log("info", f"n_workers {n_workers}")
+    log("info", args)
     check_previous_files("info", odir)
     log()
 
@@ -306,17 +347,17 @@ def run_matrix(odir: Path, langs: list[Lang], args) -> None:
     # with_edition = [
     #     # "el",
     #     "en",
-    #     "ku",
+    #     # "ku",
     #     # "zh",
     #     # "ja",
     # ]
 
-    matrix = [
-        ["ipa", with_edition, isos],
-        ["main", with_edition, isos],
-        ["glossary", with_edition, isos],
-        ["ipa-merged", with_edition, ["__target"]],
-        # ["glossary-extended", isos, isos], # unsupported yet, since experimental
+    matrix: list[tuple[str, list[str], list[str]]] = [
+        ("main", with_edition, isos),
+        ("ipa", with_edition, isos),
+        ("glossary", with_edition, isos),
+        ("ipa-merged", with_edition, ["__target"]),
+        # ("glossary-extended", isos, isos), # unsupported yet, since experimental
     ]
 
     log("ALL", f"Editions:  {' '.join(sorted(with_edition))}")
@@ -361,7 +402,7 @@ def run_matrix(odir: Path, langs: list[Lang], args) -> None:
                 return run_cmd(odir, dict_ty, params, args)
 
             with ThreadPoolExecutor(max_workers=n_workers) as executor:
-                for target, (_, logs) in zip(targets, executor.map(worker, targets)):
+                for _, logs in executor.map(worker, targets):
                     # log("DONE", f"{dict_ty} {source} {target}")
                     all_logs.extend(logs)
 
@@ -405,7 +446,7 @@ def run_prelude() -> None:
     log()
 
 
-def run_download(odir: Path, with_edition: list[str], args: Namespace) -> None:
+def run_download(odir: Path, with_edition: list[str], args: Args) -> None:
     start = time.perf_counter()
 
     log("dl", "Downloading editions...")
@@ -426,7 +467,7 @@ def run_download(odir: Path, with_edition: list[str], args: Namespace) -> None:
     log("dl", msg)
 
 
-def build_release(odir: Path, args: Namespace) -> None:
+def build_release(odir: Path, args: Args) -> None:
     assets_path = Path("assets")
     path_languages_json = assets_path / "languages.json"
     with path_languages_json.open() as f:
@@ -436,19 +477,28 @@ def build_release(odir: Path, args: Namespace) -> None:
     run_matrix(odir, langs, args)
 
 
-def main() -> None:
+def parse_args() -> tuple[str, Args]:
     parser = argparse.ArgumentParser()
-    parser.add_argument("-v", "--verbose", action="store_true")
+    parser.add_argument("command", choices=["build", "publish"])
+    parser.add_argument("-v", "--verbose", action="count", default=0)
     parser.add_argument("-n", "--dry-run", action="store_true")
     parser.add_argument("-j", "--jobs", type=int, default=8)
     args = parser.parse_args()
+    return args.command, Args(
+        verbose=args.verbose, dry_run=args.dry_run, jobs=args.jobs
+    )
 
-    odir = Path("data/release")
+
+def main() -> None:
+    cmd, args = parse_args()
+
+    odir = ODIR_PATH
     odir.mkdir(exist_ok=True)
 
-    build_release(odir, args)
-
-    # upload_to_huggingface(odir)
+    if cmd == "build":
+        build_release(odir, args)
+    else:
+        upload_to_huggingface(odir)
 
 
 if __name__ == "__main__":
