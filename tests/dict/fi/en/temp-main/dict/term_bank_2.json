@@ -454,51 +454,22 @@
     ""
   ],
   [
-    "Rare. Only used with substantive adjectives.",
+    "päät",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
-        [
-          "possessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoni",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
+        "pää",
         [
           "genitive accusative plural"
         ]
       ],
       [
-        "iso",
-        [
-          "genitive accusative singular"
-        ]
-      ],
-      [
-        "iso",
+        "pää",
         [
           "nominative accusative plural"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "nominative accusative singular"
         ]
       ]
     ],
@@ -506,14 +477,31 @@
     ""
   ],
   [
-    "isojeni",
+    "pään",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
+        [
+          "genitive accusative singular"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "päiden",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "pää",
         [
           "genitive plural"
         ]
@@ -523,406 +511,14 @@
     ""
   ],
   [
-    "isoani",
+    "päitten",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
-        [
-          "partitive singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isojani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "partitive plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isossani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoissani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isostani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoistani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isooni",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular illative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoihini",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural illative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isollani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoillani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoltani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoiltani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isolleni",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoilleni",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isonani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoinani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isokseni",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoikseni",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isottani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoittani",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoineni",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural comitative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isosi",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "genitive accusative plural"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "genitive accusative singular"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "nominative accusative plural"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "nominative accusative singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isojesi",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
+        "pää",
         [
           "genitive plural"
         ]
@@ -932,14 +528,14 @@
     ""
   ],
   [
-    "isoasi",
+    "päätä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "partitive singular"
         ]
@@ -949,14 +545,14 @@
     ""
   ],
   [
-    "isojasi",
+    "päitä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "partitive plural"
         ]
@@ -966,14 +562,14 @@
     ""
   ],
   [
-    "isossasi",
+    "päässä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "singular inessive"
         ]
@@ -983,14 +579,14 @@
     ""
   ],
   [
-    "isoissasi",
+    "päissä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "plural inessive"
         ]
@@ -1000,14 +596,14 @@
     ""
   ],
   [
-    "isostasi",
+    "päästä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "singular elative"
         ]
@@ -1017,14 +613,14 @@
     ""
   ],
   [
-    "isoistasi",
+    "päistä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "plural elative"
         ]
@@ -1034,14 +630,14 @@
     ""
   ],
   [
-    "isoosi",
+    "päähän",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "singular illative"
         ]
@@ -1051,14 +647,14 @@
     ""
   ],
   [
-    "isoihisi",
+    "päihin",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "plural illative"
         ]
@@ -1068,14 +664,14 @@
     ""
   ],
   [
-    "isollasi",
+    "päällä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "singular adessive"
         ]
@@ -1085,14 +681,14 @@
     ""
   ],
   [
-    "isoillasi",
+    "päillä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "plural adessive"
         ]
@@ -1102,14 +698,14 @@
     ""
   ],
   [
-    "isoltasi",
+    "päältä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "ablative singular"
         ]
@@ -1119,14 +715,14 @@
     ""
   ],
   [
-    "isoiltasi",
+    "päiltä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "ablative plural"
         ]
@@ -1136,14 +732,14 @@
     ""
   ],
   [
-    "isollesi",
+    "päälle",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "singular allative"
         ]
@@ -1153,14 +749,14 @@
     ""
   ],
   [
-    "isoillesi",
+    "päille",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "plural allative"
         ]
@@ -1170,14 +766,14 @@
     ""
   ],
   [
-    "isonasi",
+    "päänä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "singular essive"
         ]
@@ -1187,14 +783,14 @@
     ""
   ],
   [
-    "isoinasi",
+    "päinä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "plural essive"
         ]
@@ -1204,14 +800,14 @@
     ""
   ],
   [
-    "isoksesi",
+    "pääksi",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "singular translative"
         ]
@@ -1221,14 +817,14 @@
     ""
   ],
   [
-    "isoiksesi",
+    "päiksi",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "plural translative"
         ]
@@ -1238,14 +834,14 @@
     ""
   ],
   [
-    "isottasi",
+    "päättä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "singular abessive"
         ]
@@ -1255,14 +851,14 @@
     ""
   ],
   [
-    "isoittasi",
+    "päittä",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
           "plural abessive"
         ]
@@ -1272,1566 +868,16 @@
     ""
   ],
   [
-    "isoinesi",
+    "päin",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "iso",
+        "pää",
         [
-          "plural comitative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isomme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "genitive accusative plural"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "genitive accusative singular"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "nominative accusative plural"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "nominative accusative singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isojemme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "genitive plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "partitive singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isojamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "partitive plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isossamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoissamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isostamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoistamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoomme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular illative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoihimme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural illative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isollamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoillamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoltamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoiltamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isollemme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoillemme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isonamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoinamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoksemme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoiksemme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isottamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoittamme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoinemme",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural comitative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isonne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "genitive accusative plural"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "genitive accusative singular"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "nominative accusative plural"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "nominative accusative singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isojenne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "genitive plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "partitive singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isojanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "partitive plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isossanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoissanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isostanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoistanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoonne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular illative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoihinne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural illative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isollanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoillanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoltanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoiltanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isollenne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoillenne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isonanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoinanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoksenne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoiksenne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isottanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoittanne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoinenne",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural comitative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isonsa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "genitive accusative plural"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "genitive accusative singular"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "nominative accusative plural"
-        ]
-      ],
-      [
-        "iso",
-        [
-          "nominative accusative singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isojensa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "genitive plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "partitive singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "partitive singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isojaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "partitive plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isojansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "partitive plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isossaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isossansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoissaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoissansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural inessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isostaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isostansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoistaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoistansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural elative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoonsa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular illative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoihinsa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural illative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isollaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isollansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoillaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoillansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural adessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoltaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoltansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative singular"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoiltaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoiltansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "ablative plural"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isolleen",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isollensa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoilleen",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoillensa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural allative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isonaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isonansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoinaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoinansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural essive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isokseen",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoksensa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoikseen",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoiksensa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural translative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isottaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isottansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "singular abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoittaan",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoittansa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural abessive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoineen",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural comitative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "isoinensa",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "iso",
-        [
-          "plural comitative"
+          "plural instructive"
         ]
       ]
     ],

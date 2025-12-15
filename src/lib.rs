@@ -473,8 +473,8 @@ pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager
 
             line_count += 1;
 
-            let mut word_entry: WordEntry = serde_json::from_slice(&line)
-                .with_context(|| "Error decoding JSON @ make_dict_simple")?;
+            let mut word_entry: WordEntry =
+                serde_json::from_slice(&line).with_context(|| "Error decoding JSON @ make_dict")?;
 
             if !options.quiet && line_count % CONSOLE_PRINT_INTERVAL == 0 {
                 print!("Processed {line_count} lines...\r");

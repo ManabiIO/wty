@@ -370,7 +370,7 @@ fn tidy_process(edition: EditionLang, source: Lang, word_entry: &WordEntry, ret:
     //     warn!("{}", serde_json::to_string_pretty(&word_entry)?);
     // }
 
-    process_forms(word_entry, ret);
+    process_forms(edition, source, word_entry, ret);
 
     process_alt_forms(word_entry, ret);
 
@@ -522,7 +522,7 @@ fn tidy_preprocess(
 }
 
 /// Add Extracted forms. That is, forms from `word_entry.forms`.
-fn process_forms(word_entry: &WordEntry, ret: &mut Tidy) {
+fn process_forms(edition: EditionLang, source: Lang, word_entry: &WordEntry, ret: &mut Tidy) {
     for form in word_entry.non_trivial_forms() {
         let filtered_tags: Vec<_> = form
             .tags
@@ -532,6 +532,24 @@ fn process_forms(word_entry: &WordEntry, ret: &mut Tidy) {
             .collect();
         if filtered_tags.is_empty() {
             continue;
+        }
+
+        // Finnish from the English edition crashes with out-of-memory.
+        // There are simply too many forms, so we prune the less used (possessive).
+        //
+        // https://uusikielemme.fi/finnish-grammar/possessive-suffixes-possessiivisuffiksit#one
+        if matches!((edition, source), (EditionLang::En, Lang::Fi)) {
+            // HACK: 1. For tables that parse the title
+            // https://kaikki.org/dictionary/Finnish/meaning/p/p%C3%A4/p%C3%A4%C3%A4.html
+            if form.form == "See the possessive forms below." {
+                break;
+            }
+            // HACK: 2. For tables that don't parse the title
+            // https://kaikki.org/dictionary/Finnish/meaning/i/is/iso.html
+            // https://github.com/tatuylonen/wiktextract/issues/1565
+            if form.form == "Rare. Only used with substantive adjectives." {
+                break;
+            }
         }
 
         ret.insert_form(

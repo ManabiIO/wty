@@ -61,5 +61,44 @@
         }
       ]
     }
+  },
+  "pää": {
+    "pää": {
+      "noun": [
+        {
+          "gloss_tree": {
+            "head (part of a body)": {
+              "examples": [
+                {
+                  "text": "ahtaa päähänsä",
+                  "translation": "to cram (information) into one's head, to study hard"
+                }
+              ]
+            },
+            "head (leader, expert, e.g. of an organisation)": {},
+            "head (part in a machine)": {},
+            "end, tip (physical end, especially when there is no clear \"beginning\" and \"end\" but only two ends, and especially one that tapers to a single point)": {
+              "examples": [
+                {
+                  "text": "Near-synonym: pääty",
+                  "translation": ""
+                }
+              ]
+            },
+            "mood": {
+              "examples": [
+                {
+                  "text": "hyvällä päällä",
+                  "translation": "in a good mood"
+                }
+              ]
+            }
+          },
+          "etymology_text": "From Proto-Finnic *pää, from Proto-Finno-Ugric *päŋe. Cognates include Estonian pea, Veps pä, Moksha and Erzya пе (pe, “end”) and Hungarian fej, fő.",
+          "wlink": "https://en.wiktionary.org/wiki/pää#Finnish",
+          "klink": "https://kaikki.org/dictionary/Finnish/meaning/p/pä/pää.html"
+        }
+      ]
+    }
   }
 }

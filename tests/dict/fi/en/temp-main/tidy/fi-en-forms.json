@@ -209,1099 +209,207 @@
           "plural comitative"
         ]
       ]
-    },
-    "Rare. Only used with substantive adjectives.": {
-      "adj": [
-        "extracted",
-        [
-          "possessive"
-        ]
-      ]
-    },
-    "isoni": {
-      "adj": [
+    }
+  },
+  "pää": {
+    "päät": {
+      "noun": [
         "extracted",
         [
           "genitive accusative plural",
-          "genitive accusative singular",
-          "nominative accusative plural",
-          "nominative accusative singular"
+          "nominative accusative plural"
         ]
       ]
     },
-    "isojeni": {
-      "adj": [
+    "pään": {
+      "noun": [
+        "extracted",
+        [
+          "genitive accusative singular"
+        ]
+      ]
+    },
+    "päiden": {
+      "noun": [
         "extracted",
         [
           "genitive plural"
         ]
       ]
     },
-    "isoani": {
-      "adj": [
-        "extracted",
-        [
-          "partitive singular"
-        ]
-      ]
-    },
-    "isojani": {
-      "adj": [
-        "extracted",
-        [
-          "partitive plural"
-        ]
-      ]
-    },
-    "isossani": {
-      "adj": [
-        "extracted",
-        [
-          "singular inessive"
-        ]
-      ]
-    },
-    "isoissani": {
-      "adj": [
-        "extracted",
-        [
-          "plural inessive"
-        ]
-      ]
-    },
-    "isostani": {
-      "adj": [
-        "extracted",
-        [
-          "singular elative"
-        ]
-      ]
-    },
-    "isoistani": {
-      "adj": [
-        "extracted",
-        [
-          "plural elative"
-        ]
-      ]
-    },
-    "isooni": {
-      "adj": [
-        "extracted",
-        [
-          "singular illative"
-        ]
-      ]
-    },
-    "isoihini": {
-      "adj": [
-        "extracted",
-        [
-          "plural illative"
-        ]
-      ]
-    },
-    "isollani": {
-      "adj": [
-        "extracted",
-        [
-          "singular adessive"
-        ]
-      ]
-    },
-    "isoillani": {
-      "adj": [
-        "extracted",
-        [
-          "plural adessive"
-        ]
-      ]
-    },
-    "isoltani": {
-      "adj": [
-        "extracted",
-        [
-          "ablative singular"
-        ]
-      ]
-    },
-    "isoiltani": {
-      "adj": [
-        "extracted",
-        [
-          "ablative plural"
-        ]
-      ]
-    },
-    "isolleni": {
-      "adj": [
-        "extracted",
-        [
-          "singular allative"
-        ]
-      ]
-    },
-    "isoilleni": {
-      "adj": [
-        "extracted",
-        [
-          "plural allative"
-        ]
-      ]
-    },
-    "isonani": {
-      "adj": [
-        "extracted",
-        [
-          "singular essive"
-        ]
-      ]
-    },
-    "isoinani": {
-      "adj": [
-        "extracted",
-        [
-          "plural essive"
-        ]
-      ]
-    },
-    "isokseni": {
-      "adj": [
-        "extracted",
-        [
-          "singular translative"
-        ]
-      ]
-    },
-    "isoikseni": {
-      "adj": [
-        "extracted",
-        [
-          "plural translative"
-        ]
-      ]
-    },
-    "isottani": {
-      "adj": [
-        "extracted",
-        [
-          "singular abessive"
-        ]
-      ]
-    },
-    "isoittani": {
-      "adj": [
-        "extracted",
-        [
-          "plural abessive"
-        ]
-      ]
-    },
-    "isoineni": {
-      "adj": [
-        "extracted",
-        [
-          "plural comitative"
-        ]
-      ]
-    },
-    "isosi": {
-      "adj": [
-        "extracted",
-        [
-          "genitive accusative plural",
-          "genitive accusative singular",
-          "nominative accusative plural",
-          "nominative accusative singular"
-        ]
-      ]
-    },
-    "isojesi": {
-      "adj": [
+    "päitten": {
+      "noun": [
         "extracted",
         [
           "genitive plural"
         ]
       ]
     },
-    "isoasi": {
-      "adj": [
+    "päätä": {
+      "noun": [
         "extracted",
         [
           "partitive singular"
         ]
       ]
     },
-    "isojasi": {
-      "adj": [
+    "päitä": {
+      "noun": [
         "extracted",
         [
           "partitive plural"
         ]
       ]
     },
-    "isossasi": {
-      "adj": [
+    "päässä": {
+      "noun": [
         "extracted",
         [
           "singular inessive"
         ]
       ]
     },
-    "isoissasi": {
-      "adj": [
+    "päissä": {
+      "noun": [
         "extracted",
         [
           "plural inessive"
         ]
       ]
     },
-    "isostasi": {
-      "adj": [
+    "päästä": {
+      "noun": [
         "extracted",
         [
           "singular elative"
         ]
       ]
     },
-    "isoistasi": {
-      "adj": [
+    "päistä": {
+      "noun": [
         "extracted",
         [
           "plural elative"
         ]
       ]
     },
-    "isoosi": {
-      "adj": [
+    "päähän": {
+      "noun": [
         "extracted",
         [
           "singular illative"
         ]
       ]
     },
-    "isoihisi": {
-      "adj": [
+    "päihin": {
+      "noun": [
         "extracted",
         [
           "plural illative"
         ]
       ]
     },
-    "isollasi": {
-      "adj": [
+    "päällä": {
+      "noun": [
         "extracted",
         [
           "singular adessive"
         ]
       ]
     },
-    "isoillasi": {
-      "adj": [
+    "päillä": {
+      "noun": [
         "extracted",
         [
           "plural adessive"
         ]
       ]
     },
-    "isoltasi": {
-      "adj": [
+    "päältä": {
+      "noun": [
         "extracted",
         [
           "ablative singular"
         ]
       ]
     },
-    "isoiltasi": {
-      "adj": [
+    "päiltä": {
+      "noun": [
         "extracted",
         [
           "ablative plural"
         ]
       ]
     },
-    "isollesi": {
-      "adj": [
+    "päälle": {
+      "noun": [
         "extracted",
         [
           "singular allative"
         ]
       ]
     },
-    "isoillesi": {
-      "adj": [
+    "päille": {
+      "noun": [
         "extracted",
         [
           "plural allative"
         ]
       ]
     },
-    "isonasi": {
-      "adj": [
+    "päänä": {
+      "noun": [
         "extracted",
         [
           "singular essive"
         ]
       ]
     },
-    "isoinasi": {
-      "adj": [
+    "päinä": {
+      "noun": [
         "extracted",
         [
           "plural essive"
         ]
       ]
     },
-    "isoksesi": {
-      "adj": [
+    "pääksi": {
+      "noun": [
         "extracted",
         [
           "singular translative"
         ]
       ]
     },
-    "isoiksesi": {
-      "adj": [
+    "päiksi": {
+      "noun": [
         "extracted",
         [
           "plural translative"
         ]
       ]
     },
-    "isottasi": {
-      "adj": [
+    "päättä": {
+      "noun": [
         "extracted",
         [
           "singular abessive"
         ]
       ]
     },
-    "isoittasi": {
-      "adj": [
+    "päittä": {
+      "noun": [
         "extracted",
         [
           "plural abessive"
         ]
       ]
     },
-    "isoinesi": {
-      "adj": [
+    "päin": {
+      "noun": [
         "extracted",
         [
-          "plural comitative"
-        ]
-      ]
-    },
-    "isomme": {
-      "adj": [
-        "extracted",
-        [
-          "genitive accusative plural",
-          "genitive accusative singular",
-          "nominative accusative plural",
-          "nominative accusative singular"
-        ]
-      ]
-    },
-    "isojemme": {
-      "adj": [
-        "extracted",
-        [
-          "genitive plural"
-        ]
-      ]
-    },
-    "isoamme": {
-      "adj": [
-        "extracted",
-        [
-          "partitive singular"
-        ]
-      ]
-    },
-    "isojamme": {
-      "adj": [
-        "extracted",
-        [
-          "partitive plural"
-        ]
-      ]
-    },
-    "isossamme": {
-      "adj": [
-        "extracted",
-        [
-          "singular inessive"
-        ]
-      ]
-    },
-    "isoissamme": {
-      "adj": [
-        "extracted",
-        [
-          "plural inessive"
-        ]
-      ]
-    },
-    "isostamme": {
-      "adj": [
-        "extracted",
-        [
-          "singular elative"
-        ]
-      ]
-    },
-    "isoistamme": {
-      "adj": [
-        "extracted",
-        [
-          "plural elative"
-        ]
-      ]
-    },
-    "isoomme": {
-      "adj": [
-        "extracted",
-        [
-          "singular illative"
-        ]
-      ]
-    },
-    "isoihimme": {
-      "adj": [
-        "extracted",
-        [
-          "plural illative"
-        ]
-      ]
-    },
-    "isollamme": {
-      "adj": [
-        "extracted",
-        [
-          "singular adessive"
-        ]
-      ]
-    },
-    "isoillamme": {
-      "adj": [
-        "extracted",
-        [
-          "plural adessive"
-        ]
-      ]
-    },
-    "isoltamme": {
-      "adj": [
-        "extracted",
-        [
-          "ablative singular"
-        ]
-      ]
-    },
-    "isoiltamme": {
-      "adj": [
-        "extracted",
-        [
-          "ablative plural"
-        ]
-      ]
-    },
-    "isollemme": {
-      "adj": [
-        "extracted",
-        [
-          "singular allative"
-        ]
-      ]
-    },
-    "isoillemme": {
-      "adj": [
-        "extracted",
-        [
-          "plural allative"
-        ]
-      ]
-    },
-    "isonamme": {
-      "adj": [
-        "extracted",
-        [
-          "singular essive"
-        ]
-      ]
-    },
-    "isoinamme": {
-      "adj": [
-        "extracted",
-        [
-          "plural essive"
-        ]
-      ]
-    },
-    "isoksemme": {
-      "adj": [
-        "extracted",
-        [
-          "singular translative"
-        ]
-      ]
-    },
-    "isoiksemme": {
-      "adj": [
-        "extracted",
-        [
-          "plural translative"
-        ]
-      ]
-    },
-    "isottamme": {
-      "adj": [
-        "extracted",
-        [
-          "singular abessive"
-        ]
-      ]
-    },
-    "isoittamme": {
-      "adj": [
-        "extracted",
-        [
-          "plural abessive"
-        ]
-      ]
-    },
-    "isoinemme": {
-      "adj": [
-        "extracted",
-        [
-          "plural comitative"
-        ]
-      ]
-    },
-    "isonne": {
-      "adj": [
-        "extracted",
-        [
-          "genitive accusative plural",
-          "genitive accusative singular",
-          "nominative accusative plural",
-          "nominative accusative singular"
-        ]
-      ]
-    },
-    "isojenne": {
-      "adj": [
-        "extracted",
-        [
-          "genitive plural"
-        ]
-      ]
-    },
-    "isoanne": {
-      "adj": [
-        "extracted",
-        [
-          "partitive singular"
-        ]
-      ]
-    },
-    "isojanne": {
-      "adj": [
-        "extracted",
-        [
-          "partitive plural"
-        ]
-      ]
-    },
-    "isossanne": {
-      "adj": [
-        "extracted",
-        [
-          "singular inessive"
-        ]
-      ]
-    },
-    "isoissanne": {
-      "adj": [
-        "extracted",
-        [
-          "plural inessive"
-        ]
-      ]
-    },
-    "isostanne": {
-      "adj": [
-        "extracted",
-        [
-          "singular elative"
-        ]
-      ]
-    },
-    "isoistanne": {
-      "adj": [
-        "extracted",
-        [
-          "plural elative"
-        ]
-      ]
-    },
-    "isoonne": {
-      "adj": [
-        "extracted",
-        [
-          "singular illative"
-        ]
-      ]
-    },
-    "isoihinne": {
-      "adj": [
-        "extracted",
-        [
-          "plural illative"
-        ]
-      ]
-    },
-    "isollanne": {
-      "adj": [
-        "extracted",
-        [
-          "singular adessive"
-        ]
-      ]
-    },
-    "isoillanne": {
-      "adj": [
-        "extracted",
-        [
-          "plural adessive"
-        ]
-      ]
-    },
-    "isoltanne": {
-      "adj": [
-        "extracted",
-        [
-          "ablative singular"
-        ]
-      ]
-    },
-    "isoiltanne": {
-      "adj": [
-        "extracted",
-        [
-          "ablative plural"
-        ]
-      ]
-    },
-    "isollenne": {
-      "adj": [
-        "extracted",
-        [
-          "singular allative"
-        ]
-      ]
-    },
-    "isoillenne": {
-      "adj": [
-        "extracted",
-        [
-          "plural allative"
-        ]
-      ]
-    },
-    "isonanne": {
-      "adj": [
-        "extracted",
-        [
-          "singular essive"
-        ]
-      ]
-    },
-    "isoinanne": {
-      "adj": [
-        "extracted",
-        [
-          "plural essive"
-        ]
-      ]
-    },
-    "isoksenne": {
-      "adj": [
-        "extracted",
-        [
-          "singular translative"
-        ]
-      ]
-    },
-    "isoiksenne": {
-      "adj": [
-        "extracted",
-        [
-          "plural translative"
-        ]
-      ]
-    },
-    "isottanne": {
-      "adj": [
-        "extracted",
-        [
-          "singular abessive"
-        ]
-      ]
-    },
-    "isoittanne": {
-      "adj": [
-        "extracted",
-        [
-          "plural abessive"
-        ]
-      ]
-    },
-    "isoinenne": {
-      "adj": [
-        "extracted",
-        [
-          "plural comitative"
-        ]
-      ]
-    },
-    "isonsa": {
-      "adj": [
-        "extracted",
-        [
-          "genitive accusative plural",
-          "genitive accusative singular",
-          "nominative accusative plural",
-          "nominative accusative singular"
-        ]
-      ]
-    },
-    "isojensa": {
-      "adj": [
-        "extracted",
-        [
-          "genitive plural"
-        ]
-      ]
-    },
-    "isoaan": {
-      "adj": [
-        "extracted",
-        [
-          "partitive singular"
-        ]
-      ]
-    },
-    "isoansa": {
-      "adj": [
-        "extracted",
-        [
-          "partitive singular"
-        ]
-      ]
-    },
-    "isojaan": {
-      "adj": [
-        "extracted",
-        [
-          "partitive plural"
-        ]
-      ]
-    },
-    "isojansa": {
-      "adj": [
-        "extracted",
-        [
-          "partitive plural"
-        ]
-      ]
-    },
-    "isossaan": {
-      "adj": [
-        "extracted",
-        [
-          "singular inessive"
-        ]
-      ]
-    },
-    "isossansa": {
-      "adj": [
-        "extracted",
-        [
-          "singular inessive"
-        ]
-      ]
-    },
-    "isoissaan": {
-      "adj": [
-        "extracted",
-        [
-          "plural inessive"
-        ]
-      ]
-    },
-    "isoissansa": {
-      "adj": [
-        "extracted",
-        [
-          "plural inessive"
-        ]
-      ]
-    },
-    "isostaan": {
-      "adj": [
-        "extracted",
-        [
-          "singular elative"
-        ]
-      ]
-    },
-    "isostansa": {
-      "adj": [
-        "extracted",
-        [
-          "singular elative"
-        ]
-      ]
-    },
-    "isoistaan": {
-      "adj": [
-        "extracted",
-        [
-          "plural elative"
-        ]
-      ]
-    },
-    "isoistansa": {
-      "adj": [
-        "extracted",
-        [
-          "plural elative"
-        ]
-      ]
-    },
-    "isoonsa": {
-      "adj": [
-        "extracted",
-        [
-          "singular illative"
-        ]
-      ]
-    },
-    "isoihinsa": {
-      "adj": [
-        "extracted",
-        [
-          "plural illative"
-        ]
-      ]
-    },
-    "isollaan": {
-      "adj": [
-        "extracted",
-        [
-          "singular adessive"
-        ]
-      ]
-    },
-    "isollansa": {
-      "adj": [
-        "extracted",
-        [
-          "singular adessive"
-        ]
-      ]
-    },
-    "isoillaan": {
-      "adj": [
-        "extracted",
-        [
-          "plural adessive"
-        ]
-      ]
-    },
-    "isoillansa": {
-      "adj": [
-        "extracted",
-        [
-          "plural adessive"
-        ]
-      ]
-    },
-    "isoltaan": {
-      "adj": [
-        "extracted",
-        [
-          "ablative singular"
-        ]
-      ]
-    },
-    "isoltansa": {
-      "adj": [
-        "extracted",
-        [
-          "ablative singular"
-        ]
-      ]
-    },
-    "isoiltaan": {
-      "adj": [
-        "extracted",
-        [
-          "ablative plural"
-        ]
-      ]
-    },
-    "isoiltansa": {
-      "adj": [
-        "extracted",
-        [
-          "ablative plural"
-        ]
-      ]
-    },
-    "isolleen": {
-      "adj": [
-        "extracted",
-        [
-          "singular allative"
-        ]
-      ]
-    },
-    "isollensa": {
-      "adj": [
-        "extracted",
-        [
-          "singular allative"
-        ]
-      ]
-    },
-    "isoilleen": {
-      "adj": [
-        "extracted",
-        [
-          "plural allative"
-        ]
-      ]
-    },
-    "isoillensa": {
-      "adj": [
-        "extracted",
-        [
-          "plural allative"
-        ]
-      ]
-    },
-    "isonaan": {
-      "adj": [
-        "extracted",
-        [
-          "singular essive"
-        ]
-      ]
-    },
-    "isonansa": {
-      "adj": [
-        "extracted",
-        [
-          "singular essive"
-        ]
-      ]
-    },
-    "isoinaan": {
-      "adj": [
-        "extracted",
-        [
-          "plural essive"
-        ]
-      ]
-    },
-    "isoinansa": {
-      "adj": [
-        "extracted",
-        [
-          "plural essive"
-        ]
-      ]
-    },
-    "isokseen": {
-      "adj": [
-        "extracted",
-        [
-          "singular translative"
-        ]
-      ]
-    },
-    "isoksensa": {
-      "adj": [
-        "extracted",
-        [
-          "singular translative"
-        ]
-      ]
-    },
-    "isoikseen": {
-      "adj": [
-        "extracted",
-        [
-          "plural translative"
-        ]
-      ]
-    },
-    "isoiksensa": {
-      "adj": [
-        "extracted",
-        [
-          "plural translative"
-        ]
-      ]
-    },
-    "isottaan": {
-      "adj": [
-        "extracted",
-        [
-          "singular abessive"
-        ]
-      ]
-    },
-    "isottansa": {
-      "adj": [
-        "extracted",
-        [
-          "singular abessive"
-        ]
-      ]
-    },
-    "isoittaan": {
-      "adj": [
-        "extracted",
-        [
-          "plural abessive"
-        ]
-      ]
-    },
-    "isoittansa": {
-      "adj": [
-        "extracted",
-        [
-          "plural abessive"
-        ]
-      ]
-    },
-    "isoineen": {
-      "adj": [
-        "extracted",
-        [
-          "plural comitative"
-        ]
-      ]
-    },
-    "isoinensa": {
-      "adj": [
-        "extracted",
-        [
-          "plural comitative"
+          "plural instructive"
         ]
       ]
     }
