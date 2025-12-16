@@ -28,6 +28,7 @@
     {"iso": "he",  "language": "Hebrew",                 "displayName": "Hebrew",                   "flag": "🇮🇱"                       },
     {"iso": "hi",  "language": "Hindi",                  "displayName": "Hindi",                    "flag": "🇮🇳"                       },
     {"iso": "hu",  "language": "Hungarian",              "displayName": "Hungarian",                "flag": "🇭🇺"                       },
+    {"iso": "is",  "language": "Icelandic",              "displayName": "Icelandic",                "flag": "🇮🇸"                       },
     {"iso": "id",  "language": "Indonesian",             "displayName": "Indonesian",               "flag": "🇮🇩",   "hasEdition": true },
     {"iso": "ga",  "language": "Irish",                  "displayName": "Irish",                    "flag": "🇮🇪"                       },
     {"iso": "sga", "language": "Old Irish",              "displayName": "Irish, Old",               "flag": "🍀"                       },
