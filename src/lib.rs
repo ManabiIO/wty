@@ -24,6 +24,7 @@ use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::path::Path;
 
 use crate::cli::ArgsOptions;
+use crate::dict::get_index;
 #[cfg(feature = "html")]
 use crate::download::download_jsonl;
 use crate::lang::{EditionLang, Lang};
@@ -37,24 +38,6 @@ use crate::utils::{
 
 pub type Map<K, V> = IndexMap<K, V, FxBuildHasher>; // Preserve insertion order
 pub type Set<K> = IndexSet<K, FxBuildHasher>;
-
-fn get_index(dict_name: &str, source: Lang, target: Lang) -> String {
-    let current_date = chrono::Utc::now().format("%Y-%m-%d");
-    format!(
-        r#"{{
-  "title": "{dict_name}",
-  "format": 3,
-  "revision": "{current_date}",
-  "sequenced": true,
-  "author": "Kaikki-to-Yomitan contributors",
-  "url": "https://github.com/yomidevs/kaikki-to-yomitan",
-  "description": "Dictionaries for various language pairs generated from Wiktionary data, via Kaikki and Kaikki-to-Yomitan.",
-  "attribution": "https://kaikki.org/",
-  "sourceLanguage": "{source}",
-  "targetLanguage": "{target}"
-}}"#
-    )
-}
 
 const STYLES_CSS: &[u8] = include_bytes!("../assets/styles.css");
 const STYLES_CSS_EXPERIMENTAL: &[u8] = include_bytes!("../assets/styles_experimental.css");
