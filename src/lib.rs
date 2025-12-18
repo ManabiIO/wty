@@ -444,7 +444,6 @@ pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager
         let mut reader = BufReader::with_capacity(capacity, reader_file);
 
         let mut cached_lines = Vec::new();
-
         let mut line_count = 0;
         let mut accepted_count = 0;
 
@@ -519,9 +518,6 @@ pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager
     }
 
     if entries.is_empty() {
-        // Compared to filter_jsonl, this is not an error since it does not prevent any code that
-        // comes after (there is nothing after! this function does *everything*).
-        // warn!("no valid entries for these filters. Exiting.");
         return Ok(());
     }
 

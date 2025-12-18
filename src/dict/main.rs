@@ -380,15 +380,6 @@ fn tidy_preprocess(
     word_entry: &mut WordEntry,
     ret: &mut Tidy,
 ) {
-    // WARN: mutates word_entry::pos
-    //
-    // The whole point being displaying a better tag.
-    //
-    // https://github.com/tatuylonen/wiktextract/pull/1489
-    // if word_entry.pos == "verb" && word_entry.tags.iter().any(|t| t == "participle") {
-    //     word_entry.pos = "participle".to_string();
-    // }
-
     // WARN: mutates word_entry::senses::sense::tags
     //
     // [en]
@@ -510,8 +501,8 @@ fn process_forms(edition: EditionLang, source: Lang, word_entry: &WordEntry, ret
         let filtered_tags: Vec<_> = form
             .tags
             .iter()
-            .map(|s| s.as_str())
-            .filter(|tag| !REDUNDANT_FORM_TAGS.contains(&tag))
+            .map(std::string::String::as_str)
+            .filter(|tag| !REDUNDANT_FORM_TAGS.contains(tag))
             .collect();
         if filtered_tags.is_empty() {
             continue;
@@ -585,9 +576,7 @@ fn process_no_gloss(target: EditionLang, word_entry: &WordEntry, ret: &mut Tidy)
         //
         // At any rate, this will still add useful redirections.
         EditionLang::El => {
-            // This is how Kaikki stores participles (μετοχές). Cf. preprocess_word_entry
-            if word_entry.pos == "verb"
-                && word_entry.tags.iter().any(|t| t == "participle")
+            if word_entry.is_participle()
                 && let Some(form_of) = word_entry.form_of.first()
             {
                 ret.insert_form(
@@ -863,7 +852,7 @@ fn is_inflection_sense(target: EditionLang, sense: &Sense) -> bool {
                     // ... agent noun of fahren; driver (person)
                     let target = format!("of {}", form.word);
                     if gloss.ends_with(&target)
-                        || (gloss.contains(&format!("{} (", target)) && gloss.ends_with(")"))
+                        || (gloss.contains(&format!("{target} (")) && gloss.ends_with(')'))
                     {
                         return true;
                     }

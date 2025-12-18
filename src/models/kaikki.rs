@@ -111,6 +111,11 @@ pub struct Translation {
 // These should cover general functions usable for any dictionary and even for external users of
 // the WordEntry type.
 impl WordEntry {
+    // https://github.com/tatuylonen/wiktextract/pull/1489
+    pub fn is_participle(&self) -> bool {
+        self.pos == "verb" && self.tags.iter().any(|t| t == "participle")
+    }
+
     /// Return all non-empty forms that contain all given tags.
     fn tagged_forms<'a>(&'a self, tags: &[&str]) -> impl Iterator<Item = &'a Form> {
         self.forms.iter().filter(|form| {
