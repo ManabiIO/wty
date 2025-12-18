@@ -113,110 +113,96 @@ impl Dictionary for DMain {
 
 // Tidy: internal types
 
-#[derive(Debug, Default, Serialize)]
-struct LemmaMap(
-    Map<
-        String, // lemma
-        Map<
-            String, // reading
-            Map<
-                Pos, // pos
-                Vec<
-                    // list of, one per etymology
-                    LemmaInfo, // ipa, gloss_tree etc.
-                >,
-            >,
-        >,
-    >,
-);
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
+struct LemmaKey {
+    lemma: String,
+    reading: String,
+    pos: Pos,
+}
 
-impl LemmaMap {
-    fn len(&self) -> usize {
-        self.0
-            .values()
-            .flat_map(|reading_map| reading_map.values())
-            .flat_map(|pos_map| pos_map.values())
-            .map(Vec::len)
-            .sum()
+#[derive(Debug, Default)]
+struct LemmaMap(Map<LemmaKey, Vec<LemmaInfo>>);
+
+// We only serialize for debugging in the testsuite, so having this tmp nested is easy to write and
+// has no overhead when building the dictionary without --save-temps. This way, we avoid storing
+// nested structures that are less performant (both for cache locality, and number of lookups).
+impl Serialize for LemmaMap {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        let mut nested: Map<&str, Map<&str, Map<&str, &Vec<LemmaInfo>>>> = Map::default();
+
+        for (key, infos) in &self.0 {
+            nested
+                .entry(&key.lemma)
+                .or_default()
+                .entry(&key.reading)
+                .or_default()
+                .insert(&key.pos, infos);
+        }
+
+        nested.serialize(serializer)
     }
 }
 
-// Note that the order is inverted when converted to a Yomitan entry.
-//
-// I assume it was done this way to simplify the FormMap visualization.
-//
-// Example entry in FormMap:
-//
-// "uninflected": {
-//   "inflected": {
-//     "verb": [
-//       "inflection",
-//       [
-//         "masculine"
-//       ]
-//     ]
-//   }
-// }
-//
-// Matching YomitanEntry:
-//
-// [
-//   "inflected",       <- lemma, what we search in the dictionary
-//   "",
-//   "non-lemma",
-//   "",
-//   0,
-//   [
-//     [
-//       "uninflected", <- form, where we are redirected
-//       [
-//         "masculine"
-//       ]
-//     ]
-//   ],
-//   0,
-//   ""
-// ]
-#[derive(Debug, Default, Serialize)]
-struct FormMap(
-    Map<
-        String, // uninflected ~ form
-        Map<
-            String, // inflected ~ lemma
-            Map<
-                Pos, // pos
-                // Vec<String>, // inflections (tags really)
-                (FormSource, Vec<String>), // (source, inflections (tags really))
-            >,
-        >,
-    >,
-);
+impl LemmaMap {
+    fn len(&self) -> usize {
+        self.0.values().map(Vec::len).sum()
+    }
+}
+
+#[derive(Debug, Clone, Hash, PartialEq, Eq)]
+struct FormKey {
+    uninflected: String,
+    inflected: String,
+    pos: Pos,
+}
+
+#[derive(Debug, Default)]
+struct FormMap(Map<FormKey, (FormSource, Vec<String>)>);
+
+// We only serialize for debugging in the testsuite, so having this tmp nested is easy to write and
+// has no overhead when building the dictionary without --save-temps. This way, we avoid storing
+// nested structures that are less performant (both for cache locality, and number of lookups).
+impl Serialize for FormMap {
+    fn serialize<S>(&self, serializer: S) -> Result<S::Ok, S::Error>
+    where
+        S: serde::Serializer,
+    {
+        let mut nested: Map<&str, Map<&str, Map<&str, &(FormSource, Vec<String>)>>> =
+            Map::default();
+
+        for (key, infos) in &self.0 {
+            nested
+                .entry(&key.uninflected)
+                .or_default()
+                .entry(&key.inflected)
+                .or_default()
+                .insert(&key.pos, infos);
+        }
+
+        nested.serialize(serializer)
+    }
+}
 
 impl FormMap {
     /// Iterates over: uninflected, inflected, pos, source, tags
     fn flat_iter(
         &self,
     ) -> impl Iterator<Item = (&String, &String, &Pos, &FormSource, &Vec<String>)> {
-        self.0.iter().flat_map(|(uninfl, infl_map)| {
-            infl_map.iter().flat_map(move |(infl, pos_map)| {
-                pos_map
-                    .iter()
-                    .map(move |(pos, (source, tags))| (uninfl, infl, pos, source, tags))
-            })
-        })
+        self.0
+            .iter()
+            .map(|(key, (source, tags))| (&key.uninflected, &key.inflected, &key.pos, source, tags))
     }
 
     /// Iterates over: uninflected, inflected, pos, source, tags
     fn flat_iter_mut(
         &mut self,
     ) -> impl Iterator<Item = (&String, &String, &Pos, &mut FormSource, &mut Vec<String>)> {
-        self.0.iter_mut().flat_map(|(uninfl, infl_map)| {
-            infl_map.iter_mut().flat_map(move |(infl, pos_map)| {
-                pos_map
-                    .iter_mut()
-                    .map(move |(pos, (source, tags))| (uninfl, infl, pos, source, tags))
-            })
-        })
+        self.0
+            .iter_mut()
+            .map(|(key, (source, tags))| (&key.uninflected, &key.inflected, &key.pos, source, tags))
     }
 
     fn len(&self) -> usize {
@@ -295,8 +281,8 @@ struct GlossInfo {
 /// Intermediate representation of the main dictionary.
 #[derive(Debug, Default)]
 pub struct Tidy {
-    lemma_map: LemmaMap,
-    form_map: FormMap,
+    lemma_map: LemmaMap, // 56
+    form_map: FormMap,   // 56
 }
 
 impl Tidy {
@@ -306,17 +292,13 @@ impl Tidy {
 
     // This is usually called at the end, so it could just move the arguments...
     fn insert_lemma_entry(&mut self, lemma: &str, reading: &str, pos: &str, entry: LemmaInfo) {
-        let etym_map = self
-            .lemma_map
-            .0
-            .entry(lemma.to_string())
-            .or_default()
-            .entry(reading.to_string())
-            .or_default()
-            .entry(pos.to_string())
-            .or_default();
+        let key = LemmaKey {
+            lemma: lemma.to_string(),
+            reading: reading.to_string(),
+            pos: pos.to_string(),
+        };
 
-        etym_map.push(entry);
+        self.lemma_map.0.entry(key).or_default().push(entry);
     }
 
     fn insert_form(
@@ -329,16 +311,17 @@ impl Tidy {
     ) {
         debug_assert_ne!(uninflected, inflected);
         debug_assert!(!tags.is_empty());
+        let key = FormKey {
+            uninflected: uninflected.to_string(),
+            inflected: inflected.to_string(),
+            pos: pos.to_string(),
+        };
+
         let entry = self
             .form_map
             .0
-            .entry(uninflected.to_string())
-            .or_default()
-            .entry(inflected.to_string())
-            .or_default()
-            .entry(pos.to_string())
+            .entry(key)
             .or_insert_with(|| (source, Vec::new()));
-
         entry.1.extend(tags);
     }
 }
@@ -1105,22 +1088,17 @@ fn make_yomitan_lemmas(
 ) -> Vec<YomitanEntry> {
     let mut yomitan_entries = Vec::new();
 
-    for (lemma, readings) in lemma_map.0 {
-        for (reading, pos_word) in readings {
-            for (pos, etyms) in pos_word {
-                for info in etyms {
-                    let yomitan_entry = make_yomitan_lemma(
-                        edition,
-                        options,
-                        &lemma,
-                        &reading,
-                        &pos,
-                        info,
-                        diagnostics,
-                    );
-                    yomitan_entries.push(yomitan_entry);
-                }
-            }
+    for (key, etyms) in lemma_map.0 {
+        let LemmaKey {
+            lemma,
+            reading,
+            pos,
+        } = key;
+
+        for info in etyms {
+            let entry =
+                make_yomitan_lemma(edition, options, &lemma, &reading, &pos, info, diagnostics);
+            yomitan_entries.push(entry);
         }
     }
 
