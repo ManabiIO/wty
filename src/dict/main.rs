@@ -394,64 +394,48 @@ fn tidy_preprocess(
 ) {
     // WARN: mutates word_entry::senses::sense::tags
     //
-    // [en]
-    // the original fetched them from head_templates but it is better not to touch that
-    // and we can do the same by looking at the tags of the canonical form.
-    if matches!(edition, EditionLang::En) {
-        let tag_matches = [
-            "perfective",
-            "imperfective",
-            "masculine",
-            "feminine",
-            "neuter",
-            "inanimate",
-            "animate",
-        ];
-
-        if let Some(cform) = word_entry.canonical_form() {
-            let cform_tags: Vec<_> = cform.tags.clone();
-            for sense in &mut word_entry.senses {
-                for tag in &cform_tags {
-                    if tag_matches.contains(&tag.as_str()) && !sense.tags.contains(tag) {
-                        sense.tags.push(tag.into());
-                    }
-                }
-            }
-        }
-    }
-
-    // WARN: mutates word_entry::senses::sense::tags
-    //
-    // [ru]
-    // This is a good idea that should probably go to every language where it makes sense.
-    // Below there is a "safest" version for Greek (where the tags that we propagate are narrowed).
-    if matches!(edition, EditionLang::Ru) {
-        for sense in &mut word_entry.senses {
-            for tag in &word_entry.tags {
-                if !sense.tags.contains(tag) {
-                    sense.tags.push(tag.into());
-                }
-            }
-        }
-    }
-
-    // WARN: mutates word_entry::senses::sense::tags
-    //
-    // [el] Fetch gender from a matching form
-    if matches!(edition, EditionLang::El) {
-        let gender_tags = ["masculine", "feminine", "neuter"];
-        for form in &word_entry.forms {
-            if form.form == word_entry.word {
+    match edition {
+        EditionLang::En => {
+            // The original fetched them from head_templates but it is better not to touch that
+            // and we can do the same by looking at the tags of the canonical form.
+            if let Some(cform) = word_entry.canonical_form() {
+                let cform_tags: Vec<_> = cform.tags.clone();
                 for sense in &mut word_entry.senses {
-                    for tag in &form.tags {
-                        if gender_tags.contains(&tag.as_str()) && !sense.tags.contains(tag) {
+                    for tag in &cform_tags {
+                        if tag != "canonical" && !sense.tags.contains(tag) {
                             sense.tags.push(tag.into());
                         }
                     }
                 }
             }
         }
-    }
+        EditionLang::El => {
+            // Fetch gender from a matching form
+            let gender_tags = ["masculine", "feminine", "neuter"];
+            for form in &word_entry.forms {
+                if form.form == word_entry.word {
+                    for sense in &mut word_entry.senses {
+                        for tag in &form.tags {
+                            if gender_tags.contains(&tag.as_str()) && !sense.tags.contains(tag) {
+                                sense.tags.push(tag.into());
+                            }
+                        }
+                    }
+                }
+            }
+        }
+        EditionLang::Ru => {
+            // Propagate word_entry.tags to sense.tags
+            for sense in &mut word_entry.senses {
+                for tag in &word_entry.tags {
+                    if !sense.tags.contains(tag) {
+                        sense.tags.push(tag.into());
+                    }
+                }
+            }
+        }
+        _ => (),
+    };
 
     // WARN: mutates word_entry::senses
     //
