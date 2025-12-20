@@ -1,4 +1,5 @@
 /target
+/site
 
 # There should not be code/assets in data
 /data
