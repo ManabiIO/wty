@@ -1,3 +1,5 @@
+## Dictionary types
+
 WIP. These are the different types of dictionaries that can be made with kty:
 
 ```console
@@ -14,7 +16,6 @@ $ kty glossary-extended [OPTIONS] <EDITION> <SOURCE> <TARGET> [DICT_NAME]
 
 !!! tip "Reminder: roughly, the source is the language we learn. The target is the language we know."
 
-
 | Dictionary type | Edition(s)  | Source  | Target  |
 | --------------- | -------- | ------- | ------- |
 | **main**        | **TARGET** | source  | **TARGET** |
@@ -24,3 +25,21 @@ $ kty glossary-extended [OPTIONS] <EDITION> <SOURCE> <TARGET> [DICT_NAME]
 | **glossary-extended**    | edition | source | target |
 
 !!! tip "Identical cells in a row are highlighted in bold UPPERCASE"
+
+## Paths
+
+When building locally, dictionaries are usually stored in: `ROOT/dict/SOURCE/TARGET/kty-SOURCE-TARGET.zip`.
+
+The only exception being ipa-merged, since it has no source.
+
+```console
+$ kty main de en
+✓ Wrote yomitan dict @ data/dict/de/en/kty-de-en.zip (16.05 MB)
+$ kty glossary de en
+✓ Wrote yomitan dict @ data/dict/de/en/kty-de-en-gloss.zip (3.58 MB)
+$ kty ipa-merged en
+✓ Wrote yomitan dict @ data/dict/en/all/kty-en-ipa.zip (4.45 MB)
+$ kty glossary-extended all de en
+✓ Wrote yomitan dict @ data/dict/de/en/kty-all-de-en-gloss.zip (2.70 MB)
+```
+
