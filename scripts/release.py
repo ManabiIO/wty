@@ -23,6 +23,7 @@ import datetime
 import json
 import os
 import re
+import shutil
 import subprocess
 import time
 import zipfile
@@ -33,7 +34,7 @@ from pprint import pprint
 from typing import Any, Literal
 
 REPO_ID_HF = "daxida/test-dataset"
-"""Full url: https://huggingface.co/datasets/daxida/test-dataset"""
+REPO_HF = f"https://huggingface.co/datasets/{REPO_ID_HF}"
 REPO_ID_GH = "https://github.com/daxida/kty"
 
 BINARY_PATH = "target/release/kty"
@@ -57,6 +58,7 @@ class PathManager:
         self.index = self.release / "index"
         self.readme = self.release / "README.md"
         self.download = self.release / "kaikki"
+        self.stage = self.release / "stage"
 
         # These are at the "repo root"
         self.assets = Path("assets")
@@ -123,6 +125,17 @@ def release_version() -> str:
     return datetime.datetime.now().strftime("%Y-%m-%d")
 
 
+def prepare_stage() -> None:
+    """Put dict/index files inside a folder to comply with upload_large_folder."""
+    PM.stage.mkdir()  # Fail if exists
+    if (PM.stage / "dict").exists():
+        raise RuntimeError("Stage already contains 'dict'")
+    shutil.move(str(PM.dictionary), PM.stage / "dict")
+    if (PM.stage / "index").exists():
+        raise RuntimeError("Stage already contains 'index'")
+    shutil.move(str(PM.index), PM.stage / "index")
+
+
 # https://huggingface.co/new-dataset
 # https://huggingface.co/settings/tokens
 def upload_to_huggingface() -> None:
@@ -143,21 +156,22 @@ def upload_to_huggingface() -> None:
 
     dict_dir = PM.dictionary
     _, size = stats(dict_dir)
+    stage_dir = PM.stage
     version = release_version()
     git_cmd = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=".")
     commit_sha = git_cmd.decode().strip()
     commit_sha_short = commit_sha[:7]
 
     kwargs = dict(
-        folder_path=str(dict_dir),
-        path_in_repo="dict",
+        folder_path=str(stage_dir),
+        # path_in_repo="dict",
         repo_id=REPO_ID_HF,
         repo_type="dataset",
-        commit_message=f"[{version}] update dictionaries - {commit_sha_short}",
+        # commit_message=f"[{version}] update dictionaries - {commit_sha_short}",
     )
 
     print()
-    print(commit_sha)
+    print(commit_sha_short, commit_sha)
     pprint(kwargs)
     print(f"{version=}")
     print()
@@ -170,7 +184,9 @@ def upload_to_huggingface() -> None:
         # Huggingface may complain that we should be using upload_large_folder instead,
         # but this worked fine, and upload_large_folder polutes the git history and messes
         # up the file tree.
-        api.upload_folder(**kwargs)  # type: ignore
+        # api.upload_folder(**kwargs)  # type: ignore
+        prepare_stage()
+        api.upload_large_folder(**kwargs)  # type: ignore
         print(f"Upload complete @ https://huggingface.co/datasets/{REPO_ID_HF}")
     except Exception as e:
         print(e)
@@ -188,6 +204,7 @@ def upload_to_huggingface() -> None:
             repo_type="dataset",
             commit_message=f"[{version}] update README",
         )
+        print("Uploaded README")
     except Exception as e:
         print(e)
         exit(1)
@@ -200,6 +217,7 @@ def upload_to_huggingface() -> None:
             repo_type="dataset",
             commit_message=f"[{version}] update logs",
         )
+        print("Uploaded logs")
     except Exception as e:
         print(e)
         exit(1)
@@ -209,6 +227,7 @@ def update_readme_local(readme_path: Path, commit_sha: str, version: str) -> Non
     """Write the README of the huggingface repo @ readme_path."""
     commit_sha_short = commit_sha[:7]
     commit_sha_link = f"{REPO_ID_GH}/commit/{commit_sha}"
+    logs_link = f"{REPO_HF}/blob/main/log.txt"
 
     readme_content = f"""---
 license: cc-by-sa-4.0
@@ -220,6 +239,8 @@ For source code and issue tracking, visit the GitHub repo at [kty]({REPO_ID_GH})
 version: {version}
 
 commit: [{commit_sha_short}]({commit_sha_link})
+
+logs: [link]({logs_link})
 """
 
     readme_path.write_text(readme_content, encoding="utf-8")
