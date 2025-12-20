@@ -461,4 +461,6 @@
 
 Files are hosted [here](https://huggingface.co/datasets/daxida/test-dataset), where you can also see the calendar version (calver) of the dictionaries.
 
+If you get an `Entry not found` error, there was not enough data to make the dictionary.
+
 A brief description of the dictionaries can be found [here](dictionaries.md).
