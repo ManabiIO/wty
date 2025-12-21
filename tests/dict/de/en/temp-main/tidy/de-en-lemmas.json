@@ -495,5 +495,29 @@
         }
       ]
     }
+  },
+  "gegenüber": {
+    "gegenüber": {
+      "prep": [
+        {
+          "gloss_tree": {
+            "opposite": {},
+            "to, toward, towards": {
+              "examples": [
+                {
+                  "text": "1917, Franz Kafka, Ein Landarzt, in: Die neue Dichtung. Ein Almanach, Kurt Wolff Verlag, page 21",
+                  "translation": "Badly paid, I am still generous and helpful toward the poor."
+                }
+              ]
+            },
+            "compared to": {},
+            "vis-à-vis, in dealings with, in dealing with, towards": {}
+          },
+          "etymology_text": "gegen + über",
+          "wlink": "https://en.wiktionary.org/wiki/gegenüber#German",
+          "klink": "https://kaikki.org/dictionary/German/meaning/g/ge/gegenüber.html"
+        }
+      ]
+    }
   }
 }

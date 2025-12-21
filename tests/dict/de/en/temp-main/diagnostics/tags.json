@@ -34,6 +34,10 @@
       2,
       "Fuchs"
     ],
+    "prep": [
+      2,
+      "von"
+    ],
     "feminine": [
       2,
       "Base"
@@ -49,10 +53,6 @@
     "rare": [
       1,
       "Herz"
-    ],
-    "prep": [
-      1,
-      "von"
     ]
   }
 }
