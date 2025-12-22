@@ -40,6 +40,8 @@ pub enum Lang {
     Enm,
     /// Old English
     Ang,
+    /// Simple English
+    Simple,
     /// Esperanto
     Eo,
     /// Estonian
@@ -155,6 +157,7 @@ impl From<EditionLang> for Lang {
             EditionLang::Cs => Self::Cs,
             EditionLang::Nl => Self::Nl,
             EditionLang::En => Self::En,
+            EditionLang::Simple => Self::Simple,
             EditionLang::Fr => Self::Fr,
             EditionLang::De => Self::De,
             EditionLang::El => Self::El,
@@ -177,15 +180,15 @@ impl From<EditionLang> for Lang {
 
 impl Lang {
     pub const fn help_supported_isos() -> &'static str {
-        "Supported isos: sq | arz | afb | ar | apc | ajp | aii | bn | bg | yue | zh | cs | da | nl | en | enm | ang | eo | et | fi | fr | ka | de | el | grc | haw | he | hi | hu | is | id | ga | sga | it | ja | kn | kk | km | ko | ku | lo | la | lv | ms | mt | mr | mn | no | nb | nn | fa | pl | pt | ro | ru | sh | scn | sl | es | sv | tl | te | th | tok | tr | uk | ur | vi | cy | yi"
+        "Supported isos: sq | arz | afb | ar | apc | ajp | aii | bn | bg | yue | zh | cs | da | nl | en | enm | ang | simple | eo | et | fi | fr | ka | de | el | grc | haw | he | hi | hu | is | id | ga | sga | it | ja | kn | kk | km | ko | ku | lo | la | lv | ms | mt | mr | mn | no | nb | nn | fa | pl | pt | ro | ru | sh | scn | sl | es | sv | tl | te | th | tok | tr | uk | ur | vi | cy | yi"
     }
 
     pub const fn help_supported_isos_coloured() -> &'static str {
-        "Supported isos: sq | arz | afb | ar | apc | ajp | aii | bn | bg | yue | [32mzh[0m | [32mcs[0m | da | [32mnl[0m | [32men[0m | enm | ang | eo | et | fi | [32mfr[0m | ka | [32mde[0m | [32mel[0m | grc | haw | he | hi | hu | is | [32mid[0m | ga | sga | [32mit[0m | [32mja[0m | kn | kk | km | [32mko[0m | [32mku[0m | lo | la | lv | [32mms[0m | mt | mr | mn | no | nb | nn | fa | [32mpl[0m | [32mpt[0m | ro | [32mru[0m | sh | scn | sl | [32mes[0m | sv | tl | te | [32mth[0m | tok | [32mtr[0m | uk | ur | [32mvi[0m | cy | yi"
+        "Supported isos: sq | arz | afb | ar | apc | ajp | aii | bn | bg | yue | [32mzh[0m | [32mcs[0m | da | [32mnl[0m | [32men[0m | enm | ang | [32msimple[0m | eo | et | fi | [32mfr[0m | ka | [32mde[0m | [32mel[0m | grc | haw | he | hi | hu | is | [32mid[0m | ga | sga | [32mit[0m | [32mja[0m | kn | kk | km | [32mko[0m | [32mku[0m | lo | la | lv | [32mms[0m | mt | mr | mn | no | nb | nn | fa | [32mpl[0m | [32mpt[0m | ro | [32mru[0m | sh | scn | sl | [32mes[0m | sv | tl | te | [32mth[0m | tok | [32mtr[0m | uk | ur | [32mvi[0m | cy | yi"
     }
 
     pub const fn help_supported_editions() -> &'static str {
-        "Supported editions: zh | cs | nl | en | fr | de | el | id | it | ja | ko | ku | ms | pl | pt | ru | es | th | tr | vi"
+        "Supported editions: zh | cs | nl | en | simple | fr | de | el | id | it | ja | ko | ku | ms | pl | pt | ru | es | th | tr | vi"
     }
 
     pub const fn long(&self) -> &'static str {
@@ -207,6 +210,7 @@ impl Lang {
             Self::En => "English",
             Self::Enm => "Middle English",
             Self::Ang => "Old English",
+            Self::Simple => "Simple English",
             Self::Eo => "Esperanto",
             Self::Et => "Estonian",
             Self::Fi => "Finnish",
@@ -263,7 +267,7 @@ impl Lang {
         }
     }
 
-    pub const fn all() -> [Lang; 70] {
+    pub const fn all() -> [Lang; 71] {
         [
             Lang::Sq,
             Lang::Arz,
@@ -282,6 +286,7 @@ impl Lang {
             Lang::En,
             Lang::Enm,
             Lang::Ang,
+            Lang::Simple,
             Lang::Eo,
             Lang::Et,
             Lang::Fi,
@@ -361,6 +366,7 @@ impl std::str::FromStr for Lang {
             "en" => Ok(Self::En),
             "enm" => Ok(Self::Enm),
             "ang" => Ok(Self::Ang),
+            "simple" => Ok(Self::Simple),
             "eo" => Ok(Self::Eo),
             "et" => Ok(Self::Et),
             "fi" => Ok(Self::Fi),
@@ -442,6 +448,7 @@ impl Edition {
                 EditionLang::Cs,
                 EditionLang::Nl,
                 EditionLang::En,
+                EditionLang::Simple,
                 EditionLang::Fr,
                 EditionLang::De,
                 EditionLang::El,
@@ -501,6 +508,8 @@ pub enum EditionLang {
     Cs,
     /// Dutch
     Nl,
+    /// Simple English
+    Simple,
     /// French
     Fr,
     /// German
@@ -544,6 +553,7 @@ impl std::convert::TryFrom<Lang> for EditionLang {
             Lang::Cs => Ok(Self::Cs),
             Lang::Nl => Ok(Self::Nl),
             Lang::En => Ok(Self::En),
+            Lang::Simple => Ok(Self::Simple),
             Lang::Fr => Ok(Self::Fr),
             Lang::De => Ok(Self::De),
             Lang::El => Ok(Self::El),
@@ -585,6 +595,7 @@ impl std::str::FromStr for EditionLang {
             "cs" => Ok(Self::Cs),
             "nl" => Ok(Self::Nl),
             "en" => Ok(Self::En),
+            "simple" => Ok(Self::Simple),
             "fr" => Ok(Self::Fr),
             "de" => Ok(Self::De),
             "el" => Ok(Self::El),

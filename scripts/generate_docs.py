@@ -74,26 +74,45 @@ def render_line(
 """.strip()
 
 
+def render_dropdown_options(indent: str, langs: list[Lang]) -> str:
+    return "\n".join(
+        f'{indent}<option value="{lang.iso}">{lang.flag} {lang.display_name}</option>'
+        for lang in langs
+    ).strip()
+
+
 def generate_downloads_page(all_langs: list[Lang], editions: list[Lang]) -> str:
     indent4 = "  " * 4
     indent5 = "  " * 5
 
-    target_options = "\n".join(
-        f'{indent4}<option value="{lang.iso}">{lang.flag} {lang.display_name}</option>'
-        for lang in all_langs
-    ).strip()
+    target_options = render_dropdown_options(indent4, all_langs)
+    edition_options = render_dropdown_options(indent5, editions)
 
-    edition_options = "\n".join(
-        f'{indent5}<option value="{lang.iso}">{lang.flag} {lang.display_name}</option>'
-        for lang in editions
-    ).strip()
+    target_options_no_simple_english = render_dropdown_options(
+        indent4, [lang for lang in all_langs if lang.iso != "simple"]
+    )
+    edition_options_no_simple_english = render_dropdown_options(
+        indent5, [lang for lang in editions if lang.iso != "simple"]
+    )
 
     table_html = "\n".join(
         [
             render_line("📘 Main", "main", target_options, edition_options),
-            render_line("🔤 IPA", "ipa", target_options, edition_options),
-            render_line("🧬 IPA merged", "ipa-merged", target_options),  # no source
-            render_line("🌍 Glossary", "glossary", target_options, target_options),
+            render_line(
+                "🔤 IPA",
+                "ipa",
+                target_options_no_simple_english,
+                edition_options_no_simple_english,
+            ),
+            render_line(
+                "🧬 IPA merged", "ipa-merged", target_options_no_simple_english
+            ),
+            render_line(
+                "🌍 Glossary",
+                "glossary",
+                target_options_no_simple_english,
+                target_options_no_simple_english,
+            ),
         ]
     )
 
@@ -124,6 +143,8 @@ def generate_language_page(all_langs, editions) -> str:
 For a list of **targets** supported by the English edition, see [here](https://kaikki.org/dictionary/).
 
 For a list of supported languages by Yomitan, see [here](https://yomitan.wiki/supported-languages/). If it is outdated, refer to [here](https://raw.githubusercontent.com/yomidevs/yomitan/master/ext/js/language/language-descriptors.js).
+
+`Simple English` is made from the [Simple English Wiktionary](https://simple.wiktionary.org/wiki/Main_Page), and contains only English glosses for English words. It is referred to by the made-up iso `simple`, and can only be used as a monolingual main dictionary.
 
 !!! tip "Missing a language? Please **open an [issue](https://github.com/daxida/kty/issues/new)**."
 

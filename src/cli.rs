@@ -36,7 +36,7 @@ pub enum Command {
     /// Phonetic transcription dictionary. Uses all editions
     IpaMerged(IpaMergedArgs),
 
-    /// Download a Kaikki jsonline
+    /// Download a Kaikki jsonlines
     Download(MainArgs),
 
     /// Show supported iso codes, with coloured editions
@@ -278,13 +278,38 @@ fn push_filter_key_lang(filter: &mut Vec<(FilterKey, String)>, lang: Lang) {
     filter.push((FilterKey::LangCode, lang.to_string()));
 }
 
+fn check_simple_english<A: SimpleArgs>(args: &A) -> Result<()> {
+    let source_is_simple = matches!(args.langs().source(), Lang::Simple);
+    let target_is_simple = matches!(args.langs().target(), Lang::Simple);
+
+    if source_is_simple ^ target_is_simple {
+        anyhow::bail!("Simple English must be used as both source and target.");
+    }
+
+    Ok(())
+}
+
+// Only the main dictionary makes sense with Simple English
+fn err_on_simple_english<A: SimpleArgs>(args: &A) -> Result<()> {
+    let source_is_simple = matches!(args.langs().source(), Lang::Simple);
+    let target_is_simple = matches!(args.langs().target(), Lang::Simple);
+
+    if source_is_simple || target_is_simple {
+        anyhow::bail!("Simple English can not be used for this dictionary.");
+    }
+
+    Ok(())
+}
+
 fn prepare_command(cmd: &mut Command) -> Result<()> {
     match cmd {
         Command::Main(args) => {
+            check_simple_english(args)?;
             args.langs.edition = args.langs.target;
             push_filter_key_lang(&mut args.options.filter, args.langs.source);
         }
         Command::Glossary(args) => {
+            err_on_simple_english(args)?;
             let source_as_lang: Lang = args.langs.source.into();
             anyhow::ensure!(
                 source_as_lang != args.langs.target,
@@ -295,16 +320,19 @@ fn prepare_command(cmd: &mut Command) -> Result<()> {
             push_filter_key_lang(&mut args.options.filter, source_as_lang);
         }
         Command::GlossaryExtended(args) => {
+            err_on_simple_english(args)?;
             anyhow::ensure!(
                 args.langs.source != args.langs.target,
                 "in a glossary dictionary source must be different from target."
             );
         }
         Command::Ipa(args) => {
+            err_on_simple_english(args)?;
             args.langs.edition = args.langs.target;
             push_filter_key_lang(&mut args.options.filter, args.langs.source);
         }
         Command::IpaMerged(args) => {
+            err_on_simple_english(args)?;
             args.langs.edition = Edition::All;
             args.langs.source = args.langs.target;
             push_filter_key_lang(&mut args.options.filter, args.langs.source);
