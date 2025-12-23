@@ -66,5 +66,79 @@
     ],
     0,
     ""
+  ],
+  [
+    "nun",
+    "nun",
+    "adv",
+    "adv",
+    0,
+    [
+      {
+        "type": "structured-content",
+        "content": {
+          "tag": "div",
+          "content": [
+            {
+              "tag": "span",
+              "content": "zu diesem Zeitpunkt, zum jetzigen Zeitpunkt, in dem Moment"
+            },
+            {
+              "tag": "ul",
+              "content": [
+                {
+                  "tag": "li",
+                  "content": "今"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "structured-content",
+        "content": {
+          "tag": "div",
+          "content": [
+            {
+              "tag": "span",
+              "content": "in unmittelbarere Zukunft"
+            },
+            {
+              "tag": "ul",
+              "content": [
+                {
+                  "tag": "li",
+                  "content": "今から"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "structured-content",
+        "content": {
+          "tag": "div",
+          "content": [
+            {
+              "tag": "span",
+              "content": "zur Bezeichnung eines Ruhepunktes in der Rede, einer Folgerung, Einwendung oder Einräumung"
+            },
+            {
+              "tag": "ul",
+              "content": [
+                {
+                  "tag": "li",
+                  "content": "さて"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    0,
+    ""
   ]
 ]

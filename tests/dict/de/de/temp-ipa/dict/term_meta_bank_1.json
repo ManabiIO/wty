@@ -91,5 +91,17 @@
         }
       ]
     }
+  ],
+  [
+    "nun",
+    "ipa",
+    {
+      "reading": "nun",
+      "transcriptions": [
+        {
+          "ipa": "[nuːn]"
+        }
+      ]
+    }
   ]
 ]

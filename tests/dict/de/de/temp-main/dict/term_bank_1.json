@@ -1406,5 +1406,344 @@
     ],
     0,
     ""
+  ],
+  [
+    "nun",
+    "",
+    "adv",
+    "adv",
+    0,
+    [
+      {
+        "type": "structured-content",
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "tag": "div",
+                "data": {
+                  "content": "preamble"
+                },
+                "content": [
+                  {
+                    "tag": "details",
+                    "data": {
+                      "content": "details-entry-Etymology"
+                    },
+                    "content": [
+                      {
+                        "tag": "summary",
+                        "data": {
+                          "content": "summary-entry"
+                        },
+                        "content": "Etymology"
+                      },
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "Etymology-content"
+                        },
+                        "content": "über mittelhochdeutsch nū̆(n) ^(→ gmh) aus althochdeutsch nū̆ ^(→ goh), „wahrscheinlich ablautend verwandt mit neu; vgl. griechisch ný ^(→ el), nỹn ^(→ el) = jetzt“; oder unter anderem (im 8. Jahrhundert) aus althochdeutsch nū̌ ^(→ goh) und nl. nu"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "ol",
+            "data": {
+              "content": "glosses"
+            },
+            "content": [
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "zu diesem Zeitpunkt, zum jetzigen Zeitpunkt, in dem Moment",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "2 Beispiele"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "„Was haben wir nun?“"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Nun ziehen Sie die Schraube fest."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "in unmittelbarere Zukunft",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 Beispiel"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "„Was wird nun geschehen?“"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "in unmittelbarer Vergangenheit",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 Beispiel"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Das ist nun geschehen."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Fortführung der Rede, zeitliche Folge"
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Im Satzanfang, elliptisch, zur Bezeichnung eines Ruhepunktes in der Rede, einer Folgerung, Einwendung oder Einräumung.",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 Beispiel"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Nun… es ist wahr."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Im Satzanfang, zur Einleitung einer Frage",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 Beispiel"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Nun, was ist deine Entscheidung?"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "data": {
+              "content": "backlink"
+            },
+            "content": [
+              {
+                "tag": "a",
+                "href": "https://de.wiktionary.org/wiki/nun#German",
+                "content": "Wiktionary"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    0,
+    ""
   ]
 ]

@@ -30,5 +30,49 @@
     ],
     0,
     ""
+  ],
+  [
+    "nun",
+    "nun",
+    "adv",
+    "adv",
+    0,
+    [
+      {
+        "type": "structured-content",
+        "content": {
+          "tag": "div",
+          "content": [
+            {
+              "tag": "span",
+              "content": "zu diesem Zeitpunkt, zum jetzigen Zeitpunkt, in dem Moment"
+            },
+            {
+              "tag": "ul",
+              "content": [
+                {
+                  "tag": "li",
+                  "content": "νῦν"
+                },
+                {
+                  "tag": "li",
+                  "content": "νυ"
+                },
+                {
+                  "tag": "li",
+                  "content": "νυν"
+                },
+                {
+                  "tag": "li",
+                  "content": "νῦν δέ"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    0,
+    ""
   ]
 ]
