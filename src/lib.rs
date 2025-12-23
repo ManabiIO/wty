@@ -1,4 +1,5 @@
 pub mod cli;
+pub mod diagnostic;
 pub mod dict;
 pub mod download;
 pub mod lang;
@@ -24,6 +25,7 @@ use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::path::{Path, PathBuf};
 
 use crate::cli::ArgsOptions;
+use crate::diagnostic::Diagnostics;
 use crate::dict::get_index;
 #[cfg(feature = "html")]
 use crate::download::download_jsonl;
@@ -206,61 +208,6 @@ fn write_banks(
     }
 
     Ok(())
-}
-
-type Key = String; // A tag
-type Word = String; // A word
-// Vec of words in which the tag was encountered
-type CounterValue = Vec<Word>;
-type Counter = Map<Key, CounterValue>;
-
-// For debugging purposes
-#[derive(Debug, Default)]
-pub struct Diagnostics {
-    /// Tags found in bank
-    accepted_tags: Counter,
-    /// Tags not found in bank
-    rejected_tags: Counter,
-}
-
-impl Diagnostics {
-    fn new() -> Self {
-        Self::default()
-    }
-
-    fn increment(map: &mut Counter, key: Key, word: Word) {
-        map.entry(key).or_default().push(word);
-    }
-
-    fn increment_accepted_tag(&mut self, tag: Key, word: Word) {
-        Self::increment(&mut self.accepted_tags, tag, word);
-    }
-
-    fn increment_rejected_tag(&mut self, tag: Key, word: Word) {
-        Self::increment(&mut self.rejected_tags, tag, word);
-    }
-
-    fn is_empty(&self) -> bool {
-        self.accepted_tags.is_empty() && self.rejected_tags.is_empty()
-    }
-
-    fn write(&self, pm: &PathManager) -> Result<()> {
-        if self.is_empty() {
-            return Ok(());
-        }
-
-        let dir_diagnostics = pm.dir_diagnostics();
-        fs::create_dir_all(&dir_diagnostics)?;
-
-        write_sorted_json(
-            &dir_diagnostics,
-            "tags.json",
-            &self.accepted_tags,
-            &self.rejected_tags,
-        )?;
-
-        Ok(())
-    }
 }
 
 /// Trait for Intermediate representation. Used for postprocessing (merge, etc.) and debugging via snapshots.
@@ -531,7 +478,7 @@ pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager
     }
 
     if !options.skip_yomitan {
-        let mut diagnostics = Diagnostics::new();
+        let mut diagnostics = Diagnostics::default();
 
         let labelled_entries = dict.to_yomitan(
             // HACK: This unwrap_or is only for GlossaryExtended and works as a filler
@@ -550,43 +497,6 @@ pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager
         write_yomitan(source_pm, target_pm, options, pm, &labelled_entries)?;
     }
 
-    Ok(())
-}
-
-// hacky: takes advantage of insertion order
-fn convert_and_sort_indexmap(map: &Counter) -> IndexMap<String, (usize, Word)> {
-    // Display first word
-    let mut entries: Vec<_> = map
-        .iter()
-        .filter_map(|(key, words)| {
-            words
-                .first()
-                .cloned()
-                .map(|first_word| (key.clone(), (words.len(), first_word)))
-        })
-        .collect();
-
-    entries.sort_by(|a, b| b.1.0.cmp(&a.1.0));
-    let mut sorted = IndexMap::with_capacity(entries.len());
-    for (key, value) in entries {
-        sorted.insert(key, value);
-    }
-
-    sorted
-}
-
-fn write_sorted_json(
-    dir_diagnostics: &Path,
-    name: &str,
-    accepted: &Counter,
-    rejected: &Counter,
-) -> Result<()> {
-    let accepted_sorted = convert_and_sort_indexmap(accepted);
-    let rejected_sorted = convert_and_sort_indexmap(rejected);
-    let json: Map<&'static str, _> =
-        Map::from_iter([("rejected", rejected_sorted), ("accepted", accepted_sorted)]);
-    let writer = File::create(dir_diagnostics.join(name))?;
-    serde_json::to_writer_pretty(writer, &json)?;
     Ok(())
 }
 
