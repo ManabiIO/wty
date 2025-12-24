@@ -6,9 +6,12 @@ use serde::{Deserialize, Serialize};
 use unicode_normalization::UnicodeNormalization;
 
 use crate::{
-    Diagnostics, Dictionary, Intermediate, LabelledYomitanEntry, Map, Set,
+    Map, Set,
     cli::ArgsOptions,
-    dict::locale::get_locale_examples_string,
+    dict::{
+        Diagnostics, Dictionary, Intermediate, LabelledYomitanEntry,
+        locale::get_locale_examples_string,
+    },
     lang::{EditionLang, Lang},
     models::{
         kaikki::{Example, HeadTemplate, Pos, Sense, Tag, WordEntry},

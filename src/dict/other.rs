@@ -1,7 +1,7 @@
 use crate::{
-    Diagnostics, Dictionary, LabelledYomitanEntry, Map, Set,
+    Map, Set,
     cli::ArgsOptions,
-    dict::{get_ipas, get_reading},
+    dict::{Diagnostics, Dictionary, LabelledYomitanEntry, get_ipas, get_reading},
     lang::{EditionLang, Lang},
     models::{
         kaikki::WordEntry,

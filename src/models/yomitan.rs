@@ -9,6 +9,15 @@ pub enum YomitanEntry {
     TermBankMeta(TermBankMeta), // 104
 }
 
+impl YomitanEntry {
+    pub fn file_prefix(&self) -> &str {
+        match self {
+            YomitanEntry::TermBank(_) => "term_bank",
+            YomitanEntry::TermBankMeta(_) => "term_meta_bank",
+        }
+    }
+}
+
 // Simplified version to avoid storing fields that we don't use. Those are written later on via the
 // serialize implementation.
 //

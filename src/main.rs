@@ -3,10 +3,9 @@ use tracing_subscriber::EnvFilter;
 use tracing_subscriber::fmt::format::FmtSpan;
 
 use kty::cli::{Cli, Command, Langs, SimpleArgs};
-use kty::dict::{DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain};
+use kty::dict::{DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, make_dict};
 use kty::download::download_jsonl;
 use kty::lang::{EditionLang, Lang};
-use kty::make_dict;
 use kty::path::{DictionaryType, PathManager};
 use kty::utils::skip_because_file_exists;
 
@@ -44,11 +43,11 @@ fn run_command(cmd: &Command) -> Result<()> {
         }
         Command::GlossaryExtended(args) => {
             let pm = PathManager::new(DictionaryType::GlossaryExtended, args);
-            make_dict(DGlossaryExtended, &args.options, &pm)
+            make_dict(DGlossaryExtended, &args.options(), &pm)
         }
         Command::Ipa(args) => {
             let pm = PathManager::new(DictionaryType::Ipa, args);
-            make_dict(DIpa, &args.options, &pm)
+            make_dict(DIpa, &args.options(), &pm)
         }
         Command::IpaMerged(args) => {
             let pm = PathManager::new(DictionaryType::IpaMerged, args);
