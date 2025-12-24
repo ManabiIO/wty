@@ -38,6 +38,9 @@ use crate::utils::{
 pub type Map<K, V> = IndexMap<K, V, FxBuildHasher>; // Preserve insertion order
 pub type Set<K> = IndexSet<K, FxBuildHasher>;
 
+const CONSOLE_PRINT_INTERVAL: i32 = 10000;
+const BANK_SIZE: usize = 25_000;
+
 const STYLES_CSS: &[u8] = include_bytes!("../assets/styles.css");
 const STYLES_CSS_EXPERIMENTAL: &[u8] = include_bytes!("../assets/styles_experimental.css");
 
@@ -78,49 +81,50 @@ fn write_yomitan(
         if !options.quiet {
             pretty_println_at_path(&format!("{CHECK_C} Wrote temp data"), &out_dir);
         }
+        return Ok(());
+    }
+
+    let writer_path = pm.path_dict();
+    let writer_file = File::create(&writer_path)?;
+    let mut zip = ZipWriter::new(writer_file);
+    let zip_options =
+        SimpleFileOptions::default().compression_method(zip::CompressionMethod::Deflated);
+
+    // Zip index.json
+    let index_string = get_index(&pm.dict_name_expanded(), source, target);
+    zip.start_file("index.json", zip_options)?;
+    zip.write_all(index_string.as_bytes())?;
+
+    // Copy paste styles.css
+    zip.start_file("styles.css", zip_options)?;
+    if options.experimental {
+        zip.write_all(STYLES_CSS_EXPERIMENTAL)?;
     } else {
-        let writer_path = pm.path_dict();
-        let writer_file = File::create(&writer_path)?;
-        let mut zip = ZipWriter::new(writer_file);
-        let zip_options =
-            SimpleFileOptions::default().compression_method(zip::CompressionMethod::Deflated);
+        zip.write_all(STYLES_CSS)?;
+    }
 
-        // Zip index.json
-        let index_string = get_index(&pm.dict_name_expanded(), source, target);
-        zip.start_file("index.json", zip_options)?;
-        zip.write_all(index_string.as_bytes())?;
+    // Copy paste tag_bank.json
+    let tag_bank = get_tag_bank_as_tag_info();
+    let tag_bank_bytes = serde_json::to_vec_pretty(&tag_bank)?;
+    zip.start_file("tag_bank_1.json", zip_options)?; // it needs to end in _1
+    zip.write_all(&tag_bank_bytes)?;
 
-        // Copy paste styles.css
-        zip.start_file("styles.css", zip_options)?;
-        if options.experimental {
-            zip.write_all(STYLES_CSS_EXPERIMENTAL)?;
-        } else {
-            zip.write_all(STYLES_CSS)?;
-        }
+    for (entry_ty, entries) in labelled_entries {
+        write_banks(
+            options.pretty,
+            options.quiet,
+            entries,
+            &mut bank_index,
+            entry_ty,
+            &writer_path,
+            BankSink::Zip(&mut zip, zip_options),
+        )?;
+    }
 
-        // Copy paste tag_bank.json
-        let tag_bank = get_tag_bank_as_tag_info();
-        let tag_bank_bytes = serde_json::to_vec_pretty(&tag_bank)?;
-        zip.start_file("tag_bank_1.json", zip_options)?; // it needs to end in _1
-        zip.write_all(&tag_bank_bytes)?;
+    zip.finish()?;
 
-        for (entry_ty, entries) in labelled_entries {
-            write_banks(
-                options.pretty,
-                options.quiet,
-                entries,
-                &mut bank_index,
-                entry_ty,
-                &writer_path,
-                BankSink::Zip(&mut zip, zip_options),
-            )?;
-        }
-
-        zip.finish()?;
-
-        if !options.quiet {
-            pretty_println_at_path(&format!("{CHECK_C} Wrote yomitan dict"), &writer_path);
-        }
+    if !options.quiet {
+        pretty_println_at_path(&format!("{CHECK_C} Wrote yomitan dict"), &writer_path);
     }
 
     Ok(())
@@ -137,41 +141,25 @@ fn write_banks(
     out_dir: &Path,
     mut out_sink: BankSink,
 ) -> Result<()> {
-    let bank_size = 25_000;
-    let total_entries = yomitan_entries.len();
-    let total_bank_num = total_entries.div_ceil(bank_size);
+    // NOTE: this assumes that once a type is passed, all the remaining entries are of same type
+    let bank_name_prefix = match yomitan_entries.first() {
+        Some(first) => first.file_prefix(),
+        None => return Ok(()),
+    };
 
-    let mut bank_num = 0;
-    let mut start = 0;
+    let total_bank_num = yomitan_entries.len().div_ceil(BANK_SIZE);
 
-    while start < total_entries {
+    for (bank_num, bank) in yomitan_entries.chunks(BANK_SIZE).enumerate() {
         *bank_index += 1;
-        bank_num += 1;
-
-        let end = (start + bank_size).min(total_entries);
-        let bank = &yomitan_entries[start..end];
-        let upto = end - start;
-
-        // NOTE: should be passed as argument?
-        // NOTE: this assumes that once a type is passed, all the remaining entries are of same type
-        //
-        // SAFETY:
-        // * if end = start + bank_size, then end > start (bank_size > 0)
-        // * if end = total_entries    , then end > start (while condition)
-        // In both cases end > start, so there is always a bank.first();
-        let bank_name_prefix = match bank.first().unwrap() {
-            YomitanEntry::TermBank(_) => "term_bank",
-            YomitanEntry::TermBankMeta(_) => "term_meta_bank",
-        };
-
-        let bank_name = format!("{bank_name_prefix}_{bank_index}.json");
-        let file_path = out_dir.join(&bank_name);
 
         let json_bytes = if pretty {
             serde_json::to_vec_pretty(&bank)?
         } else {
             serde_json::to_vec(&bank)?
         };
+
+        let bank_name = format!("{bank_name_prefix}_{bank_index}.json");
+        let file_path = out_dir.join(&bank_name);
 
         match out_sink {
             BankSink::Disk => {
@@ -185,22 +173,22 @@ fn write_banks(
         }
 
         if !quiet {
-            if bank_num > 1 {
+            if bank_num > 0 {
                 print!("\r\x1b[K");
             }
             pretty_print_at_path(
                 &format!(
-                    "Wrote yomitan {entry_ty} bank {bank_num}/{total_bank_num} ({upto} entries)"
+                    "Wrote yomitan {entry_ty} bank {}/{total_bank_num} ({} entries)",
+                    bank_num + 1,
+                    bank.len()
                 ),
                 &file_path,
             );
             std::io::stdout().flush()?;
         }
-
-        start = end;
     }
 
-    if !quiet && bank_num == total_bank_num {
+    if !quiet {
         println!();
     }
 
@@ -217,9 +205,7 @@ pub trait Intermediate: Default {
     }
 
     /// How to write `Self::I` to disk. This is only called if `options.save_temps` is set and
-    /// `Dictionary::write_ir` returns true
-    ///
-    /// The default blank implementation does nothing.
+    /// `Dictionary::write_ir` returns true.
     #[allow(unused_variables)]
     fn write(&self, pm: &PathManager, options: &ArgsOptions) -> Result<()> {
         Ok(())
@@ -250,28 +236,14 @@ where
     }
 }
 
-// If this ends up having too much overhead for dictionaries that do not use Self::I, consider this
-// other trait:
-//
-// trait SimpleDictionary {
-//     fn paths_jsonl_raw(&self, pm: &PathManager) -> Vec<(EditionLang, PathBuf)>;
-//     fn process(&self, source: Lang, target: Lang, entry: &WordEntry) -> Vec<YomitanEntry>;
-// }
-//
-// and rewrite make_dict to instead just store YomitanEntries.
-//
-/// Trait to abstract the process of writing a dictionary.
+/// Trait to abstract the process of making a dictionary.
 pub trait Dictionary {
     type I: Intermediate;
 
     // NOTE:Maybe in the future we can get rid of this. It requires cleaning up the legacy mutable
     // behaviour of the main dictionary.
     //
-    /// How to preprocess a `WordEntry`.
-    ///
-    /// Inspired by the Main dictionary, everything that mutates `word_entry` should go here.
-    ///
-    /// The default blank implementation does nothing.
+    /// How to preprocess a `WordEntry`. Everything that mutates `word_entry` should go here.
     #[allow(unused_variables)]
     fn preprocess(
         &self,
@@ -296,14 +268,12 @@ pub trait Dictionary {
         irs: &mut Self::I,
     );
 
-    /// Console message for found entries.
-    ///
-    /// It happens to be customized for the main dictionary.
+    /// Console message for found entries. It is customized for the main dictionary.
     fn found_ir_message(&self, irs: &Self::I) {
         println!("Found {} entries", irs.len());
     }
 
-    /// Whether to write or not `Self::I` to disk
+    /// Whether to write or not `Self::I` to disk.
     ///
     /// Compare to `save_temp`, that rules if `Self::I` AND the `term_banks` are written to disk.
     ///
@@ -317,16 +287,11 @@ pub trait Dictionary {
     ///
     /// This can be implemented, for instance, to merge entries from different editions, or to
     /// postprocess forms, tags etc.
-    ///
-    /// The default blank implementation does nothing.
     #[allow(unused_variables)]
     fn postprocess(&self, irs: &mut Self::I) {}
 
-    // Does not have access to WordEntry!
-    //
     // Returns a Vec<LabelledYomitanEntry> instead of Vec<YomitanEntry> because that is the
-    // argument type of write_yomitan, but it should be doable to change it back to
-    // Vec<YomitanEntry>
+    // argument type of write_yomitan.
     fn to_yomitan(
         &self,
         edition: EditionLang,
@@ -338,8 +303,6 @@ pub trait Dictionary {
     ) -> Vec<LabelledYomitanEntry>;
 
     /// How to write diagnostics, if any.
-    ///
-    /// The default blank implementation does nothing.
     #[allow(unused_variables)]
     fn write_diagnostics(&self, pm: &PathManager, diagnostics: &Diagnostics) -> Result<()> {
         Ok(())
@@ -378,15 +341,12 @@ fn rejected(entry: &WordEntry, options: &ArgsOptions) -> bool {
             .all(|(k, v)| k.field_value(entry) == v)
 }
 
-const CONSOLE_PRINT_INTERVAL: i32 = 10000;
-
 pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager) -> Result<()> {
     let (edition_pm, source_pm, target_pm) = pm.langs();
 
     pm.setup_dirs()?;
 
-    // rust default is 8 * (1 << 10) := 8KB
-    let capacity = 256 * (1 << 10);
+    let capacity = 256 * (1 << 10); // default is 8 * (1 << 10) := 8KB
     let mut line = Vec::with_capacity(1 << 10);
     let mut entries = D::I::default();
 
@@ -394,8 +354,7 @@ pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager
         let path_jsonl_raw = find_or_download_jsonl(edition, source_pm, &paths, options)?;
         tracing::debug!("path_jsonl_raw: {}", path_jsonl_raw.display());
 
-        let reader_path = &path_jsonl_raw;
-        let reader_file = File::open(reader_path)?;
+        let reader_file = File::open(&path_jsonl_raw)?;
         let mut reader = BufReader::with_capacity(capacity, reader_file);
 
         let mut line_count = 0;
@@ -460,17 +419,12 @@ pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager
     if !options.skip_yomitan {
         let mut diagnostics = Diagnostics::default();
 
-        let labelled_entries = dict.to_yomitan(
-            // HACK: This unwrap_or is only for GlossaryExtended and works as a filler
-            // because the edition is not used in the implementation of to_yomitan for that dict.
-            // It is basically here to not crash the code. Happy face.
-            edition_pm.try_into().unwrap_or(EditionLang::En),
-            source_pm,
-            target_pm,
-            options,
-            &mut diagnostics,
-            entries,
-        );
+        // HACK: This unwrap_or is only for GlossaryExtended and works as a filler
+        // because the edition is not used in the implementation of to_yomitan for that dict.
+        // It is basically here to not crash the code. Happy face.
+        let ed = edition_pm.try_into().unwrap_or(EditionLang::En);
+        let labelled_entries =
+            dict.to_yomitan(ed, source_pm, target_pm, options, &mut diagnostics, entries);
 
         dict.write_diagnostics(pm, &diagnostics)?;
 
