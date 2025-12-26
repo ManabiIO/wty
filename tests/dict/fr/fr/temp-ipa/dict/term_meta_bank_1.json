@@ -13,5 +13,23 @@
         }
       ]
     }
+  ],
+  [
+    "encyclopédie",
+    "ipa",
+    {
+      "reading": "encyclopédie",
+      "transcriptions": [
+        {
+          "ipa": "\\ɑ̃.si.klɔ.pe.di\\"
+        },
+        {
+          "ipa": "[yn ɑ̃.si.klɔ.pe.di]"
+        },
+        {
+          "ipa": "[ɑ̃.si.klɔ.pe.di]"
+        }
+      ]
+    }
   ]
 ]

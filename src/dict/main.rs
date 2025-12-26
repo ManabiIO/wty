@@ -14,7 +14,7 @@ use crate::{
     },
     lang::{EditionLang, Lang},
     models::{
-        kaikki::{Example, HeadTemplate, Pos, Sense, Tag, WordEntry},
+        kaikki::{Example, Form, HeadTemplate, Pos, Sense, Tag, WordEntry},
         yomitan::{
             BacklinkContent, DetailedDefinition, GenericNode, Ipa, NTag, Node, NodeData, TermBank,
             YomitanEntry, wrap,
@@ -500,29 +500,15 @@ fn process_forms(edition: EditionLang, source: Lang, word_entry: &WordEntry, ret
         let filtered_tags: Vec<_> = form
             .tags
             .iter()
-            .map(std::string::String::as_str)
+            .map(String::as_str)
             .filter(|tag| !REDUNDANT_FORM_TAGS.contains(tag))
             .collect();
         if filtered_tags.is_empty() {
             continue;
         }
 
-        // Finnish from the English edition crashes with out-of-memory.
-        // There are simply too many forms, so we prune the less used (possessive).
-        //
-        // https://uusikielemme.fi/finnish-grammar/possessive-suffixes-possessiivisuffiksit#one
-        if matches!((edition, source), (EditionLang::En, Lang::Fi)) {
-            // HACK: 1. For tables that parse the title
-            // https://kaikki.org/dictionary/Finnish/meaning/p/p%C3%A4/p%C3%A4%C3%A4.html
-            if form.form == "See the possessive forms below." {
-                break;
-            }
-            // HACK: 2. For tables that don't parse the title
-            // https://kaikki.org/dictionary/Finnish/meaning/i/is/iso.html
-            // https://github.com/tatuylonen/wiktextract/issues/1565
-            if form.form == "Rare. Only used with substantive adjectives." {
-                break;
-            }
+        if should_break_at_finish_forms(edition, source, form) {
+            break;
         }
 
         ret.insert_form(
@@ -533,6 +519,27 @@ fn process_forms(edition: EditionLang, source: Lang, word_entry: &WordEntry, ret
             vec![filtered_tags.join(" ")],
         );
     }
+}
+
+// Finnish from the English edition crashes with out-of-memory.
+// There are simply too many forms, so we prune the less used (possessive).
+//
+// https://uusikielemme.fi/finnish-grammar/possessive-suffixes-possessiivisuffiksit#one
+fn should_break_at_finish_forms(edition: EditionLang, source: Lang, form: &Form) -> bool {
+    if matches!((edition, source), (EditionLang::En, Lang::Fi)) {
+        // HACK: 1. For tables that parse the title
+        // https://kaikki.org/dictionary/Finnish/meaning/p/p%C3%A4/p%C3%A4%C3%A4.html
+        if form.form == "See the possessive forms below." {
+            return true;
+        }
+        // HACK: 2. For tables that don't parse the title
+        // https://kaikki.org/dictionary/Finnish/meaning/i/is/iso.html
+        // https://github.com/tatuylonen/wiktextract/issues/1565
+        if form.form == "Rare. Only used with substantive adjectives." {
+            return true;
+        }
+    }
+    false
 }
 
 /// Add `AltOf` forms. That is, alternative forms.
@@ -862,6 +869,13 @@ fn is_inflection_sense(target: EditionLang, sense: &Sense) -> bool {
                 false
             })
         }
+        EditionLang::Fr => {
+            !sense.form_of.is_empty()
+                && sense
+                    .glosses
+                    .iter()
+                    .any(|gloss| gloss.contains("personne du"))
+        }
         _ => false,
     }
 }
@@ -888,12 +902,29 @@ fn handle_inflection_sense(
     debug_assert!(!sense.glosses.is_empty()); // we checked @ is_inflection_sense
 
     match target {
+        EditionLang::De => {
+            if let Some(caps) = DE_INFLECTION_RE.captures(&sense.glosses[0])
+                && let (Some(inflection_tags), Some(uninflected)) = (caps.get(1), caps.get(2))
+            {
+                let inflection_tags = inflection_tags.as_str().trim();
+
+                if !inflection_tags.is_empty() {
+                    ret.insert_form(
+                        uninflected.as_str(),
+                        &word_entry.word,
+                        &word_entry.pos,
+                        FormSource::Inflection,
+                        vec![inflection_tags.to_string()],
+                    );
+                }
+            }
+        }
         EditionLang::El => {
             let allowed_tags: Vec<_> = sense
                 .tags
                 .iter()
                 .filter(|tag| TAGS_RETAINED_EL.contains(&tag.as_str()))
-                .map(std::string::ToString::to_string)
+                .map(String::from)
                 .collect();
             let inflection_tags: Vec<_> = if allowed_tags.is_empty() {
                 // very rare
@@ -913,24 +944,29 @@ fn handle_inflection_sense(
             }
         }
         EditionLang::En => handle_inflection_sense_en(source, word_entry, sense, ret),
-        EditionLang::De => {
-            if let Some(caps) = DE_INFLECTION_RE.captures(&sense.glosses[0])
-                && let (Some(inflection_tags), Some(uninflected)) = (caps.get(1), caps.get(2))
-            {
-                let inflection_tags = inflection_tags.as_str().trim();
-
-                if !inflection_tags.is_empty() {
-                    ret.insert_form(
-                        uninflected.as_str(),
-                        &word_entry.word,
-                        &word_entry.pos,
-                        FormSource::Inflection,
-                        vec![inflection_tags.to_string()],
-                    );
-                }
+        EditionLang::Fr => {
+            let allowed_tags: Vec<_> = sense
+                .tags
+                .iter()
+                .filter(|tag| *tag != "form-of")
+                .map(String::from)
+                .collect();
+            let inflection_tags: Vec<_> = if allowed_tags.is_empty() {
+                vec![format!("redirected from {}", word_entry.word)]
+            } else {
+                allowed_tags
+            };
+            for form in &sense.form_of {
+                ret.insert_form(
+                    &form.word,
+                    &word_entry.word,
+                    &word_entry.pos,
+                    FormSource::Inflection,
+                    inflection_tags.clone(),
+                );
             }
         }
-        _ => (),
+        _ => unreachable!("Unhandled lang that implements is_inflection_sense"),
     }
 }
 
@@ -946,13 +982,7 @@ fn handle_inflection_sense_en(source: Lang, word_entry: &WordEntry, sense: &Sens
     let gloss_pieces: Vec<String> = sense
         .glosses
         .iter()
-        .flat_map(|gloss| {
-            gloss
-                .split("##")
-                .map(str::trim)
-                .map(String::from)
-                .collect::<Vec<_>>()
-        })
+        .flat_map(|gloss| gloss.split("##").map(str::trim).map(String::from))
         .collect();
 
     let mut lemmas = Set::default();
@@ -977,8 +1007,8 @@ fn handle_inflection_sense_en(source: Lang, word_entry: &WordEntry, sense: &Sens
             .replace("inflection of ", "")
             .replace(&format!("of {lemma}"), "")
             .replace(lemma, "")
-            .replace(':', "")
-            .to_string();
+            .replace(':', "");
+
         // Remove parenthesized content at the end
         inflection = EN_INSIDE_PARENS_RE
             .replace_all(&inflection, "")

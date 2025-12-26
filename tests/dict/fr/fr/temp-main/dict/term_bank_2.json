@@ -15,5 +15,90 @@
     ],
     0,
     ""
+  ],
+  [
+    "encyclopédie",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "encyclopédier",
+        [
+          "redirected from encyclopédie"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "j’encyclopédie",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "encyclopédie",
+        [
+          "present indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "il/elle/on encyclopédie",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "encyclopédie",
+        [
+          "present indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "que j’encyclopédie",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "encyclopédie",
+        [
+          "present subjunctive"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "qu’il/elle/on encyclopédie",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "encyclopédie",
+        [
+          "present subjunctive"
+        ]
+      ]
+    ],
+    0,
+    ""
   ]
 ]

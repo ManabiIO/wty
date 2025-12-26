@@ -8,5 +8,49 @@
         ]
       ]
     }
+  },
+  "encyclopédier": {
+    "encyclopédie": {
+      "verb": [
+        "inflection",
+        [
+          "redirected from encyclopédie"
+        ]
+      ]
+    }
+  },
+  "encyclopédie": {
+    "j’encyclopédie": {
+      "verb": [
+        "extracted",
+        [
+          "present indicative"
+        ]
+      ]
+    },
+    "il/elle/on encyclopédie": {
+      "verb": [
+        "extracted",
+        [
+          "present indicative"
+        ]
+      ]
+    },
+    "que j’encyclopédie": {
+      "verb": [
+        "extracted",
+        [
+          "present subjunctive"
+        ]
+      ]
+    },
+    "qu’il/elle/on encyclopédie": {
+      "verb": [
+        "extracted",
+        [
+          "present subjunctive"
+        ]
+      ]
+    }
   }
 }
