@@ -18,7 +18,7 @@ use std::fs::{self, File};
 use std::io::{BufRead, BufReader, BufWriter, Write};
 use std::path::{Path, PathBuf};
 
-use crate::cli::ArgsOptions;
+use crate::cli::Options;
 use crate::diagnostic::Diagnostics;
 #[cfg(feature = "html")]
 use crate::download::download_jsonl;
@@ -50,7 +50,7 @@ enum Sink<'a> {
 fn write_yomitan(
     source: Lang,
     target: Lang,
-    options: &ArgsOptions,
+    options: &Options,
     pm: &PathManager,
     labelled_entries: &[LabelledYomitanEntry],
 ) -> Result<()> {
@@ -200,7 +200,7 @@ pub trait Intermediate: Default {
     /// How to write `Self::I` to disk. This is only called if `options.save_temps` is set and
     /// `Dictionary::write_ir` returns true.
     #[allow(unused_variables)]
-    fn write(&self, pm: &PathManager, options: &ArgsOptions) -> Result<()> {
+    fn write(&self, pm: &PathManager, options: &Options) -> Result<()> {
         Ok(())
     }
 }
@@ -213,7 +213,7 @@ where
         Self::len(self)
     }
 
-    fn write(&self, pm: &PathManager, options: &ArgsOptions) -> Result<()> {
+    fn write(&self, pm: &PathManager, options: &Options) -> Result<()> {
         let writer_path = pm.dir_tidy().join("tidy.jsonl");
         let writer_file = File::create(&writer_path)?;
         let writer = BufWriter::new(&writer_file);
@@ -244,7 +244,7 @@ pub trait Dictionary {
         source: Lang,
         target: Lang,
         word_entry: &mut WordEntry,
-        options: &ArgsOptions,
+        options: &Options,
         irs: &mut Self::I,
     ) {
     }
@@ -290,7 +290,7 @@ pub trait Dictionary {
         edition: EditionLang,
         source: Lang,
         target: Lang,
-        options: &ArgsOptions,
+        options: &Options,
         diagnostics: &mut Diagnostics,
         irs: Self::I,
     ) -> Vec<LabelledYomitanEntry>;
@@ -306,7 +306,7 @@ fn find_or_download_jsonl(
     edition: EditionLang,
     lang: Lang,
     paths: &[PathBuf],
-    options: &ArgsOptions,
+    options: &Options,
 ) -> Result<PathBuf> {
     let first_path_found = paths.iter().find(|pbuf| pbuf.exists());
 
@@ -316,14 +316,14 @@ fn find_or_download_jsonl(
         }
         Ok(pbuf.clone())
     } else {
-        let path_jsonl_raw_of_download = paths.last().unwrap();
+        let path_jsonl_of_download = paths.last().unwrap();
         #[cfg(feature = "html")]
-        download_jsonl(edition, lang, path_jsonl_raw_of_download, options.quiet)?;
-        Ok(path_jsonl_raw_of_download.clone())
+        download_jsonl(edition, lang, path_jsonl_of_download, options.quiet)?;
+        Ok(path_jsonl_of_download.clone())
     }
 }
 
-fn rejected(entry: &WordEntry, options: &ArgsOptions) -> bool {
+fn rejected(entry: &WordEntry, options: &Options) -> bool {
     options
         .reject
         .iter()
@@ -334,7 +334,7 @@ fn rejected(entry: &WordEntry, options: &ArgsOptions) -> bool {
             .all(|(k, v)| k.field_value(entry) == v)
 }
 
-pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager) -> Result<()> {
+pub fn make_dict<D: Dictionary>(dict: D, options: &Options, pm: &PathManager) -> Result<()> {
     let (edition_pm, source_pm, target_pm) = pm.langs();
 
     pm.setup_dirs()?;
@@ -343,11 +343,11 @@ pub fn make_dict<D: Dictionary>(dict: D, options: &ArgsOptions, pm: &PathManager
     let mut line = Vec::with_capacity(1 << 10);
     let mut entries = D::I::default();
 
-    for (edition, paths) in pm.paths_jsonl_raw() {
-        let path_jsonl_raw = find_or_download_jsonl(edition, source_pm, &paths, options)?;
-        tracing::debug!("path_jsonl_raw: {}", path_jsonl_raw.display());
+    for (edition, paths) in pm.paths_jsonl() {
+        let path_jsonl = find_or_download_jsonl(edition, source_pm, &paths, options)?;
+        tracing::debug!("path_jsonl: {}", path_jsonl.display());
 
-        let reader_file = File::open(&path_jsonl_raw)?;
+        let reader_file = File::open(&path_jsonl)?;
         let mut reader = BufReader::with_capacity(capacity, reader_file);
 
         let mut line_count = 0;

@@ -192,6 +192,12 @@ impl WordEntry {
         })
     }
 
+    pub fn non_trivial_translations(&self) -> impl Iterator<Item = &Translation> {
+        self.translations
+            .iter()
+            .filter(move |translation| !translation.word.is_empty())
+    }
+
     pub fn etymology_texts(&self) -> Option<Vec<&str>> {
         if !self.etymology_texts.is_empty() {
             Some(self.etymology_texts.iter().map(|s| s.as_ref()).collect())

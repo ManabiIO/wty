@@ -81,6 +81,7 @@ impl PathManager {
     fn dir_dict(&self) -> PathBuf {
         self.dir_dicts().join(match self.dict_ty {
             // For merged dictionaries, use the edition (displays as "all")
+            // TODO: this should be the opposite
             DictionaryType::IpaMerged => format!("{}/{}", self.target, self.edition),
             _ => format!("{}/{}", self.source, self.target),
         })
@@ -112,12 +113,12 @@ impl PathManager {
 
     // Only used by CMD::download
     //
-    /// Cf. paths_jsonl_raw documentation
-    pub fn path_jsonl_raw(&self, edition: EditionLang, lang: Lang) -> PathBuf {
+    /// Cf. paths_jsonl documentation
+    pub fn path_jsonl(&self, edition: EditionLang, lang: Lang) -> PathBuf {
         self.aliases(edition, lang).last().unwrap().into()
     }
 
-    /// Cf. paths_jsonl_raw documentation
+    /// Cf. paths_jsonl documentation
     fn aliases(&self, edition: EditionLang, lang: Lang) -> Vec<PathBuf> {
         match edition {
             EditionLang::En => {
@@ -158,7 +159,7 @@ impl PathManager {
     /// but for:
     /// * [`data/kaikki/en-zh-extract.jsonl`]
     ///   there is no such guarantee (it is an alias, *not* downloaded)
-    pub fn paths_jsonl_raw(&self) -> Vec<(EditionLang, Vec<PathBuf>)> {
+    pub fn paths_jsonl(&self) -> Vec<(EditionLang, Vec<PathBuf>)> {
         let (edition, source, _) = self.langs();
 
         use DictionaryType::*;
@@ -283,7 +284,7 @@ mod tests {
                 ..Default::default()
             };
             let pm = PathManager::new(DictionaryType::Main, &args);
-            let paths = pm.paths_jsonl_raw();
+            let paths = pm.paths_jsonl();
             assert_eq!(paths, expected);
         }
 
@@ -322,7 +323,7 @@ mod tests {
                 ..Default::default()
             };
             let pm = PathManager::new(DictionaryType::Glossary, &args);
-            let paths = pm.paths_jsonl_raw();
+            let paths = pm.paths_jsonl();
             assert_eq!(paths, expected);
         }
 
@@ -354,7 +355,7 @@ mod tests {
             ..Default::default()
         };
         let pm = PathManager::new(DictionaryType::GlossaryExtended, &args);
-        let paths = pm.paths_jsonl_raw();
+        let paths = pm.paths_jsonl();
 
         assert!(
             paths.contains(

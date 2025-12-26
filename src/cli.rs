@@ -53,7 +53,7 @@ pub struct MainArgs {
     pub dict_name: String,
 
     #[command(flatten)]
-    pub options: ArgsOptions,
+    pub options: Options,
 }
 
 #[derive(Parser, Debug, Default)]
@@ -66,7 +66,7 @@ pub struct GlossaryArgs {
     pub dict_name: String,
 
     #[command(flatten)]
-    pub options: ArgsOptions,
+    pub options: Options,
 }
 
 #[derive(Parser, Debug, Default)]
@@ -79,7 +79,7 @@ pub struct GlossaryExtendedArgs {
     pub dict_name: String,
 
     #[command(flatten)]
-    pub options: ArgsOptions,
+    pub options: Options,
 }
 
 #[derive(Parser, Debug, Default)]
@@ -92,7 +92,7 @@ pub struct IpaArgs {
     pub dict_name: String,
 
     #[command(flatten)]
-    pub options: ArgsOptions,
+    pub options: Options,
 }
 
 #[derive(Parser, Debug, Default)]
@@ -105,7 +105,7 @@ pub struct IpaMergedArgs {
     pub dict_name: String,
 
     #[command(flatten)]
-    pub options: ArgsOptions,
+    pub options: Options,
 }
 
 #[derive(Parser, Debug, Default)]
@@ -173,7 +173,7 @@ pub struct IpaMergedLangs {
 
 #[expect(clippy::struct_excessive_bools)]
 #[derive(Parser, Debug, Default)]
-pub struct ArgsOptions {
+pub struct Options {
     // In the main dictionary, the filter file is always writen to disk, regardless of this.
     //
     // If save_temps is true, we assume that the user is debugging and does not need the zip.
@@ -410,7 +410,7 @@ impl Langs for IpaMergedLangs {
 pub trait SimpleArgs {
     fn dict_name(&self) -> &str;
     fn langs(&self) -> &impl Langs;
-    fn options(&self) -> &ArgsOptions;
+    fn options(&self) -> &Options;
 }
 
 /// Implement the `SimpleArgs` trait.
@@ -419,7 +419,7 @@ macro_rules! simple_args {
         $( impl SimpleArgs for $ty {
             fn dict_name(&self) -> &str { &self.dict_name }
             fn langs(&self) -> &impl Langs { &self.langs }
-            fn options(&self) -> &ArgsOptions { &self.options }
+            fn options(&self) -> &Options { &self.options }
         } )*
     };
 }

@@ -58,7 +58,7 @@ fn run_command(cmd: &Command) -> Result<()> {
             let langs = args.langs();
             let source = langs.source();
             let edition_lang: EditionLang = langs.edition().try_into().unwrap();
-            let opath = pm.path_jsonl_raw(edition_lang, source);
+            let opath = pm.path_jsonl(edition_lang, source);
 
             if opath.exists() {
                 skip_because_file_exists("download", &opath);

@@ -7,7 +7,7 @@ use unicode_normalization::UnicodeNormalization;
 
 use crate::{
     Map, Set,
-    cli::ArgsOptions,
+    cli::Options,
     dict::{
         Diagnostics, Dictionary, Intermediate, LabelledYomitanEntry,
         locale::get_locale_examples_string,
@@ -36,7 +36,7 @@ impl Intermediate for Tidy {
         self.len()
     }
 
-    fn write(&self, pm: &PathManager, options: &ArgsOptions) -> Result<()> {
+    fn write(&self, pm: &PathManager, options: &Options) -> Result<()> {
         write_tidy(options, pm, self)
     }
 }
@@ -50,7 +50,7 @@ impl Dictionary for DMain {
         source: Lang,
         _target: Lang,
         word_entry: &mut WordEntry,
-        options: &ArgsOptions,
+        options: &Options,
         irs: &mut Self::I,
     ) {
         tidy_preprocess(edition, source, options, word_entry, irs);
@@ -99,7 +99,7 @@ impl Dictionary for DMain {
         edition: EditionLang,
         source: Lang,
         _target: Lang,
-        options: &ArgsOptions,
+        options: &Options,
         diagnostics: &mut Diagnostics,
         irs: Self::I,
     ) -> Vec<LabelledYomitanEntry> {
@@ -391,7 +391,7 @@ fn tidy_process(edition: EditionLang, source: Lang, word_entry: &WordEntry, ret:
 fn tidy_preprocess(
     edition: EditionLang,
     source: Lang,
-    options: &ArgsOptions,
+    options: &Options,
     word_entry: &mut WordEntry,
     ret: &mut Tidy,
 ) {
@@ -1018,7 +1018,7 @@ fn handle_inflection_sense_en(source: Lang, word_entry: &WordEntry, sense: &Sens
 ///
 /// This is effectively a snapshot of our tidy intermediate representation.
 #[tracing::instrument(skip_all)]
-fn write_tidy(options: &ArgsOptions, pm: &PathManager, ret: &Tidy) -> Result<()> {
+fn write_tidy(options: &Options, pm: &PathManager, ret: &Tidy) -> Result<()> {
     let opath = pm.path_lemmas();
     let file = File::create(&opath)?;
     let writer = BufWriter::new(file);
@@ -1070,7 +1070,7 @@ fn normalize_orthography(source: Lang, word: &str) -> String {
 #[tracing::instrument(skip_all)]
 fn make_yomitan_lemmas(
     edition: EditionLang,
-    options: &ArgsOptions,
+    options: &Options,
     lemma_map: LemmaMap,
     diagnostics: &mut Diagnostics,
 ) -> Vec<YomitanEntry> {
@@ -1096,19 +1096,17 @@ fn make_yomitan_lemmas(
 // TODO: consume info
 fn make_yomitan_lemma(
     edition: EditionLang,
-    options: &ArgsOptions,
+    options: &Options,
     lemma: &str,
     reading: &str,
     pos: &Pos, // should be &str
     info: LemmaInfo,
     diagnostics: &mut Diagnostics,
 ) -> YomitanEntry {
-    let found_pos = if let Some(short_pos) = find_short_pos(pos) {
-        short_pos
-    } else {
-        pos
-    }
-    .to_string();
+    let found_pos = match find_short_pos(&pos) {
+        Some(short_pos) => short_pos.to_string(),
+        None => pos.clone(),
+    };
 
     let yomitan_reading = if *reading == *lemma { "" } else { reading };
 
@@ -1147,7 +1145,7 @@ fn make_yomitan_lemma(
 }
 
 fn get_recognized_tags(
-    options: &ArgsOptions,
+    options: &Options,
     lemma: &str,
     pos: &Pos,
     gloss_tree: &GlossTree,
@@ -1217,7 +1215,7 @@ fn get_structured_preamble(
     wrap(NTag::Div, "", preamble.into_array_node())
 }
 
-fn get_structured_backlink(wlink: &str, klink: &str, options: &ArgsOptions) -> Node {
+fn get_structured_backlink(wlink: &str, klink: &str, options: &Options) -> Node {
     let mut links = Node::new_array();
 
     links.push(Node::Backlink(BacklinkContent::new(wlink, "Wiktionary")));

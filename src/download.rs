@@ -4,7 +4,7 @@ use crate::lang::{EditionLang, Lang};
 ///
 /// Example (el):    `https://kaikki.org/elwiktionary/raw-wiktextract-data.jsonl.gz`
 /// Example (sh-en): `https://kaikki.org/dictionary/Serbo-Croatian/kaikki.org-dictionary-SerboCroatian.jsonl.gz`
-pub fn url_jsonl_raw_gz(edition: EditionLang, source: Lang) -> String {
+pub fn url_jsonl_gz(edition: EditionLang, source: Lang) -> String {
     let root = "https://kaikki.org";
 
     match edition {
@@ -31,7 +31,7 @@ pub use html::*;
 
 #[cfg(feature = "html")]
 mod html {
-    use super::{EditionLang, Lang, url_jsonl_raw_gz};
+    use super::{EditionLang, Lang, url_jsonl_gz};
 
     use anyhow::Result;
     use flate2::read::GzDecoder;
@@ -41,18 +41,19 @@ mod html {
 
     use crate::utils::{CHECK_C, pretty_println_at_path};
 
-    // TODO: This is not skipping properly!
-
-    /// Download the raw jsonl from kaikki and write it to `path_jsonl_raw`.
+    /// Download the "raw" jsonl (jsonlines) from kaikki and write it to `path_jsonl`.
+    ///
+    /// "Raw" means that it does not include extra information that they (kaikki) use for the
+    /// website generation, but are not intended for the general use.
     ///
     /// Does not write the .gz file to disk.
     pub fn download_jsonl(
         edition: EditionLang,
         source: Lang,
-        path_jsonl_raw: &Path,
+        path_jsonl: &Path,
         quiet: bool,
     ) -> Result<()> {
-        let url = url_jsonl_raw_gz(edition, source);
+        let url = url_jsonl_gz(edition, source);
         if !quiet {
             println!("⬇ Downloading {url}");
         }
@@ -68,11 +69,11 @@ mod html {
         // https://github.com/tatuylonen/wiktextract/issues/1482
         let mut decoder = GzDecoder::new(reader);
 
-        let mut writer = BufWriter::new(File::create(path_jsonl_raw)?);
+        let mut writer = BufWriter::new(File::create(path_jsonl)?);
         std::io::copy(&mut decoder, &mut writer)?;
 
         if !quiet {
-            pretty_println_at_path(&format!("{CHECK_C} Downloaded"), path_jsonl_raw);
+            pretty_println_at_path(&format!("{CHECK_C} Downloaded"), path_jsonl);
         }
 
         Ok(())

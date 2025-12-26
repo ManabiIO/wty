@@ -1,4 +1,4 @@
-use kty::cli::{ArgsOptions, GlossaryArgs, GlossaryLangs, MainArgs, MainLangs};
+use kty::cli::{GlossaryArgs, GlossaryLangs, MainArgs, MainLangs, Options};
 use kty::dict::{DGlossary, DIpa, DMain};
 use kty::lang::{EditionLang, Lang};
 use kty::make_dict;
@@ -40,8 +40,8 @@ fn cleanup(root: &Path) -> bool {
     is_empty
 }
 
-fn fixture_options(fixture_dir: &Path) -> ArgsOptions {
-    ArgsOptions {
+fn fixture_options(fixture_dir: &Path) -> Options {
+    Options {
         save_temps: true,
         pretty: true,
         experimental: false,
@@ -193,7 +193,7 @@ fn delete_previous_output(pm: &PathManager) -> Result<()> {
 }
 
 /// Read the expected result in the snapshot first, then git diff
-fn shapshot_main(options: &ArgsOptions, pm: &PathManager) -> Result<()> {
+fn shapshot_main(options: &Options, pm: &PathManager) -> Result<()> {
     delete_previous_output(pm)?;
     make_dict(DMain, options, pm)?;
     check_git_diff(pm)?;

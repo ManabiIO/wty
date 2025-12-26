@@ -1,5 +1,5 @@
 use criterion::{Criterion, criterion_group, criterion_main};
-use kty::cli::{ArgsOptions, MainArgs, MainLangs};
+use kty::cli::{MainArgs, MainLangs, Options};
 use kty::dict::DMain;
 use kty::lang::{EditionLang, Lang};
 use kty::make_dict;
@@ -8,8 +8,8 @@ use std::path::Path;
 
 const BENCH_FIXTURES_DIR_100: &str = "benches/fixtures";
 
-fn fixture_options(fixture_dir: &Path) -> ArgsOptions {
-    ArgsOptions {
+fn fixture_options(fixture_dir: &Path) -> Options {
+    Options {
         save_temps: true,
         pretty: true,
         experimental: false,
