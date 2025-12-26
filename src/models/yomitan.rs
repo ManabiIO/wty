@@ -71,7 +71,7 @@ pub struct TermPhoneticTranscription(
     pub PhoneticTranscription, // phonetic transcription
 );
 
-#[derive(Debug, Serialize, Clone, PartialEq, Eq, Hash)]
+#[derive(Debug, Serialize, Clone, PartialEq, Eq, Hash, Default)]
 pub struct PhoneticTranscription {
     pub reading: String,
     pub transcriptions: Vec<Ipa>,

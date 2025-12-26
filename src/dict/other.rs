@@ -70,13 +70,10 @@ impl Dictionary for DGlossaryExtended {
         let mut map = Map::default();
 
         for (lemma, pos, edition, translations) in irs.drain(..) {
-            let entry = map
-                .entry(lemma.clone())
-                .or_insert_with(|| (pos.clone(), edition, Set::default()));
-
-            for tr in translations {
-                entry.2.insert(tr);
-            }
+            map.entry(lemma)
+                .or_insert_with(|| (pos, edition, Set::default()))
+                .2
+                .extend(translations);
         }
 
         irs.extend(map.into_iter().map(|(lemma, (pos, edition, set))| {
@@ -139,11 +136,8 @@ impl Dictionary for DIpaMerged {
     }
 
     fn postprocess(&self, irs: &mut Self::I) {
-        // TODO: use dedup
         // Keep only unique entries
-        let mut seen = Set::default();
-        seen.extend(irs.drain(..));
-        *irs = seen.into_iter().collect();
+        *irs = Set::from_iter(irs.drain(..)).into_iter().collect();
         // Sorting is not needed ~ just for visibility
         irs.sort_by(|a, b| a.0.cmp(&b.0));
     }
@@ -161,29 +155,23 @@ impl Dictionary for DIpaMerged {
     }
 }
 
+// rg: process translations processtranslations
 fn process_glossary(
     source: EditionLang,
     target: Lang,
     word_entry: &WordEntry,
     irs: &mut Vec<YomitanEntry>,
 ) {
-    // rg: process translations processtranslations
     let target_str = target.to_string();
 
-    let mut translations: Map<Option<String>, Vec<String>> = Map::default();
+    let mut translations: Map<&str, Vec<String>> = Map::default();
     for translation in word_entry.non_trivial_translations() {
         if translation.lang_code != target_str {
             continue;
         }
 
-        let sense = if translation.sense.is_empty() {
-            None
-        } else {
-            Some(translation.sense.clone())
-        };
-
         translations
-            .entry(sense)
+            .entry(&translation.sense)
             .or_default()
             .push(translation.word.clone());
     }
@@ -194,30 +182,28 @@ fn process_glossary(
 
     let mut definitions = Vec::new();
     for (sense, translations) in translations {
-        match sense {
-            None => {
-                for translation in translations {
-                    definitions.push(DetailedDefinition::Text(translation));
-                }
+        if sense.is_empty() {
+            for translation in translations {
+                definitions.push(DetailedDefinition::Text(translation));
             }
-            Some(sense) => {
-                let mut sc_translations_content = Node::new_array();
-                sc_translations_content.push(wrap(NTag::Span, "", Node::Text(sense)));
-                sc_translations_content.push(wrap(
-                    NTag::Ul,
-                    "",
-                    Node::Array(
-                        translations
-                            .into_iter()
-                            .map(|translation| wrap(NTag::Li, "", Node::Text(translation)))
-                            .collect(),
-                    ),
-                ));
-                let sc_translations =
-                    DetailedDefinition::structured(wrap(NTag::Div, "", sc_translations_content));
-                definitions.push(sc_translations);
-            }
+            continue;
         }
+
+        let mut sc_translations_content = Node::new_array();
+        sc_translations_content.push(wrap(NTag::Span, "", Node::Text(sense.to_string())));
+        sc_translations_content.push(wrap(
+            NTag::Ul,
+            "",
+            Node::Array(
+                translations
+                    .into_iter()
+                    .map(|translation| wrap(NTag::Li, "", Node::Text(translation)))
+                    .collect(),
+            ),
+        ));
+        let sc_translations =
+            DetailedDefinition::structured(wrap(NTag::Div, "", sc_translations_content));
+        definitions.push(sc_translations);
     }
 
     let reading =
@@ -227,14 +213,13 @@ fn process_glossary(
         None => word_entry.pos.clone(),
     };
 
-    let ir = YomitanEntry::TermBank(TermBank(
+    irs.push(YomitanEntry::TermBank(TermBank(
         word_entry.word.clone(),
         reading,
         found_pos.clone(),
         found_pos,
         definitions,
-    ));
-    irs.push(ir);
+    )));
 }
 
 type IGlossaryExtended = (String, String, EditionLang, Vec<String>);
@@ -246,8 +231,8 @@ fn process_glossary_extended(
     word_entry: &WordEntry,
     irs: &mut Vec<IGlossaryExtended>,
 ) {
-    let target_str = target.to_string();
     let source_str = source.to_string();
+    let target_str = target.to_string();
 
     let mut translations: Map<&str, (Vec<&str>, Vec<&str>)> = Map::default();
     for translation in word_entry.non_trivial_translations() {
@@ -280,25 +265,17 @@ fn process_glossary_extended(
         None => word_entry.pos.clone(),
     };
 
-    // A "semi" cartesian product:
-    // {
-    //   "British overseas territory":
-    //   (["Gjibraltar", "Gjibraltari"], ["Ἡράκλειαι στῆλαι", "Κάλπη"])
-    // }
-    //     source                            target (what we search)
-    // >>> ["Gjibraltar", "Gjibraltari"]  <> "Ἡράκλειαι στῆλαι"
-    // >>> ["Gjibraltar", "Gjibraltari"]  <> "Κάλπη"
-    let mut translations_semi_product: Vec<IGlossaryExtended> = Vec::new();
-
-    for (_sense, translations) in translations {
-        for lemma in translations.1 {
-            let definitions = translations.0.iter().map(|def| def.to_string()).collect();
-            let entry = (lemma.to_string(), found_pos.clone(), edition, definitions);
-            translations_semi_product.push(entry);
-        }
-    }
-
-    irs.extend(translations_semi_product);
+    // A "semi" cartesian product. See the test below.
+    irs.extend(translations.iter().flat_map(|(_, (targets, sources))| {
+        sources.iter().map(|lemma| {
+            (
+                lemma.to_string(),
+                found_pos.clone(),
+                edition,
+                targets.iter().map(|def| def.to_string()).collect(),
+            )
+        })
+    }));
 }
 
 fn to_yomitan_glossary_extended(irs: Vec<IGlossaryExtended>) -> Vec<YomitanEntry> {
@@ -346,4 +323,114 @@ fn to_yomitan_ipa(irs: Vec<IIpa>) -> Vec<YomitanEntry> {
             ))
         })
         .collect()
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    use crate::models::kaikki::{Sound, Translation};
+
+    impl Translation {
+        fn new(lang_code: &str, sense: &str, word: &str) -> Self {
+            Self {
+                lang_code: lang_code.into(),
+                sense: sense.into(),
+                word: word.into(),
+            }
+        }
+    }
+
+    // cf. https://en.wiktionary.org/wiki/Gibraltar
+    // {
+    //     English (sense):       "British overseas territory"
+    //     Albanian (sh):         ["Gjibraltar", "Gjibraltari"]
+    //     Greek, Ancient (grc):  ["Ἡράκλειαι στῆλαι", "Κάλπη"]
+    // }
+    //
+    //     source                            target (what we search)
+    // >>> ["Gjibraltar", "Gjibraltari"]  <> "Ἡράκλειαι στῆλαι"
+    // >>> ["Gjibraltar", "Gjibraltari"]  <> "Κάλπη"
+    #[test]
+    fn process_glossary_extended_basic() {
+        let dict = DGlossaryExtended;
+        let mut word_entry = WordEntry::default();
+        word_entry.translations = vec![
+            Translation::new("grc", "British overseas territory", "Ἡράκλειαι στῆλαι"),
+            Translation::new("grc", "British overseas territory", "Ἡράκλειαι στῆλαι"),
+            Translation::new("grc", "British overseas territory", "Κάλπη"),
+            Translation::new("sh", "British overseas territory", "Gibraltar"),
+            Translation::new("sh", "British overseas territory", "Gjibraltari"),
+            Translation::new("sh", "Different sense", "Foo"),
+        ];
+
+        let mut irs = Vec::new();
+        let (edition, source, target) = (EditionLang::En, Lang::Grc, Lang::Sh);
+        dict.process(edition, source, target, &word_entry, &mut irs);
+
+        // Empty translations should not change anything
+        let word_entry = WordEntry::default();
+        dict.process(edition, source, target, &word_entry, &mut irs);
+
+        assert_eq!(irs.len(), 3);
+
+        let (lemma1, _, _, defs1) = &irs[0];
+        let (lemma2, _, _, defs2) = &irs[1];
+        let (lemma3, _, _, defs3) = &irs[2];
+
+        assert_eq!(lemma1, "Ἡράκλειαι στῆλαι");
+        assert_eq!(lemma2, "Ἡράκλειαι στῆλαι");
+        assert_eq!(lemma3, "Κάλπη");
+
+        let expected = vec!["Gibraltar".to_string(), "Gjibraltari".to_string()];
+        assert_eq!(defs1, &expected);
+        assert_eq!(defs2, &expected);
+        assert_eq!(defs3, &expected);
+
+        dict.postprocess(&mut irs);
+        assert_eq!(irs.len(), 2);
+
+        let options = Options::default();
+        let mut diagnostics = Diagnostics::default();
+        let yomitan_labelled_entries =
+            dict.to_yomitan(edition, source, target, &options, &mut diagnostics, irs);
+        assert_eq!(yomitan_labelled_entries[0].1.len(), 2);
+    }
+
+    impl Sound {
+        fn new(ipa: &str) -> Self {
+            Self {
+                ipa: ipa.into(),
+                ..Default::default()
+            }
+        }
+    }
+
+    #[test]
+    fn process_ipa_merged_basic() {
+        let dict = DIpaMerged;
+        let mut word_entry = WordEntry::default();
+        word_entry.sounds = vec![Sound::new("ipa1"), Sound::new("ipa1"), Sound::new("ipa2")];
+
+        let mut irs = Vec::new();
+        let (edition, source, target) = (EditionLang::En, Lang::Grc, Lang::Sh);
+        dict.process(edition, source, target, &word_entry, &mut irs);
+
+        assert_eq!(irs.len(), 1);
+
+        let transcriptions = &irs[0].1.transcriptions;
+        assert_eq!(transcriptions.len(), 2);
+
+        assert_eq!(&transcriptions[0].ipa, "ipa1");
+        assert_eq!(&transcriptions[1].ipa, "ipa2");
+
+        dict.postprocess(&mut irs);
+        assert_eq!(irs[0].1.transcriptions.len(), 2);
+
+        let options = Options::default();
+        let mut diagnostics = Diagnostics::default();
+        let yomitan_labelled_entries =
+            dict.to_yomitan(edition, source, target, &options, &mut diagnostics, irs);
+        assert_eq!(yomitan_labelled_entries[0].1.len(), 1);
+    }
 }

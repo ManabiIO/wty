@@ -1,6 +1,9 @@
 build:
   python3 scripts/build.py
 
+cov:
+  cargo llvm-cov --open
+
 update *args:
   python3 scripts/update_tests.py {{args}}
 
