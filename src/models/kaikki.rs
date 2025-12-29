@@ -155,13 +155,9 @@ impl WordEntry {
 
     /// Check if a `word_entry` contains no glosses.
     ///
-    /// Happens if there are no senses, or if there is a single sense with the "no-gloss" tag.
+    /// There is a "no-gloss" tag but it is not always in the same place and therefore unreliable.
     pub fn contains_no_gloss(&self) -> bool {
-        match self.senses.as_slice() {
-            [] => true,
-            [sense] => sense.tags.iter().any(|tag| tag == "no-gloss"),
-            _ => false,
-        }
+        self.senses.iter().all(|sense| sense.glosses.is_empty())
     }
 
     pub fn non_trivial_forms(&self) -> impl Iterator<Item = &Form> {

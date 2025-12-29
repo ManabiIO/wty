@@ -399,16 +399,15 @@ fn process_main(edition: EditionLang, source: Lang, word_entry: &WordEntry, irs:
 
     process_alt_forms(word_entry, irs);
 
-    // Don't push a lemma if the word_entry has no glosses (f.e. if it is an inflection etc.)
     if word_entry.contains_no_gloss() {
         process_no_gloss(edition, word_entry, irs);
-        return;
-    }
-
-    if let Some(raw_sense_entry) = process_word_entry(edition, source, word_entry) {
-        let reading =
-            get_reading(edition, source, word_entry).unwrap_or_else(|| word_entry.word.clone());
-        irs.insert_lemma(&word_entry.word, &reading, &word_entry.pos, raw_sense_entry);
+    } else {
+        irs.insert_lemma(
+            &word_entry.word,
+            &get_reading(edition, source, word_entry).unwrap_or_else(|| word_entry.word.clone()),
+            &word_entry.pos,
+            process_word_entry(edition, source, word_entry),
+        );
     }
 }
 
@@ -706,32 +705,16 @@ fn get_japanese_reading(word_entry: &WordEntry) -> Option<String> {
     None
 }
 
-// rg: handleline handle_line
-fn process_word_entry(
-    edition: EditionLang,
-    source: Lang,
-    word_entry: &WordEntry,
-) -> Option<LemmaInfo> {
-    let gloss_tree = get_gloss_tree(word_entry);
-
-    if gloss_tree.is_empty() {
-        // Happens if word_entry has no glosses. Common if the edition supports notices for page
-        // stubs, orthography variants etc., cf. https://de.wiktionary.org/wiki/caritativ
-        return None;
-    }
-
-    let etymology_text = word_entry
-        .etymology_texts()
-        .map(|etymology_text| etymology_text.join("\n"));
-
-    Some(LemmaInfo {
-        gloss_tree,
-        etymology_text,
-        head_info_text: get_head_info(&word_entry.head_templates)
-            .map(std::string::ToString::to_string),
+fn process_word_entry(edition: EditionLang, source: Lang, word_entry: &WordEntry) -> LemmaInfo {
+    LemmaInfo {
+        gloss_tree: get_gloss_tree(word_entry),
+        etymology_text: word_entry
+            .etymology_texts()
+            .map(|etymology_text| etymology_text.join("\n")),
+        head_info_text: get_head_info(&word_entry.head_templates).map(String::from),
         link_wiktionary: link_wiktionary(edition, source, &word_entry.word),
         link_kaikki: link_kaikki(edition, source, &word_entry.word),
-    })
+    }
 }
 
 // default version getphonetictranscription

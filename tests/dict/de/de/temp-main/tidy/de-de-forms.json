@@ -1536,5 +1536,15 @@
         ]
       ]
     }
+  },
+  "caritativ": {
+    "karitativ": {
+      "unknown": [
+        "altof",
+        [
+          "alt-of"
+        ]
+      ]
+    }
   }
 }
