@@ -1,17 +1,5 @@
 [
   [
-    "avatar",
-    "avatar",
-    "n",
-    "n",
-    0,
-    [
-      "avatar"
-    ],
-    0,
-    ""
-  ],
-  [
     "manger",
     "manger",
     "v",
@@ -32,7 +20,31 @@
               "content": [
                 {
                   "tag": "li",
-                  "content": "eat"
+                  "content": "есть"
+                },
+                {
+                  "tag": "li",
+                  "content": "съесть"
+                },
+                {
+                  "tag": "li",
+                  "content": "поесть"
+                },
+                {
+                  "tag": "li",
+                  "content": "кушать"
+                },
+                {
+                  "tag": "li",
+                  "content": "покушать"
+                },
+                {
+                  "tag": "li",
+                  "content": "скушать"
+                },
+                {
+                  "tag": "li",
+                  "content": "питаться"
                 }
               ]
             }
@@ -53,28 +65,11 @@
               "content": [
                 {
                   "tag": "li",
-                  "content": "eat"
-                }
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "type": "structured-content",
-        "content": {
-          "tag": "div",
-          "content": [
-            {
-              "tag": "span",
-              "content": "Dissiper en folles dépenses"
-            },
-            {
-              "tag": "ul",
-              "content": [
+                  "content": "есть"
+                },
                 {
                   "tag": "li",
-                  "content": "eat up"
+                  "content": "съесть"
                 }
               ]
             }

@@ -31,5 +31,38 @@
         }
       ]
     }
+  ],
+  [
+    "arrive",
+    "ipa",
+    {
+      "reading": "arrive",
+      "transcriptions": [
+        {
+          "ipa": "\\a.ʁiv\\"
+        }
+      ]
+    }
+  ],
+  [
+    "manger",
+    "ipa",
+    {
+      "reading": "manger",
+      "transcriptions": [
+        {
+          "ipa": "\\mɑ̃.ʒe\\"
+        },
+        {
+          "ipa": "[mɑ̃ː.ˈʒe]"
+        },
+        {
+          "ipa": "[mɑ̃.ʒe]"
+        },
+        {
+          "ipa": "\\mã.ʒe\\"
+        }
+      ]
+    }
   ]
 ]

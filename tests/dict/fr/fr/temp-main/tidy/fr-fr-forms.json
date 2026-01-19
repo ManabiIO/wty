@@ -27,8 +27,54 @@
           "present indicative"
         ]
       ]
+    }
+  },
+  "arriver": {
+    "arrive": {
+      "verb": [
+        "inflection",
+        [
+          "redirected from arrive"
+        ]
+      ]
+    }
+  },
+  "arrive": {
+    "j’arrive": {
+      "verb": [
+        "extracted",
+        [
+          "present indicative"
+        ]
+      ]
+    }
+  },
+  "manger": {
+    "avoir mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past infinitive"
+        ]
+      ]
     },
-    "il/elle/on encyclopédie": {
+    "mangeant": {
+      "verb": [
+        "extracted",
+        [
+          "present participle"
+        ]
+      ]
+    },
+    "mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past participle"
+        ]
+      ]
+    },
+    "je mange": {
       "verb": [
         "extracted",
         [
@@ -36,19 +82,299 @@
         ]
       ]
     },
-    "que j’encyclopédie": {
+    "tu manges": {
       "verb": [
         "extracted",
         [
-          "present subjunctive"
+          "present indicative"
         ]
       ]
     },
-    "qu’il/elle/on encyclopédie": {
+    "nous mangeons": {
       "verb": [
         "extracted",
         [
-          "present subjunctive"
+          "present indicative"
+        ]
+      ]
+    },
+    "vous mangez": {
+      "verb": [
+        "extracted",
+        [
+          "present indicative"
+        ]
+      ]
+    },
+    "je mangeais": {
+      "verb": [
+        "extracted",
+        [
+          "imperfect indicative"
+        ]
+      ]
+    },
+    "tu mangeais": {
+      "verb": [
+        "extracted",
+        [
+          "imperfect indicative"
+        ]
+      ]
+    },
+    "nous mangions": {
+      "verb": [
+        "extracted",
+        [
+          "imperfect indicative"
+        ]
+      ]
+    },
+    "vous mangiez": {
+      "verb": [
+        "extracted",
+        [
+          "imperfect indicative"
+        ]
+      ]
+    },
+    "je mangeai": {
+      "verb": [
+        "extracted",
+        [
+          "past indicative"
+        ]
+      ]
+    },
+    "tu mangeas": {
+      "verb": [
+        "extracted",
+        [
+          "past indicative"
+        ]
+      ]
+    },
+    "nous mangeâmes": {
+      "verb": [
+        "extracted",
+        [
+          "past indicative"
+        ]
+      ]
+    },
+    "vous mangeâtes": {
+      "verb": [
+        "extracted",
+        [
+          "past indicative"
+        ]
+      ]
+    },
+    "j’eus mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past indicative anterior"
+        ]
+      ]
+    },
+    "tu eus mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past indicative anterior"
+        ]
+      ]
+    },
+    "nous eûmes mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past indicative anterior"
+        ]
+      ]
+    },
+    "vous eûtes mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past indicative anterior"
+        ]
+      ]
+    },
+    "je mangerai": {
+      "verb": [
+        "extracted",
+        [
+          "future indicative"
+        ]
+      ]
+    },
+    "tu mangeras": {
+      "verb": [
+        "extracted",
+        [
+          "future indicative"
+        ]
+      ]
+    },
+    "nous mangerons": {
+      "verb": [
+        "extracted",
+        [
+          "future indicative"
+        ]
+      ]
+    },
+    "vous mangerez": {
+      "verb": [
+        "extracted",
+        [
+          "future indicative"
+        ]
+      ]
+    },
+    "j’aurai mangé": {
+      "verb": [
+        "extracted",
+        [
+          "future perfect indicative"
+        ]
+      ]
+    },
+    "tu auras mangé": {
+      "verb": [
+        "extracted",
+        [
+          "future perfect indicative"
+        ]
+      ]
+    },
+    "nous aurons mangé": {
+      "verb": [
+        "extracted",
+        [
+          "future perfect indicative"
+        ]
+      ]
+    },
+    "vous aurez mangé": {
+      "verb": [
+        "extracted",
+        [
+          "future perfect indicative"
+        ]
+      ]
+    },
+    "je mangerais": {
+      "verb": [
+        "extracted",
+        [
+          "present conditional"
+        ]
+      ]
+    },
+    "tu mangerais": {
+      "verb": [
+        "extracted",
+        [
+          "present conditional"
+        ]
+      ]
+    },
+    "nous mangerions": {
+      "verb": [
+        "extracted",
+        [
+          "present conditional"
+        ]
+      ]
+    },
+    "vous mangeriez": {
+      "verb": [
+        "extracted",
+        [
+          "present conditional"
+        ]
+      ]
+    },
+    "j’aurais mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past conditional"
+        ]
+      ]
+    },
+    "tu aurais mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past conditional"
+        ]
+      ]
+    },
+    "nous aurions mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past conditional"
+        ]
+      ]
+    },
+    "vous auriez mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past conditional"
+        ]
+      ]
+    },
+    "mange": {
+      "verb": [
+        "extracted",
+        [
+          "present imperative"
+        ]
+      ]
+    },
+    "mangeons": {
+      "verb": [
+        "extracted",
+        [
+          "present imperative"
+        ]
+      ]
+    },
+    "mangez": {
+      "verb": [
+        "extracted",
+        [
+          "present imperative"
+        ]
+      ]
+    },
+    "aie mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past imperative"
+        ]
+      ]
+    },
+    "ayons mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past imperative"
+        ]
+      ]
+    },
+    "ayez mangé": {
+      "verb": [
+        "extracted",
+        [
+          "past imperative"
         ]
       ]
     }

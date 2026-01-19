@@ -264,5 +264,671 @@
     ],
     0,
     ""
+  ],
+  [
+    "manger",
+    "",
+    "v",
+    "v",
+    0,
+    [
+      {
+        "type": "structured-content",
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "tag": "div",
+                "data": {
+                  "content": "preamble"
+                },
+                "content": [
+                  {
+                    "tag": "details",
+                    "data": {
+                      "content": "details-entry-Etymology"
+                    },
+                    "content": [
+                      {
+                        "tag": "summary",
+                        "data": {
+                          "content": "summary-entry"
+                        },
+                        "content": "Etymology"
+                      },
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "Etymology-content"
+                        },
+                        "content": "Du moyen français manger, de l’ancien français mangier, issu du latin manducare (« mâcher » et « manger » en latin populaire »), lui-même issu de mandere (« manger »). L’italien mangiare est sans conteste d’origine gallo-romane. Une évolution de manducare conforme aux lois de l’évolution phonétique de l’italien aurait donné *mandocare. De même, en occitan, manjar est dû à la langue d’oïl. référence nécessaire (résoudre le problème)"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "ol",
+            "data": {
+              "content": "glosses"
+            },
+            "content": [
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Mâcher et avaler un aliment dans le but de se nourrir.",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "5 exemples"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Mangez donc, lui dit la jeune fille en lui servant un morceau de la hure d’un sanglier."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "Alexandre Dumas, Othon l’archer, 1839"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Mangez légèrement."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "journal Sud-Ouest, édition Charente-Maritime / Charente, 20 août 2022, page 36"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Il mange lentement, handicapé par une mastication pénible, ne dit pas un mot, rit niaisement de loin en loin."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "Victor Méric, Les Compagnons de l’Escopette, Éditions de l’Épi, Paris, 1930, page 213"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "J’avais neuf ans et j’attrapais avec mon frère des sauterelles que nous faisions griller dans le jardin pour les manger."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "Francis Carco, Maman Petitdoigt, La Revue de Paris, 1920"
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Il mangea quelques mûres qu’il trouva dans les ronces de la lisière, après quoi il chercha à s’orienter."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "André Dhôtel, Le Pays où l’on n’arrive jamais, 1955"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "intransitive verb",
+                            "data": {
+                              "content": "tag",
+                              "category": "partOfSpeech"
+                            },
+                            "content": "vi"
+                          }
+                        ]
+                      },
+                      "Prendre un repas.",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 exemple"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Aussi nous ne mangions pas tous les jours parce qu’il fallait d’abord que le père malade ne manquât de rien."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "Octave Mirbeau, La Bonne, dans Lettres de ma chaumière, 1885"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "figuratively",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "fig"
+                          }
+                        ]
+                      },
+                      "Consumer, dissiper en folles dépenses.",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 exemple"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "En quelques années il a mangé tout son patrimoine. - Il a mangé beaucoup d’argent."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "figuratively",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "fig"
+                          }
+                        ]
+                      },
+                      "Consumer en absorbant, en rongeant, en minant, en détruisant d’autres choses, en parlant des choses.",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 exemple"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Ce poêle mange bien du charbon. Le soleil mange les couleurs. La rouille mange le fer."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Témoigner une vive hostilité envers quelqu'un.",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 exemple"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "À l'en croire, il mangeait du prêtre sans remords."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "Camille de Cordemoy, Au Chili, 1896"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Occuper une grande partie de quelque chose.",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 exemple"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Un muret éboulé, la rivière, trois planches mangées de mousse qui esquissent un pont, et c’est déjà la forêt."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "Florence Aubenas, Dans les Cévennes, sur les traces de la femme des bois, Le Monde. Mis en ligne le 30 avril 2021"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Manger les autres qui peuvent nous manger aussi."
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Être comestible."
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Être habituellement mangé."
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Se faire du souci.",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 exemple"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Heureusement que la pauvre madame n’est plus là pour se faire du mauvais sang, elle se serait mangée…"
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "François Mauriac, Le Mystère Frontenac, 1933, réédition Le Livre de Poche, page 204"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "figuratively",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "fig"
+                          }
+                        ]
+                      },
+                      "Être frappé, s’en prendre plein la tête."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "data": {
+              "content": "backlink"
+            },
+            "content": [
+              {
+                "tag": "a",
+                "href": "https://fr.wiktionary.org/wiki/manger#French",
+                "content": "Wiktionary"
+              },
+              " | ",
+              {
+                "tag": "a",
+                "href": "https://kaikki.org/frwiktionary/All%20languages%20combined/meaning/m/ma/manger.html",
+                "content": "Kaikki"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    0,
+    ""
   ]
 ]

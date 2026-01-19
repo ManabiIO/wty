@@ -1,17 +1,5 @@
 [
   [
-    "avatar",
-    "avatar",
-    "n",
-    "n",
-    0,
-    [
-      "avatar"
-    ],
-    0,
-    ""
-  ],
-  [
     "manger",
     "manger",
     "v",
@@ -32,7 +20,19 @@
               "content": [
                 {
                   "tag": "li",
-                  "content": "comer"
+                  "content": "ἔδω"
+                },
+                {
+                  "tag": "li",
+                  "content": "ἐσθίω"
+                },
+                {
+                  "tag": "li",
+                  "content": "ἔφαγον"
+                },
+                {
+                  "tag": "li",
+                  "content": "τρώγω"
                 }
               ]
             }

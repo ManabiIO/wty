@@ -51,14 +51,31 @@
     ""
   ],
   [
-    "il/elle/on encyclopédie",
+    "arrive",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "encyclopédie",
+        "arriver",
+        [
+          "redirected from arrive"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "j’arrive",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "arrive",
         [
           "present indicative"
         ]
@@ -68,16 +85,16 @@
     ""
   ],
   [
-    "que j’encyclopédie",
+    "avoir mangé",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "encyclopédie",
+        "manger",
         [
-          "present subjunctive"
+          "past infinitive"
         ]
       ]
     ],
@@ -85,16 +102,679 @@
     ""
   ],
   [
-    "qu’il/elle/on encyclopédie",
+    "mangeant",
     "",
     "non-lemma",
     "",
     0,
     [
       [
-        "encyclopédie",
+        "manger",
         [
-          "present subjunctive"
+          "present participle"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past participle"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "je mange",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "tu manges",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "nous mangeons",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "vous mangez",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "je mangeais",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "imperfect indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "tu mangeais",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "imperfect indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "nous mangions",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "imperfect indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "vous mangiez",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "imperfect indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "je mangeai",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "tu mangeas",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "nous mangeâmes",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "vous mangeâtes",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "j’eus mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past indicative anterior"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "tu eus mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past indicative anterior"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "nous eûmes mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past indicative anterior"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "vous eûtes mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past indicative anterior"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "je mangerai",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "future indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "tu mangeras",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "future indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "nous mangerons",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "future indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "vous mangerez",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "future indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "j’aurai mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "future perfect indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "tu auras mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "future perfect indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "nous aurons mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "future perfect indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "vous aurez mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "future perfect indicative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "je mangerais",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present conditional"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "tu mangerais",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present conditional"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "nous mangerions",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present conditional"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "vous mangeriez",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present conditional"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "j’aurais mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past conditional"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "tu aurais mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past conditional"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "nous aurions mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past conditional"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "vous auriez mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past conditional"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "mange",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present imperative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "mangeons",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present imperative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "mangez",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "present imperative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "aie mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past imperative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "ayons mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past imperative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "ayez mangé",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "manger",
+        [
+          "past imperative"
         ]
       ]
     ],

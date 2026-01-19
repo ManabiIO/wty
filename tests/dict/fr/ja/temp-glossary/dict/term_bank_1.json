@@ -1,17 +1,5 @@
 [
   [
-    "avatar",
-    "avatar",
-    "n",
-    "n",
-    0,
-    [
-      "avatar"
-    ],
-    0,
-    ""
-  ],
-  [
     "manger",
     "manger",
     "v",
@@ -32,7 +20,11 @@
               "content": [
                 {
                   "tag": "li",
-                  "content": "eat"
+                  "content": "食べる"
+                },
+                {
+                  "tag": "li",
+                  "content": "食う"
                 }
               ]
             }
@@ -53,28 +45,7 @@
               "content": [
                 {
                   "tag": "li",
-                  "content": "eat"
-                }
-              ]
-            }
-          ]
-        }
-      },
-      {
-        "type": "structured-content",
-        "content": {
-          "tag": "div",
-          "content": [
-            {
-              "tag": "span",
-              "content": "Dissiper en folles dépenses"
-            },
-            {
-              "tag": "ul",
-              "content": [
-                {
-                  "tag": "li",
-                  "content": "eat up"
+                  "content": "食事する"
                 }
               ]
             }

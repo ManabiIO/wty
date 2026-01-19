@@ -1,17 +1,5 @@
 [
   [
-    "avatar",
-    "avatar",
-    "n",
-    "n",
-    0,
-    [
-      "avatar"
-    ],
-    0,
-    ""
-  ],
-  [
     "manger",
     "manger",
     "v",
@@ -32,7 +20,11 @@
               "content": [
                 {
                   "tag": "li",
-                  "content": "eat"
+                  "content": "essen"
+                },
+                {
+                  "tag": "li",
+                  "content": "fressen"
                 }
               ]
             }
@@ -53,7 +45,15 @@
               "content": [
                 {
                   "tag": "li",
-                  "content": "eat"
+                  "content": "essen"
+                },
+                {
+                  "tag": "li",
+                  "content": "fressen"
+                },
+                {
+                  "tag": "li",
+                  "content": "speisen"
                 }
               ]
             }
@@ -74,13 +74,15 @@
               "content": [
                 {
                   "tag": "li",
-                  "content": "eat up"
+                  "content": "verzehren"
                 }
               ]
             }
           ]
         }
-      }
+      },
+      "genießen",
+      "speisen"
     ],
     0,
     ""
