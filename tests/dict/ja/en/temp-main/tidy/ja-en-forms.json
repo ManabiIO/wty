@@ -25,14 +25,6 @@
         ]
       ]
     },
-    "tanoshikaro": {
-      "adj": [
-        "extracted",
-        [
-          "imperfective stem"
-        ]
-      ]
-    },
     "たのしく": {
       "adj": [
         "extracted",
@@ -42,25 +34,7 @@
         ]
       ]
     },
-    "tanoshiku": {
-      "adj": [
-        "extracted",
-        [
-          "adverbial",
-          "continuative stem"
-        ]
-      ]
-    },
     "たのしい": {
-      "adj": [
-        "extracted",
-        [
-          "attributive stem",
-          "stem terminative"
-        ]
-      ]
-    },
-    "tanoshii": {
       "adj": [
         "extracted",
         [
@@ -85,14 +59,6 @@
         ]
       ]
     },
-    "tanoshikere": {
-      "adj": [
-        "extracted",
-        [
-          "hypothetical stem"
-        ]
-      ]
-    },
     "楽しかれ": {
       "adj": [
         "extracted",
@@ -102,14 +68,6 @@
       ]
     },
     "たのしかれ": {
-      "adj": [
-        "extracted",
-        [
-          "imperative stem"
-        ]
-      ]
-    },
-    "tanoshikare": {
       "adj": [
         "extracted",
         [
@@ -133,14 +91,6 @@
         ]
       ]
     },
-    "tanoshiku nai": {
-      "adj": [
-        "extracted",
-        [
-          "informal negative"
-        ]
-      ]
-    },
     "楽しかった": {
       "adj": [
         "extracted",
@@ -150,14 +100,6 @@
       ]
     },
     "たのしかった": {
-      "adj": [
-        "extracted",
-        [
-          "informal past"
-        ]
-      ]
-    },
-    "tanoshikatta": {
       "adj": [
         "extracted",
         [
@@ -181,14 +123,6 @@
         ]
       ]
     },
-    "tanoshiku nakatta": {
-      "adj": [
-        "extracted",
-        [
-          "informal past negative"
-        ]
-      ]
-    },
     "楽しいです": {
       "adj": [
         "extracted",
@@ -198,14 +132,6 @@
       ]
     },
     "たのしいです": {
-      "adj": [
-        "extracted",
-        [
-          "formal"
-        ]
-      ]
-    },
-    "tanoshii desu": {
       "adj": [
         "extracted",
         [
@@ -229,14 +155,6 @@
         ]
       ]
     },
-    "tanoshiku nai desu": {
-      "adj": [
-        "extracted",
-        [
-          "formal negative"
-        ]
-      ]
-    },
     "楽しかったです": {
       "adj": [
         "extracted",
@@ -246,14 +164,6 @@
       ]
     },
     "たのしかったです": {
-      "adj": [
-        "extracted",
-        [
-          "formal past"
-        ]
-      ]
-    },
-    "tanoshikatta desu": {
       "adj": [
         "extracted",
         [
@@ -277,14 +187,6 @@
         ]
       ]
     },
-    "tanoshiku nakatta desu": {
-      "adj": [
-        "extracted",
-        [
-          "formal past negative"
-        ]
-      ]
-    },
     "楽しくて": {
       "adj": [
         "extracted",
@@ -294,14 +196,6 @@
       ]
     },
     "たのしくて": {
-      "adj": [
-        "extracted",
-        [
-          "conjunctive"
-        ]
-      ]
-    },
-    "tanoshikute": {
       "adj": [
         "extracted",
         [
@@ -325,14 +219,6 @@
         ]
       ]
     },
-    "tanoshikereba": {
-      "adj": [
-        "extracted",
-        [
-          "conditional"
-        ]
-      ]
-    },
     "楽しかったら": {
       "adj": [
         "extracted",
@@ -342,14 +228,6 @@
       ]
     },
     "たのしかったら": {
-      "adj": [
-        "extracted",
-        [
-          "past conditional"
-        ]
-      ]
-    },
-    "tanoshikattara": {
       "adj": [
         "extracted",
         [
@@ -390,14 +268,6 @@
       ]
     },
     "たのしさ": {
-      "adj": [
-        "extracted",
-        [
-          "noun-from-adj"
-        ]
-      ]
-    },
-    "tanoshisa": {
       "adj": [
         "extracted",
         [
@@ -448,14 +318,6 @@
         ]
       ]
     },
-    "suki daro": {
-      "adj": [
-        "extracted",
-        [
-          "imperfective stem"
-        ]
-      ]
-    },
     "好きで": {
       "adj": [
         "extracted",
@@ -466,15 +328,6 @@
       ]
     },
     "すきで": {
-      "adj": [
-        "extracted",
-        [
-          "conjunctive",
-          "continuative stem"
-        ]
-      ]
-    },
-    "suki de": {
       "adj": [
         "extracted",
         [
@@ -499,23 +352,7 @@
         ]
       ]
     },
-    "suki da": {
-      "adj": [
-        "extracted",
-        [
-          "stem terminative"
-        ]
-      ]
-    },
     "すきな": {
-      "adj": [
-        "extracted",
-        [
-          "attributive stem"
-        ]
-      ]
-    },
-    "suki na": {
       "adj": [
         "extracted",
         [
@@ -539,14 +376,6 @@
         ]
       ]
     },
-    "suki nara": {
-      "adj": [
-        "extracted",
-        [
-          "hypothetical stem"
-        ]
-      ]
-    },
     "好きであれ": {
       "adj": [
         "extracted",
@@ -556,14 +385,6 @@
       ]
     },
     "すきであれ": {
-      "adj": [
-        "extracted",
-        [
-          "imperative stem"
-        ]
-      ]
-    },
-    "suki de are": {
       "adj": [
         "extracted",
         [
@@ -603,22 +424,6 @@
         ]
       ]
     },
-    "suki de wa nai": {
-      "adj": [
-        "extracted",
-        [
-          "informal negative"
-        ]
-      ]
-    },
-    "suki ja nai": {
-      "adj": [
-        "extracted",
-        [
-          "informal negative"
-        ]
-      ]
-    },
     "好きだった": {
       "adj": [
         "extracted",
@@ -628,14 +433,6 @@
       ]
     },
     "すきだった": {
-      "adj": [
-        "extracted",
-        [
-          "informal past"
-        ]
-      ]
-    },
-    "suki datta": {
       "adj": [
         "extracted",
         [
@@ -675,22 +472,6 @@
         ]
       ]
     },
-    "suki de wa nakatta": {
-      "adj": [
-        "extracted",
-        [
-          "informal past negative"
-        ]
-      ]
-    },
-    "suki ja nakatta": {
-      "adj": [
-        "extracted",
-        [
-          "informal past negative"
-        ]
-      ]
-    },
     "好きです": {
       "adj": [
         "extracted",
@@ -700,14 +481,6 @@
       ]
     },
     "すきです": {
-      "adj": [
-        "extracted",
-        [
-          "formal"
-        ]
-      ]
-    },
-    "suki desu": {
       "adj": [
         "extracted",
         [
@@ -747,22 +520,6 @@
         ]
       ]
     },
-    "suki de wa arimasen": {
-      "adj": [
-        "extracted",
-        [
-          "formal negative"
-        ]
-      ]
-    },
-    "suki ja arimasen": {
-      "adj": [
-        "extracted",
-        [
-          "formal negative"
-        ]
-      ]
-    },
     "好きでした": {
       "adj": [
         "extracted",
@@ -772,14 +529,6 @@
       ]
     },
     "すきでした": {
-      "adj": [
-        "extracted",
-        [
-          "formal past"
-        ]
-      ]
-    },
-    "suki deshita": {
       "adj": [
         "extracted",
         [
@@ -819,22 +568,6 @@
         ]
       ]
     },
-    "suki de wa arimasen deshita": {
-      "adj": [
-        "extracted",
-        [
-          "formal past negative"
-        ]
-      ]
-    },
-    "suki ja arimasen deshita": {
-      "adj": [
-        "extracted",
-        [
-          "formal past negative"
-        ]
-      ]
-    },
     "好きなら（ば）": {
       "adj": [
         "extracted",
@@ -851,14 +584,6 @@
         ]
       ]
     },
-    "suki nara (ba)": {
-      "adj": [
-        "extracted",
-        [
-          "conditional"
-        ]
-      ]
-    },
     "好きだったら": {
       "adj": [
         "extracted",
@@ -868,14 +593,6 @@
       ]
     },
     "すきだったら": {
-      "adj": [
-        "extracted",
-        [
-          "past conditional"
-        ]
-      ]
-    },
-    "suki dattara": {
       "adj": [
         "extracted",
         [
@@ -915,14 +632,6 @@
         ]
       ]
     },
-    "suki ni": {
-      "adj": [
-        "extracted",
-        [
-          "adverbial"
-        ]
-      ]
-    },
     "好きさ": {
       "adj": [
         "extracted",
@@ -932,14 +641,6 @@
       ]
     },
     "すきさ": {
-      "adj": [
-        "extracted",
-        [
-          "noun-from-adj"
-        ]
-      ]
-    },
-    "sukisa": {
       "adj": [
         "extracted",
         [
@@ -1040,27 +741,11 @@
         ]
       ]
     },
-    "hashira": {
-      "verb": [
-        "extracted",
-        [
-          "imperfective"
-        ]
-      ]
-    },
     "はしり": {
       "verb": [
         "extracted",
         [
           "continuative stem"
-        ]
-      ]
-    },
-    "hashiri": {
-      "verb": [
-        "extracted",
-        [
-          "continuative"
         ]
       ]
     },
@@ -1070,15 +755,6 @@
         [
           "attributive stem",
           "stem terminative"
-        ]
-      ]
-    },
-    "hashiru": {
-      "verb": [
-        "extracted",
-        [
-          "attributive",
-          "terminative"
         ]
       ]
     },
@@ -1102,15 +778,6 @@
         ]
       ]
     },
-    "hashire": {
-      "verb": [
-        "extracted",
-        [
-          "hypothetical",
-          "imperative"
-        ]
-      ]
-    },
     "走られる": {
       "verb": [
         "extracted",
@@ -1120,14 +787,6 @@
       ]
     },
     "はしられる": {
-      "verb": [
-        "extracted",
-        [
-          "passive"
-        ]
-      ]
-    },
-    "hashirareru": {
       "verb": [
         "extracted",
         [
@@ -1167,22 +826,6 @@
         ]
       ]
     },
-    "hashiraseru": {
-      "verb": [
-        "extracted",
-        [
-          "causative"
-        ]
-      ]
-    },
-    "hashirasu": {
-      "verb": [
-        "extracted",
-        [
-          "causative"
-        ]
-      ]
-    },
     "走れる": {
       "verb": [
         "extracted",
@@ -1192,14 +835,6 @@
       ]
     },
     "はしれる": {
-      "verb": [
-        "extracted",
-        [
-          "potential"
-        ]
-      ]
-    },
-    "hashireru": {
       "verb": [
         "extracted",
         [
@@ -1247,14 +882,6 @@
         ]
       ]
     },
-    "hashiranai": {
-      "verb": [
-        "extracted",
-        [
-          "negative"
-        ]
-      ]
-    },
     "走らず": {
       "verb": [
         "extracted",
@@ -1264,14 +891,6 @@
       ]
     },
     "はしらず": {
-      "verb": [
-        "extracted",
-        [
-          "negative continuative"
-        ]
-      ]
-    },
-    "hashirazu": {
       "verb": [
         "extracted",
         [
@@ -1295,23 +914,7 @@
         ]
       ]
     },
-    "hashirimasu": {
-      "verb": [
-        "extracted",
-        [
-          "formal"
-        ]
-      ]
-    },
     "はしった": {
-      "verb": [
-        "extracted",
-        [
-          "perfective"
-        ]
-      ]
-    },
-    "hashitta": {
       "verb": [
         "extracted",
         [
@@ -1328,14 +931,6 @@
       ]
     },
     "はしって": {
-      "verb": [
-        "extracted",
-        [
-          "conjunctive"
-        ]
-      ]
-    },
-    "hashitte": {
       "verb": [
         "extracted",
         [
@@ -1361,56 +956,6 @@
         ]
       ]
     },
-    "hashireba": {
-      "verb": [
-        "extracted",
-        [
-          "conditional hypothetical"
-        ]
-      ]
-    },
-    "fasira": {
-      "verb": [
-        "extracted",
-        [
-          "irrealis stem"
-        ]
-      ]
-    },
-    "fasiri": {
-      "verb": [
-        "extracted",
-        [
-          "continuative stem"
-        ]
-      ]
-    },
-    "fasiru": {
-      "verb": [
-        "extracted",
-        [
-          "attributive stem",
-          "stem terminative"
-        ]
-      ]
-    },
-    "fasire": {
-      "verb": [
-        "extracted",
-        [
-          "imperative stem",
-          "realis stem"
-        ]
-      ]
-    },
-    "fasirazu": {
-      "verb": [
-        "extracted",
-        [
-          "negative"
-        ]
-      ]
-    },
     "走れど": {
       "verb": [
         "extracted",
@@ -1427,22 +972,6 @@
         ]
       ]
     },
-    "fasiredo": {
-      "verb": [
-        "extracted",
-        [
-          "contrastive"
-        ]
-      ]
-    },
-    "fasireba": {
-      "verb": [
-        "extracted",
-        [
-          "causative"
-        ]
-      ]
-    },
     "走らば": {
       "verb": [
         "extracted",
@@ -1452,14 +981,6 @@
       ]
     },
     "はしらば": {
-      "verb": [
-        "extracted",
-        [
-          "conditional"
-        ]
-      ]
-    },
-    "fasiraba": {
       "verb": [
         "extracted",
         [
@@ -1483,14 +1004,6 @@
         ]
       ]
     },
-    "fasiriki": {
-      "verb": [
-        "extracted",
-        [
-          "past"
-        ]
-      ]
-    },
     "走りけり": {
       "verb": [
         "extracted",
@@ -1500,14 +1013,6 @@
       ]
     },
     "はしりけり": {
-      "verb": [
-        "extracted",
-        [
-          "past"
-        ]
-      ]
-    },
-    "fasirikeri": {
       "verb": [
         "extracted",
         [
@@ -1531,14 +1036,6 @@
         ]
       ]
     },
-    "fasiritu": {
-      "verb": [
-        "extracted",
-        [
-          "perfect"
-        ]
-      ]
-    },
     "走りぬ": {
       "verb": [
         "extracted",
@@ -1548,14 +1045,6 @@
       ]
     },
     "はしりぬ": {
-      "verb": [
-        "extracted",
-        [
-          "perfect"
-        ]
-      ]
-    },
-    "fasirinu": {
       "verb": [
         "extracted",
         [
@@ -1595,22 +1084,6 @@
         ]
       ]
     },
-    "fasireri": {
-      "verb": [
-        "extracted",
-        [
-          "perfect continuative"
-        ]
-      ]
-    },
-    "fasiritari": {
-      "verb": [
-        "extracted",
-        [
-          "perfect continuative"
-        ]
-      ]
-    },
     "走らむ": {
       "verb": [
         "extracted",
@@ -1620,14 +1093,6 @@
       ]
     },
     "はしらむ": {
-      "verb": [
-        "extracted",
-        [
-          "volitional"
-        ]
-      ]
-    },
-    "fasiramu": {
       "verb": [
         "extracted",
         [
@@ -1856,14 +1321,6 @@
         "extracted",
         [
           "past conditional negative"
-        ]
-      ]
-    },
-    "For other desiderative forms": {
-      "verb": [
-        "extracted",
-        [
-          "desiderative"
         ]
       ]
     },

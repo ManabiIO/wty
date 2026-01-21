@@ -57,23 +57,6 @@
     ""
   ],
   [
-    "tanoshikaro",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "imperfective stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "たのしく",
     "",
     "non-lemma",
@@ -97,53 +80,7 @@
     ""
   ],
   [
-    "tanoshiku",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "adverbial"
-        ]
-      ],
-      [
-        "楽しい",
-        [
-          "continuative stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "たのしい",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "attributive stem"
-        ]
-      ],
-      [
-        "楽しい",
-        [
-          "stem terminative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "tanoshii",
     "",
     "non-lemma",
     "",
@@ -200,23 +137,6 @@
     ""
   ],
   [
-    "tanoshikere",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "hypothetical stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "楽しかれ",
     "",
     "non-lemma",
@@ -235,23 +155,6 @@
   ],
   [
     "たのしかれ",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "imperative stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "tanoshikare",
     "",
     "non-lemma",
     "",
@@ -302,23 +205,6 @@
     ""
   ],
   [
-    "tanoshiku nai",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "informal negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "楽しかった",
     "",
     "non-lemma",
@@ -337,23 +223,6 @@
   ],
   [
     "たのしかった",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "informal past"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "tanoshikatta",
     "",
     "non-lemma",
     "",
@@ -404,23 +273,6 @@
     ""
   ],
   [
-    "tanoshiku nakatta",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "informal past negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "楽しいです",
     "",
     "non-lemma",
@@ -439,23 +291,6 @@
   ],
   [
     "たのしいです",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "formal"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "tanoshii desu",
     "",
     "non-lemma",
     "",
@@ -506,23 +341,6 @@
     ""
   ],
   [
-    "tanoshiku nai desu",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "formal negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "楽しかったです",
     "",
     "non-lemma",
@@ -541,23 +359,6 @@
   ],
   [
     "たのしかったです",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "formal past"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "tanoshikatta desu",
     "",
     "non-lemma",
     "",
@@ -608,23 +409,6 @@
     ""
   ],
   [
-    "tanoshiku nakatta desu",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "formal past negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "楽しくて",
     "",
     "non-lemma",
@@ -643,23 +427,6 @@
   ],
   [
     "たのしくて",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "conjunctive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "tanoshikute",
     "",
     "non-lemma",
     "",
@@ -710,23 +477,6 @@
     ""
   ],
   [
-    "tanoshikereba",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "conditional"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "楽しかったら",
     "",
     "non-lemma",
@@ -745,23 +495,6 @@
   ],
   [
     "たのしかったら",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "past conditional"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "tanoshikattara",
     "",
     "non-lemma",
     "",
@@ -847,23 +580,6 @@
   ],
   [
     "たのしさ",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "楽しい",
-        [
-          "noun-from-adj"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "tanoshisa",
     "",
     "non-lemma",
     "",
@@ -971,23 +687,6 @@
     ""
   ],
   [
-    "suki daro",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "imperfective stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "好きで",
     "",
     "non-lemma",
@@ -1012,29 +711,6 @@
   ],
   [
     "すきで",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "conjunctive"
-        ]
-      ],
-      [
-        "好き",
-        [
-          "continuative stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki de",
     "",
     "non-lemma",
     "",
@@ -1091,41 +767,7 @@
     ""
   ],
   [
-    "suki da",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "stem terminative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "すきな",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "attributive stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki na",
     "",
     "non-lemma",
     "",
@@ -1176,23 +818,6 @@
     ""
   ],
   [
-    "suki nara",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "hypothetical stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "好きであれ",
     "",
     "non-lemma",
@@ -1211,23 +836,6 @@
   ],
   [
     "すきであれ",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "imperative stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki de are",
     "",
     "non-lemma",
     "",
@@ -1312,40 +920,6 @@
     ""
   ],
   [
-    "suki de wa nai",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "informal negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki ja nai",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "informal negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "好きだった",
     "",
     "non-lemma",
@@ -1364,23 +938,6 @@
   ],
   [
     "すきだった",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "informal past"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki datta",
     "",
     "non-lemma",
     "",
@@ -1465,40 +1022,6 @@
     ""
   ],
   [
-    "suki de wa nakatta",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "informal past negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki ja nakatta",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "informal past negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "好きです",
     "",
     "non-lemma",
@@ -1517,23 +1040,6 @@
   ],
   [
     "すきです",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "formal"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki desu",
     "",
     "non-lemma",
     "",
@@ -1618,40 +1124,6 @@
     ""
   ],
   [
-    "suki de wa arimasen",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "formal negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki ja arimasen",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "formal negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "好きでした",
     "",
     "non-lemma",
@@ -1670,23 +1142,6 @@
   ],
   [
     "すきでした",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "formal past"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki deshita",
     "",
     "non-lemma",
     "",
@@ -1771,40 +1226,6 @@
     ""
   ],
   [
-    "suki de wa arimasen deshita",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "formal past negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki ja arimasen deshita",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "formal past negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "好きなら（ば）",
     "",
     "non-lemma",
@@ -1839,23 +1260,6 @@
     ""
   ],
   [
-    "suki nara (ba)",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "conditional"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "好きだったら",
     "",
     "non-lemma",
@@ -1874,23 +1278,6 @@
   ],
   [
     "すきだったら",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "past conditional"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "suki dattara",
     "",
     "non-lemma",
     "",
@@ -1975,23 +1362,6 @@
     ""
   ],
   [
-    "suki ni",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "adverbial"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "好きさ",
     "",
     "non-lemma",
@@ -2010,23 +1380,6 @@
   ],
   [
     "すきさ",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "好き",
-        [
-          "noun-from-adj"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "sukisa",
     "",
     "non-lemma",
     "",
@@ -2267,23 +1620,6 @@
     ""
   ],
   [
-    "hashira",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "imperfective"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "はしり",
     "",
     "non-lemma",
@@ -2294,23 +1630,6 @@
         "走る",
         [
           "continuative stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "hashiri",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "continuative"
         ]
       ]
     ],
@@ -2334,29 +1653,6 @@
         "走る",
         [
           "stem terminative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "hashiru",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "attributive"
-        ]
-      ],
-      [
-        "走る",
-        [
-          "terminative"
         ]
       ]
     ],
@@ -2422,29 +1718,6 @@
     ""
   ],
   [
-    "hashire",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "hypothetical"
-        ]
-      ],
-      [
-        "走る",
-        [
-          "imperative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "走られる",
     "",
     "non-lemma",
@@ -2463,23 +1736,6 @@
   ],
   [
     "はしられる",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "passive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "hashirareru",
     "",
     "non-lemma",
     "",
@@ -2564,40 +1820,6 @@
     ""
   ],
   [
-    "hashiraseru",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "causative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "hashirasu",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "causative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "走れる",
     "",
     "non-lemma",
@@ -2616,23 +1838,6 @@
   ],
   [
     "はしれる",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "potential"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "hashireru",
     "",
     "non-lemma",
     "",
@@ -2734,23 +1939,6 @@
     ""
   ],
   [
-    "hashiranai",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "走らず",
     "",
     "non-lemma",
@@ -2769,23 +1957,6 @@
   ],
   [
     "はしらず",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "negative continuative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "hashirazu",
     "",
     "non-lemma",
     "",
@@ -2836,41 +2007,7 @@
     ""
   ],
   [
-    "hashirimasu",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "formal"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "はしった",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "perfective"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "hashitta",
     "",
     "non-lemma",
     "",
@@ -2905,23 +2042,6 @@
   ],
   [
     "はしって",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "conjunctive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "hashitte",
     "",
     "non-lemma",
     "",
@@ -2984,120 +2104,6 @@
     ""
   ],
   [
-    "hashireba",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "conditional hypothetical"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasira",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "irrealis stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasiri",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "continuative stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasiru",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "attributive stem"
-        ]
-      ],
-      [
-        "走る",
-        [
-          "stem terminative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasire",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "imperative stem"
-        ]
-      ],
-      [
-        "走る",
-        [
-          "realis stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasirazu",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "走れど",
     "",
     "non-lemma",
@@ -3132,40 +2138,6 @@
     ""
   ],
   [
-    "fasiredo",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "contrastive"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasireba",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "causative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "走らば",
     "",
     "non-lemma",
@@ -3184,23 +2156,6 @@
   ],
   [
     "はしらば",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "conditional"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasiraba",
     "",
     "non-lemma",
     "",
@@ -3251,23 +2206,6 @@
     ""
   ],
   [
-    "fasiriki",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "past"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "走りけり",
     "",
     "non-lemma",
@@ -3286,23 +2224,6 @@
   ],
   [
     "はしりけり",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "past"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasirikeri",
     "",
     "non-lemma",
     "",
@@ -3353,23 +2274,6 @@
     ""
   ],
   [
-    "fasiritu",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "perfect"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "走りぬ",
     "",
     "non-lemma",
@@ -3388,23 +2292,6 @@
   ],
   [
     "はしりぬ",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "perfect"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasirinu",
     "",
     "non-lemma",
     "",
@@ -3489,40 +2376,6 @@
     ""
   ],
   [
-    "fasireri",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "perfect continuative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasiritari",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "perfect continuative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "走らむ",
     "",
     "non-lemma",
@@ -3541,23 +2394,6 @@
   ],
   [
     "はしらむ",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "volitional"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "fasiramu",
     "",
     "non-lemma",
     "",
@@ -4043,23 +2879,6 @@
         "走る",
         [
           "past conditional negative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "For other desiderative forms",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "desiderative"
         ]
       ]
     ],
