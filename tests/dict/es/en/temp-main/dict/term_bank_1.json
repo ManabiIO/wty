@@ -160,7 +160,7 @@
                                   "data": {
                                     "content": "example-sentence-b"
                                   },
-                                  "content": "He lives on crumbs, nothing more."
+                                  "content": "He/she lives on crumbs, nothing more."
                                 }
                               ]
                             }
@@ -231,7 +231,7 @@
                                   "data": {
                                     "content": "example-sentence-b"
                                   },
-                                  "content": "She lives in the red house."
+                                  "content": "He/she lives in the red house."
                                 }
                               ]
                             }

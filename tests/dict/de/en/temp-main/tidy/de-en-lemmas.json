@@ -505,8 +505,9 @@
             "to, toward, towards": {
               "examples": [
                 {
-                  "text": "1917, Franz Kafka, Ein Landarzt, in: Die neue Dichtung. Ein Almanach, Kurt Wolff Verlag, page 21",
-                  "translation": "Badly paid, I am still generous and helpful toward the poor."
+                  "text": "Schlecht gezahlt, bin ich doch freigebig und hilfsbereit gegenüber den Armen.",
+                  "translation": "Badly paid, I am still generous and helpful toward the poor.",
+                  "ref": "1917, Franz Kafka, Ein Landarzt, page 21:"
                 }
               ]
             },

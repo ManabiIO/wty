@@ -18,7 +18,11 @@
       "reading": "wain",
       "transcriptions": [
         {
-          "ipa": "/weɪn/"
+          "ipa": "/weɪn/",
+          "tags": [
+            "General-American",
+            "Received-Pronunciation"
+          ]
         }
       ]
     }

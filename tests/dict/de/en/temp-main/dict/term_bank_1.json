@@ -2519,7 +2519,7 @@
                                   "data": {
                                     "content": "example-sentence-a"
                                   },
-                                  "content": "1917, Franz Kafka, Ein Landarzt, in: Die neue Dichtung. Ein Almanach, Kurt Wolff Verlag, page 21"
+                                  "content": "Schlecht gezahlt, bin ich doch freigebig und hilfsbereit gegenüber den Armen."
                                 },
                                 {
                                   "tag": "div",
@@ -2527,6 +2527,13 @@
                                     "content": "example-sentence-b"
                                   },
                                   "content": "Badly paid, I am still generous and helpful toward the poor."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "1917, Franz Kafka, Ein Landarzt, page 21"
                                 }
                               ]
                             }

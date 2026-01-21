@@ -1022,6 +1022,95 @@
         ]
       ]
     },
+    "走ら": {
+      "verb": [
+        "extracted",
+        [
+          "imperfective",
+          "irrealis stem"
+        ]
+      ]
+    },
+    "はしら": {
+      "verb": [
+        "extracted",
+        [
+          "imperfective",
+          "irrealis stem"
+        ]
+      ]
+    },
+    "hashira": {
+      "verb": [
+        "extracted",
+        [
+          "imperfective"
+        ]
+      ]
+    },
+    "はしり": {
+      "verb": [
+        "extracted",
+        [
+          "continuative stem"
+        ]
+      ]
+    },
+    "hashiri": {
+      "verb": [
+        "extracted",
+        [
+          "continuative"
+        ]
+      ]
+    },
+    "はしる": {
+      "verb": [
+        "extracted",
+        [
+          "attributive stem",
+          "stem terminative"
+        ]
+      ]
+    },
+    "hashiru": {
+      "verb": [
+        "extracted",
+        [
+          "attributive",
+          "terminative"
+        ]
+      ]
+    },
+    "走れ": {
+      "verb": [
+        "extracted",
+        [
+          "hypothetical",
+          "imperative stem",
+          "realis stem"
+        ]
+      ]
+    },
+    "はしれ": {
+      "verb": [
+        "extracted",
+        [
+          "hypothetical",
+          "imperative stem",
+          "realis stem"
+        ]
+      ]
+    },
+    "hashire": {
+      "verb": [
+        "extracted",
+        [
+          "hypothetical",
+          "imperative"
+        ]
+      ]
+    },
     "走られる": {
       "verb": [
         "extracted",
@@ -1280,35 +1369,11 @@
         ]
       ]
     },
-    "走ら": {
-      "verb": [
-        "extracted",
-        [
-          "irrealis stem"
-        ]
-      ]
-    },
-    "はしら": {
-      "verb": [
-        "extracted",
-        [
-          "irrealis stem"
-        ]
-      ]
-    },
     "fasira": {
       "verb": [
         "extracted",
         [
           "irrealis stem"
-        ]
-      ]
-    },
-    "はしり": {
-      "verb": [
-        "extracted",
-        [
-          "continuative stem"
         ]
       ]
     },
@@ -1320,39 +1385,12 @@
         ]
       ]
     },
-    "はしる": {
-      "verb": [
-        "extracted",
-        [
-          "attributive stem",
-          "stem terminative"
-        ]
-      ]
-    },
     "fasiru": {
       "verb": [
         "extracted",
         [
           "attributive stem",
           "stem terminative"
-        ]
-      ]
-    },
-    "走れ": {
-      "verb": [
-        "extracted",
-        [
-          "imperative stem",
-          "realis stem"
-        ]
-      ]
-    },
-    "はしれ": {
-      "verb": [
-        "extracted",
-        [
-          "imperative stem",
-          "realis stem"
         ]
       ]
     },

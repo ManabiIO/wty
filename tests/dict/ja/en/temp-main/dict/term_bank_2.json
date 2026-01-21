@@ -2221,6 +2221,230 @@
     ""
   ],
   [
+    "走ら",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "imperfective"
+        ]
+      ],
+      [
+        "走る",
+        [
+          "irrealis stem"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "はしら",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "imperfective"
+        ]
+      ],
+      [
+        "走る",
+        [
+          "irrealis stem"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "hashira",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "imperfective"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "はしり",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "continuative stem"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "hashiri",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "continuative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "はしる",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "attributive stem"
+        ]
+      ],
+      [
+        "走る",
+        [
+          "stem terminative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "hashiru",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "attributive"
+        ]
+      ],
+      [
+        "走る",
+        [
+          "terminative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "走れ",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "hypothetical"
+        ]
+      ],
+      [
+        "走る",
+        [
+          "imperative stem"
+        ]
+      ],
+      [
+        "走る",
+        [
+          "realis stem"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "はしれ",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "hypothetical"
+        ]
+      ],
+      [
+        "走る",
+        [
+          "imperative stem"
+        ]
+      ],
+      [
+        "走る",
+        [
+          "realis stem"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "hashire",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "走る",
+        [
+          "hypothetical"
+        ]
+      ],
+      [
+        "走る",
+        [
+          "imperative"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
     "走られる",
     "",
     "non-lemma",
@@ -2777,40 +3001,6 @@
     ""
   ],
   [
-    "走ら",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "irrealis stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "はしら",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "irrealis stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "fasira",
     "",
     "non-lemma",
@@ -2821,23 +3011,6 @@
         "走る",
         [
           "irrealis stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "はしり",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "continuative stem"
         ]
       ]
     ],
@@ -2862,29 +3035,6 @@
     ""
   ],
   [
-    "はしる",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "attributive stem"
-        ]
-      ],
-      [
-        "走る",
-        [
-          "stem terminative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
     "fasiru",
     "",
     "non-lemma",
@@ -2901,52 +3051,6 @@
         "走る",
         [
           "stem terminative"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "走れ",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "imperative stem"
-        ]
-      ],
-      [
-        "走る",
-        [
-          "realis stem"
-        ]
-      ]
-    ],
-    0,
-    ""
-  ],
-  [
-    "はしれ",
-    "",
-    "non-lemma",
-    "",
-    0,
-    [
-      [
-        "走る",
-        [
-          "imperative stem"
-        ]
-      ],
-      [
-        "走る",
-        [
-          "realis stem"
         ]
       ]
     ],
