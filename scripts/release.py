@@ -36,9 +36,9 @@ from typing import Any, Literal
 
 REPO_ID_HF = "daxida/test-dataset"
 REPO_HF = f"https://huggingface.co/datasets/{REPO_ID_HF}"
-REPO_ID_GH = "https://github.com/daxida/kty"
+REPO_ID_GH = "https://github.com/daxida/wty"
 
-BINARY_PATH = "target/release/kty"
+BINARY_PATH = "target/release/wty"
 
 ANSI_ESCAPE_RE = re.compile(r"\x1B[@-_][0-?]*[ -/]*[@-~]")
 
@@ -238,7 +238,7 @@ license: cc-by-sa-4.0
 ---
 ⚠️ **This dataset is automatically uploaded.**
 
-For source code and issue tracking, visit the GitHub repo at [kty]({REPO_ID_GH})
+For source code and issue tracking, visit the GitHub repo at [wty]({REPO_ID_GH})
 
 version: {version}
 
@@ -384,15 +384,15 @@ def pattern(dict_ty: DictTy, sources: list[str], targets: list[str]) -> str:
 
     match dict_ty:
         case "main":
-            fp = rf"kty-({targets_re})-({sources_re})\.zip"
+            fp = rf"wty-({targets_re})-({sources_re})\.zip"
         case "ipa":
-            # dict/el/ja/kty-el-ja-ipa.zip
-            fp = rf"kty-({targets_re})-({sources_re})-ipa\.zip"
+            # dict/el/ja/wty-el-ja-ipa.zip
+            fp = rf"wty-({targets_re})-({sources_re})-ipa\.zip"
         case "ipa-merged":
-            # dict/ja/all/kty-ja-ipa.zip
-            fp = rf"kty-({sources_re})-ipa\.zip"
+            # dict/ja/all/wty-ja-ipa.zip
+            fp = rf"wty-({sources_re})-ipa\.zip"
         case "glossary":
-            fp = rf"kty-({sources_re})-({targets_re})-gloss\.zip"
+            fp = rf"wty-({sources_re})-({targets_re})-gloss\.zip"
 
     return fp
 
@@ -575,12 +575,12 @@ def extract_indexes() -> None:
     """Extract indexes in some folder to support dictionary updates.
 
     Paths looks like:
-        data/release/dict/nb/ru/kty-nb-ru.zip
-               {dict_dir}/nb/ru/kty-nb-ru.zip
+        data/release/dict/nb/ru/wty-nb-ru.zip
+               {dict_dir}/nb/ru/wty-nb-ru.zip
 
     And we want to clone to:
-        data/release/index/kty-nb-ru-index.json
-               {index_dir}/kty-nb-ru-index.json
+        data/release/index/wty-nb-ru-index.json
+               {index_dir}/wty-nb-ru-index.json
 
     Note: we don't need the nb/ru folders anymore, since these indexes are only intended
           to be used as direct URLs for the Yomitan upgrade machinery.

@@ -45,9 +45,9 @@ pub fn get_index(dict_name_expanded: &str, source: Lang, target: Lang) -> String
   "format": 3,
   "revision": "{current_date}",
   "sequenced": true,
-  "author": "kty contributors",
-  "url": "https://github.com/daxida/kty",
-  "description": "Dictionaries for various language pairs generated from Wiktionary data, via Kaikki and kty.",
+  "author": "wty contributors",
+  "url": "https://github.com/daxida/wty",
+  "description": "Dictionaries for various language pairs generated from Wiktionary data, via Kaikki and wty.",
   "attribution": "https://kaikki.org/",
   "sourceLanguage": "{source}",
   "targetLanguage": "{target}",
@@ -63,17 +63,18 @@ mod tests {
     use super::*;
 
     #[test]
-    fn urls() {
-        let dict_name = "kty-afb-en-ipa";
-        let durl = download_url(dict_name, Lang::En, Lang::Afb);
+    fn url_download() {
         assert_eq!(
-            durl,
-            "https://huggingface.co/datasets/daxida/test-dataset/resolve/main/dict/afb/en/kty-afb-en-ipa.zip?download=true"
+            download_url("wty-afb-en-ipa", Lang::En, Lang::Afb),
+            "https://huggingface.co/datasets/daxida/test-dataset/resolve/main/dict/afb/en/wty-afb-en-ipa.zip?download=true"
         );
-        let iurl = index_url(dict_name);
+    }
+
+    #[test]
+    fn url_index() {
         assert_eq!(
-            iurl,
-            "https://huggingface.co/datasets/daxida/test-dataset/resolve/main/index/kty-afb-en-ipa-index?download=true"
+            index_url("wty-afb-en-ipa"),
+            "https://huggingface.co/datasets/daxida/test-dataset/resolve/main/index/wty-afb-en-ipa-index?download=true"
         );
     }
 }

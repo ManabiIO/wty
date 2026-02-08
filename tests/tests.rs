@@ -1,15 +1,15 @@
-use kty::cli::{DictName, GlossaryArgs, GlossaryLangs, IpaArgs, MainArgs, MainLangs, Options};
-use kty::dict::{DGlossary, DIpa, DMain};
-use kty::lang::{Edition, Lang};
-use kty::make_dict;
-use kty::path::PathManager;
+use std::fs;
+use std::path::{Path, PathBuf};
 
 use anyhow::{Ok, Result};
 use tracing_subscriber::EnvFilter;
 use tracing_subscriber::fmt::format::FmtSpan;
 
-use std::fs;
-use std::path::{Path, PathBuf};
+use wty::cli::{DictName, GlossaryArgs, GlossaryLangs, IpaArgs, MainArgs, MainLangs, Options};
+use wty::dict::{DGlossary, DIpa, DMain};
+use wty::lang::{Edition, Lang};
+use wty::make_dict;
+use wty::path::PathManager;
 
 /// Clean empty folders under folder "root" recursively.
 fn cleanup(root: &Path) -> bool {

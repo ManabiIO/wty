@@ -1,4 +1,4 @@
-site_name: Kty
+site_name: wty
 theme:
   name: material
   features:
@@ -23,8 +23,8 @@ theme:
       toggle:
         icon: material/brightness-4
         name: Switch to system preference
-repo_url: https://github.com/daxida/kty
-repo_name: daxida/kty
+repo_url: https://github.com/daxida/wty
+repo_name: daxida/wty
 plugins:
   - search
 markdown_extensions:

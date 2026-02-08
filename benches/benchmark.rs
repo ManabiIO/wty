@@ -1,11 +1,12 @@
+use std::path::Path;
+
 use criterion::{Criterion, criterion_group, criterion_main};
 
-use kty::cli::{DictName, MainArgs, MainLangs, Options};
-use kty::dict::DMain;
-use kty::lang::{Edition, Lang};
-use kty::make_dict;
-use kty::path::PathManager;
-use std::path::Path;
+use wty::cli::{DictName, MainArgs, MainLangs, Options};
+use wty::dict::DMain;
+use wty::lang::{Edition, Lang};
+use wty::make_dict;
+use wty::path::PathManager;
 
 const BENCH_FIXTURES_DIR_100: &str = "benches/fixtures";
 

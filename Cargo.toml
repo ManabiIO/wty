@@ -1,15 +1,15 @@
 [package]
-name = "kty"
-version = "0.4.0"
+name = "wty"
+version = "0.5.0"
 edition = "2024"
 
 [lib]
-name = "kty"
+name = "wty"
 path = "src/lib.rs"
 bench = false
 
 [[bin]]
-name = "kty"
+name = "wty"
 path = "src/main.rs"
 bench = false
 

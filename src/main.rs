@@ -2,12 +2,12 @@ use anyhow::Result;
 use tracing_subscriber::EnvFilter;
 use tracing_subscriber::fmt::format::FmtSpan;
 
-use kty::cli::{Cli, Command, LangSpecs};
-use kty::dict::{DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, make_dict};
-use kty::download::download_jsonl;
-use kty::lang::{Edition, Lang};
-use kty::path::PathManager;
-use kty::utils::skip_because_file_exists;
+use wty::cli::{Cli, Command, LangSpecs};
+use wty::dict::{DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, make_dict};
+use wty::download::download_jsonl;
+use wty::lang::{Edition, Lang};
+use wty::path::PathManager;
+use wty::utils::skip_because_file_exists;
 
 fn init_logger(verbose: bool) {
     let filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| {
@@ -52,7 +52,7 @@ fn run(cmd: Command) -> Result<()> {
             } else {
                 let _ = std::fs::create_dir(pm.dir_kaik());
                 // Should really take the Kind as argument, but this command may disappear anyway
-                let kind = kty::dict::edition_to_kind(edition_lang);
+                let kind = wty::dict::edition_to_kind(edition_lang);
                 download_jsonl(edition_lang, Some(source), kind, &opath, quiet)
             }
         }

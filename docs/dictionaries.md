@@ -2,14 +2,14 @@ Dictionaries are made from extracted wiktionary content. Their quality depends o
 
 ## Dictionary types
 
-These are the different types of dictionaries that can be made with kty (optional parameters have been omitted):
+These are the different types of dictionaries that can be made with wty (optional parameters have been omitted):
 
 ```console
-$ kty main              <SOURCE> <TARGET>
-$ kty ipa               <SOURCE> <TARGET>
-$ kty ipa-merged        <TARGET>
-$ kty glossary          <SOURCE> <TARGET>
-$ kty glossary-extended <EDITION> <SOURCE> <TARGET>
+$ wty main              <SOURCE> <TARGET>
+$ wty ipa               <SOURCE> <TARGET>
+$ wty ipa-merged        <TARGET>
+$ wty glossary          <SOURCE> <TARGET>
+$ wty glossary-extended <EDITION> <SOURCE> <TARGET>
 ```
 
 - **main**: main dictionaries, with etymology, examples etc. These have good coverage, but tend to be verbose.
@@ -30,18 +30,18 @@ $ kty glossary-extended <EDITION> <SOURCE> <TARGET>
 
 ## Paths
 
-When building locally, dictionaries are usually stored in: `ROOT/dict/SOURCE/TARGET/kty-SOURCE-TARGET.zip`.
+When building locally, dictionaries are usually stored in: `ROOT/dict/SOURCE/TARGET/wty-SOURCE-TARGET.zip`.
 
 The only exception being ipa-merged, since it has no source.
 
 ```console
-$ kty main de en
-✓ Wrote yomitan dict @ data/dict/de/en/kty-de-en.zip (16.05 MB)
-$ kty glossary de en
-✓ Wrote yomitan dict @ data/dict/de/en/kty-de-en-gloss.zip (3.58 MB)
-$ kty ipa-merged en
-✓ Wrote yomitan dict @ data/dict/en/all/kty-en-ipa.zip (4.45 MB)
-$ kty glossary-extended all de en
-✓ Wrote yomitan dict @ data/dict/de/en/kty-all-de-en-gloss.zip (2.70 MB)
+$ wty main de en
+✓ Wrote yomitan dict @ data/dict/de/en/wty-de-en.zip (16.05 MB)
+$ wty glossary de en
+✓ Wrote yomitan dict @ data/dict/de/en/wty-de-en-gloss.zip (3.58 MB)
+$ wty ipa-merged en
+✓ Wrote yomitan dict @ data/dict/en/all/wty-en-ipa.zip (4.45 MB)
+$ wty glossary-extended all de en
+✓ Wrote yomitan dict @ data/dict/de/en/wty-all-de-en-gloss.zip (2.70 MB)
 ```
 

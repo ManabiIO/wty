@@ -221,7 +221,7 @@ pub struct DictName(String);
 
 impl Default for DictName {
     fn default() -> Self {
-        Self(String::from("kty"))
+        Self(String::from("wty"))
     }
 }
 
@@ -412,25 +412,25 @@ mod tests {
 
     #[test]
     fn base_commands() {
-        assert!(Cli::try_parse_from(["kty", "main", "el", "en"]).is_ok());
-        assert!(Cli::try_parse_from(["kty", "glossary", "el", "en"]).is_ok());
+        assert!(Cli::try_parse_from(["wty", "main", "el", "en"]).is_ok());
+        assert!(Cli::try_parse_from(["wty", "glossary", "el", "en"]).is_ok());
     }
 
     #[test]
     fn main_needs_target_edition() {
-        assert!(Cli::try_parse_from(["kty", "main", "grc", "el"]).is_ok());
-        assert!(Cli::try_parse_from(["kty", "main", "el", "grc"]).is_err());
+        assert!(Cli::try_parse_from(["wty", "main", "grc", "el"]).is_ok());
+        assert!(Cli::try_parse_from(["wty", "main", "el", "grc"]).is_err());
     }
 
     #[test]
     fn glossary_needs_source_edition() {
-        assert!(Cli::try_parse_from(["kty", "glossary", "grc", "el"]).is_err());
-        assert!(Cli::try_parse_from(["kty", "glossary", "el", "grc"]).is_ok());
+        assert!(Cli::try_parse_from(["wty", "glossary", "grc", "el"]).is_err());
+        assert!(Cli::try_parse_from(["wty", "glossary", "el", "grc"]).is_ok());
     }
 
     #[test]
     fn glossary_can_not_be_monolingual() {
-        let res = Cli::try_parse_from(["kty", "glossary", "el", "el"]);
+        let res = Cli::try_parse_from(["wty", "glossary", "el", "el"]);
         let cli = res.unwrap(); // The parsing should be ok
         match cli.command {
             Command::Glossary(glossary_args) => {
@@ -439,7 +439,7 @@ mod tests {
             _ => panic!(),
         }
 
-        let res = Cli::try_parse_from(["kty", "glossary-extended", "all", "el", "el"]);
+        let res = Cli::try_parse_from(["wty", "glossary-extended", "all", "el", "el"]);
         let cli = res.unwrap(); // The parsing should be ok
         match cli.command {
             Command::GlossaryExtended(glossary_args) => {
