@@ -412,10 +412,11 @@
             }
           ],
           "categories": [
+            "Czech abbreviations",
             "Czech entries with incorrect language header",
-            "Czech indeclinable nouns",
+            "Czech inanimate nouns",
             "Czech lemmas",
-            "Czech neuter nouns",
+            "Czech masculine nouns",
             "Czech nouns",
             "Czech prepositions",
             "Czech terms derived from Old Czech",
@@ -423,7 +424,7 @@
             "Czech terms inherited from Old Czech",
             "Czech terms inherited from Proto-Slavic",
             "Czech terms with IPA pronunciation",
-            "Pages with 24 entries",
+            "Pages with 25 entries",
             "Pages with entries"
           ],
           "etymology_number": 1,
@@ -19645,11 +19646,11 @@
             "Terms with Malayalam translations",
             "Terms with Maltese translations",
             "Terms with Mandarin translations",
-            "Terms with Maori translations",
             "Terms with Marathi translations",
             "Terms with Middle English translations",
             "Terms with Mongolian translations",
             "Terms with Moroccan Arabic translations",
+            "Terms with Māori translations",
             "Terms with Neapolitan translations",
             "Terms with Nepali translations",
             "Terms with Ngazidja Comorian translations",
@@ -20536,6 +20537,14 @@
               "word": "prun"
             },
             {
+              "lang": "Southern Altai",
+              "code": "alt",
+              "lang_code": "alt",
+              "sense": "to transport toward somebody/somewhere",
+              "roman": "ekeler",
+              "word": "экелер"
+            },
+            {
               "lang": "Amharic",
               "code": "am",
               "lang_code": "am",
@@ -20858,6 +20867,13 @@
               "word": "帶去 /带去"
             },
             {
+              "lang": "Ngazidja Comorian",
+              "code": "zdj",
+              "lang_code": "zdj",
+              "sense": "to transport toward somebody/somewhere",
+              "word": "urwawa"
+            },
+            {
               "lang": "Corsican",
               "code": "co",
               "lang_code": "co",
@@ -21025,6 +21041,50 @@
               "lang_code": "fr",
               "sense": "to transport toward somebody/somewhere",
               "word": "amener"
+            },
+            {
+              "lang": "North Frisian",
+              "code": "frr",
+              "lang_code": "frr",
+              "sense": "to transport toward somebody/somewhere",
+              "word": "bring",
+              "raw_tags": [
+                "Föhr-Amrum, Helgoland and Sylt"
+              ]
+            },
+            {
+              "lang": "North Frisian",
+              "code": "frr",
+              "lang_code": "frr",
+              "tags": [
+                "Halligen"
+              ],
+              "sense": "to transport toward somebody/somewhere",
+              "word": "briange"
+            },
+            {
+              "lang": "North Frisian",
+              "code": "frr",
+              "lang_code": "frr",
+              "tags": [
+                "Mooring"
+              ],
+              "sense": "to transport toward somebody/somewhere",
+              "word": "bränge"
+            },
+            {
+              "lang": "Old Frisian",
+              "code": "ofs",
+              "lang_code": "ofs",
+              "sense": "to transport toward somebody/somewhere",
+              "word": "bringa"
+            },
+            {
+              "lang": "West-Frisian",
+              "code": "fy",
+              "lang_code": "fy",
+              "sense": "to transport toward somebody/somewhere",
+              "word": "bringe"
             },
             {
               "lang": "Friulian",
@@ -21302,6 +21362,13 @@
               "lang_code": "jv",
               "sense": "to transport toward somebody/somewhere",
               "word": "gawa"
+            },
+            {
+              "lang": "Old Javanese",
+              "code": "kaw",
+              "lang_code": "kaw",
+              "sense": "to transport toward somebody/somewhere",
+              "word": "wawa"
             },
             {
               "lang": "Jeju",
@@ -21606,21 +21673,21 @@
               "word": "wassal"
             },
             {
-              "lang": "Maori",
+              "lang": "Māori",
               "code": "mi",
               "lang_code": "mi",
               "sense": "to transport toward somebody/somewhere",
               "word": "homai"
             },
             {
-              "lang": "Maori",
+              "lang": "Māori",
               "code": "mi",
               "lang_code": "mi",
               "sense": "to transport toward somebody/somewhere",
               "word": "mau"
             },
             {
-              "lang": "Maori",
+              "lang": "Māori",
               "code": "mi",
               "lang_code": "mi",
               "sense": "to transport toward somebody/somewhere",
@@ -21665,48 +21732,11 @@
               "word": "ल्याउनु"
             },
             {
-              "lang": "Ngazidja Comorian",
-              "code": "zdj",
-              "lang_code": "zdj",
-              "sense": "to transport toward somebody/somewhere",
-              "word": "urwawa"
-            },
-            {
               "lang": "Norman",
               "code": "nrf",
               "lang_code": "nrf",
               "sense": "to transport toward somebody/somewhere",
               "word": "emm'ner"
-            },
-            {
-              "lang": "North Frisian",
-              "code": "frr",
-              "lang_code": "frr",
-              "sense": "to transport toward somebody/somewhere",
-              "word": "bring",
-              "raw_tags": [
-                "Föhr-Amrum, Helgoland and Sylt"
-              ]
-            },
-            {
-              "lang": "North Frisian",
-              "code": "frr",
-              "lang_code": "frr",
-              "tags": [
-                "Hallig"
-              ],
-              "sense": "to transport toward somebody/somewhere",
-              "word": "briange"
-            },
-            {
-              "lang": "North Frisian",
-              "code": "frr",
-              "lang_code": "frr",
-              "tags": [
-                "Mooring"
-              ],
-              "sense": "to transport toward somebody/somewhere",
-              "word": "bränge"
             },
             {
               "lang": "Norwegian Bokmål",
@@ -21758,25 +21788,11 @@
               "word": "bringan"
             },
             {
-              "lang": "Old Frisian",
-              "code": "ofs",
-              "lang_code": "ofs",
-              "sense": "to transport toward somebody/somewhere",
-              "word": "bringa"
-            },
-            {
               "lang": "Old Galician-Portuguese",
               "code": "roa-opt",
               "lang_code": "roa-opt",
               "sense": "to transport toward somebody/somewhere",
               "word": "trager"
-            },
-            {
-              "lang": "Old Javanese",
-              "code": "kaw",
-              "lang_code": "kaw",
-              "sense": "to transport toward somebody/somewhere",
-              "word": "wawa"
             },
             {
               "lang": "Old Saxon",
@@ -22110,7 +22126,7 @@
               "code": "sh",
               "lang_code": "sh",
               "tags": [
-                "Roman",
+                "Latin",
                 "intransitive"
               ],
               "sense": "to transport toward somebody/somewhere",
@@ -22121,7 +22137,7 @@
               "code": "sh",
               "lang_code": "sh",
               "tags": [
-                "Roman",
+                "Latin",
                 "transitive"
               ],
               "sense": "to transport toward somebody/somewhere",
@@ -22132,7 +22148,7 @@
               "code": "sh",
               "lang_code": "sh",
               "tags": [
-                "Roman",
+                "Latin",
                 "transitive"
               ],
               "sense": "to transport toward somebody/somewhere",
@@ -22143,7 +22159,7 @@
               "code": "sh",
               "lang_code": "sh",
               "tags": [
-                "Roman",
+                "Latin",
                 "intransitive"
               ],
               "sense": "to transport toward somebody/somewhere",
@@ -22154,7 +22170,7 @@
               "code": "sh",
               "lang_code": "sh",
               "tags": [
-                "Roman",
+                "Latin",
                 "intransitive"
               ],
               "sense": "to transport toward somebody/somewhere",
@@ -22165,7 +22181,7 @@
               "code": "sh",
               "lang_code": "sh",
               "tags": [
-                "Roman",
+                "Latin",
                 "transitive"
               ],
               "sense": "to transport toward somebody/somewhere",
@@ -22177,7 +22193,7 @@
               "lang_code": "sh",
               "tags": [
                 "German",
-                "Roman",
+                "Latin",
                 "slang"
               ],
               "sense": "to transport toward somebody/somewhere",
@@ -22395,14 +22411,6 @@
                 "perfective"
               ],
               "word": "přiwjezć"
-            },
-            {
-              "lang": "Southern Altai",
-              "code": "alt",
-              "lang_code": "alt",
-              "sense": "to transport toward somebody/somewhere",
-              "roman": "ekeler",
-              "word": "экелер"
             },
             {
               "lang": "Spanish",
@@ -22734,13 +22742,6 @@
               "lang_code": "cy",
               "sense": "to transport toward somebody/somewhere",
               "word": "dod â"
-            },
-            {
-              "lang": "West Frisian",
-              "code": "fy",
-              "lang_code": "fy",
-              "sense": "to transport toward somebody/somewhere",
-              "word": "bringe"
             },
             {
               "lang": "Wolof",
@@ -23623,9 +23624,9 @@
             "Terms with Maltese translations",
             "Terms with Manchu translations",
             "Terms with Mandarin translations",
-            "Terms with Maori translations",
             "Terms with Middle English translations",
             "Terms with Mongolian translations",
+            "Terms with Māori translations",
             "Terms with Nahuatl translations",
             "Terms with Navajo translations",
             "Terms with Nivkh translations",
@@ -23860,6 +23861,14 @@
                 "masculine"
               ],
               "word": "petrit"
+            },
+            {
+              "lang": "Southern Altai",
+              "code": "alt",
+              "lang_code": "alt",
+              "sense": "bird of the genus Falco",
+              "roman": "šoŋkor",
+              "word": "шоҥкор"
             },
             {
               "lang": "Arabic",
@@ -24205,6 +24214,16 @@
               "word": "faucon"
             },
             {
+              "lang": "West-Frisian",
+              "code": "fy",
+              "lang_code": "fy",
+              "sense": "bird of the genus Falco",
+              "tags": [
+                "masculine"
+              ],
+              "word": "falk"
+            },
+            {
               "lang": "Friulian",
               "code": "fur",
               "lang_code": "fur",
@@ -24471,6 +24490,22 @@
               "word": "송골매"
             },
             {
+              "lang": "Central Kurdish",
+              "code": "ckb",
+              "lang_code": "ckb",
+              "sense": "bird of the genus Falco",
+              "roman": "şahîn",
+              "word": "شاھین"
+            },
+            {
+              "lang": "Central Kurdish",
+              "code": "ckb",
+              "lang_code": "ckb",
+              "sense": "bird of the genus Falco",
+              "roman": "baz",
+              "word": "باز"
+            },
+            {
               "lang": "Kyrgyz",
               "code": "ky",
               "lang_code": "ky",
@@ -24485,22 +24520,6 @@
               "sense": "bird of the genus Falco",
               "roman": "ılaacın",
               "word": "ылаачын"
-            },
-            {
-              "lang": "Sorani",
-              "code": "ckb",
-              "lang_code": "ckb",
-              "sense": "bird of the genus Falco",
-              "roman": "şahîn",
-              "word": "شاھین"
-            },
-            {
-              "lang": "Sorani",
-              "code": "ckb",
-              "lang_code": "ckb",
-              "sense": "bird of the genus Falco",
-              "roman": "baz",
-              "word": "باز"
             },
             {
               "lang": "Ladin",
@@ -24619,14 +24638,14 @@
               "word": "ᡧᠣᠩᡴᠣᠨ"
             },
             {
-              "lang": "Maori",
+              "lang": "Māori",
               "code": "mi",
               "lang_code": "mi",
               "sense": "bird of the genus Falco",
               "word": "kāeaea"
             },
             {
-              "lang": "Maori",
+              "lang": "Māori",
               "code": "mi",
               "lang_code": "mi",
               "sense": "bird of the genus Falco",
@@ -24708,14 +24727,6 @@
                 "masculine"
               ],
               "word": "falcon"
-            },
-            {
-              "lang": "Ottoman Turkish",
-              "code": "ota",
-              "lang_code": "ota",
-              "sense": "bird of the genus Falco",
-              "roman": "doğan",
-              "word": "طوغان"
             },
             {
               "lang": "Pali",
@@ -24893,7 +24904,7 @@
               "code": "sh",
               "lang_code": "sh",
               "tags": [
-                "Roman",
+                "Latin",
                 "masculine"
               ],
               "sense": "bird of the genus Falco",
@@ -24905,7 +24916,7 @@
               "lang_code": "sh",
               "tags": [
                 "Croatian",
-                "Roman",
+                "Latin",
                 "masculine"
               ],
               "sense": "bird of the genus Falco",
@@ -24958,14 +24969,6 @@
                 "masculine"
               ],
               "word": "sokoł"
-            },
-            {
-              "lang": "Southern Altai",
-              "code": "alt",
-              "lang_code": "alt",
-              "sense": "bird of the genus Falco",
-              "roman": "šoŋkor",
-              "word": "шоҥкор"
             },
             {
               "lang": "Spanish",
@@ -25041,6 +25044,14 @@
               "lang_code": "tr",
               "sense": "bird of the genus Falco",
               "word": "gökdoğan"
+            },
+            {
+              "lang": "Ottoman Turkish",
+              "code": "ota",
+              "lang_code": "ota",
+              "sense": "bird of the genus Falco",
+              "roman": "doğan",
+              "word": "طوغان"
             },
             {
               "lang": "Ukrainian",
@@ -25143,16 +25154,6 @@
                 "plural"
               ],
               "word": "gwalchod"
-            },
-            {
-              "lang": "West Frisian",
-              "code": "fy",
-              "lang_code": "fy",
-              "sense": "bird of the genus Falco",
-              "tags": [
-                "masculine"
-              ],
-              "word": "falk"
             },
             {
               "lang": "Zazaki",
@@ -28616,6 +28617,903 @@
             {
               "parts": [
                 "re‧ci‧ba"
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    "es": [
+      {
+        "url": "https://kaikki.org/eswiktionary/All%20languages%20combined/meaning/n/ni/nieve.html",
+        "download_url": "https://kaikki.org/eswiktionary/All%20languages%20combined/meaning/n/ni/nieve.jsonl",
+        "json": {
+          "word": "nieve",
+          "pos": "noun",
+          "pos_title": "Sustantivo femenino",
+          "lang_code": "es",
+          "lang": "Español",
+          "senses": [
+            {
+              "glosses": [
+                "Precipitación atmosférica constituida por hielo cristalizado."
+              ],
+              "topics": [
+                "meteorology"
+              ],
+              "categories": [
+                "ES:Meteorología"
+              ],
+              "sense_index": "1"
+            },
+            {
+              "glosses": [
+                "Hielo cristalizado en su mayor parte con forma de estrellas hexagonales, ramificadas con características fractales, pero frecuentemente mezcladas con simples cristales. Estos cristales se aglomeran dando lugar a los copos de nieve."
+              ],
+              "topics": [
+                "meteorology"
+              ],
+              "categories": [
+                "ES:Meteorología"
+              ],
+              "sense_index": "2"
+            },
+            {
+              "glosses": [
+                "Manto blanco de estos cristales de hielo, que cubre las superficies bajo el efecto de una nevada."
+              ],
+              "examples": [
+                {
+                  "text": "El lugar permanecía incomunicado por la nieve, pero podría ir andando por la senda que serpenteaba junto a un arroyo",
+                  "bold_text_offsets": [
+                    [
+                      40,
+                      45
+                    ]
+                  ],
+                  "ref": "Calderón Samaniego. Elegía con pétalos de rosa. 2008. ISBN: 9788461284030."
+                }
+              ],
+              "sense_index": "3"
+            },
+            {
+              "glosses": [
+                "Época del año en la que nieva mucho."
+              ],
+              "raw_tags": [
+                "se usa más en plural"
+              ],
+              "sense_index": "4"
+            },
+            {
+              "glosses": [
+                "Tipo de helado preparado a base de agua congelada y sabor artificial."
+              ],
+              "tags": [
+                "Guatemala",
+                "Mexico",
+                "Puerto-Rico"
+              ],
+              "topics": [
+                "food"
+              ],
+              "categories": [
+                "ES:Alimentos",
+                "ES:Guatemala",
+                "ES:México",
+                "ES:Puerto Rico"
+              ],
+              "sense_index": "5"
+            },
+            {
+              "glosses": [
+                "Cocaína."
+              ],
+              "raw_tags": [
+                "en el lenguaje de la droga"
+              ],
+              "sense_index": "6"
+            },
+            {
+              "glosses": [
+                "Color muy blanco."
+              ],
+              "raw_tags": [
+                "Colores"
+              ],
+              "tags": [
+                "literary"
+              ],
+              "categories": [
+                "ES:Colores",
+                "ES:Términos literarios"
+              ],
+              "sense_index": "7"
+            },
+            {
+              "glosses": [
+                "En un aparato de televisión o en algún receptor análogo, imagen que recuerda a la nieve que cae, por efecto de una interferencia electromagnética."
+              ],
+              "sense_index": "8"
+            }
+          ],
+          "categories": [
+            "ES:Palabras bisílabas",
+            "ES:Palabras llanas",
+            "ES:Palabras provenientes del latín",
+            "ES:Rimas:e.be",
+            "ES:Sustantivos",
+            "ES:Sustantivos femeninos",
+            "ES:Sustantivos regulares",
+            "Español",
+            "Español-Aimara",
+            "Español-Ainu",
+            "Español-Albanés",
+            "Español-Alemán",
+            "Español-Aragonés",
+            "Español-Asturiano",
+            "Español-Bajo sajón alemán",
+            "Español-Bielorruso",
+            "Español-Birmano",
+            "Español-Búlgaro",
+            "Español-Cantonés",
+            "Español-Catalán",
+            "Español-Checo",
+            "Español-Cheroqui",
+            "Español-Chino",
+            "Español-Chuvasio",
+            "Español-Coreano",
+            "Español-Danés",
+            "Español-Eslovaco",
+            "Español-Esloveno",
+            "Español-Esperanto",
+            "Español-Finés",
+            "Español-Francés",
+            "Español-Frisón",
+            "Español-Gallego",
+            "Español-Griego",
+            "Español-Guaraní",
+            "Español-Hebreo",
+            "Español-Hindi",
+            "Español-Húngaro",
+            "Español-Ido",
+            "Español-Indonesio",
+            "Español-Inglés",
+            "Español-Islandés",
+            "Español-Italiano",
+            "Español-Japonés",
+            "Español-Kurdo (macrolengua)",
+            "Español-Latín",
+            "Español-Letón",
+            "Español-Lingala",
+            "Español-Lituano",
+            "Español-Maya yucateco",
+            "Español-Min nan",
+            "Español-Neerlandés",
+            "Español-Noruego bokmål",
+            "Español-Noruego nynorsk",
+            "Español-Náhuatl clásico",
+            "Español-Náhuatl de la Huasteca central",
+            "Español-Náhuatl de la Huasteca oriental",
+            "Español-Papiamento",
+            "Español-Persa",
+            "Español-Polaco",
+            "Español-Portugués",
+            "Español-Quechua cuzqueño",
+            "Español-Quiché",
+            "Español-Ruaingá",
+            "Español-Rumano",
+            "Español-Ruso",
+            "Español-Serbocroata",
+            "Español-Somalí",
+            "Español-Suajili",
+            "Español-Sueco",
+            "Español-Tailandés",
+            "Español-Tarahumara central",
+            "Español-Turco",
+            "Español-Ucraniano",
+            "Español-Uigur",
+            "Español-Vasco",
+            "Español-Zapoteco de Yalálag",
+            "Español-Árabe"
+          ],
+          "sounds": [
+            {
+              "ipa": "[ˈnjeβ̞e]",
+              "audio": "LL-Q1321 (spa)-Rodelar-nieve.wav",
+              "wav_url": "https://commons.wikimedia.org/wiki/Special:FilePath/LL-Q1321 (spa)-Rodelar-nieve.wav",
+              "ogg_url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b2/LL-Q1321_(spa)-Rodelar-nieve.wav/LL-Q1321_(spa)-Rodelar-nieve.wav.ogg",
+              "mp3_url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b2/LL-Q1321_(spa)-Rodelar-nieve.wav/LL-Q1321_(spa)-Rodelar-nieve.wav.mp3"
+            },
+            {
+              "ipa": "[niˈeβ̞e]"
+            },
+            {
+              "raw_tags": [
+                "acentuación"
+              ],
+              "other": "llana"
+            },
+            {
+              "raw_tags": [
+                "longitud silábica"
+              ],
+              "other": "bisílaba"
+            },
+            {
+              "rhymes": "e.be"
+            }
+          ],
+          "translations": [
+            {
+              "word": "ウパㇱ",
+              "lang_code": "ain",
+              "lang": "Ainu",
+              "sense_index": "1"
+            },
+            {
+              "word": "ウパㇲ",
+              "lang_code": "ain",
+              "lang": "Ainu",
+              "sense_index": "1"
+            },
+            {
+              "word": "snijeg снег",
+              "lang_code": "sh",
+              "lang": "Serbocroata",
+              "sense_index": "1"
+            },
+            {
+              "word": "dëbora",
+              "lang_code": "sq",
+              "lang": "Albanés",
+              "sense_index": "1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "borë",
+              "lang_code": "sq",
+              "lang": "Albanés",
+              "sense_index": "1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "khunu",
+              "lang_code": "ay",
+              "lang": "Aimara",
+              "sense_index": "1"
+            },
+            {
+              "word": "Schnee",
+              "lang_code": "de",
+              "lang": "Alemán",
+              "sense_index": "1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "word": "ثلج",
+              "lang_code": "ar",
+              "lang": "Árabe",
+              "sense_index": "1"
+            },
+            {
+              "word": "nieu",
+              "lang_code": "an",
+              "lang": "Aragonés",
+              "sense_index": "1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "ñeve",
+              "lang_code": "ast",
+              "lang": "Asturiano"
+            },
+            {
+              "word": "snei",
+              "lang_code": "nds-de",
+              "lang": "Bajo sajón alemán",
+              "sense_index": "1"
+            },
+            {
+              "word": "сьнег",
+              "lang_code": "be",
+              "lang": "Bielorruso",
+              "sense_index": "1"
+            },
+            {
+              "word": "နှင်းခဲ",
+              "lang_code": "my",
+              "lang": "Birmano",
+              "sense_index": "1",
+              "roman": "hnang:hkai:"
+            },
+            {
+              "word": "сняг",
+              "lang_code": "bg",
+              "lang": "Búlgaro",
+              "sense_index": "1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "word": "neu",
+              "lang_code": "ca",
+              "lang": "Catalán",
+              "sense_index": "1"
+            },
+            {
+              "word": "ꭴꮎꮵ",
+              "lang_code": "chr",
+              "lang": "Cheroqui",
+              "sense_index": "1"
+            },
+            {
+              "word": "sníh",
+              "lang_code": "cs",
+              "lang": "Checo",
+              "sense_index": "1"
+            },
+            {
+              "word": "雪",
+              "lang_code": "yue",
+              "lang": "Cantonés",
+              "sense_index": "1"
+            },
+            {
+              "word": "雪",
+              "lang_code": "zh",
+              "lang": "Chino",
+              "sense_index": "1"
+            },
+            {
+              "word": "юр",
+              "lang_code": "cv",
+              "lang": "Chuvasio",
+              "sense_index": "1"
+            },
+            {
+              "word": "눈",
+              "lang_code": "ko",
+              "lang": "Coreano",
+              "sense_index": "1"
+            },
+            {
+              "word": "sne",
+              "lang_code": "da",
+              "lang": "Danés",
+              "sense_index": "1"
+            },
+            {
+              "word": "sneh",
+              "lang_code": "sk",
+              "lang": "Eslovaco",
+              "sense_index": "1"
+            },
+            {
+              "word": "sneg",
+              "lang_code": "sl",
+              "lang": "Esloveno",
+              "sense_index": "1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "neĝo",
+              "lang_code": "eo",
+              "lang": "Esperanto",
+              "sense_index": "1"
+            },
+            {
+              "word": "elur",
+              "lang_code": "eu",
+              "lang": "Vasco",
+              "sense_index": "1"
+            },
+            {
+              "word": "lumi",
+              "lang_code": "fi",
+              "lang": "Finés",
+              "sense_index": "1"
+            },
+            {
+              "word": "neige",
+              "lang_code": "fr",
+              "lang": "Francés",
+              "sense_index": "1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "snie",
+              "lang_code": "fy",
+              "lang": "Frisón",
+              "sense_index": "1"
+            },
+            {
+              "word": "neve",
+              "lang_code": "gl",
+              "lang": "Gallego",
+              "sense_index": "1"
+            },
+            {
+              "word": "χιόνι",
+              "lang_code": "el",
+              "lang": "Griego",
+              "sense_index": "1"
+            },
+            {
+              "word": "yrypy'a",
+              "lang_code": "gn",
+              "lang": "Guaraní",
+              "sense_index": "1"
+            },
+            {
+              "word": "שלג",
+              "lang_code": "he",
+              "lang": "Hebreo",
+              "sense_index": "1"
+            },
+            {
+              "word": "हमपत",
+              "lang_code": "hi",
+              "lang": "Hindi",
+              "sense_index": "1"
+            },
+            {
+              "word": "hó",
+              "lang_code": "hu",
+              "lang": "Húngaro",
+              "sense_index": "1"
+            },
+            {
+              "word": "nivo",
+              "lang_code": "io",
+              "lang": "Ido",
+              "sense_index": "1"
+            },
+            {
+              "word": "salju",
+              "lang_code": "id",
+              "lang": "Indonesio",
+              "sense_index": "1"
+            },
+            {
+              "word": "snow",
+              "lang_code": "en",
+              "lang": "Inglés",
+              "sense_index": "1"
+            },
+            {
+              "word": "snjór",
+              "lang_code": "is",
+              "lang": "Islandés",
+              "sense_index": "1"
+            },
+            {
+              "word": "neve",
+              "lang_code": "it",
+              "lang": "Italiano",
+              "sense_index": "1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "雪",
+              "lang_code": "ja",
+              "lang": "Japonés",
+              "sense_index": "1"
+            },
+            {
+              "word": "ゆき",
+              "lang_code": "ja",
+              "lang": "Japonés"
+            },
+            {
+              "word": "berf",
+              "lang_code": "ku",
+              "lang": "Kurdo (macrolengua)",
+              "sense_index": "1"
+            },
+            {
+              "word": "nix",
+              "lang_code": "la",
+              "lang": "Latín",
+              "sense_index": "1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "neje",
+              "lang_code": "ln",
+              "lang": "Lingala",
+              "sense_index": "1"
+            },
+            {
+              "word": "sniegas",
+              "lang_code": "lt",
+              "lang": "Lituano",
+              "sense_index": "1"
+            },
+            {
+              "word": "sniegs",
+              "lang_code": "lv",
+              "lang": "Letón",
+              "sense_index": "1"
+            },
+            {
+              "word": "seh",
+              "lang_code": "nan",
+              "lang": "Min nan",
+              "sense_index": "1"
+            },
+            {
+              "word": "bat",
+              "lang_code": "yua",
+              "lang": "Maya yucateco",
+              "sense_index": "1"
+            },
+            {
+              "word": "cepayahuitl",
+              "lang_code": "nci",
+              "lang": "Náhuatl clásico",
+              "sense_index": "1"
+            },
+            {
+              "word": "sepayauitl",
+              "lang_code": "nch",
+              "lang": "Náhuatl de la Huasteca central",
+              "sense_index": "1"
+            },
+            {
+              "word": "sepayawitl",
+              "lang_code": "nhe",
+              "lang": "Náhuatl de la Huasteca oriental",
+              "sense_index": "1"
+            },
+            {
+              "word": "sneeuw",
+              "lang_code": "nl",
+              "lang": "Neerlandés",
+              "sense_index": "1"
+            },
+            {
+              "word": "snø",
+              "lang_code": "no",
+              "lang": "Noruego bokmål",
+              "sense_index": "1"
+            },
+            {
+              "word": "snø",
+              "lang_code": "nn",
+              "lang": "Noruego nynorsk",
+              "sense_index": "1"
+            },
+            {
+              "word": "sneu",
+              "lang_code": "pap",
+              "lang": "Papiamento",
+              "sense_index": "1"
+            },
+            {
+              "word": "برف",
+              "lang_code": "fa",
+              "lang": "Persa",
+              "sense_index": "1"
+            },
+            {
+              "word": "śnieg",
+              "lang_code": "pl",
+              "lang": "Polaco",
+              "sense_index": "1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "word": "neve",
+              "lang_code": "pt",
+              "lang": "Portugués",
+              "sense_index": "1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "rit'i",
+              "lang_code": "quz",
+              "lang": "Quechua cuzqueño",
+              "sense_index": "1"
+            },
+            {
+              "word": "saqtew",
+              "lang_code": "quc",
+              "lang": "Quiché",
+              "sense_index": "1"
+            },
+            {
+              "word": "boróf",
+              "lang_code": "rhg",
+              "lang": "Ruaingá",
+              "sense_index": "1"
+            },
+            {
+              "word": "zăpadă",
+              "lang_code": "ro",
+              "lang": "Rumano",
+              "sense_index": "1"
+            },
+            {
+              "word": "снег",
+              "lang_code": "ru",
+              "lang": "Ruso",
+              "sense_index": "1"
+            },
+            {
+              "word": "baraf",
+              "lang_code": "so",
+              "lang": "Somalí",
+              "sense_index": "2"
+            },
+            {
+              "word": "snö",
+              "lang_code": "sv",
+              "lang": "Sueco",
+              "sense_index": "1"
+            },
+            {
+              "word": "theluji",
+              "lang_code": "sw",
+              "lang": "Suajili",
+              "sense_index": "1"
+            },
+            {
+              "word": "หมะ",
+              "lang_code": "th",
+              "lang": "Tailandés",
+              "sense_index": "1"
+            },
+            {
+              "word": "kiparí",
+              "lang_code": "tar",
+              "lang": "Tarahumara central",
+              "sense_index": "1"
+            },
+            {
+              "word": "kar",
+              "lang_code": "tr",
+              "lang": "Turco",
+              "sense_index": "1"
+            },
+            {
+              "word": "قايىل قىلماق",
+              "lang_code": "ug",
+              "lang": "Uigur",
+              "sense_index": "1"
+            },
+            {
+              "word": "сніг",
+              "lang_code": "uk",
+              "lang": "Ucraniano",
+              "sense_index": "1"
+            },
+            {
+              "word": "beye",
+              "lang_code": "zpu",
+              "lang": "Zapoteco de Yalálag",
+              "sense_index": "1"
+            }
+          ],
+          "etymology_texts": [
+            "Del latín nivem."
+          ],
+          "derived": [
+            {
+              "word": "aguanieve"
+            },
+            {
+              "word": "aguanieves"
+            },
+            {
+              "word": "aguzanieves"
+            },
+            {
+              "word": "nevada"
+            },
+            {
+              "word": "nevadilla"
+            },
+            {
+              "word": "nevado"
+            },
+            {
+              "word": "neval"
+            },
+            {
+              "word": "nevar"
+            },
+            {
+              "word": "nevasca"
+            },
+            {
+              "word": "nevatilla"
+            },
+            {
+              "word": "nevazo"
+            },
+            {
+              "word": "nevazón"
+            },
+            {
+              "word": "nevera"
+            },
+            {
+              "word": "nevereta"
+            },
+            {
+              "word": "nevería"
+            },
+            {
+              "word": "nevero"
+            },
+            {
+              "word": "nevisca"
+            },
+            {
+              "word": "neviscar"
+            },
+            {
+              "word": "nevoso"
+            },
+            {
+              "word": "níveo"
+            },
+            {
+              "word": "nival"
+            },
+            {
+              "word": "nivoso"
+            },
+            {
+              "word": "quitanieves"
+            }
+          ],
+          "idioms": [
+            {
+              "word": "agua de nieve"
+            },
+            {
+              "word": "agua nieve"
+            },
+            {
+              "word": "avecilla de las nieves"
+            },
+            {
+              "word": "bola de nieve"
+            },
+            {
+              "word": "cañón de nieve"
+            },
+            {
+              "word": "efecto bola de nieve"
+            },
+            {
+              "word": "nieve carbónica"
+            },
+            {
+              "word": "nieves eternas"
+            },
+            {
+              "word": "moto de nieve"
+            },
+            {
+              "word": "muñeco de nieve"
+            },
+            {
+              "word": "nieves perpetuas"
+            },
+            {
+              "word": "pajarita de las nieves"
+            },
+            {
+              "word": "pozo de nieve"
+            },
+            {
+              "word": "punto de nieve"
+            }
+          ],
+          "related": [
+            {
+              "word": "nevar",
+              "sense_index": "1",
+              "sense": "Precipitación atmosférica constituida por hielo cristalizado."
+            },
+            {
+              "word": "ventisca",
+              "sense_index": "1",
+              "sense": "Precipitación atmosférica constituida por hielo cristalizado."
+            },
+            {
+              "word": "nevasca",
+              "sense_index": "1",
+              "sense": "Precipitación atmosférica constituida por hielo cristalizado."
+            },
+            {
+              "word": "nevazón",
+              "sense_index": "1",
+              "sense": "Precipitación atmosférica constituida por hielo cristalizado."
+            },
+            {
+              "word": "nevisca",
+              "sense_index": "1",
+              "sense": "Precipitación atmosférica constituida por hielo cristalizado."
+            }
+          ],
+          "synonyms": [
+            {
+              "word": "nevada",
+              "sense_index": "1",
+              "sense": "Precipitación atmosférica constituida por hielo cristalizado."
+            },
+            {
+              "word": "helado",
+              "sense_index": "5",
+              "sense": "Tipo de helado preparado a base de agua congelada y sabor artificial."
+            },
+            {
+              "word": "sorbete",
+              "sense_index": "5",
+              "sense": "Tipo de helado preparado a base de agua congelada y sabor artificial."
+            },
+            {
+              "word": "albor",
+              "sense_index": "7",
+              "sense": "Color muy blanco."
+            },
+            {
+              "word": "ampo",
+              "sense_index": "7",
+              "sense": "Color muy blanco."
+            },
+            {
+              "word": "blancura",
+              "sense_index": "7",
+              "sense": "Color muy blanco."
+            },
+            {
+              "word": "estática",
+              "sense_index": "8",
+              "sense": "En un aparato de televisión o en algún receptor análogo, imagen que recuerda a la nieve que cae, por efecto de una interferencia electromagnética."
+            }
+          ],
+          "tags": [
+            "feminine"
+          ],
+          "forms": [
+            {
+              "form": "nieves",
+              "tags": [
+                "plural"
+              ]
+            }
+          ],
+          "hyphenations": [
+            {
+              "parts": [
+                "nie",
+                "ve"
               ]
             }
           ]
@@ -33454,6 +34352,9 @@
               "word": "päin"
             },
             {
+              "word": "-pää"
+            },
+            {
               "word": "päähän"
             },
             {
@@ -35268,7 +36169,7 @@
               "word": "käydä päinsä"
             }
           ],
-          "etymology_text": "From Proto-Finnic *pää, from Proto-Finno-Ugric *päŋe. Cognates include Estonian pea, Veps pä, Moksha and Erzya пе (pe, “end”) and Hungarian fej, fő.",
+          "etymology_text": "From Proto-Finnic *pää (compare Estonian pea, Veps pä), from Proto-Finno-Ugric *päŋe (compare Erzya пе (pe), Komi-Zyrian пом (pom), Northern Mansi пуӈк (puňk), Hungarian fej, fő).",
           "etymology_templates": [
             {
               "name": "inh",
@@ -35278,15 +36179,6 @@
                 "3": "*pää"
               },
               "expansion": "Proto-Finnic *pää"
-            },
-            {
-              "name": "inh",
-              "args": {
-                "1": "fi",
-                "2": "fiu-pro",
-                "3": "*päŋe"
-              },
-              "expansion": "Proto-Finno-Ugric *päŋe"
             },
             {
               "name": "cog",
@@ -35305,14 +36197,37 @@
               "expansion": "Veps pä"
             },
             {
+              "name": "inh",
+              "args": {
+                "1": "fi",
+                "2": "fiu-pro",
+                "3": "*päŋe"
+              },
+              "expansion": "Proto-Finno-Ugric *päŋe"
+            },
+            {
               "name": "cog",
               "args": {
                 "1": "myv",
-                "2": "пе",
-                "3": "",
-                "4": "end"
+                "2": "пе"
               },
-              "expansion": "Erzya пе (pe, “end”)"
+              "expansion": "Erzya пе (pe)"
+            },
+            {
+              "name": "cog",
+              "args": {
+                "1": "kpv",
+                "2": "пом"
+              },
+              "expansion": "Komi-Zyrian пом (pom)"
+            },
+            {
+              "name": "cog",
+              "args": {
+                "1": "mns-nor",
+                "2": "пуӈк"
+              },
+              "expansion": "Northern Mansi пуӈк (puňk)"
             },
             {
               "name": "cog",
@@ -38983,6 +39898,11 @@
               "raw_tags": [
                 "borrowed"
               ]
+            },
+            {
+              "lang": "Haitian Creole",
+              "lang_code": "ht",
+              "word": "dakò"
             },
             {
               "lang": "Italian",
@@ -58578,6 +59498,1562 @@
           ],
           "lang": "Latin",
           "lang_code": "la"
+        }
+      }
+    ]
+  },
+  "pl": {
+    "pl": [
+      {
+        "url": "https://kaikki.org/plwiktionary/All%20languages%20combined/meaning/ś/śn/śnieg.html",
+        "download_url": "https://kaikki.org/plwiktionary/All%20languages%20combined/meaning/ś/śn/śnieg.jsonl",
+        "json": {
+          "word": "śnieg",
+          "pos": "noun",
+          "lang_code": "pl",
+          "lang": "język polski",
+          "pos_title": "rzeczownik",
+          "senses": [
+            {
+              "glosses": [
+                "opad w postaci kryształków lodu"
+              ],
+              "topics": [
+                "meteorology"
+              ],
+              "sense_index": "1.1",
+              "examples": [
+                {
+                  "text": "Wczoraj spadł pierwszy śnieg tej zimy.",
+                  "bold_text_offsets": [
+                    [
+                      23,
+                      28
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "glosses": [
+                "śnieg (1.1) leżący na ziemi, przedmiotach"
+              ],
+              "sense_index": "1.2",
+              "examples": [
+                {
+                  "text": "Obiecałaś matce, że jej pomożesz w odgarnięciu śniegu.",
+                  "bold_text_offsets": [
+                    [
+                      47,
+                      53
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "glosses": [
+                "zły obraz na ekranie telewizora"
+              ],
+              "tags": [
+                "colloquial",
+                "metaphoric"
+              ],
+              "topics": [
+                "technology"
+              ],
+              "sense_index": "1.3",
+              "examples": [
+                {
+                  "text": "Obudziło go mruganie śniegu na ekranie telewizora.",
+                  "bold_text_offsets": [
+                    [
+                      21,
+                      27
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "glosses": [
+                "kokaina"
+              ],
+              "tags": [
+                "dated",
+                "metaphoric"
+              ],
+              "sense_index": "1.4"
+            }
+          ],
+          "categories": [
+            "polski (indeks)"
+          ],
+          "tags": [
+            "inanimate",
+            "masculine"
+          ],
+          "etymology_texts": [
+            "prasł. *sněgъ < praindoeur. *snóygʷʰos < praindoeur. *sneygʷʰ- → śnieżyć",
+            "od"
+          ],
+          "translations": [
+            {
+              "lang_code": "cau",
+              "lang": "abazyński",
+              "word": "сы",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ab",
+              "lang": "abchaski",
+              "word": "асы",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "af",
+              "lang": "afrykanerski",
+              "word": "sneeu",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ay",
+              "lang": "ajmara",
+              "word": "khunu",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ain",
+              "lang": "ajnoski",
+              "word": "ウパㇱ",
+              "sense_index": "1.1",
+              "roman": "upas"
+            },
+            {
+              "lang_code": "akz",
+              "lang": "alabama",
+              "word": "hipli",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "sq",
+              "lang": "albański",
+              "word": "borë",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ale",
+              "lang": "aleucki",
+              "word": "qaniigix",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "am",
+              "lang": "amharski",
+              "word": "የበረዶ ብናኝ",
+              "sense_index": "1.1",
+              "roman": "yäbärädo bnany"
+            },
+            {
+              "lang_code": "en",
+              "lang": "angielski",
+              "word": "snow",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ar",
+              "lang": "arabski",
+              "word": "ثلج",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "az",
+              "lang": "azerski",
+              "word": "qar",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "az",
+              "lang": "azerski",
+              "word": "قار",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "eu",
+              "lang": "baskijski",
+              "word": "elur",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ba",
+              "lang": "baszkirski",
+              "word": "ҡар",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "bho",
+              "lang": "bhodźpuri",
+              "word": "बरफ",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "be",
+              "lang": "białoruski",
+              "word": "снег",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "bg",
+              "lang": "bułgarski",
+              "word": "сняг",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "kjh",
+              "lang": "chakaski",
+              "word": "хар",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "zh",
+              "lang": "chiński standardowy",
+              "word": "雪",
+              "sense_index": "1.1",
+              "roman": "xuě"
+            },
+            {
+              "lang_code": "hr",
+              "lang": "chorwacki",
+              "word": "snijeg",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "cs",
+              "lang": "czeski",
+              "word": "sníh",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "chr",
+              "lang": "czirokeski",
+              "word": "ᎥᏥ",
+              "sense_index": "1.1",
+              "roman": "vtsi"
+            },
+            {
+              "lang_code": "cv",
+              "lang": "czuwaski",
+              "word": "юр",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "dsb",
+              "lang": "dolnołużycki",
+              "word": "sněg",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "nds",
+              "lang": "dolnoniemiecki",
+              "word": "Snee",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "nds-nl",
+              "lang": "dolnosaksoński",
+              "word": "snee",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "da",
+              "lang": "duński",
+              "word": "sne",
+              "sense_index": "1.1",
+              "tags": [
+                "common"
+              ]
+            },
+            {
+              "lang_code": "ovd",
+              "lang": "elfdalski",
+              "word": "sniųo",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "eo",
+              "lang": "esperanto",
+              "word": "neĝo",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "fo",
+              "lang": "farerski",
+              "word": "kavi",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "fo",
+              "lang": "farerski",
+              "word": "snjógvur",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "fi",
+              "lang": "fiński",
+              "word": "lumi",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "fr",
+              "lang": "francuski",
+              "word": "neige",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "fy",
+              "lang": "fryzyjski",
+              "word": "snie",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "fy",
+              "lang": "fryzyjski",
+              "word": "Snee",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "gag",
+              "lang": "gagauski",
+              "word": "kaar",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "got",
+              "lang": "gocki",
+              "word": "𐍃𐌽𐌰𐌹𐍅𐍃",
+              "sense_index": "1.1",
+              "roman": "snaiws"
+            },
+            {
+              "lang_code": "hsb",
+              "lang": "górnołużycki",
+              "word": "sněh",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "ka",
+              "lang": "gruziński",
+              "word": "თოვლი",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "gn",
+              "lang": "guarani",
+              "word": "yrypy’a",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "haw",
+              "lang": "hawajski",
+              "word": "hau",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "es",
+              "lang": "hiszpański",
+              "word": "nieve",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "hop",
+              "lang": "hopi",
+              "word": "nuva",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "io",
+              "lang": "ido",
+              "word": "nivo",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ia",
+              "lang": "interlingua",
+              "word": "nive",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "iu",
+              "lang": "inuktitut",
+              "word": "ᐊᐳᑦ",
+              "sense_index": "1.1",
+              "roman": "aput"
+            },
+            {
+              "lang_code": "is",
+              "lang": "islandzki",
+              "word": "snjór",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "sah",
+              "lang": "jakucki",
+              "word": "хаар",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ja",
+              "lang": "japoński",
+              "word": "雪",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ja",
+              "lang": "japoński",
+              "word": "ゆき",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "yi",
+              "lang": "jidysz",
+              "word": "שניי",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ],
+              "roman": "sznej"
+            },
+            {
+              "lang_code": "krc",
+              "lang": "karaczajsko-bałkarski",
+              "word": "къар",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "kaa",
+              "lang": "karakałpacki",
+              "word": "qar",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "csb",
+              "lang": "kaszubski",
+              "word": "sniég",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "ca",
+              "lang": "kataloński",
+              "word": "neu",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "kk",
+              "lang": "kazachski",
+              "word": "қар",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "qu",
+              "lang": "keczua",
+              "word": "rit’i",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "khw",
+              "lang": "khowarski",
+              "word": "ہیم",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ky",
+              "lang": "kirgiski",
+              "word": "кар",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "clm",
+              "lang": "klallam",
+              "word": "ŋáqaʔ",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ko",
+              "lang": "koreański",
+              "word": "눈",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "crh",
+              "lang": "krymskotatarski",
+              "word": "qar",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "kum",
+              "lang": "kumycki",
+              "word": "къар",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "lad",
+              "lang": "ladino",
+              "word": "inyeve",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "lad",
+              "lang": "ladino",
+              "word": "nieve",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "lkt",
+              "lang": "lakota",
+              "word": "wá",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "li",
+              "lang": "limburski",
+              "word": "sjnie",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "lt",
+              "lang": "litewski",
+              "word": "sniegas",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "lb",
+              "lang": "luksemburski",
+              "word": "Schnéi",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "la",
+              "lang": "łaciński",
+              "word": "nix",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "ltg",
+              "lang": "łatgalski",
+              "word": "snīgs",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "lv",
+              "lang": "łotewski",
+              "word": "sniegs",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "mk",
+              "lang": "macedoński",
+              "word": "снег",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "mai",
+              "lang": "maithili",
+              "word": "बरफ",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "gv",
+              "lang": "manx",
+              "word": "sniaghtey",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "mi",
+              "lang": "maoryski",
+              "word": "hukarere",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "mi",
+              "lang": "maoryski",
+              "word": "huka",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "nah",
+              "lang": "nahuatl",
+              "word": "cehpayahuitl",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "nv",
+              "lang": "nawaho",
+              "word": "yas",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "nv",
+              "lang": "nawaho",
+              "word": "zas",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ne",
+              "lang": "nepalski",
+              "word": "हिउँ",
+              "sense_index": "1.1",
+              "roman": "hium̐"
+            },
+            {
+              "lang_code": "nl",
+              "lang": "niderlandzki",
+              "word": "sneeuw",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "de",
+              "lang": "niemiecki",
+              "word": "Schnee",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "nb",
+              "lang": "norweski (bokmål)",
+              "word": "snø",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "nb",
+              "lang": "norweski (bokmål)",
+              "word": "sne",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "nn",
+              "lang": "norweski (nynorsk)",
+              "word": "snø",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "el",
+              "lang": "nowogrecki",
+              "word": "χιόνι",
+              "sense_index": "1.1",
+              "tags": [
+                "neuter"
+              ]
+            },
+            {
+              "lang_code": "art-prg",
+              "lang": "nowopruski",
+              "word": "snāigs",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "hy",
+              "lang": "ormiański",
+              "word": "ձյուն",
+              "sense_index": "1.1",
+              "roman": "d͡zyoun"
+            },
+            {
+              "lang_code": "ota",
+              "lang": "osmański",
+              "word": "قار",
+              "sense_index": "1.1",
+              "roman": "kar"
+            },
+            {
+              "lang_code": "pi",
+              "lang": "pali",
+              "word": "hima",
+              "sense_index": "1.1",
+              "tags": [
+                "neuter"
+              ]
+            },
+            {
+              "lang_code": "pnt",
+              "lang": "pontyjski",
+              "word": "σ̌ο̈́νι",
+              "sense_index": "1.1",
+              "tags": [
+                "neuter"
+              ]
+            },
+            {
+              "lang_code": "pnt",
+              "lang": "pontyjski",
+              "word": "σ̌ο̈́νιν",
+              "sense_index": "1.1",
+              "tags": [
+                "neuter"
+              ]
+            },
+            {
+              "lang_code": "pt",
+              "lang": "portugalski",
+              "word": "neve",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "ru",
+              "lang": "rosyjski",
+              "word": "снег",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "ro",
+              "lang": "rumuński",
+              "word": "zăpadă",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "sr",
+              "lang": "serbski",
+              "word": "снег",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "slovio",
+              "lang": "slovio",
+              "word": "sneg",
+              "sense_index": "1.1",
+              "roman": "снег"
+            },
+            {
+              "lang_code": "sk",
+              "lang": "słowacki",
+              "word": "sneh",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "sl",
+              "lang": "słoweński",
+              "word": "sneg",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "ang",
+              "lang": "staroangielski",
+              "word": "snāw",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "cu",
+              "lang": "staro-cerkiewno-słowiański",
+              "word": "снѣгъ",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "gr",
+              "lang": "starogrecki",
+              "word": "χιών",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "sga",
+              "lang": "staroirlandzki",
+              "word": "snechtae",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "prg",
+              "lang": "staropruski",
+              "word": "snaygis",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "sco",
+              "lang": "szkocki",
+              "word": "snaw",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "sv",
+              "lang": "szwedzki",
+              "word": "snö",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "tg",
+              "lang": "tadżycki",
+              "word": "барф",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "tl",
+              "lang": "tagalski",
+              "word": "niyebe",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ty",
+              "lang": "tahitański",
+              "word": "hiona",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "th",
+              "lang": "tajski",
+              "word": "หิมะ",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "tt",
+              "lang": "tatarski",
+              "word": "кар",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "tr",
+              "lang": "turecki",
+              "word": "kar",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "tk",
+              "lang": "turkmeński",
+              "word": "gar",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "tyv",
+              "lang": "tuwiński",
+              "word": "хар",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "ug",
+              "lang": "ujgurski",
+              "word": "قار",
+              "sense_index": "1.1",
+              "roman": "qar"
+            },
+            {
+              "lang_code": "uk",
+              "lang": "ukraiński",
+              "word": "сніг",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "uz",
+              "lang": "uzbecki",
+              "word": "qor",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "vo",
+              "lang": "volapük",
+              "word": "nif",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "cy",
+              "lang": "walijski",
+              "word": "eira",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "wa",
+              "lang": "waloński",
+              "word": "nîvaye",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "hu",
+              "lang": "węgierski",
+              "word": "hó",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "vi",
+              "lang": "wietnamski",
+              "word": "tuyết",
+              "sense_index": "1.1"
+            },
+            {
+              "lang_code": "wym",
+              "lang": "wilamowski",
+              "word": "śnyi",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "wym",
+              "lang": "wilamowski",
+              "word": "šnej",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "wym",
+              "lang": "wilamowski",
+              "word": "śnej",
+              "sense_index": "1.1",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "it",
+              "lang": "włoski",
+              "word": "neve",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "zza",
+              "lang": "zazaki",
+              "word": "vewr",
+              "sense_index": "1.1",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "eu",
+              "lang": "baskijski",
+              "word": "elurtza",
+              "sense_index": "1.2"
+            },
+            {
+              "lang_code": "da",
+              "lang": "duński",
+              "word": "sne",
+              "sense_index": "1.2",
+              "tags": [
+                "common"
+              ]
+            },
+            {
+              "lang_code": "kl",
+              "lang": "grenlandzki",
+              "word": "aput",
+              "sense_index": "1.2"
+            },
+            {
+              "lang_code": "es",
+              "lang": "hiszpański",
+              "word": "nevada",
+              "sense_index": "1.2",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "ca",
+              "lang": "kataloński",
+              "word": "neu",
+              "sense_index": "1.2",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "art-prg",
+              "lang": "nowopruski",
+              "word": "snāigs",
+              "sense_index": "1.2",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "pnt",
+              "lang": "pontyjski",
+              "word": "σ̌ο̈́νι",
+              "sense_index": "1.2",
+              "tags": [
+                "neuter"
+              ]
+            },
+            {
+              "lang_code": "pnt",
+              "lang": "pontyjski",
+              "word": "σ̌ο̈́νιν",
+              "sense_index": "1.2",
+              "tags": [
+                "neuter"
+              ]
+            },
+            {
+              "lang_code": "ru",
+              "lang": "rosyjski",
+              "word": "снег",
+              "sense_index": "1.2",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "prg",
+              "lang": "staropruski",
+              "word": "snaygis",
+              "sense_index": "1.2",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "da",
+              "lang": "duński",
+              "word": "sne",
+              "sense_index": "1.3",
+              "tags": [
+                "common"
+              ]
+            },
+            {
+              "lang_code": "fi",
+              "lang": "fiński",
+              "word": "lumisade",
+              "sense_index": "1.3"
+            },
+            {
+              "lang_code": "es",
+              "lang": "hiszpański",
+              "word": "nieve",
+              "sense_index": "1.3",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "is",
+              "lang": "islandzki",
+              "word": "snjór",
+              "sense_index": "1.3",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "ko",
+              "lang": "koreański",
+              "word": "스노우화면",
+              "sense_index": "1.3"
+            },
+            {
+              "lang_code": "mk",
+              "lang": "macedoński",
+              "word": "снег",
+              "sense_index": "1.3",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "nl",
+              "lang": "niderlandzki",
+              "word": "sneeuw",
+              "sense_index": "1.3",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "de",
+              "lang": "niemiecki",
+              "word": "Schnee",
+              "sense_index": "1.3",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "de",
+              "lang": "niemiecki",
+              "word": "Grieß",
+              "sense_index": "1.3",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "el",
+              "lang": "nowogrecki",
+              "word": "χιόνι",
+              "sense_index": "1.3",
+              "tags": [
+                "neuter"
+              ]
+            },
+            {
+              "lang_code": "pt",
+              "lang": "portugalski",
+              "word": "chuvisco",
+              "sense_index": "1.3",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "ru",
+              "lang": "rosyjski",
+              "word": "рябь",
+              "sense_index": "1.3",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "lang_code": "ru",
+              "lang": "rosyjski",
+              "word": "поме́хи",
+              "sense_index": "1.3",
+              "tags": [
+                "plural"
+              ]
+            },
+            {
+              "lang_code": "sv",
+              "lang": "szwedzki",
+              "word": "myrornas krig",
+              "sense_index": "1.3"
+            },
+            {
+              "lang_code": "it",
+              "lang": "włoski",
+              "word": "effetto neve",
+              "sense_index": "1.3",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "lang_code": "da",
+              "lang": "duński",
+              "word": "sne",
+              "sense_index": "1.4",
+              "tags": [
+                "common"
+              ]
+            }
+          ],
+          "sounds": [
+            {
+              "audio": "Pl-śnieg.ogg",
+              "ogg_url": "https://commons.wikimedia.org/wiki/Special:FilePath/Pl-śnieg.ogg",
+              "mp3_url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/d/d6/Pl-śnieg.ogg/Pl-śnieg.ogg.mp3"
+            },
+            {
+              "audio": "LL-Q809 (pol)-Olaf-śnieg.wav",
+              "wav_url": "https://commons.wikimedia.org/wiki/Special:FilePath/LL-Q809 (pol)-Olaf-śnieg.wav",
+              "ogg_url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b1/LL-Q809_(pol)-Olaf-śnieg.wav/LL-Q809_(pol)-Olaf-śnieg.wav.ogg",
+              "mp3_url": "https://upload.wikimedia.org/wikipedia/commons/transcoded/b/b1/LL-Q809_(pol)-Olaf-śnieg.wav/LL-Q809_(pol)-Olaf-śnieg.wav.mp3"
+            },
+            {
+              "ipa": "ɕɲɛk"
+            },
+            {
+              "ipa": "śńek",
+              "tags": [
+                "Slavic-alphabet"
+              ]
+            }
+          ],
+          "antonyms": [
+            {
+              "word": "deszcz",
+              "sense_index": "1.1"
+            },
+            {
+              "word": "słońce",
+              "sense_index": "1.1"
+            }
+          ],
+          "related": [
+            {
+              "word": "pada śnieg",
+              "sense_index": "1.1"
+            },
+            {
+              "word": "płatki śniegu",
+              "sense_index": "1.1"
+            },
+            {
+              "word": "Śnieżnik",
+              "tags": [
+                "noun",
+                "masculine"
+              ]
+            },
+            {
+              "word": "Śnieżka",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "śniegowiec",
+              "tags": [
+                "masculine"
+              ]
+            },
+            {
+              "word": "śnieżka",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "śnieżyca",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "śnieżynka",
+              "tags": [
+                "feminine"
+              ]
+            },
+            {
+              "word": "naśnieżanie",
+              "tags": [
+                "neuter"
+              ]
+            },
+            {
+              "word": "śnieżki",
+              "tags": [
+                "nonvirile"
+              ]
+            },
+            {
+              "word": "śnieżek",
+              "tags": [
+                "diminutive",
+                "masculine"
+              ]
+            },
+            {
+              "word": "zaśnieżyć",
+              "tags": [
+                "verb"
+              ]
+            },
+            {
+              "word": "śnieżyć",
+              "tags": [
+                "imperfective"
+              ]
+            },
+            {
+              "word": "odśnieżyć",
+              "tags": [
+                "perfective"
+              ]
+            },
+            {
+              "word": "odśnieżać",
+              "tags": [
+                "imperfective"
+              ]
+            },
+            {
+              "word": "śnieżny",
+              "tags": [
+                "adjective"
+              ]
+            },
+            {
+              "word": "śniegowy"
+            },
+            {
+              "word": "śnieżysty"
+            },
+            {
+              "word": "zaśnieżony"
+            },
+            {
+              "word": "zaśnieżony",
+              "tags": [
+                "participle"
+              ]
+            },
+            {
+              "word": "śnieżnie",
+              "tags": [
+                "adverb"
+              ]
+            },
+            {
+              "word": "śnieżyście"
+            }
+          ],
+          "proverbs": [
+            {
+              "word": "przysłowia: gdy jasne słońce w dzień gromniczny będzie, więcej niż przedtem śniegu spadnie wszędzie"
+            },
+            {
+              "word": "gdy styczeń burzliwy z śniegami, lato burzliwe z deszczami"
+            },
+            {
+              "word": "gdy w Gromniczną jest ładnie, dużo śniegu jeszcze spadnie"
+            },
+            {
+              "word": "gdy w Katarzynę zima, śnieg nie poleży, mróz nie potrzyma"
+            },
+            {
+              "word": "gdy w styczniu mrozy i śniegi, będą stodoły po brzegi, gdy styczeń mrozów nie daje, prowadzi nieurodzaje"
+            },
+            {
+              "word": "gromnice w śniegu, wiosna jest w biegu, lecz gdy pogoda, dla wiosny zawoda"
+            },
+            {
+              "word": "jak pogoda w świętego Błażeja, będzie ze śniegiem Wielka Niedziela"
+            },
+            {
+              "word": "jak śnieg na świętego Błażeja, pogodna będzie Wielka Niedziela"
+            },
+            {
+              "word": "jak święta Agnieszka wypuści śnieg z mieszka, to go nie powstrzyma ani do Franciszka"
+            },
+            {
+              "word": "na świętego Karola wyjrzy spod śniegu rola"
+            }
+          ],
+          "synonyms": [
+            {
+              "word": "gw. (Górny Śląsk) śniyg",
+              "sense_index": "1.2"
+            }
+          ],
+          "forms": [
+            {
+              "form": "śniegu",
+              "tags": [
+                "genitive",
+                "singular"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegowi",
+              "tags": [
+                "dative",
+                "singular"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegiem",
+              "tags": [
+                "instrumental",
+                "singular"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegu",
+              "tags": [
+                "locative",
+                "singular"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegu",
+              "tags": [
+                "vocative",
+                "singular"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegi",
+              "tags": [
+                "nominative",
+                "plural"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegów",
+              "tags": [
+                "genitive",
+                "plural"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegom",
+              "tags": [
+                "dative",
+                "plural"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegi",
+              "tags": [
+                "accusative",
+                "plural"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegami",
+              "tags": [
+                "instrumental",
+                "plural"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegach",
+              "tags": [
+                "locative",
+                "plural"
+              ],
+              "sense_index": "1.1-4"
+            },
+            {
+              "form": "śniegi",
+              "tags": [
+                "vocative",
+                "plural"
+              ],
+              "sense_index": "1.1-4"
+            }
+          ]
         }
       }
     ]

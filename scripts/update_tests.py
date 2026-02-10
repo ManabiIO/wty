@@ -34,6 +34,7 @@ L = Literal[
     "ja",
     "ko",
     "la",
+    "pl",
     "ru",
     "sq",
     "th",
