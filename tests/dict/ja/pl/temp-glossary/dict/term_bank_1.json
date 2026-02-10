@@ -1,0 +1,60 @@
+[
+  [
+    "命令",
+    "めいれい",
+    "n",
+    "n",
+    0,
+    [
+      "rozkaz",
+      {
+        "type": "structured-content",
+        "content": {
+          "tag": "div",
+          "content": [
+            {
+              "tag": "span",
+              "content": "コンピュータ"
+            },
+            {
+              "tag": "ul",
+              "content": [
+                {
+                  "tag": "li",
+                  "content": "instrukcja"
+                }
+              ]
+            }
+          ]
+        }
+      },
+      {
+        "type": "structured-content",
+        "content": {
+          "tag": "div",
+          "content": [
+            {
+              "tag": "span",
+              "content": "命じる"
+            },
+            {
+              "tag": "ul",
+              "content": [
+                {
+                  "tag": "li",
+                  "content": "rozkazywać"
+                },
+                {
+                  "tag": "li",
+                  "content": "rozkazać"
+                }
+              ]
+            }
+          ]
+        }
+      }
+    ],
+    0,
+    ""
+  ]
+]

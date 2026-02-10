@@ -1,0 +1,292 @@
+[
+  [
+    "śnieg",
+    "",
+    "n",
+    "n",
+    0,
+    [
+      {
+        "type": "structured-content",
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "tag": "div",
+                "data": {
+                  "content": "preamble"
+                },
+                "content": [
+                  {
+                    "tag": "details",
+                    "data": {
+                      "content": "details-entry-Etymology"
+                    },
+                    "content": [
+                      {
+                        "tag": "summary",
+                        "data": {
+                          "content": "summary-entry"
+                        },
+                        "content": "Etymology"
+                      },
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "Etymology-content"
+                        },
+                        "content": "prasł. *sněgъ < praindoeur. *snóygʷʰos < praindoeur. *sneygʷʰ- → śnieżyć\nod"
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "ol",
+            "data": {
+              "content": "glosses"
+            },
+            "content": [
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "meteorology",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "meteo"
+                          }
+                        ]
+                      },
+                      "opad w postaci kryształków lodu",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 example"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Wczoraj spadł pierwszy śnieg tej zimy."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "śnieg (1.1) leżący na ziemi, przedmiotach",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 example"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Obiecałaś matce, że jej pomożesz w odgarnięciu śniegu."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "colloquial",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "col"
+                          },
+                          {
+                            "tag": "span",
+                            "title": "technology",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "tech"
+                          }
+                        ]
+                      },
+                      "zły obraz na ekranie telewizora",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 example"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "Obudziło go mruganie śniegu na ekranie telewizora."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "dated",
+                            "data": {
+                              "content": "tag",
+                              "category": "archaism"
+                            },
+                            "content": "dated"
+                          }
+                        ]
+                      },
+                      "kokaina"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "data": {
+              "content": "backlink"
+            },
+            "content": [
+              {
+                "tag": "a",
+                "href": "https://pl.wiktionary.org/wiki/śnieg#Polish",
+                "content": "Wiktionary"
+              },
+              " | ",
+              {
+                "tag": "a",
+                "href": "https://kaikki.org/plwiktionary/All%20languages%20combined/meaning/ś/śn/śnieg.html",
+                "content": "Kaikki"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    0,
+    ""
+  ]
+]

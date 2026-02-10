@@ -1,0 +1,72 @@
+{
+  "śnieg": {
+    "śniegu": {
+      "noun": [
+        "extracted",
+        [
+          "genitive singular",
+          "locative singular",
+          "vocative singular"
+        ]
+      ]
+    },
+    "śniegowi": {
+      "noun": [
+        "extracted",
+        [
+          "dative singular"
+        ]
+      ]
+    },
+    "śniegiem": {
+      "noun": [
+        "extracted",
+        [
+          "instrumental singular"
+        ]
+      ]
+    },
+    "śniegi": {
+      "noun": [
+        "extracted",
+        [
+          "accusative plural",
+          "nominative plural",
+          "vocative plural"
+        ]
+      ]
+    },
+    "śniegów": {
+      "noun": [
+        "extracted",
+        [
+          "genitive plural"
+        ]
+      ]
+    },
+    "śniegom": {
+      "noun": [
+        "extracted",
+        [
+          "dative plural"
+        ]
+      ]
+    },
+    "śniegami": {
+      "noun": [
+        "extracted",
+        [
+          "instrumental plural"
+        ]
+      ]
+    },
+    "śniegach": {
+      "noun": [
+        "extracted",
+        [
+          "locative plural"
+        ]
+      ]
+    }
+  }
+}

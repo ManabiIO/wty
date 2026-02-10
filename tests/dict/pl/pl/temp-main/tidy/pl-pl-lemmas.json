@@ -1,0 +1,52 @@
+{
+  "śnieg": {
+    "śnieg": {
+      "noun": [
+        {
+          "gloss_tree": {
+            "opad w postaci kryształków lodu": {
+              "topics": [
+                "meteorology"
+              ],
+              "examples": [
+                {
+                  "text": "Wczoraj spadł pierwszy śnieg tej zimy."
+                }
+              ]
+            },
+            "śnieg (1.1) leżący na ziemi, przedmiotach": {
+              "examples": [
+                {
+                  "text": "Obiecałaś matce, że jej pomożesz w odgarnięciu śniegu."
+                }
+              ]
+            },
+            "zły obraz na ekranie telewizora": {
+              "tags": [
+                "colloquial",
+                "metaphoric"
+              ],
+              "topics": [
+                "technology"
+              ],
+              "examples": [
+                {
+                  "text": "Obudziło go mruganie śniegu na ekranie telewizora."
+                }
+              ]
+            },
+            "kokaina": {
+              "tags": [
+                "dated",
+                "metaphoric"
+              ]
+            }
+          },
+          "etymology_text": "prasł. *sněgъ < praindoeur. *snóygʷʰos < praindoeur. *sneygʷʰ- → śnieżyć\nod",
+          "wlink": "https://pl.wiktionary.org/wiki/śnieg#Polish",
+          "klink": "https://kaikki.org/plwiktionary/All%20languages%20combined/meaning/ś/śn/śnieg.html"
+        }
+      ]
+    }
+  }
+}

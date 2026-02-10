@@ -1,0 +1,262 @@
+[
+  [
+    "nieve",
+    "",
+    "n",
+    "n",
+    0,
+    [
+      {
+        "type": "structured-content",
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "tag": "div",
+                "data": {
+                  "content": "preamble"
+                },
+                "content": [
+                  {
+                    "tag": "details",
+                    "data": {
+                      "content": "details-entry-Etymology"
+                    },
+                    "content": [
+                      {
+                        "tag": "summary",
+                        "data": {
+                          "content": "summary-entry"
+                        },
+                        "content": "Etymology"
+                      },
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "Etymology-content"
+                        },
+                        "content": "Del latín nivem."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "ol",
+            "data": {
+              "content": "glosses"
+            },
+            "content": [
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "meteorology",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "meteo"
+                          }
+                        ]
+                      },
+                      "Precipitación atmosférica constituida por hielo cristalizado."
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "meteorology",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "meteo"
+                          }
+                        ]
+                      },
+                      "Hielo cristalizado en su mayor parte con forma de estrellas hexagonales, ramificadas con características fractales, pero frecuentemente mezcladas con simples cristales. Estos cristales se aglomeran dando lugar a los copos de nieve."
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Manto blanco de estos cristales de hielo, que cubre las superficies bajo el efecto de una nevada.",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "1 ejemplo"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "El lugar permanecía incomunicado por la nieve, pero podría ir andando por la senda que serpenteaba junto a un arroyo"
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "Calderón Samaniego. Elegía con pétalos de rosa. 2008. ISBN: 9788461284030."
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Época del año en la que nieva mucho."
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Tipo de helado preparado a base de agua congelada y sabor artificial."
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "Cocaína."
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "tags"
+                        },
+                        "content": [
+                          {
+                            "tag": "span",
+                            "title": "literary",
+                            "data": {
+                              "content": "tag",
+                              "category": ""
+                            },
+                            "content": "ltrry"
+                          }
+                        ]
+                      },
+                      "Color muy blanco."
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "En un aparato de televisión o en algún receptor análogo, imagen que recuerda a la nieve que cae, por efecto de una interferencia electromagnética."
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "data": {
+              "content": "backlink"
+            },
+            "content": [
+              {
+                "tag": "a",
+                "href": "https://es.wiktionary.org/wiki/nieve#Spanish",
+                "content": "Wiktionary"
+              },
+              " | ",
+              {
+                "tag": "a",
+                "href": "https://kaikki.org/eswiktionary/All%20languages%20combined/meaning/n/ni/nieve.html",
+                "content": "Kaikki"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    0,
+    ""
+  ]
+]
