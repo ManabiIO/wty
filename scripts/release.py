@@ -3,13 +3,15 @@
 - The languages are collected from languages.json
 - Generated dictionaries are stored @ data/release
 - Then, use huggingface_hub API to:
-  - update the huggingface README
+  - update the huggingface metadata (README, logs etc.)
   - upload the data/release folder
 
 Uploading to the hub requires:
 pip install python-dotenv huggingface-hub
 
-To modify the hug repo:
+---
+
+To modify the huggingface repo:
 git clone https://huggingface.co/datasets/daxida/wty-release
 ...
 changes
@@ -53,6 +55,14 @@ class Args:
     dtype: DictTy | None
 
 
+def release_version() -> str:
+    """The version of the release.
+
+    Different from the crate semantic version. This uses calver.
+    """
+    return datetime.datetime.now().strftime("%Y-%m-%d")
+
+
 class PathManager:
     def __init__(self, root_dir: Path) -> None:
         self.root_dir = root_dir
@@ -62,12 +72,16 @@ class PathManager:
         self.index = self.release / "index"
         self.readme = self.release / "README.md"
         self.download = self.release / "kaikki"
-        self.stage = self.release / "stage"
 
         # These are at the "github repo root"
         self.assets = Path("assets")
         self.languages_json = self.assets / "languages.json"
         self.log = Path("log.txt")
+
+        # Stage structure
+        self.stage = self.release / "stage"
+        self.version = self.stage / "versions" / release_version()
+        self.latest = self.stage / "latest"
 
     def setup(self) -> None:
         self.release.mkdir(exist_ok=True)
@@ -121,23 +135,36 @@ def stats(
     return n_files, human_size(size_files)
 
 
-def release_version() -> str:
-    """The version of the release.
-
-    Different from the crate semantic version. This uses calver.
-    """
-    return datetime.datetime.now().strftime("%Y-%m-%d")
-
-
 def prepare_stage() -> None:
-    """Put dict/index files inside a folder to comply with upload_large_folder."""
+    """Take the release folder created with wty and structure it to comply with
+    huggingface upload_large_folder.
+
+    The resulting layout is:
+
+        stage/
+        ├── versions/
+        │   └── {version}/
+        │       ├── dict/
+        │       ├── index/
+        │       ├── README.md
+        │       └── log.txt
+        └── latest/
+            ├── dict/
+            ├── index/
+            ├── README.md
+            └── log.txt
+
+    We copy (not move) files so the local release directory remains intact.
+
+    The README and log shown on the Hugging Face repo root are handled
+    separately and do not require upload_large_folder.
+    """
     PM.stage.mkdir()  # Fail if exists
-    if (PM.stage / "dict").exists():
-        raise RuntimeError("Stage already contains 'dict'")
-    shutil.move(str(PM.dictionary), PM.stage / "dict")
-    if (PM.stage / "index").exists():
-        raise RuntimeError("Stage already contains 'index'")
-    shutil.move(str(PM.index), PM.stage / "index")
+
+    for destination in (PM.version, PM.latest):
+        print(f"Copying release to {destination}...")
+        shutil.copytree(str(PM.dictionary), destination / "dict")
+        shutil.copytree(str(PM.index), destination / "index")
 
 
 # https://huggingface.co/new-dataset
@@ -168,10 +195,8 @@ def upload_to_huggingface() -> None:
 
     kwargs = dict(
         folder_path=str(stage_dir),
-        # path_in_repo="dict",
         repo_id=REPO_ID_HF,
         repo_type="dataset",
-        # commit_message=f"[{version}] update dictionaries - {commit_sha_short}",
     )
 
     print()
@@ -184,43 +209,33 @@ def upload_to_huggingface() -> None:
 
     api = HfApi()
 
-    try:
-        prepare_stage()
-        api.upload_large_folder(**kwargs)  # type: ignore
-        print(f"Upload complete @ https://huggingface.co/datasets/{REPO_ID_HF}")
-    except Exception as e:
-        print(e)
-        exit(1)
+    # Upload dict + index (stage folder)
+    prepare_stage()
+    api.upload_large_folder(**kwargs)  # type: ignore
+    print(f"Upload complete @ https://huggingface.co/datasets/{REPO_ID_HF}")
 
-    # README and logs
+    # Upload README and logs at root, and also to latest and versions folders.
     readme_path = PM.readme
     update_readme_local(readme_path, commit_sha, version)
 
-    try:
+    for folder_in_repo in ("", f"versions/{release_version()}", "latest"):
         api.upload_file(
             path_or_fileobj=str(readme_path),
-            path_in_repo="README.md",
+            path_in_repo=f"{folder_in_repo}/README.md",
             repo_id=REPO_ID_HF,
             repo_type="dataset",
             commit_message=f"[{version}] update README",
         )
-        print("Uploaded README")
-    except Exception as e:
-        print(e)
-        exit(1)
+        print(f"Uploaded README @ {folder_in_repo or 'root'}")
 
-    try:
         api.upload_file(
             path_or_fileobj=str(PM.log),
-            path_in_repo="log.txt",
+            path_in_repo=f"{folder_in_repo}/log.txt",
             repo_id=REPO_ID_HF,
             repo_type="dataset",
             commit_message=f"[{version}] update logs",
         )
-        print("Uploaded logs")
-    except Exception as e:
-        print(e)
-        exit(1)
+        print(f"Uploaded logs @ {folder_in_repo or 'root'}")
 
 
 def update_readme_local(readme_path: Path, commit_sha: str, version: str) -> None:
