@@ -1,6 +1,6 @@
 use crate::lang::Lang;
 
-const BASE_URL: &str = "https://huggingface.co/datasets/daxida/test-dataset/resolve/main";
+const BASE_URL: &str = "https://huggingface.co/datasets/daxida/wty-release/resolve/main";
 
 /// The url to download this dictionary.
 ///
@@ -66,7 +66,7 @@ mod tests {
     fn url_download() {
         assert_eq!(
             download_url("wty-afb-en-ipa", Lang::En, Lang::Afb),
-            "https://huggingface.co/datasets/daxida/test-dataset/resolve/main/dict/afb/en/wty-afb-en-ipa.zip?download=true"
+            "https://huggingface.co/datasets/daxida/wty-release/resolve/main/dict/afb/en/wty-afb-en-ipa.zip?download=true"
         );
     }
 
@@ -74,7 +74,7 @@ mod tests {
     fn url_index() {
         assert_eq!(
             index_url("wty-afb-en-ipa"),
-            "https://huggingface.co/datasets/daxida/test-dataset/resolve/main/index/wty-afb-en-ipa-index?download=true"
+            "https://huggingface.co/datasets/daxida/wty-release/resolve/main/index/wty-afb-en-ipa-index?download=true"
         );
     }
 }

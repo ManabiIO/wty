@@ -470,6 +470,6 @@
 
 !!! tip "You can import a dictionary directly to Yomitan by pasting the URL into "Import from URLs""
 
-Files are hosted [here](https://huggingface.co/datasets/daxida/test-dataset), where you can also see the calendar version (calver) of the dictionaries.
+Files are hosted [here](https://huggingface.co/datasets/daxida/wty-release), where you can also see the calendar version (calver) of the dictionaries.
 
 A brief description of the dictionaries can be found [here](dictionaries.md).

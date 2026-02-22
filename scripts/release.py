@@ -10,7 +10,7 @@ Uploading to the hub requires:
 pip install python-dotenv huggingface-hub
 
 To modify the hug repo:
-git clone https://huggingface.co/datasets/daxida/test-dataset
+git clone https://huggingface.co/datasets/daxida/wty-release
 ...
 changes
 ...
@@ -34,7 +34,7 @@ from pathlib import Path
 from pprint import pprint
 from typing import Any, Literal
 
-REPO_ID_HF = "daxida/test-dataset"
+REPO_ID_HF = "daxida/wty-release"
 REPO_HF = f"https://huggingface.co/datasets/{REPO_ID_HF}"
 REPO_ID_GH = "https://github.com/daxida/wty"
 
@@ -64,7 +64,7 @@ class PathManager:
         self.download = self.release / "kaikki"
         self.stage = self.release / "stage"
 
-        # These are at the "repo root"
+        # These are at the "github repo root"
         self.assets = Path("assets")
         self.languages_json = self.assets / "languages.json"
         self.log = Path("log.txt")
@@ -124,7 +124,7 @@ def stats(
 def release_version() -> str:
     """The version of the release.
 
-    Different from the crate version. This uses calver.
+    Different from the crate semantic version. This uses calver.
     """
     return datetime.datetime.now().strftime("%Y-%m-%d")
 
@@ -185,10 +185,6 @@ def upload_to_huggingface() -> None:
     api = HfApi()
 
     try:
-        # Huggingface may complain that we should be using upload_large_folder instead,
-        # but this worked fine, and upload_large_folder polutes the git history and messes
-        # up the file tree.
-        # api.upload_folder(**kwargs)  # type: ignore
         prepare_stage()
         api.upload_large_folder(**kwargs)  # type: ignore
         print(f"Upload complete @ https://huggingface.co/datasets/{REPO_ID_HF}")
