@@ -7,6 +7,7 @@ cov:
 update *args:
   python3 scripts/update_tests.py {{args}}
 
+# Usage: `just release {build|publish} [-v] [-n] [-j JOBS] [-t {main|ipa|ipa-merged}]`
 release *args:
   python3 scripts/release.py {{args}}
 
