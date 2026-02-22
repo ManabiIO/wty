@@ -317,7 +317,7 @@ def run_cmd(
         result = subprocess.run(
             cmd,
             capture_output=True,
-            check=True,  # ignore errors atm
+            check=True,  # check=False ignores errors
         )
     except subprocess.CalledProcessError as e:
         # Some pairs may not have a dump from the English edition.
@@ -328,8 +328,13 @@ def run_cmd(
         # https://kaikki.org/dictionary/
         #
         # We ignore the 404 that we get when requesting the dictionary
+        #
+        # NOTE: if we go with the database approach, this is pointless since we should never
+        # use the preprocessed files.
         if cmd_name in ("ipa", "main") and params.split(" ")[1] == "en":
             # print("[err]", clean(" ".join(cmd)))
+            return 0, logs
+        if cmd_name == "ipa-merged" and params.split(" ")[0] == "ku":
             return 0, logs
         log("[err]", f"Command failed: {' '.join(cmd)}")
         log("[err-stdout]", e.stdout)
@@ -452,8 +457,10 @@ def run_matrix(langs: list[Lang], args: Args) -> None:
     if args.dtype is not None:
         matrix = [run for run in matrix if run[0] == args.dtype]
 
-    log("ALL", f"Editions:  {' '.join(sorted(with_edition))}")
-    log("ALL", f"Languages: {' '.join(sorted(isos))}")
+    n_editions = len(with_edition)
+    n_languages = len(isos)
+    log("ALL", f"Editions ({n_editions}):  {' '.join(sorted(with_edition))}")
+    log("ALL", f"Languages ({n_languages}): {' '.join(sorted(isos))}")
     # dictionary_types: list[DictTy] = [
     #     # The order is relevant to prevent multiple workers downloading
     #     # "ipa",
@@ -531,7 +538,7 @@ def check_previous_files(label: str, path: Path, file_type: str = "") -> None:
             f"Found previous {file_msg} ({total_size}, {n_files} files) @ {path}",
         )
     else:
-        log(label, f"Clean directory. No previous {file_type} found @ {path}")
+        log(label, f"Clean directory. No previous {file_msg} found @ {path}")
 
 
 def run_prelude() -> None:
