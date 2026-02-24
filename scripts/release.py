@@ -342,10 +342,10 @@ def run_cmd(
         #
         # NOTE: if we go with the database approach, this is pointless since we should never
         # use the preprocessed files.
-        if cmd_name in ("ipa", "main") and params.split(" ")[1] == "en":
-            # print("[err]", clean(" ".join(cmd)))
-            return 0, logs
-        if cmd_name == "ipa-merged" and params.split(" ")[0] == "ku":
+        if (
+            cmd_name in ("ipa", "main", "download") and params.split(" ")[1] == "en"
+        ) or (cmd_name == "ipa-merged" and params.split(" ")[0] == "ku"):
+            # print("[warn] Failed to run cmd:", clean(" ".join(cmd)))
             return 0, logs
         log("[err]", f"Command failed: {' '.join(cmd)}")
         log("[err-stdout]", e.stdout)
@@ -486,7 +486,7 @@ def run_matrix(langs: list[Lang], args: Args) -> None:
     # and will try to download it itself... This way, we guarantee only one download happens.
     #
     # NOTE: when testing with subsets, if ipa-merged is in the matrix we will download all editions...
-    run_download(odir, with_edition, args)
+    run_download(odir, isos, with_edition, args)
 
     log("ALL", "Starting...")
     for dict_ty, sources, target_lambda in matrix:
@@ -561,12 +561,15 @@ def run_prelude() -> None:
     log()
 
 
-def run_download(odir: Path, with_edition: list[str], args: Args) -> None:
+def run_download(
+    odir: Path, isos: list[str], with_edition: list[str], args: Args
+) -> None:
     start = time.perf_counter()
 
     log("dl", "Downloading editions...")
     check_previous_files("dl", PM.download)
 
+    # Download editions (English only downloads the filtered en-en)
     for source in with_edition:
         label = f"dl-{source}"
         params = f"{source} {source}"
@@ -575,6 +578,19 @@ def run_download(odir: Path, with_edition: list[str], args: Args) -> None:
             log(logline)
         _, size = stats(PM.download, endswith=f"{source}-extract.jsonl")
         log(label, f"Finished download ({size})")
+
+    # Download the rest of the filtered English jsonlines
+    if "en" in with_edition:
+        for source in isos:
+            label = f"dl-{source}-en"
+            params = f"{source} en"
+            _, logs = run_cmd(
+                odir, "download", params, args, print_download_status=True
+            )
+            for logline in logs:
+                log(logline)
+            _, size = stats(PM.download, endswith=f"{source}-en-extract.jsonl")
+            log(label, f"Finished download ({size})")
 
     _, total_size = stats(PM.download)
     elapsed = time.perf_counter() - start
