@@ -28,5 +28,36 @@
         }
       ]
     }
+  },
+  "cura": {
+    "cura": {
+      "noun": [
+        {
+          "gloss_tree": {
+            "premura per qualcosa o per qualcuno, spesso fondata sulla fiducia reciproca": {},
+            "terapia medica al fine di ottenere una guarigione o la guarigione stessa": {
+              "examples": [
+                {
+                  "text": "più cure assieme qualche volta si equilibrano vicendevolmente"
+                }
+              ]
+            }
+          },
+          "etymology_text": "dal latino cūra",
+          "wlink": "https://it.wiktionary.org/wiki/cura#Italian",
+          "klink": "https://kaikki.org/itwiktionary/All%20languages%20combined/meaning/c/cu/cura.html"
+        }
+      ],
+      "verb": [
+        {
+          "gloss_tree": {
+            "seconda persona singolare dell'imperativo presente di curare": {}
+          },
+          "etymology_text": "dal latino cūra",
+          "wlink": "https://it.wiktionary.org/wiki/cura#Italian",
+          "klink": "https://kaikki.org/itwiktionary/All%20languages%20combined/meaning/c/cu/cura.html"
+        }
+      ]
+    }
   }
 }

@@ -1188,7 +1188,20 @@ fn is_inflection_sense(edition: Edition, sense: &Sense) -> bool {
             // This is the most generic way of dealing with inflection, but assumes that the
             // edition is parsed by kaikki with "form_of" at sense level. It could be extended to
             // other languages.
-            sense.form_of.len() == 1 && sense.glosses.len() == 1
+            //
+            // Note: because of how "etymologies" (read, definitions) are processed by Kaikki, we
+            // are guaranteed that if we find an inflection, all the glosses are variations of that
+            // inflection.
+            // This means that a word like "cura", that both in Spanish and Italian is both a verb
+            // and a noun, will not have the glosses intermingled: we will only find glosses for
+            // the verb in the verb "etymology", and similarly for the noun.
+            // Therefore, we can safely assume that, if we have a form_of, every gloss is an
+            // explanation about the inflection, and that the only condition we really care about,
+            // is the presence of a "form_of".
+            //
+            // Cf. https://it.wiktionary.org/wiki/cura#Italiano (fixed recently)
+            // Cf. https://it.wiktionary.org/wiki/ceni#Italiano
+            sense.form_of.len() == 1
         }
         _ => false,
     }
@@ -1259,8 +1272,10 @@ fn handle_inflection_sense(
         }
         Edition::En => handle_inflection_sense_en(source, entry, sense, irs),
         Edition::Fr | Edition::It => {
-            match (sense.form_of.as_slice(), sense.glosses.as_slice()) {
-                ([form_of], [_gloss]) => {
+            // One could use sense::glosses as tags, and while they carry important information
+            // they are obscenely verbose.
+            match sense.form_of.as_slice() {
+                [form_of] => {
                     debug_assert!(sense.tags.iter().any(|tag| *tag == "form-of"));
                     let allowed_tags: Vec<_> = sense
                         .tags
@@ -1281,7 +1296,7 @@ fn handle_inflection_sense(
                         inflection_tags,
                     );
                 }
-                // SAFETY: we checked that only one form_of and only one gloss is present.
+                // SAFETY: we checked that only one form_of is present.
                 _ => unreachable!(),
             }
         }

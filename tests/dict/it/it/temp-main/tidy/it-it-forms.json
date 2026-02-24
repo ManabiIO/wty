@@ -18,5 +18,35 @@
         ]
       ]
     }
+  },
+  "cura": {
+    "cure": {
+      "noun": [
+        "extracted",
+        [
+          "plural"
+        ]
+      ]
+    }
+  },
+  "curare": {
+    "cura": {
+      "verb": [
+        "inflection",
+        [
+          "redirected from cura"
+        ]
+      ]
+    }
+  },
+  "cenare": {
+    "ceni": {
+      "verb": [
+        "inflection",
+        [
+          "redirected from ceni"
+        ]
+      ]
+    }
   }
 }

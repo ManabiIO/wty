@@ -32,5 +32,56 @@
     ],
     0,
     ""
+  ],
+  [
+    "cure",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "cura",
+        [
+          "plural"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "cura",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "curare",
+        [
+          "redirected from cura"
+        ]
+      ]
+    ],
+    0,
+    ""
+  ],
+  [
+    "ceni",
+    "",
+    "non-lemma",
+    "",
+    0,
+    [
+      [
+        "cenare",
+        [
+          "redirected from ceni"
+        ]
+      ]
+    ],
+    0,
+    ""
   ]
 ]
