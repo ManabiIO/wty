@@ -33,7 +33,7 @@ Example:
 {
   "revision": "2026.02.22",
   "isUpdatable": true,
-  "indexUrl": "https://some/website/wty-el-el-index",
+  "indexUrl": "https://some/website/wty-el-el-index.json",
   "downloadUrl": "https://some/website/wty-el-el.zip",
   ...
 }

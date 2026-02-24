@@ -1,19 +1,20 @@
 use crate::lang::Lang;
 
-const BASE_URL: &str = "https://huggingface.co/datasets/daxida/wty-release/resolve/main";
+const BASE_URL: &str = "https://huggingface.co/datasets/daxida/wty-release/resolve/main/latest";
 
 /// The url to download this dictionary.
 ///
 /// See: docs/javascripts/download.js (keep in sync)
 fn download_url(dict_name_expanded: &str, source: Lang, target: Lang) -> String {
-    format!("{BASE_URL}/dict/{target}/{source}/{dict_name_expanded}.zip?download=true")
+    // WARN: not sure if this works for dictionaries that don't follow source/target
+    format!("{BASE_URL}/dict/{source}/{target}/{dict_name_expanded}.zip?download=true")
 }
 
 /// The url of the cloned index of this dictionary.
 ///
 /// See: scripts/release.py (keep in sync)
 fn index_url(dict_name_expanded: &str) -> String {
-    format!("{BASE_URL}/index/{dict_name_expanded}-index?download=true")
+    format!("{BASE_URL}/index/{dict_name_expanded}-index.json?download=true")
 }
 
 // Original index attributes:
@@ -65,8 +66,8 @@ mod tests {
     #[test]
     fn url_download() {
         assert_eq!(
-            download_url("wty-afb-en-ipa", Lang::En, Lang::Afb),
-            "https://huggingface.co/datasets/daxida/wty-release/resolve/main/dict/afb/en/wty-afb-en-ipa.zip?download=true"
+            download_url("wty-afb-en-ipa", Lang::Afb, Lang::En),
+            "https://huggingface.co/datasets/daxida/wty-release/resolve/main/latest/dict/afb/en/wty-afb-en-ipa.zip?download=true"
         );
     }
 
@@ -74,7 +75,7 @@ mod tests {
     fn url_index() {
         assert_eq!(
             index_url("wty-afb-en-ipa"),
-            "https://huggingface.co/datasets/daxida/wty-release/resolve/main/index/wty-afb-en-ipa-index?download=true"
+            "https://huggingface.co/datasets/daxida/wty-release/resolve/main/latest/index/wty-afb-en-ipa-index.json?download=true"
         );
     }
 }
