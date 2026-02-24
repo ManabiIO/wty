@@ -9,7 +9,6 @@ use std::path::PathBuf;
 use crate::Map;
 use crate::cli::Options;
 use crate::dict::writer::write_yomitan;
-use crate::download::DatasetKind;
 use crate::lang::{Edition, EditionSpec, Lang, LangSpec};
 use crate::models::kaikki::WordEntry;
 use crate::models::yomitan::YomitanEntry;
@@ -263,88 +262,13 @@ impl fmt::Debug for Langs {
     }
 }
 
-/// Depending on source, which jsonl should we consume to make this dictionary.
-pub trait DatasetStrategy {
-    fn dataset_request(&self, source: LangSpec) -> DatasetRequest;
-}
-
-#[derive(Debug, Clone, Copy)]
-pub enum DatasetRequest {
-    /// Read the unfiltered edition-wide JSONL
-    UnfilteredEdition,
-
-    /// Read the filtered JSONL for (edition, lang)
-    FilteredLang(Lang),
-
-    FilteredEdition,
-}
-
-impl DatasetStrategy for DMain {
-    fn dataset_request(&self, source: LangSpec) -> DatasetRequest {
-        match source {
-            LangSpec::All => DatasetRequest::UnfilteredEdition,
-            LangSpec::One(lang) => DatasetRequest::FilteredLang(lang),
-        }
-    }
-}
-
-impl DatasetStrategy for DIpa {
-    fn dataset_request(&self, source: LangSpec) -> DatasetRequest {
-        match source {
-            LangSpec::All => DatasetRequest::UnfilteredEdition,
-            LangSpec::One(lang) => DatasetRequest::FilteredLang(lang),
-        }
-    }
-}
-
-impl DatasetStrategy for DGlossary {
-    fn dataset_request(&self, source: LangSpec) -> DatasetRequest {
-        match source {
-            LangSpec::All => DatasetRequest::FilteredEdition,
-            // WARN: The post-processed (filtered) versions of the English edition have their
-            // translations in the sense and not in the top-level, which invalidates our logic.
-            LangSpec::One(lang) => DatasetRequest::FilteredLang(lang),
-            // LangSpec::One(lang) => DatasetRequest::UnfilteredEdition,
-        }
-    }
-}
-
-impl DatasetStrategy for DIpaMerged {
-    fn dataset_request(&self, source: LangSpec) -> DatasetRequest {
-        match source {
-            LangSpec::All => DatasetRequest::FilteredEdition,
-            LangSpec::One(lang) => DatasetRequest::FilteredLang(lang),
-        }
-    }
-}
-
-impl DatasetStrategy for DGlossaryExtended {
-    fn dataset_request(&self, source: LangSpec) -> DatasetRequest {
-        match source {
-            LangSpec::All => DatasetRequest::FilteredEdition,
-            LangSpec::One(lang) => DatasetRequest::FilteredLang(lang),
-        }
-    }
-}
-
-pub const fn edition_to_kind(edition: Edition) -> DatasetKind {
-    match edition {
-        Edition::En => DatasetKind::Filtered,
-        _ => DatasetKind::Unfiltered,
-    }
-}
-
 pub fn find_or_download_jsonl(
     edition: Edition,
     lang: Option<Lang>,
-    kind: DatasetKind,
     pm: &PathManager,
 ) -> Result<PathBuf> {
     let paths_candidates = pm.dataset_paths(edition, lang);
-    let kinds_to_check = match kind {
-        DatasetKind::Filtered => vec![PathKind::Filtered],
-        DatasetKind::Unfiltered => vec![PathKind::Unfiltered, PathKind::Filtered],
-    };
+    let kinds_to_check = vec![PathKind::Unfiltered, PathKind::Filtered];
     let of_kind: Vec<_> = paths_candidates
         .inner
         .iter()
@@ -355,7 +279,7 @@ pub fn find_or_download_jsonl(
         && let Some(existing) = of_kind.iter().find(|p| p.path.exists())
     {
         if !pm.opts.quiet {
-            skip_because_file_exists(&format!("download ({kind:?})"), &existing.path);
+            skip_because_file_exists(&format!("download"), &existing.path);
         }
         return Ok(existing.path.clone());
     }
@@ -365,7 +289,7 @@ pub fn find_or_download_jsonl(
         .next_back()
         .unwrap_or_else(|| {
             panic!(
-                "No path available for the requested kind: {kind:?}, \
+                "No path available, \
              for edition={edition:?} and lang={lang:?} | {paths_candidates:?}"
             )
         })
@@ -378,34 +302,27 @@ pub fn find_or_download_jsonl(
     // );
 
     #[cfg(feature = "html")]
-    crate::download::download_jsonl(edition, lang, kind, path, false)?;
+    crate::download::download_jsonl(edition, path, false)?;
 
     Ok(path.clone())
 }
 
-fn iter_datasets<'a, D: DatasetStrategy>(
-    dict: &'a D,
-    pm: &'a PathManager,
-) -> impl Iterator<Item = Result<(Edition, PathBuf)>> + 'a {
+fn iter_datasets<'a>(pm: &'a PathManager) -> impl Iterator<Item = Result<(Edition, PathBuf)>> + 'a {
     let (edition_pm, source_pm, _) = pm.langs();
 
     edition_pm.variants().into_iter().map(move |edition| {
-        let (lang, kind) = match dict.dataset_request(source_pm) {
-            DatasetRequest::UnfilteredEdition => (None, DatasetKind::Unfiltered),
-            DatasetRequest::FilteredEdition => (Some(edition.into()), DatasetKind::Unfiltered),
-            DatasetRequest::FilteredLang(lang) => (Some(lang), edition_to_kind(edition)),
+        let lang_opt = match source_pm {
+            LangSpec::All => None,
+            LangSpec::One(lang) => Some(lang),
         };
-        let path_jsonl = find_or_download_jsonl(edition, lang, kind, pm)?;
+        let path_jsonl = find_or_download_jsonl(edition, lang_opt, pm)?;
         tracing::debug!("edition: {edition}, path: {}", path_jsonl.display());
 
         Ok((edition, path_jsonl))
     })
 }
 
-pub fn make_dict<D: Dictionary + IterLang + DatasetStrategy>(
-    dict: D,
-    raw_args: D::A,
-) -> Result<()> {
+pub fn make_dict<D: Dictionary + IterLang>(dict: D, raw_args: D::A) -> Result<()> {
     let pm: &PathManager = &raw_args.try_into()?;
     let (_, source_pm, target_pm) = pm.langs();
     let opts = &pm.opts;
@@ -417,7 +334,7 @@ pub fn make_dict<D: Dictionary + IterLang + DatasetStrategy>(
     // (source, target) -> D::I
     let mut irs_map: Map<LangsKey, D::I> = Map::default();
 
-    for pair in iter_datasets(&dict, pm) {
+    for pair in iter_datasets(pm) {
         let (edition, path_jsonl) = pair?;
 
         let reader_file = File::open(&path_jsonl)?;

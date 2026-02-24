@@ -47,8 +47,7 @@ fn run(cmd: Command) -> Result<()> {
 
             let _ = std::fs::create_dir(pm.dir_kaik());
 
-            let kind = wty::dict::edition_to_kind(edition);
-            let _ = find_or_download_jsonl(edition, Some(source), kind, &pm)?;
+            let _ = find_or_download_jsonl(edition, Some(source), &pm)?;
             Ok(())
         }
         Command::Iso(args) => {

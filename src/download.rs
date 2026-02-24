@@ -1,47 +1,14 @@
-use anyhow::{Result, bail};
+use anyhow::Result;
 
-use crate::lang::{Edition, Lang};
+use crate::lang::Edition;
 
-#[derive(Debug)]
-pub enum DatasetKind {
-    /// Post-processed, English-edition-only, filtered by language.
-    /// Should not use: <https://github.com/tatuylonen/wiktextract/issues/1178>
-    Filtered,
-    /// Every edition (including English) raw datasets
-    Unfiltered,
-}
-
-/// Different in English and non-English editions.
-///
-/// Default download name is:
-/// - Filtered:   `kaikki.org-dictionary-TARGET.jsonl.gz`
-/// - Unfiltered: `raw-wiktextract-data.jsonl.gz`
-///
-/// Example (el):    `https://kaikki.org/elwiktionary/raw-wiktextract-data.jsonl.gz`
-/// Example (sh-en): `https://kaikki.org/dictionary/Serbo-Croatian/kaikki.org-dictionary-SerboCroatian.jsonl.gz`
-pub fn url_jsonl_gz(edition: Edition, lang: Option<Lang>, kind: DatasetKind) -> Result<String> {
+/// Return the url of the "raw" dataset.
+fn url_jsonl_gz(edition: Edition) -> Result<String> {
     let root = "https://kaikki.org";
 
-    match (edition, kind) {
-        (Edition::En, DatasetKind::Filtered) => {
-            let Some(lang) = lang else {
-                bail!("filtered dataset requires lang to not be None");
-            };
-            let long = lang.long();
-            // Serbo-Croatian, Ancient Greek and such cases
-            let long_compact: String = long.chars().filter(|c| *c != ' ' && *c != '-').collect();
-            let long_escaped = long.replace(' ', "%20");
-            Ok(format!(
-                "{root}/dictionary/{long_escaped}/kaikki.org-dictionary-{long_compact}.jsonl.gz"
-            ))
-        }
-        (_, DatasetKind::Filtered) => {
-            bail!("Kaikki does not support filtered kind for non-English editions")
-        }
-        (Edition::En, DatasetKind::Unfiltered) => {
-            Ok(format!("{root}/dictionary/raw-wiktextract-data.jsonl.gz"))
-        }
-        (other, DatasetKind::Unfiltered) => Ok(format!(
+    match edition {
+        Edition::En => Ok(format!("{root}/dictionary/raw-wiktextract-data.jsonl.gz")),
+        other => Ok(format!(
             "{root}/{other}wiktionary/raw-wiktextract-data.jsonl.gz"
         )),
     }
@@ -61,25 +28,23 @@ mod html {
     use std::path::Path;
 
     use crate::{
-        download::DatasetKind,
-        lang::{Edition, Lang},
+        lang::Edition,
         utils::{CHECK_C, pretty_println_at_path},
     };
 
+    // In the past, we supported downloading the post-processed, English-edition-only,
+    // filtered datasets.
+    // Those became deprecated cf. <https://github.com/tatuylonen/wiktextract/issues/1178>
+    // but also caused some issues due to not being structured as their "raw" counterparts.
+    //
     /// Download the "raw" jsonl (jsonlines) from kaikki and write it to `path_jsonl`.
     ///
     /// "Raw" means that it does not include extra information, not intended for general use,
     /// that they (kaikki) use for their website generation.
     ///
     /// Does not write the .gz file to disk.
-    pub fn download_jsonl(
-        edition: Edition,
-        lang: Option<Lang>,
-        kind: DatasetKind,
-        path_jsonl: &Path,
-        quiet: bool,
-    ) -> Result<()> {
-        let url = url_jsonl_gz(edition, lang, kind)?;
+    pub fn download_jsonl(edition: Edition, path_jsonl: &Path, quiet: bool) -> Result<()> {
+        let url = url_jsonl_gz(edition)?;
         if !quiet {
             println!("⬇ Downloading {url}");
         }
