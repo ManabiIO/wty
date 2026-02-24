@@ -334,7 +334,7 @@ pub const fn edition_to_kind(edition: Edition) -> DatasetKind {
     }
 }
 
-fn find_or_download_jsonl(
+pub fn find_or_download_jsonl(
     edition: Edition,
     lang: Option<Lang>,
     kind: DatasetKind,

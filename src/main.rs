@@ -3,11 +3,11 @@ use tracing_subscriber::EnvFilter;
 use tracing_subscriber::fmt::format::FmtSpan;
 
 use wty::cli::{Cli, Command, LangSpecs};
-use wty::dict::{DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, make_dict};
-use wty::download::download_jsonl;
+use wty::dict::{
+    DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, find_or_download_jsonl, make_dict,
+};
 use wty::lang::{Edition, Lang};
 use wty::path::PathManager;
-use wty::utils::skip_because_file_exists;
 
 fn init_logger(verbose: bool) {
     let filter = EnvFilter::try_from_default_env().unwrap_or_else(|_| {
@@ -39,22 +39,17 @@ fn run(cmd: Command) -> Result<()> {
         Command::Ipa(args) => make_dict(DIpa, args),
         Command::IpaMerged(args) => make_dict(DIpaMerged, args),
         Command::Download(args) => {
+            // NOTE: uses MainArgs, so it expects two language codes.
             let langs: LangSpecs = args.langs.clone().try_into()?;
-            let quiet = args.options.quiet;
             let source: Lang = langs.source.try_into().unwrap();
-            let edition_lang: Edition = langs.edition.try_into().unwrap();
-            let pm = PathManager::try_from(args)?;
-            let opath = pm.path_jsonl(edition_lang, source);
+            let edition: Edition = langs.edition.try_into().unwrap();
+            let pm = PathManager::try_from(args.clone())?;
 
-            if opath.exists() {
-                skip_because_file_exists("download", &opath);
-                Ok(())
-            } else {
-                let _ = std::fs::create_dir(pm.dir_kaik());
-                // Should really take the Kind as argument, but this command may disappear anyway
-                let kind = wty::dict::edition_to_kind(edition_lang);
-                download_jsonl(edition_lang, Some(source), kind, &opath, quiet)
-            }
+            let _ = std::fs::create_dir(pm.dir_kaik());
+
+            let kind = wty::dict::edition_to_kind(edition);
+            let _ = find_or_download_jsonl(edition, Some(source), kind, &pm)?;
+            Ok(())
         }
         Command::Iso(args) => {
             if args.edition {

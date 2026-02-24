@@ -156,18 +156,6 @@ impl PathManager {
         Ok(())
     }
 
-    // Only used by CMD::download
-    //
-    /// Cf. `paths_jsonl` documentation
-    pub fn path_jsonl(&self, edition: Edition, lang: Lang) -> PathBuf {
-        self.dataset_paths(edition, Some(lang))
-            .inner
-            .first() // take the Filtered path
-            .unwrap()
-            .path
-            .clone()
-    }
-
     /// Cf. `paths_jsonl` documentation
     pub fn dataset_paths(&self, edition: Edition, lang: Option<Lang>) -> DatasetPaths {
         DatasetPaths::new(edition, lang, self.dir_kaik())
