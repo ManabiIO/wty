@@ -56,34 +56,6 @@
                   {
                     "tag": "div",
                     "content": [
-                      {
-                        "tag": "div",
-                        "data": {
-                          "content": "tags"
-                        },
-                        "content": [
-                          {
-                            "tag": "span",
-                            "title": "medicine",
-                            "data": {
-                              "content": "tag",
-                              "category": ""
-                            },
-                            "content": "med"
-                          }
-                        ]
-                      },
-                      "definizione mancante; se vuoi, aggiungila tu"
-                    ]
-                  }
-                ]
-              },
-              {
-                "tag": "li",
-                "content": [
-                  {
-                    "tag": "div",
-                    "content": [
                       "complesso maniacale che qualcuno appunto ha perché cerca complicazione in quasi tutti rapporti sociali per non sentirsi all'altezza e, per esempio, pensando continuamente che gli altri siano perennemente in malafede per escluderlo",
                       {
                         "tag": "details",
@@ -206,95 +178,6 @@
               {
                 "tag": "a",
                 "href": "https://kaikki.org/itwiktionary/All%20languages%20combined/meaning/f/fi/fissa.html",
-                "content": "Kaikki"
-              }
-            ]
-          }
-        ]
-      }
-    ],
-    0,
-    ""
-  ],
-  [
-    "cartoccio",
-    "",
-    "n",
-    "n",
-    0,
-    [
-      {
-        "type": "structured-content",
-        "content": [
-          {
-            "tag": "div",
-            "content": [
-              {
-                "tag": "div",
-                "data": {
-                  "content": "preamble"
-                },
-                "content": [
-                  {
-                    "tag": "details",
-                    "data": {
-                      "content": "details-entry-Etymology"
-                    },
-                    "content": [
-                      {
-                        "tag": "summary",
-                        "data": {
-                          "content": "summary-entry"
-                        },
-                        "content": "Etymology"
-                      },
-                      {
-                        "tag": "div",
-                        "data": {
-                          "content": "Etymology-content"
-                        },
-                        "content": "deriva da carta"
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "tag": "ol",
-            "data": {
-              "content": "glosses"
-            },
-            "content": [
-              {
-                "tag": "li",
-                "content": [
-                  {
-                    "tag": "div",
-                    "content": [
-                      "definizione mancante; se vuoi, aggiungila tu"
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "tag": "div",
-            "data": {
-              "content": "backlink"
-            },
-            "content": [
-              {
-                "tag": "a",
-                "href": "https://it.wiktionary.org/wiki/cartoccio#Italian",
-                "content": "Wiktionary"
-              },
-              " | ",
-              {
-                "tag": "a",
-                "href": "https://kaikki.org/itwiktionary/All%20languages%20combined/meaning/c/ca/cartoccio.html",
                 "content": "Kaikki"
               }
             ]

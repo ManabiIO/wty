@@ -744,6 +744,22 @@ fn preprocess_main(
 
     // WARN: mutates entry::senses
     //
+    // Deal with "no definition" glosses, cf. https://it.wiktionary.org/wiki/cartoccio#Italian
+    // That is, glosses that are of no value, usually of the shape "Empty definition, add one at
+    // this link etc."
+    match edition {
+        Edition::It => {
+            for sense in &mut entry.senses {
+                sense
+                    .glosses
+                    .retain(|gloss| *gloss != "definizione mancante; se vuoi, aggiungila tu")
+            }
+        }
+        _ => (),
+    }
+
+    // WARN: mutates entry::senses
+    //
     // What if the current word is an inflection but *also* has an inflection table?
     // https://el.wiktionary.org/wiki/ψηφίσας
     //
