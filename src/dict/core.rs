@@ -268,7 +268,7 @@ pub fn find_or_download_jsonl(
     pm: &PathManager,
 ) -> Result<PathBuf> {
     let paths_candidates = pm.dataset_paths(edition, lang);
-    let kinds_to_check = vec![PathKind::Unfiltered, PathKind::Filtered];
+    let kinds_to_check = [PathKind::Unfiltered, PathKind::Filtered];
     let of_kind: Vec<_> = paths_candidates
         .inner
         .iter()
@@ -279,7 +279,7 @@ pub fn find_or_download_jsonl(
         && let Some(existing) = of_kind.iter().find(|p| p.path.exists())
     {
         if !pm.opts.quiet {
-            skip_because_file_exists(&format!("download"), &existing.path);
+            skip_because_file_exists("download", &existing.path);
         }
         return Ok(existing.path.clone());
     }
@@ -307,7 +307,7 @@ pub fn find_or_download_jsonl(
     Ok(path.clone())
 }
 
-fn iter_datasets<'a>(pm: &'a PathManager) -> impl Iterator<Item = Result<(Edition, PathBuf)>> + 'a {
+fn iter_datasets(pm: &PathManager) -> impl Iterator<Item = Result<(Edition, PathBuf)>> + '_ {
     let (edition_pm, source_pm, _) = pm.langs();
 
     edition_pm.variants().into_iter().map(move |edition| {

@@ -359,7 +359,7 @@ impl TryFrom<GlossaryExtendedLangs> for LangSpecs {
 
     fn try_from(langs: GlossaryExtendedLangs) -> Result<Self> {
         err_on_simple_english(&langs.source, &langs.target)?;
-        err_on_source_being_target(&langs.source.into(), &langs.target)?;
+        err_on_source_being_target(&langs.source, &langs.target)?;
 
         Ok(Self {
             edition: langs.edition,

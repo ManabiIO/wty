@@ -103,8 +103,8 @@ pub mod heap {
     impl HeapSize for LemmaInfo {
         fn heap_size(&self) -> usize {
             self.gloss_tree.heap_size()
-                + self.etymology_text.as_ref().map_or(0, |s| s.heap_size())
-                + self.head_info_text.as_ref().map_or(0, |s| s.heap_size())
+                + self.etymology_text.as_ref().map_or(0, HeapSize::heap_size)
+                + self.head_info_text.as_ref().map_or(0, HeapSize::heap_size)
                 + self.link_wiktionary.heap_size()
                 + self.link_kaikki.heap_size()
         }
@@ -147,9 +147,9 @@ pub mod heap {
     impl HeapSize for YomitanEntry {
         fn heap_size(&self) -> usize {
             match self {
-                YomitanEntry::TermBank(tb) => tb.heap_size(),
-                YomitanEntry::TermBankSimplified(tbs) => tbs.heap_size(),
-                YomitanEntry::TermBankMeta(tbm) => tbm.heap_size(),
+                Self::TermBank(tb) => tb.heap_size(),
+                Self::TermBankSimplified(tbs) => tbs.heap_size(),
+                Self::TermBankMeta(tbm) => tbm.heap_size(),
             }
         }
     }
@@ -175,7 +175,7 @@ pub mod heap {
     impl HeapSize for TermBankMeta {
         fn heap_size(&self) -> usize {
             match self {
-                TermBankMeta::TermPhoneticTranscription(tpt) => tpt.heap_size(),
+                Self::TermPhoneticTranscription(tpt) => tpt.heap_size(),
             }
         }
     }
@@ -203,9 +203,9 @@ pub mod heap {
     impl HeapSize for DetailedDefinition {
         fn heap_size(&self) -> usize {
             match self {
-                DetailedDefinition::Text(s) => s.heap_size(),
-                DetailedDefinition::StructuredContent(sc) => sc.heap_size(),
-                DetailedDefinition::Inflection((s, v)) => s.heap_size() + v.heap_size(),
+                Self::Text(s) => s.heap_size(),
+                Self::StructuredContent(sc) => sc.heap_size(),
+                Self::Inflection((s, v)) => s.heap_size() + v.heap_size(),
             }
         }
     }
@@ -219,18 +219,18 @@ pub mod heap {
     impl HeapSize for Node {
         fn heap_size(&self) -> usize {
             match self {
-                Node::Text(s) => s.heap_size(),
-                Node::Array(v) => v.heap_size(),
-                Node::Generic(boxed) => boxed.heap_size(),
-                Node::Backlink(bl) => bl.heap_size(),
+                Self::Text(s) => s.heap_size(),
+                Self::Array(v) => v.heap_size(),
+                Self::Generic(boxed) => boxed.heap_size(),
+                Self::Backlink(bl) => bl.heap_size(),
             }
         }
     }
 
     impl HeapSize for GenericNode {
         fn heap_size(&self) -> usize {
-            self.title.as_ref().map_or(0, |s| s.heap_size())
-                + self.data.as_ref().map_or(0, |d| d.heap_size())
+            self.title.as_ref().map_or(0, HeapSize::heap_size)
+                + self.data.as_ref().map_or(0, HeapSize::heap_size)
                 + self.content.heap_size()
         }
     }
@@ -747,15 +747,14 @@ fn preprocess_main(
     // Deal with "no definition" glosses, cf. https://it.wiktionary.org/wiki/cartoccio#Italian
     // That is, glosses that are of no value, usually of the shape "Empty definition, add one at
     // this link etc."
-    match edition {
-        Edition::It => {
-            for sense in &mut entry.senses {
-                sense
-                    .glosses
-                    .retain(|gloss| *gloss != "definizione mancante; se vuoi, aggiungila tu")
-            }
+    //
+    // See also: https://it.wiktionary.org/wiki/Template:Nodef
+    if edition == Edition::It {
+        for sense in &mut entry.senses {
+            sense
+                .glosses
+                .retain(|gloss| *gloss != "definizione mancante; se vuoi, aggiungila tu");
         }
-        _ => (),
     }
 
     // WARN: mutates entry::senses
@@ -880,7 +879,7 @@ fn should_skip_form(edition: Edition, source: Lang, form: &Form) -> bool {
     false
 }
 
-fn is_roman(form: &str) -> bool {
+const fn is_roman(form: &str) -> bool {
     form.is_ascii()
 }
 
@@ -1279,12 +1278,12 @@ fn handle_inflection_sense(
                         &entry.word,
                         &entry.pos,
                         FormSource::Inflection,
-                        inflection_tags.clone(),
+                        inflection_tags,
                     );
                 }
                 // SAFETY: we checked that only one form_of and only one gloss is present.
                 _ => unreachable!(),
-            };
+            }
         }
         _ => unreachable!("Unhandled lang that implements is_inflection_sense"),
     }
@@ -1546,7 +1545,7 @@ fn structured_glosses_go(
     nested
 }
 
-/// cf [crate::models::yomitan::TagInformation]
+/// cf [`crate::models::yomitan::TagInformation`]
 fn structured_tags(tags: &[Tag], common_short_tags_found: &[Tag]) -> Option<Node> {
     let structured_tags_content: Vec<_> = tags
         .iter()
@@ -1649,7 +1648,7 @@ fn to_yomitan_forms(source: Lang, form_map: FormMap) -> Vec<YomitanEntry> {
 
             let normalized_inflected = normalize_orthography(source, &inflected);
             let reading = if normalized_inflected == inflected {
-                "".to_string()
+                String::new()
             } else {
                 inflected
             };

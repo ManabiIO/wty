@@ -43,7 +43,7 @@ fn run(cmd: Command) -> Result<()> {
             let langs: LangSpecs = args.langs.clone().try_into()?;
             let source: Lang = langs.source.try_into().unwrap();
             let edition: Edition = langs.edition.try_into().unwrap();
-            let pm = PathManager::try_from(args.clone())?;
+            let pm = PathManager::try_from(args)?;
 
             let _ = std::fs::create_dir(pm.dir_kaik());
 

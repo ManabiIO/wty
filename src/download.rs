@@ -43,6 +43,8 @@ mod html {
     /// that they (kaikki) use for their website generation.
     ///
     /// Does not write the .gz file to disk.
+    ///
+    /// WARN: expects `path_jsonl` to be a valid path (with existing parents etc.)
     pub fn download_jsonl(edition: Edition, path_jsonl: &Path, quiet: bool) -> Result<()> {
         let url = url_jsonl_gz(edition)?;
         if !quiet {
