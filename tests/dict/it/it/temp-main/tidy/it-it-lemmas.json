@@ -1,0 +1,69 @@
+{
+  "fissa": {
+    "fissa": {
+      "noun": [
+        {
+          "gloss_tree": {
+            "definizione mancante; se vuoi, aggiungila tu": {
+              "topics": [
+                "medicine"
+              ]
+            },
+            "complesso maniacale che qualcuno appunto ha perché cerca complicazione in quasi tutti rapporti sociali per non sentirsi all'altezza e, per esempio, pensando continuamente che gli altri siano perennemente in malafede per escluderlo": {
+              "examples": [
+                {
+                  "text": "Disse la povera madre ormai stremata: \"Eh, ma... non è possibile: le fisse c'hai!\""
+                }
+              ]
+            },
+            "in romanesco significa qualcosa di cui ci si compiace parecchio per gioia, soddisfazione, innocente ludibrio tra amici": {
+              "tags": [
+                "slang"
+              ],
+              "examples": [
+                {
+                  "text": "\"Aoh, che fissa!!\""
+                }
+              ]
+            }
+          },
+          "etymology_text": "vedi fisso",
+          "wlink": "https://it.wiktionary.org/wiki/fissa#Italian",
+          "klink": "https://kaikki.org/itwiktionary/All%20languages%20combined/meaning/f/fi/fissa.html"
+        }
+      ]
+    }
+  },
+  "cartoccio": {
+    "cartoccio": {
+      "noun": [
+        {
+          "gloss_tree": {
+            "definizione mancante; se vuoi, aggiungila tu": {}
+          },
+          "etymology_text": "deriva da carta",
+          "wlink": "https://it.wiktionary.org/wiki/cartoccio#Italian",
+          "klink": "https://kaikki.org/itwiktionary/All%20languages%20combined/meaning/c/ca/cartoccio.html"
+        }
+      ]
+    }
+  },
+  "assaggiata": {
+    "assaggiata": {
+      "verb": [
+        {
+          "gloss_tree": {
+            "participio passato femminile singolare di assaggiare": {
+              "tags": [
+                "form-of"
+              ]
+            }
+          },
+          "etymology_text": "vedi assaggiare",
+          "wlink": "https://it.wiktionary.org/wiki/assaggiata#Italian",
+          "klink": "https://kaikki.org/itwiktionary/All%20languages%20combined/meaning/a/as/assaggiata.html"
+        }
+      ]
+    }
+  }
+}
