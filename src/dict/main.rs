@@ -1167,12 +1167,13 @@ fn is_inflection_sense(edition: Edition, sense: &Sense) -> bool {
                 false
             })
         }
-        Edition::Fr => {
-            !sense.form_of.is_empty()
-                && sense
-                    .glosses
-                    .iter()
-                    .any(|gloss| gloss.contains("personne du"))
+        Edition::Fr | Edition::It => {
+            // Cf. https://kaikki.org/itwiktionary/Italiano/meaning/s/sc/scorrevo.html
+            //
+            // This is the most generic way of dealing with inflection, but assumes that the
+            // edition is parsed by kaikki with "form_of" at sense level. It could be extended to
+            // other languages.
+            sense.form_of.len() == 1 && sense.glosses.len() == 1
         }
         _ => false,
     }
@@ -1242,27 +1243,32 @@ fn handle_inflection_sense(
             }
         }
         Edition::En => handle_inflection_sense_en(source, entry, sense, irs),
-        Edition::Fr => {
-            let allowed_tags: Vec<_> = sense
-                .tags
-                .iter()
-                .filter(|tag| *tag != "form-of")
-                .map(String::from)
-                .collect();
-            let inflection_tags: Vec<_> = if allowed_tags.is_empty() {
-                vec![format!("redirected from {}", entry.word)]
-            } else {
-                allowed_tags
+        Edition::Fr | Edition::It => {
+            match (sense.form_of.as_slice(), sense.glosses.as_slice()) {
+                ([form_of], [_gloss]) => {
+                    debug_assert!(sense.tags.iter().any(|tag| *tag == "form-of"));
+                    let allowed_tags: Vec<_> = sense
+                        .tags
+                        .iter()
+                        .filter(|tag| *tag != "form-of")
+                        .map(String::from)
+                        .collect();
+                    let inflection_tags: Vec<_> = if allowed_tags.is_empty() {
+                        vec![format!("redirected from {}", entry.word)]
+                    } else {
+                        allowed_tags
+                    };
+                    irs.insert_form(
+                        &form_of.word,
+                        &entry.word,
+                        &entry.pos,
+                        FormSource::Inflection,
+                        inflection_tags.clone(),
+                    );
+                }
+                // SAFETY: we checked that only one form_of and only one gloss is present.
+                _ => unreachable!(),
             };
-            for form in &sense.form_of {
-                irs.insert_form(
-                    &form.word,
-                    &entry.word,
-                    &entry.pos,
-                    FormSource::Inflection,
-                    inflection_tags.clone(),
-                );
-            }
         }
         _ => unreachable!("Unhandled lang that implements is_inflection_sense"),
     }

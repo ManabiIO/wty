@@ -47,23 +47,5 @@
         }
       ]
     }
-  },
-  "assaggiata": {
-    "assaggiata": {
-      "verb": [
-        {
-          "gloss_tree": {
-            "participio passato femminile singolare di assaggiare": {
-              "tags": [
-                "form-of"
-              ]
-            }
-          },
-          "etymology_text": "vedi assaggiare",
-          "wlink": "https://it.wiktionary.org/wiki/assaggiata#Italian",
-          "klink": "https://kaikki.org/itwiktionary/All%20languages%20combined/meaning/a/as/assaggiata.html"
-        }
-      ]
-    }
   }
 }
