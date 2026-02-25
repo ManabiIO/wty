@@ -307,7 +307,7 @@ pub fn find_or_download_jsonl(
     Ok(path.clone())
 }
 
-fn iter_datasets(pm: &PathManager) -> impl Iterator<Item = Result<(Edition, PathBuf)>> + '_ {
+pub fn iter_datasets(pm: &PathManager) -> impl Iterator<Item = Result<(Edition, PathBuf)>> + '_ {
     let (edition_pm, source_pm, _) = pm.langs();
 
     edition_pm.variants().into_iter().map(move |edition| {
