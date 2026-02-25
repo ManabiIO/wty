@@ -21,8 +21,8 @@ use rusqlite::{Connection, params};
 use crate::{
     Map,
     cli::{
-        DictName, GlossaryArgs, GlossaryLangs, IpaArgs, IpaMergedArgs, IpaMergedLangs, MainArgs,
-        MainLangs, Options,
+        DictName, GlossaryArgs, GlossaryExtendedArgs, GlossaryExtendedLangs, GlossaryLangs,
+        IpaArgs, IpaMergedArgs, IpaMergedLangs, MainArgs, MainLangs, Options,
     },
     dict::{
         DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, Dictionary, Intermediate, IterLang,
@@ -36,12 +36,12 @@ use crate::{
 pub fn release() -> Result<()> {
     let start = Instant::now();
 
-    // let editions = [Edition::En, Edition::De, Edition::Fr];
+    let editions = [Edition::En, Edition::De, Edition::Fr];
 
-    let mut editions = Edition::all();
-    // English is the bottleneck, and while I'm not entirely sure this works, getting to work asap
-    // with English dictionaries should make things faster. This puts English first.
-    editions.sort_by_key(|ed| i32::from(*ed != Edition::En));
+    // let mut editions = Edition::all();
+    // // English is the bottleneck, and while I'm not entirely sure this works, getting to work asap
+    // // with English dictionaries should make things faster. This puts English first.
+    // editions.sort_by_key(|ed| i32::from(*ed != Edition::En));
 
     println!("Making release with {} editions", editions.len());
     println!(
@@ -89,10 +89,23 @@ pub fn release() -> Result<()> {
         release_glossary(*edition);
     });
 
+    // let sources = Lang::all();
+    // let sources = [Lang::Afb];
+    // sources.par_iter().for_each(|source| {
+    //     release_glossary_extended(*source);
+    // });
+
     let elapsed = start.elapsed();
     println!("Finished dictionaries in {elapsed:.2?}");
 
     Ok(())
+}
+
+// Pretty print utility
+fn pp(dict_name: &str, first_lang: Lang, second_lang: Lang, time: Instant) {
+    // Printing sizes requires a PM
+    let label = format!("[{dict_name}-{first_lang}-{second_lang}]");
+    eprintln!("{label:<20} done in {:.2?}", time.elapsed());
 }
 
 // runs main source all
@@ -231,14 +244,36 @@ fn release_glossary(edition: Edition) {
     });
 }
 
-// Pretty print utility
 #[allow(unused)]
-const fn pp(dict_name: &str, first_lang: Lang, second_lang: Lang, time: Instant) {
-    return;
-    eprintln!(
-        "[{dict_name}-{first_lang}-{second_lang}] done in {:.2?}",
-        time.elapsed()
-    );
+fn release_glossary_extended(source: Lang) {
+    Lang::all().par_iter().for_each(|target| {
+        let start = Instant::now();
+
+        let langs = match (source, target) {
+            (Lang::Simple, _) | (_, Lang::Simple) => return,
+            _ if source == *target => return,
+            _ => GlossaryExtendedLangs {
+                edition: EditionSpec::All,
+                source: LangSpec::One(source),
+                target: LangSpec::One(*target),
+            },
+        };
+
+        let args = GlossaryExtendedArgs {
+            langs,
+            dict_name: DictName::default(),
+            options: Options {
+                quiet: true,
+                root_dir: "data".into(),
+                ..Default::default()
+            },
+        };
+
+        match make_dict(DGlossaryExtended, args) {
+            Ok(()) => pp("gloss", source, *target, start),
+            Err(err) => tracing::error!("[gloss-all-{source}-{target}] ERROR: {err:?}"),
+        }
+    });
 }
 
 pub struct WiktextractDb {
@@ -269,10 +304,13 @@ impl WiktextractDb {
         conn.execute_batch(
             r"
             CREATE TABLE IF NOT EXISTS wiktextract (
-                id   INTEGER PRIMARY KEY,
+                id INTEGER PRIMARY KEY,
                 lang TEXT NOT NULL,
                 entry BLOB NOT NULL
             );
+
+            CREATE INDEX IF NOT EXISTS idx_wiktextract_lang
+            ON wiktextract(lang);
             ",
         )?;
 
@@ -329,7 +367,7 @@ impl WiktextractDb {
     }
 }
 
-pub fn make_dict<D: Dictionary + IterLang + EditionFrom>(dict: D, raw_args: D::A) -> Result<()> {
+fn make_dict<D: Dictionary + IterLang + EditionFrom>(dict: D, raw_args: D::A) -> Result<()> {
     let pm: &PathManager = &raw_args.try_into()?;
     let (_, source_pm, target_pm) = pm.langs();
     let opts = &pm.opts;
@@ -338,6 +376,7 @@ pub fn make_dict<D: Dictionary + IterLang + EditionFrom>(dict: D, raw_args: D::A
     tracing::trace!("{pm:#?}");
 
     // (source, target) -> D::I
+    // TODO: Do we stil need a map instead of a raw vector?
     let mut irs_map: Map<LangsKey, D::I> = Map::default();
 
     for pair in iter_datasets(pm) {
@@ -361,6 +400,7 @@ pub fn make_dict<D: Dictionary + IterLang + EditionFrom>(dict: D, raw_args: D::A
         let other = match dict.edition_is() {
             EditionIs::Target => source,
             EditionIs::Source => target,
+            EditionIs::All => target,
         };
         tracing::trace!("Opened db for {edition} edition, selecting lang {other}...");
 
@@ -395,37 +435,39 @@ pub fn make_dict<D: Dictionary + IterLang + EditionFrom>(dict: D, raw_args: D::A
         if opts.save_temps && dict.write_ir() {
             irs.write(pm)?;
         }
-        if !opts.skip_yomitan {
-            let mut pm2 = pm.clone();
-            let source = key.source;
-            let target = key.target;
-            pm2.set_source(source.into());
-            pm2.set_target(target.into());
-            pm2.setup_dirs()?;
-            tracing::trace!("calling to_yomitan with (source={source}, target={target})",);
-            let labelled_entries = match key.edition {
-                EditionSpec::All => {
-                    let langs = Langs::new(Edition::Zh, key.source, key.target);
-                    dict.to_yomitan(langs, irs)
-                }
-                EditionSpec::One(edition) => {
-                    let langs = Langs::new(edition, key.source, key.target);
-                    dict.to_yomitan(langs, irs)
-                }
-            };
-            write_yomitan(source, target, opts, &pm2, labelled_entries)?;
+        if opts.skip_yomitan {
+            continue;
         }
+
+        let mut pm2 = pm.clone();
+        let source = key.source;
+        let target = key.target;
+        pm2.set_source(source.into());
+        pm2.set_target(target.into());
+        pm2.setup_dirs()?;
+        tracing::trace!("calling to_yomitan with (source={source}, target={target})",);
+        let labelled_entries = match key.edition {
+            EditionSpec::All => {
+                let langs = Langs::new(Edition::Zh, key.source, key.target);
+                dict.to_yomitan(langs, irs)
+            }
+            EditionSpec::One(edition) => {
+                let langs = Langs::new(edition, key.source, key.target);
+                dict.to_yomitan(langs, irs)
+            }
+        };
+        write_yomitan(source, target, opts, &pm2, labelled_entries)?;
     }
     Ok(())
 }
 
-pub enum EditionIs {
+enum EditionIs {
     Target,
     Source,
+    All,
 }
 
-// Replacement of IterLang/DatasetStrategy here
-pub trait EditionFrom {
+trait EditionFrom {
     fn edition_is(&self) -> EditionIs;
 }
 
@@ -456,6 +498,6 @@ impl EditionFrom for DIpaMerged {
 
 impl EditionFrom for DGlossaryExtended {
     fn edition_is(&self) -> EditionIs {
-        todo!()
+        EditionIs::All
     }
 }
