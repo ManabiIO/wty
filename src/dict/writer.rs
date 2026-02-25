@@ -116,7 +116,7 @@ pub fn write_yomitan(
 }
 
 /// Writes `yomitan_entries` in batches to `out_sink` (either disk or a zip).
-#[tracing::instrument(skip_all)]
+#[tracing::instrument(skip_all, level = "DEBUG")]
 fn write_banks(
     pretty: bool,
     quiet: bool,

@@ -3,6 +3,7 @@ mod index;
 mod locale;
 mod main;
 mod other;
+pub mod release;
 mod writer;
 
 pub use core::*;

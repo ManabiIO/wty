@@ -1,11 +1,14 @@
 //! Unused - experimental
+//!
+//! Command to limit memory usage (linux):
+//! systemd-run --user --scope -p MemoryMax=24G -p MemoryHigh=24G cargo run -r -- release -v
 
 #![allow(unused)]
 
 use core::panic;
 use std::{
     fs::File,
-    io::{BufRead, BufReader, Write},
+    io::{BufRead, BufReader},
     path::{Path, PathBuf},
     time::Instant,
 };
@@ -16,11 +19,6 @@ use rayon::prelude::*;
 use rkyv::Archived;
 use rusqlite::{Connection, params};
 
-use crate::dict::{DGlossaryExtended, DIpa, DIpaMerged, edition_to_kind};
-use crate::dict::{
-    DMain, DatasetRequest, DatasetStrategy, Dictionary, Intermediate, IterLang, Langs, LangsKey,
-};
-use crate::download::DatasetKind;
 use crate::lang::{Edition, EditionSpec, Lang, LangSpec};
 use crate::models::kaikki::WordEntry;
 use crate::path::{PathKind, PathManager};
@@ -28,52 +26,69 @@ use crate::utils::skip_because_file_exists;
 use crate::{Map, cli::GlossaryLangs};
 use crate::{cli::IpaArgs, dict::writer::write_yomitan};
 use crate::{
+    cli::IpaMergedArgs,
+    dict::{DGlossaryExtended, DIpa, DIpaMerged},
+};
+use crate::{
+    cli::IpaMergedLangs,
+    dict::{DMain, Dictionary, Intermediate, IterLang, Langs, LangsKey},
+};
+use crate::{
     cli::{DictName, GlossaryArgs, MainArgs, MainLangs, Options},
     dict::DGlossary,
 };
 
 // runs main source all
 fn release_main(edition: Edition) {
-    let sources = Lang::all();
-    sources.par_iter().for_each(|source| {
-        let start = Instant::now();
+    // Limit only this workload (as opposed to the full logic. IPA and glossaries are completely
+    // fine and will never OOM).
+    let pool = ThreadPoolBuilder::new()
+        // 2 seems fine with a MemoryMax of 20GB (works on my machine TM)
+        // 8 is fine for testing with only English/German/French editions
+        .num_threads(2)
+        .build()
+        .expect("Failed to build local thread pool");
 
-        let langs = match (edition, source) {
-            (Edition::Simple, Lang::Simple) => MainLangs {
-                source: LangSpec::One(edition.into()),
-                target: EditionSpec::One(edition),
-            },
-            (Edition::Simple, _) | (_, Lang::Simple) => return,
-            (Edition::En, Lang::Fi) => {
-                tracing::warn!("Skipping finnish-english...");
-                return;
+    pool.install(|| {
+        Lang::all().par_iter().for_each(|source| {
+            let start = Instant::now();
+
+            let langs = match (edition, source) {
+                (Edition::Simple, Lang::Simple) => MainLangs {
+                    source: LangSpec::One(edition.into()),
+                    target: EditionSpec::One(edition),
+                },
+                (Edition::Simple, _) | (_, Lang::Simple) => return,
+                // (Edition::En, Lang::Fi) => {
+                //     tracing::warn!("Skipping finnish-english...");
+                //     return;
+                // }
+                _ => MainLangs {
+                    source: LangSpec::One(*source),
+                    target: EditionSpec::One(edition),
+                },
+            };
+
+            let args = MainArgs {
+                langs,
+                dict_name: DictName::default(),
+                options: Options {
+                    quiet: true,
+                    root_dir: "data".into(),
+                    ..Default::default()
+                },
+            };
+
+            match make_dict(DMain, args) {
+                Ok(()) => pp("main", *source, edition.into(), start),
+                Err(err) => tracing::error!("[main-{source}-{edition}] ERROR: {err:?}"),
             }
-            _ => MainLangs {
-                source: LangSpec::One(*source),
-                target: EditionSpec::One(edition),
-            },
-        };
-
-        let args = MainArgs {
-            langs,
-            dict_name: DictName::default(),
-            options: Options {
-                quiet: true,
-                root_dir: "data".into(),
-                ..Default::default()
-            },
-        };
-
-        match make_dict(DMain, args) {
-            Ok(_) => pp("main", *source, edition.into(), start),
-            Err(err) => tracing::error!("[main-{source}-{edition}] ERROR: {err:?}"),
-        }
+        });
     });
 }
 
 fn release_ipa(edition: Edition) {
-    let sources = Lang::all();
-    sources.par_iter().for_each(|source| {
+    Lang::all().par_iter().for_each(|source| {
         let start = Instant::now();
 
         let langs = match (edition, source) {
@@ -99,22 +114,44 @@ fn release_ipa(edition: Edition) {
         };
 
         match make_dict(DIpa, args) {
-            Ok(_) => pp("ipa", *source, edition.into(), start),
+            Ok(()) => pp("ipa", *source, edition.into(), start),
             Err(err) => tracing::error!("[ipa-{source}-{edition}] ERROR: {err:?}"),
         }
     });
 }
 
+fn release_ipa_merged(edition: Edition) {
+    let start = Instant::now();
+
+    let langs = match edition {
+        Edition::Simple => return,
+        _ => IpaMergedLangs {
+            target: LangSpec::One(edition.into()),
+        },
+    };
+
+    let args = IpaMergedArgs {
+        langs,
+        dict_name: DictName::default(),
+        options: Options {
+            quiet: true,
+            root_dir: "data".into(),
+            ..Default::default()
+        },
+    };
+
+    match make_dict(DIpaMerged, args) {
+        // Lang::Sq is a filler, doesn't exist
+        Ok(()) => pp("gloss", Lang::Sq, edition.into(), start),
+        Err(err) => tracing::error!("[ipa-merged--{edition}] ERROR: {err:?}"),
+    }
+}
+
 fn release_glossary(edition: Edition) {
-    let targets = Lang::all();
-    targets.par_iter().for_each(|target| {
+    Lang::all().par_iter().for_each(|target| {
         let start = Instant::now();
 
         let langs = match (edition, target) {
-            (Edition::Simple, Lang::Simple) => GlossaryLangs {
-                source: EditionSpec::One(edition),
-                target: LangSpec::One(edition.into()),
-            },
             (Edition::Simple, _) | (_, Lang::Simple) => return,
             _ if Lang::from(edition) == *target => return,
             _ => GlossaryLangs {
@@ -135,64 +172,80 @@ fn release_glossary(edition: Edition) {
 
         match make_dict(DGlossary, args) {
             // Order may be wrong
-            Ok(_) => pp("gloss", *target, edition.into(), start),
+            Ok(()) => pp("gloss", *target, edition.into(), start),
             Err(err) => tracing::error!("[gloss-{target}-{edition}] ERROR: {err:?}"),
         }
     });
 }
 
 // Pretty print utility
-fn pp(dict_name: &str, first_lang: Lang, second_lang: Lang, time: Instant) {
+#[allow(unused)]
+const fn pp(dict_name: &str, first_lang: Lang, second_lang: Lang, time: Instant) {
     return;
     eprintln!(
         "[{dict_name}-{first_lang}-{second_lang}] done in {:.2?}",
         time.elapsed()
-    )
+    );
 }
 
 pub fn release() -> Result<()> {
     let start = Instant::now();
 
-    let editions = Edition::all(); // WARN: OOMS 24GB pool
-    let editions: Vec<_> = Edition::all()
-        .into_iter()
-        .filter(|ed| *ed != Edition::En)
-        .collect();
-    let editions = vec![Edition::En, Edition::De, Edition::Fr];
-    // let editions = vec![Edition::De, Edition::Fr];
-    // let editions = vec![Edition::Fr];
-    // let editions = vec![Edition::El]; // target for main
+    // let editions = Edition::all(); // WARN: OOMS 24GB pool
+    // let editions: Vec<_> = Edition::all()
+    //     .into_iter()
+    //     .filter(|ed| *ed != Edition::En)
+    //     .collect();
+    // let editions = [Edition::En, Edition::De, Edition::Fr];
 
-    // editions.par_iter().for_each(|target| {
-    //     // HACK: be sure to init the db before running when resetting...
-    //     tracing::warn!("Hacky db init for {target}");
-    //     let args = MainArgs {
-    //         langs: MainLangs {
-    //             source: match *target {
-    //                 Edition::Simple => LangSpec::One(Lang::Simple),
-    //                 _ => LangSpec::One(Lang::El),
-    //             },
-    //             target: EditionSpec::One(*target),
-    //         },
-    //         dict_name: DictName::default(),
-    //         options: Options {
-    //             quiet: true,
-    //             root_dir: "data".into(),
-    //             ..Default::default()
-    //         },
-    //     };
-    //     let pm: &PathManager = &args.try_into().unwrap();
-    //     let _ = WiktextractDb::open_from_lang(*target, pm).unwrap();
-    // });
+    let mut editions = Edition::all();
+    // English is the bottleneck, and while I'm not entirely sure this works, getting to work asap
+    // with English dictionaries should make things faster. This puts English first.
+    editions.sort_by_key(|ed| i32::from(*ed != Edition::En));
+    println!("Making release with {} editions", editions.len());
+    println!("- {}", editions.iter().map(|ed| ed.to_string()).collect::<Vec<_>>().join(", "));
+
+    // First, do all the downloading like in the python script.
+    // We got rid of the filtered ones, so creating a pm for the main dictionary works fine
+    // (actually any dictionary should work fine). It really doesn't matter as long as we download
+    // every edition at some place.
+    //
+    // NOTE: For some reason this takes time even when db are init, why?
+    // 
+    editions.par_iter().for_each(|edition| {
+        let lang: Lang = (*edition).into();
+        let args = MainArgs {
+            langs: MainLangs {
+                source: lang.into(),
+                target: (*edition).into(),
+            },
+            dict_name: DictName::default(),
+            options: Options {
+                quiet: false,
+                root_dir: "data".into(),
+                ..Default::default()
+            },
+        };
+        let pm: &PathManager = &args.try_into().unwrap();
+        let path_jsonl = find_or_download_jsonl(*edition, None, pm).unwrap();
+        println!("Finished download for {edition} ({:.2?})", start.elapsed());
+        let _ = WiktextractDb::create(*edition, path_jsonl).unwrap();
+        println!("Finished database for {edition} ({:.2?})", start.elapsed());
+    });
+    let elapsed = start.elapsed();
+    println!("Finished download & db creation in {elapsed:.2?}");
+
+    let start = Instant::now();
 
     editions.par_iter().for_each(|edition| {
         release_main(*edition);
         release_ipa(*edition);
+        release_ipa_merged(*edition);
         release_glossary(*edition);
     });
 
     let elapsed = start.elapsed();
-    println!("Finished in {:.2?}", elapsed);
+    println!("Finished dictionaries in {elapsed:.2?}");
 
     Ok(())
 }
@@ -201,80 +254,53 @@ pub struct WiktextractDb {
     pub conn: Connection,
 }
 
-fn find_or_download_jsonl_simple(edition: Edition, pm: &PathManager) -> Result<PathBuf> {
-    let paths_candidates = pm.dataset_paths(edition, None);
-    let kinds_to_check = vec![PathKind::Unfiltered];
-    let of_kind: Vec<_> = paths_candidates
-        .inner
-        .iter()
-        .filter(|p| kinds_to_check.contains(&p.kind))
-        .collect();
-
-    if !pm.opts.redownload
-        && let Some(existing) = of_kind.iter().find(|p| p.path.exists())
-    {
-        if !pm.opts.quiet {
-            skip_because_file_exists(&format!("download"), &existing.path);
-        }
-        return Ok(existing.path.clone());
+impl WiktextractDb {
+    // hardcoded at the moment, should require a PathManager
+    fn db_path_for(edition: Edition) -> String {
+        format!("data/db/wiktextract_{edition}.db")
     }
 
-    let path = &of_kind.iter().next_back().unwrap().path;
+    pub fn open(edition: Edition) -> Result<Self> {
+        let db_path = Self::db_path_for(edition);
+        let conn = Connection::open(&db_path)?;
+        Ok(Self { conn })
+    }
 
-    // TODO: remove this once it's done: it prevents downloading in the testsuite
-    anyhow::bail!(
-        "Downloading is disabled but JSONL file was not found @ {}",
-        path.display()
-    );
+    pub fn create(edition: Edition, path_jsonl: PathBuf) -> Result<Self> {
+        let db_path = Self::db_path_for(edition);
 
-    // #[cfg(feature = "html")]
-    // crate::download::download_jsonl(edition, lang, kind, path, opts.quiet)?;
-    //
-    // Ok(path.clone())
-}
-
-impl WiktextractDb {
-    /// Open or create a new database at the given path
-    // #[tracing::instrument(skip_all, level = "debug")]
-    pub fn open_from_lang(edition: Edition, pm: &PathManager) -> Result<Self> {
-        let db_path = format!("data/db/wiktextract_{edition}.db");
         if let Some(parent) = Path::new(&db_path).parent() {
-            let _ = std::fs::create_dir_all(parent)?;
+            std::fs::create_dir_all(parent)?;
         }
 
         let conn = Connection::open(&db_path)?;
 
         conn.execute_batch(
-            r#"
+            r"
             CREATE TABLE IF NOT EXISTS wiktextract (
                 id   INTEGER PRIMARY KEY,
                 lang TEXT NOT NULL,
-                word TEXT NOT NULL,
-                pos  TEXT NOT NULL,
                 entry BLOB NOT NULL
             );
-            -- Regular index
-            CREATE INDEX IF NOT EXISTS idx_wiktextract_lang
-                ON wiktextract(lang);
-
-            -- COVERING INDEX - includes entry blob so SQLite doesn't need to look up the row
-            CREATE INDEX IF NOT EXISTS idx_wiktextract_lang_entry
-                ON wiktextract(lang, entry);
-
-            "#,
+            ",
         )?;
 
-        // Check if the DB is empty at all (no entries)
         let mut db = Self { conn };
-        let count: i64 = db
-            .conn
-            .query_row("SELECT COUNT(*) FROM wiktextract", [], |row| row.get(0))?;
+
+        // NOTE: Not sure if we need to check that we init the db beforehand
+        let count: i64 = db.conn.query_row(
+            "SELECT COUNT(*) FROM wiktextract",
+            [],
+            |row| row.get(0),
+        )?;
+
         if count == 0 {
-            let jsonl_path = find_or_download_jsonl_simple(edition, pm)?;
-            db.import_jsonl(jsonl_path)?;
+            tracing::info!("DB empty for {edition}, importing JSONL...");
+            db.import_jsonl(path_jsonl)?;
         } else {
-            tracing::trace!("Opening non empty db for {edition}");
+            tracing::trace!("DB already initialized for {edition} ({count} rows)");
         }
+
         Ok(db)
     }
 
@@ -286,20 +312,14 @@ impl WiktextractDb {
 
         let tx = self.conn.transaction()?;
         {
-            let mut stmt =
-                tx.prepare("INSERT INTO wiktextract (lang, word, pos, entry) VALUES (?, ?, ?, ?)")?;
+            let mut stmt = tx.prepare("INSERT INTO wiktextract (lang, entry) VALUES (?, ?)")?;
 
             for line in reader.lines() {
                 let line = line?;
                 let word_entry: WordEntry = serde_json::from_str(&line)?;
                 let bytes = rkyv::to_bytes::<rkyv::rancor::Error>(&word_entry)?;
 
-                stmt.execute(params![
-                    word_entry.lang_code,
-                    word_entry.word,
-                    word_entry.pos,
-                    bytes.as_ref()
-                ])?;
+                stmt.execute(params![word_entry.lang_code, bytes.as_ref()])?;
             }
         }
         tx.commit()?;
@@ -320,23 +340,21 @@ impl WiktextractDb {
     }
 }
 
-pub fn make_dict<D: Dictionary + IterLang + DatasetStrategy + EditionFrom>(
-    dict: D,
-    raw_args: D::A,
-) -> Result<()> {
+pub fn make_dict<D: Dictionary + IterLang + EditionFrom>(dict: D, raw_args: D::A) -> Result<()> {
     let pm: &PathManager = &raw_args.try_into()?;
     let (_, source_pm, target_pm) = pm.langs();
     let opts = &pm.opts;
     pm.setup_dirs()?;
 
+    tracing::trace!("{pm:#?}");
+
     // (source, target) -> D::I
     let mut irs_map: Map<LangsKey, D::I> = Map::default();
 
-    for pair in iter_datasets(&dict, pm) {
+    for pair in iter_datasets(pm) {
         let (edition, _path_jsonl) = pair?;
 
-        // Open database (auto-creates and imports if needed)
-        let db = WiktextractDb::open_from_lang(edition.into(), pm)?;
+        let db = WiktextractDb::open(edition)?;
         let source = match source_pm {
             LangSpec::All => panic!(),
             LangSpec::One(lang) => lang,
@@ -355,24 +373,16 @@ pub fn make_dict<D: Dictionary + IterLang + DatasetStrategy + EditionFrom>(
             EditionIs::Target => source,
             EditionIs::Source => target,
         };
-        tracing::trace!("Opened db, selecting {other}...");
-        let start = Instant::now();
+        tracing::trace!("Opened db for {edition} edition, selecting lang {other}...");
+
         let mut stmt = db
             .conn
             .prepare("SELECT entry FROM wiktextract WHERE lang = ?")?;
         let mut rows = stmt.query([other.as_ref()])?;
 
-        let mut line_count = 0;
         while let Some(row) = rows.next()? {
-            line_count += 1;
-
             let blob: &[u8] = row.get_ref(0)?.as_blob()?;
             let mut entry = WiktextractDb::blob_to_word_entry(blob)?;
-
-            // if line_count % 10_000 == 0 {
-            //     print!("Processed {line_count} lines...\r");
-            //     std::io::stdout().flush()?;
-            // }
 
             // TODO: iter_langs doesn't make any sense...
             // we should make a dict for (edition, source, target) at a time...
@@ -422,17 +432,13 @@ pub fn make_dict<D: Dictionary + IterLang + DatasetStrategy + EditionFrom>(
     Ok(())
 }
 
-fn find_or_download_jsonl(
+pub fn find_or_download_jsonl(
     edition: Edition,
     lang: Option<Lang>,
-    kind: DatasetKind,
     pm: &PathManager,
 ) -> Result<PathBuf> {
     let paths_candidates = pm.dataset_paths(edition, lang);
-    let kinds_to_check = match kind {
-        DatasetKind::Filtered => vec![PathKind::Filtered],
-        DatasetKind::Unfiltered => vec![PathKind::Unfiltered, PathKind::Filtered],
-    };
+    let kinds_to_check = [PathKind::Unfiltered, PathKind::Filtered];
     let of_kind: Vec<_> = paths_candidates
         .inner
         .iter()
@@ -443,7 +449,7 @@ fn find_or_download_jsonl(
         && let Some(existing) = of_kind.iter().find(|p| p.path.exists())
     {
         if !pm.opts.quiet {
-            skip_because_file_exists(&format!("download ({kind:?})"), &existing.path);
+            skip_because_file_exists("download", &existing.path);
         }
         return Ok(existing.path.clone());
     }
@@ -453,41 +459,34 @@ fn find_or_download_jsonl(
         .next_back()
         .unwrap_or_else(|| {
             panic!(
-                "No path available for the requested kind: {kind:?}, \
+                "No path available, \
              for edition={edition:?} and lang={lang:?} | {paths_candidates:?}"
             )
         })
         .path;
 
     // TODO: remove this once it's done: it prevents downloading in the testsuite
-    anyhow::bail!(
-        "Downloading is disabled but JSONL file was not found @ {}",
-        path.display()
-    );
+    // anyhow::bail!(
+    //     "Downloading is disabled but JSONL file was not found @ {}",
+    //     path.display()
+    // );
 
-    // #[cfg(feature = "html")]
-    // crate::download::download_jsonl(edition, lang, kind, path, opts.quiet)?;
-    //
-    // Ok(path.clone())
+    #[cfg(feature = "html")]
+    crate::download::download_jsonl(edition, path, false)?;
+
+    Ok(path.clone())
 }
 
-fn iter_datasets<'a, D: DatasetStrategy>(
-    dict: &'a D,
-    pm: &'a PathManager,
-) -> impl Iterator<Item = Result<(Edition, PathBuf)>> + 'a {
+fn iter_datasets(pm: &PathManager) -> impl Iterator<Item = Result<(Edition, PathBuf)>> + '_ {
     let (edition_pm, source_pm, _) = pm.langs();
 
     edition_pm.variants().into_iter().map(move |edition| {
-        let (lang, kind) = match dict.dataset_request(source_pm) {
-            DatasetRequest::UnfilteredEdition => (None, DatasetKind::Unfiltered),
-            DatasetRequest::FilteredEdition => (Some(edition.into()), DatasetKind::Unfiltered),
-            DatasetRequest::FilteredLang(lang) => (Some(lang), edition_to_kind(edition)),
+        let lang_opt = match source_pm {
+            LangSpec::All => None,
+            LangSpec::One(lang) => Some(lang),
         };
-        let path_jsonl = find_or_download_jsonl(edition, lang, kind, pm)?;
-        // tracing::debug!(
-        //     "edition: {edition}, lang: {lang:?}, path: {}",
-        //     path_jsonl.display()
-        // );
+        let path_jsonl = find_or_download_jsonl(edition, lang_opt, pm)?;
+        // tracing::debug!("edition: {edition}, path: {}", path_jsonl.display());
 
         Ok((edition, path_jsonl))
     })
@@ -523,7 +522,8 @@ impl EditionFrom for DGlossary {
 
 impl EditionFrom for DIpaMerged {
     fn edition_is(&self) -> EditionIs {
-        todo!()
+        // Does not really matter since for this dict source == target
+        EditionIs::Source
     }
 }
 

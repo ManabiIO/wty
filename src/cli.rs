@@ -45,6 +45,8 @@ pub enum Command {
 
     /// Show supported iso codes, with coloured editions
     Iso(IsoArgs),
+
+    Release,
 }
 
 #[derive(Parser, Debug, Clone)]

@@ -58,6 +58,7 @@ fn run(cmd: Command) -> Result<()> {
             }
             Ok(())
         }
+        Command::Release => wty::dict::release::release(),
     }
 }
 

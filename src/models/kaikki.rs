@@ -20,6 +20,7 @@ pub type Pos = String;
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 #[serde(default)]
+#[derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize)]
 pub struct WordEntry {
     pub word: String,
     pub pos: Pos,
@@ -49,12 +50,14 @@ pub struct WordEntry {
 // To be avoided as much as possible: sort of internal field.
 #[derive(Debug, Deserialize, Serialize, Default)]
 #[serde(default)]
+#[derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize)]
 pub struct HeadTemplate {
     pub expansion: String,
 }
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 #[serde(default)]
+#[derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize)]
 pub struct Sound {
     pub ipa: String,
     pub tags: Vec<Tag>,
@@ -65,6 +68,7 @@ pub struct Sound {
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 #[serde(default)]
+#[derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize)]
 pub struct Sense {
     // Glosses are usually a one string vector, but when there's more, it follows:
     // ["Gloss supercategory", "Specific gloss.", "More specific...", etc.]
@@ -79,6 +83,7 @@ pub struct Sense {
 
 #[derive(Debug, Serialize, Deserialize, Default, Clone)]
 #[serde(default)]
+#[derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize)]
 pub struct Example {
     pub text: String,
     #[serde(skip_serializing_if = "String::is_empty")]
@@ -90,12 +95,14 @@ pub struct Example {
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 #[serde(default)]
+#[derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize)]
 pub struct AltForm {
     pub word: String,
 }
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 #[serde(default)]
+#[derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize)]
 pub struct Form {
     pub form: String,
     pub tags: Vec<Tag>,
@@ -105,6 +112,7 @@ pub struct Form {
 
 #[derive(Debug, Deserialize, Serialize, Default)]
 #[serde(default)]
+#[derive(rkyv::Archive, rkyv::Deserialize, rkyv::Serialize)]
 pub struct Translation {
     pub lang_code: String,
     pub word: String,
