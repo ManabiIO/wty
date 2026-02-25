@@ -31,6 +31,7 @@ L = Literal[
     "fr",
     "grc",
     "is",
+    "it",
     "ja",
     "ko",
     "la",
