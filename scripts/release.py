@@ -644,7 +644,7 @@ def extract_indexes() -> None:
 
 def parse_args() -> tuple[str, Args]:
     parser = argparse.ArgumentParser()
-    parser.add_argument("command", choices=["build", "publish"])
+    parser.add_argument("command", choices=["build", "publish", "index"])
     parser.add_argument("-v", "--verbose", action="count", default=0)
     parser.add_argument("-n", "--dry-run", action="store_true")
     parser.add_argument("-j", "--jobs", type=int, default=8)
@@ -665,11 +665,16 @@ def main() -> None:
 
     PM.release.mkdir(exist_ok=True)
 
-    if cmd == "build":
-        build_release(args)
-        extract_indexes()
-    else:
-        upload_to_huggingface()
+    match cmd:
+        case "build":
+            build_release(args)
+            extract_indexes()
+        case "publish":
+            upload_to_huggingface()
+        case "index":
+            extract_indexes()
+        case _:
+            print(f"Unknown cmd: {cmd}")
 
 
 if __name__ == "__main__":
