@@ -52,6 +52,32 @@ ol[data-sc-content="glosses"] {
 [data-sc-content="summary-entry"]::marker {
     color: var(--checkbox-disabled-color);
 }
+
+/* Circled numbers (note: they contain a space after the number) */
+ol[data-sc-content="glosses"] {
+    list-style-type: none;
+}
+ol[data-sc-content="glosses"] > li:nth-child(1) { list-style-type: "① "; }
+ol[data-sc-content="glosses"] > li:nth-child(2) { list-style-type: "② "; }
+ol[data-sc-content="glosses"] > li:nth-child(3) { list-style-type: "③ "; }
+ol[data-sc-content="glosses"] > li:nth-child(4) { list-style-type: "④ "; }
+ol[data-sc-content="glosses"] > li:nth-child(5) { list-style-type: "⑤ "; }
+ol[data-sc-content="glosses"] > li:nth-child(6) { list-style-type: "⑥ "; }
+ol[data-sc-content="glosses"] > li:nth-child(7) { list-style-type: "⑦ "; }
+ol[data-sc-content="glosses"] > li:nth-child(8) { list-style-type: "⑧ "; }
+ol[data-sc-content="glosses"] > li:nth-child(9) { list-style-type: "⑨ "; }
+ol[data-sc-content="glosses"] > li:nth-child(10) { list-style-type: "⑩ "; }
+ol[data-sc-content="glosses"] > li:nth-child(11) { list-style-type: "⑪ "; }
+ol[data-sc-content="glosses"] > li:nth-child(12) { list-style-type: "⑫ "; }
+ol[data-sc-content="glosses"] > li:nth-child(13) { list-style-type: "⑬ "; }
+ol[data-sc-content="glosses"] > li:nth-child(14) { list-style-type: "⑭ "; }
+ol[data-sc-content="glosses"] > li:nth-child(15) { list-style-type: "⑮ "; }
+ol[data-sc-content="glosses"] > li:nth-child(16) { list-style-type: "⑯ "; }
+ol[data-sc-content="glosses"] > li:nth-child(17) { list-style-type: "⑰ "; }
+ol[data-sc-content="glosses"] > li:nth-child(18) { list-style-type: "⑱ "; }
+ol[data-sc-content="glosses"] > li:nth-child(19) { list-style-type: "⑲ "; }
+ol[data-sc-content="glosses"] > li:nth-child(20) { list-style-type: "⑳ "; }
+
 summary[data-sc-content="summary-entry"] {
     list-style-position: inside;
     color: var(--text-color-light4);

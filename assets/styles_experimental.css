@@ -52,7 +52,7 @@ summary[data-sc-content="summary-entry"] {
     padding: 0.1em 0.2em;
 }
 
-/* Experimental: circle numbers (note: they contain a space after the number) */
+/* Circled numbers (note: they contain a space after the number) */
 ol[data-sc-content="glosses"] {
     list-style-type: none;
 }
