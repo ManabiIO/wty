@@ -1346,13 +1346,50 @@ fn handle_inflection_sense_en(source: Lang, entry: &WordEntry, sense: &Sense, ir
 }
 
 fn normalize_orthography(source: Lang, word: &str) -> String {
+    const ARABIC_DIACRITICS: [char; 16] = [
+        '\u{0618}', '\u{0619}', '\u{061A}', '\u{064B}', '\u{064C}', '\u{064D}', '\u{064E}',
+        '\u{064F}', '\u{0650}', '\u{0651}', '\u{0652}', '\u{0653}', '\u{0654}', '\u{0655}',
+        '\u{0656}', '\u{0670}',
+    ];
     match source {
-        Lang::Grc | Lang::La | Lang::Ru => {
-            // Normalize to NFD and drop combining accents
-            word.nfd()
-                .filter(|c| !('\u{0300}'..='\u{036F}').contains(c))
-                .collect()
+        Lang::Ar | Lang::Fa => word
+            .chars()
+            .filter(|c| !ARABIC_DIACRITICS.contains(c))
+            .collect(),
+        Lang::La | Lang::Ang | Lang::Sga | Lang::Grc | Lang::Ro | Lang::It | Lang::Id => word
+            .nfd()
+            .filter(|c| !('\u{0300}'..='\u{036F}').contains(c))
+            .collect::<String>()
+            .nfc()
+            .collect(),
+        Lang::Tl => word
+            .nfd()
+            .filter(|c| !('\u{0300}'..='\u{036F}').contains(c) && *c != '-' && *c != '\'')
+            .collect::<String>()
+            .nfc()
+            .collect(),
+        Lang::Sh => {
+            let mut last_base: Option<char> = None;
+            let filtered: String = word
+                .nfd()
+                .filter(|&c| {
+                    if ('\u{0300}'..='\u{036F}').contains(&c) {
+                        !matches!(
+                            last_base,
+                            Some(
+                                'a' | 'e' | 'i' | 'o' | 'u' | 'r' | 'A' | 'E' | 'I' | 'O'
+                                | 'U' | 'R'
+                            )
+                        )
+                    } else {
+                        last_base = Some(c);
+                        true
+                    }
+                })
+                .collect();
+            filtered.nfc().collect()
         }
+        Lang::Uk | Lang::Ru => word.replace('\u{0301}', ""),
         _ => word.to_string(),
     }
 }
