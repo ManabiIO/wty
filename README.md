@@ -1,3 +1,7 @@
+## wiktionary to yomitan (wty)
+
+[![Build status](https://github.com/daxida/wty/workflows/ci/badge.svg)](https://github.com/daxida/wty/actions)
+
 Converts wiktionary data from [kaikki](https://kaikki.org/) ([wiktextract](https://github.com/tatuylonen/wiktextract)) to [yomitan](https://github.com/yomidevs/yomitan)-compatible dictionaries.
 
 This is a port of [kaikki-to-yomitan](https://github.com/yomidevs/kaikki-to-yomitan).
