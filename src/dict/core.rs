@@ -1,6 +1,7 @@
 use anyhow::{Context, Ok, Result};
-use serde::Serialize;
+use serde::{Deserialize, Serialize};
 
+use std::borrow::Cow;
 use std::fmt;
 use std::fs::File;
 use std::io::{BufRead, BufReader, BufWriter, Write};
@@ -90,6 +91,13 @@ pub trait Dictionary {
 
     /// Whether to keep or not this entry.
     fn keep_if(&self, source: Lang, entry: &WordEntry) -> bool;
+
+    /// Whether we can quickly probe a jsonline to avoid a full deserialization.
+    ///
+    /// Only used for the main dictionary. It probes on source Lang.
+    fn supports_probe(&self) -> bool {
+        false
+    }
 
     // NOTE: Maybe we can get rid of this (blocked by mutable behaviour of the main dictionary).
     //
@@ -264,6 +272,21 @@ pub fn iter_datasets(pm: &PathManager) -> impl Iterator<Item = Result<(Edition, 
     })
 }
 
+#[derive(Deserialize)]
+#[serde(default)]
+struct LangCodeProbe<'a> {
+    #[serde(borrow)]
+    lang_code: Cow<'a, str>,
+}
+
+impl<'a> Default for LangCodeProbe<'a> {
+    fn default() -> Self {
+        Self {
+            lang_code: Cow::Borrowed(""),
+        }
+    }
+}
+
 pub fn make_dict<D: Dictionary + AggregationKey>(dict: D, raw_args: D::A) -> Result<()> {
     let pm: &PathManager = &raw_args.try_into()?;
     let (_, source_pm, target_pm) = pm.langs();
@@ -292,6 +315,14 @@ pub fn make_dict<D: Dictionary + AggregationKey>(dict: D, raw_args: D::A) -> Res
             }
 
             line_count += 1;
+
+            if dict.supports_probe() {
+                let probe: LangCodeProbe = serde_json::from_slice(&line)
+                    .with_context(|| "Error decoding JSON @ make_dict (lang_code prefilter)")?;
+                if source_pm.as_ref() != probe.lang_code.as_ref() {
+                    continue;
+                }
+            }
 
             let mut entry: WordEntry =
                 serde_json::from_slice(&line).with_context(|| "Error decoding JSON @ make_dict")?;

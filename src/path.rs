@@ -33,7 +33,7 @@ impl fmt::Display for DictionaryType {
 // cf. download::DatasetKind
 #[derive(Debug, PartialEq, Eq)]
 pub enum PathKind {
-    /// Path to a filtered jsonl. English-edition-only, for other editions this is just an alias.
+    /// Path to a filtered jsonl. For tests only.
     Filtered,
     /// Path to a unfiltered jsonl
     Unfiltered,
