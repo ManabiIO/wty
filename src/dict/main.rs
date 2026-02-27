@@ -1359,34 +1359,26 @@ fn normalize_orthography(source: Lang, word: &str) -> String {
         Lang::La | Lang::Ang | Lang::Sga | Lang::Grc | Lang::Ro | Lang::It | Lang::Id => word
             .nfd()
             .filter(|c| !('\u{0300}'..='\u{036F}').contains(c))
-            .collect::<String>()
             .nfc()
             .collect(),
         Lang::Tl => word
             .nfd()
             .filter(|c| !('\u{0300}'..='\u{036F}').contains(c) && *c != '-' && *c != '\'')
-            .collect::<String>()
             .nfc()
             .collect(),
         Lang::Sh => {
             let mut last_base: Option<char> = None;
-            let filtered: String = word
-                .nfd()
-                .filter(|&c| {
-                    if ('\u{0300}'..='\u{036F}').contains(&c) {
-                        !matches!(
-                            last_base,
-                            Some(
-                                'a' | 'e' | 'i' | 'o' | 'u' | 'r' | 'A' | 'E' | 'I' | 'O'
-                                | 'U' | 'R'
-                            )
-                        )
-                    } else {
-                        last_base = Some(c);
-                        true
-                    }
-                })
-                .collect();
+            let filtered = word.nfd().filter(|&c| {
+                if ('\u{0300}'..='\u{036F}').contains(&c) {
+                    !matches!(
+                        last_base,
+                        Some('a' | 'e' | 'i' | 'o' | 'u' | 'r' | 'A' | 'E' | 'I' | 'O' | 'U' | 'R')
+                    )
+                } else {
+                    last_base = Some(c);
+                    true
+                }
+            });
             filtered.nfc().collect()
         }
         Lang::Uk | Lang::Ru => word.replace('\u{0301}', ""),

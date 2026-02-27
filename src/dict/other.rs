@@ -215,10 +215,10 @@ fn process_glossary_extended(
     irs.extend(translations.iter().flat_map(|(_, (targets, sources))| {
         sources.iter().map(|lemma| {
             (
-                lemma.to_string(),
+                (*lemma).to_string(),
                 short_pos.to_string(),
                 edition,
-                targets.iter().map(|def| def.to_string()).collect(),
+                targets.iter().map(|def| (*def).to_string()).collect(),
             )
         })
     }));

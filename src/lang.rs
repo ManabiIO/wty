@@ -575,6 +575,12 @@ impl EditionSpec {
     }
 }
 
+impl From<Edition> for EditionSpec {
+    fn from(val: Edition) -> Self {
+        Self::One(val)
+    }
+}
+
 impl TryInto<Edition> for EditionSpec {
     type Error = &'static str;
 
@@ -683,12 +689,6 @@ impl Edition {
             Self::Tr,
             Self::Vi,
         ]
-    }
-}
-
-impl Into<EditionSpec> for Edition {
-    fn into(self) -> EditionSpec {
-        EditionSpec::One(self)
     }
 }
 

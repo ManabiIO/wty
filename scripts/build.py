@@ -243,6 +243,13 @@ def generate_lang_rs(langs: list[Lang], f) -> None:
     w(f"{idt}}}\n")
     w("}\n\n")
 
+    # EditionSpec: From<Edition>
+    w("impl From<Edition> for EditionSpec {\n")
+    w(f"{idt}fn from(val: Edition) -> Self {{\n")
+    w(f"{idt * 2}Self::One(val)\n")
+    w(f"{idt}}}\n")
+    w("}\n\n")
+
     # EditionSpec: TryInto<Edition>
     w("impl TryInto<Edition> for EditionSpec {\n")
     w(f"{idt}type Error = &'static str;\n\n")
@@ -301,13 +308,6 @@ def generate_lang_rs(langs: list[Lang], f) -> None:
         if lang.has_edition:
             w(f"{idt * 3}Self::{lang.iso.title()},\n")
     w(f"{idt * 2}]\n")
-    w(f"{idt}}}\n")
-    w("}\n\n")
-
-    # Edition: Into<EditionSpec>
-    w("impl Into<EditionSpec> for Edition {\n")
-    w(f"{idt}fn into(self) -> EditionSpec {{\n")
-    w(f"{idt * 2}EditionSpec::One(self)\n")
     w(f"{idt}}}\n")
     w("}\n\n")
 

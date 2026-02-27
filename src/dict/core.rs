@@ -358,8 +358,8 @@ pub fn make_dict<D: Dictionary + AggregationKey>(dict: D, raw_args: D::A) -> Res
             let mut pm2 = pm.clone();
             let source = key.source;
             let target = key.target;
-            pm2.set_source(source.into());
-            pm2.set_target(target.into());
+            pm2.set_source(source);
+            pm2.set_target(target);
             pm2.setup_dirs()?;
             tracing::trace!("calling to_yomitan with (source={source}, target={target})",);
             let labelled_entries = match key.edition {

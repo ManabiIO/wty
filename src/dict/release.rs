@@ -49,7 +49,7 @@ pub fn release() -> Result<()> {
         "- {}",
         editions
             .iter()
-            .map(|ed| ed.to_string())
+            .map(std::string::ToString::to_string)
             .collect::<Vec<_>>()
             .join(", ")
     );
@@ -63,8 +63,8 @@ pub fn release() -> Result<()> {
         let lang: Lang = (*edition).into();
         let args = MainArgs {
             langs: MainLangs {
-                source: lang.into(),
-                target: (*edition).into(),
+                source: lang,
+                target: (*edition),
             },
             dict_name: DictName::default(),
             options: Options {
@@ -435,8 +435,8 @@ fn make_dict<D: Dictionary + AggregationKey + EditionFrom>(dict: D, raw_args: D:
         let mut pm2 = pm.clone();
         let source = key.source;
         let target = key.target;
-        pm2.set_source(source.into());
-        pm2.set_target(target.into());
+        pm2.set_source(source);
+        pm2.set_target(target);
         pm2.setup_dirs()?;
         tracing::trace!("calling to_yomitan with (source={source}, target={target})",);
         let labelled_entries = match key.edition {

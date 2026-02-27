@@ -432,20 +432,18 @@ mod tests {
     fn glossary_can_not_be_monolingual() {
         let res = Cli::try_parse_from(["wty", "glossary", "el", "el"]);
         let cli = res.unwrap(); // The parsing should be ok
-        match cli.command {
-            Command::Glossary(glossary_args) => {
-                assert!(LangSpecs::try_from(glossary_args.langs).is_err());
-            }
-            _ => panic!(),
+        if let Command::Glossary(glossary_args) = cli.command {
+            assert!(LangSpecs::try_from(glossary_args.langs).is_err());
+        } else {
+            panic!()
         }
 
         let res = Cli::try_parse_from(["wty", "glossary-extended", "all", "el", "el"]);
         let cli = res.unwrap(); // The parsing should be ok
-        match cli.command {
-            Command::GlossaryExtended(glossary_args) => {
-                assert!(LangSpecs::try_from(glossary_args.langs).is_err());
-            }
-            _ => panic!(),
+        if let Command::GlossaryExtended(glossary_args) = cli.command {
+            assert!(LangSpecs::try_from(glossary_args.langs).is_err());
+        } else {
+            panic!()
         }
     }
 
