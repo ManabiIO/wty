@@ -7,33 +7,7 @@
   <td>
       <select class="dl-source">
         <option value="" selected disabled>Select a source...</option>
-          <option value="zh">🇨🇳 Chinese, Mandarin</option>
-          <option value="cs">🇨🇿 Czech</option>
-          <option value="nl">🇳🇱 Dutch</option>
-          <option value="en">🇬🇧 English</option>
-          <option value="simple">🇬🇧 English, Simple</option>
-          <option value="fr">🇫🇷 French</option>
-          <option value="de">🇩🇪 German</option>
-          <option value="el">🇬🇷 Greek</option>
-          <option value="id">🇮🇩 Indonesian</option>
-          <option value="it">🇮🇹 Italian</option>
-          <option value="ja">🇯🇵 Japanese</option>
-          <option value="ko">🇰🇷 Korean</option>
-          <option value="ku">🇮🇶 Kurdish</option>
-          <option value="ms">🇲🇾 Malay</option>
-          <option value="pl">🇵🇱 Polish</option>
-          <option value="pt">🇵🇹 Portuguese</option>
-          <option value="ru">🇷🇺 Russian</option>
-          <option value="es">🇪🇸 Spanish</option>
-          <option value="th">🇹🇭 Thai</option>
-          <option value="tr">🇹🇷 Turkish</option>
-          <option value="vi">🇻🇳 Vietnamese</option>
-      </select>
-        </td>
-  <td>
-    <select class="dl-target">
-      <option value="" selected disabled>Select a target...</option>
-        <option value="sq">🇦🇱 Albanian</option>
+          <option value="sq">🇦🇱 Albanian</option>
         <option value="arz">🇪🇬 Arabic, Egyptian</option>
         <option value="afb">🇦🇪 Arabic, Gulf</option>
         <option value="ar">🟩 Arabic, MSA</option>
@@ -105,22 +79,16 @@
         <option value="vi">🇻🇳 Vietnamese</option>
         <option value="cy">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Welsh</option>
         <option value="yi">🏳️ Yiddish</option>
-    </select>
-  </td>
+      </select>
+        </td>
   <td>
-    <button class="dl-btn">📥</button>
-  </td>
-  <td class="dl-info"></td>
-</tr>
-<tr data-type="ipa" class="download-line">
-  <th>🔤 IPA</th>
-  <td>
-      <select class="dl-source">
-        <option value="" selected disabled>Select a source...</option>
-          <option value="zh">🇨🇳 Chinese, Mandarin</option>
+    <select class="dl-target">
+      <option value="" selected disabled>Select a target...</option>
+        <option value="zh">🇨🇳 Chinese, Mandarin</option>
           <option value="cs">🇨🇿 Czech</option>
           <option value="nl">🇳🇱 Dutch</option>
           <option value="en">🇬🇧 English</option>
+          <option value="simple">🇬🇧 English, Simple</option>
           <option value="fr">🇫🇷 French</option>
           <option value="de">🇩🇪 German</option>
           <option value="el">🇬🇷 Greek</option>
@@ -137,12 +105,19 @@
           <option value="th">🇹🇭 Thai</option>
           <option value="tr">🇹🇷 Turkish</option>
           <option value="vi">🇻🇳 Vietnamese</option>
-      </select>
-        </td>
+    </select>
+  </td>
   <td>
-    <select class="dl-target">
-      <option value="" selected disabled>Select a target...</option>
-        <option value="sq">🇦🇱 Albanian</option>
+    <button class="dl-btn">📥</button>
+  </td>
+  <td class="dl-info"></td>
+</tr>
+<tr data-type="ipa" class="download-line">
+  <th>🔤 IPA</th>
+  <td>
+      <select class="dl-source">
+        <option value="" selected disabled>Select a source...</option>
+          <option value="sq">🇦🇱 Albanian</option>
         <option value="arz">🇪🇬 Arabic, Egyptian</option>
         <option value="afb">🇦🇪 Arabic, Gulf</option>
         <option value="ar">🟩 Arabic, MSA</option>
@@ -213,6 +188,31 @@
         <option value="vi">🇻🇳 Vietnamese</option>
         <option value="cy">🏴󠁧󠁢󠁷󠁬󠁳󠁿 Welsh</option>
         <option value="yi">🏳️ Yiddish</option>
+      </select>
+        </td>
+  <td>
+    <select class="dl-target">
+      <option value="" selected disabled>Select a target...</option>
+        <option value="zh">🇨🇳 Chinese, Mandarin</option>
+          <option value="cs">🇨🇿 Czech</option>
+          <option value="nl">🇳🇱 Dutch</option>
+          <option value="en">🇬🇧 English</option>
+          <option value="fr">🇫🇷 French</option>
+          <option value="de">🇩🇪 German</option>
+          <option value="el">🇬🇷 Greek</option>
+          <option value="id">🇮🇩 Indonesian</option>
+          <option value="it">🇮🇹 Italian</option>
+          <option value="ja">🇯🇵 Japanese</option>
+          <option value="ko">🇰🇷 Korean</option>
+          <option value="ku">🇮🇶 Kurdish</option>
+          <option value="ms">🇲🇾 Malay</option>
+          <option value="pl">🇵🇱 Polish</option>
+          <option value="pt">🇵🇹 Portuguese</option>
+          <option value="ru">🇷🇺 Russian</option>
+          <option value="es">🇪🇸 Spanish</option>
+          <option value="th">🇹🇭 Thai</option>
+          <option value="tr">🇹🇷 Turkish</option>
+          <option value="vi">🇻🇳 Vietnamese</option>
     </select>
   </td>
   <td>

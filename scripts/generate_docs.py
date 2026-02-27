@@ -97,12 +97,12 @@ def generate_downloads_page(all_langs: list[Lang], editions: list[Lang]) -> str:
 
     table_html = "\n".join(
         [
-            render_line("📘 Main", "main", target_options, edition_options),
+            render_line("📘 Main", "main", edition_options, target_options),
             render_line(
                 "🔤 IPA",
                 "ipa",
-                target_options_no_simple_english,
                 edition_options_no_simple_english,
+                target_options_no_simple_english,
             ),
             render_line(
                 "🧬 IPA merged", "ipa-merged", target_options_no_simple_english

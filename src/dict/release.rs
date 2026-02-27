@@ -37,12 +37,12 @@ use crate::{
 pub fn release() -> Result<()> {
     let start = Instant::now();
 
-    let editions = [Edition::En, Edition::De, Edition::Fr];
+    // let editions = [Edition::En, Edition::De, Edition::Fr];
 
-    // let mut editions = Edition::all();
-    // // English is the bottleneck, and while I'm not entirely sure this works, getting to work asap
-    // // with English dictionaries should make things faster. This puts English first.
-    // editions.sort_by_key(|ed| i32::from(*ed != Edition::En));
+    let mut editions = Edition::all();
+    // English is the bottleneck, and while I'm not entirely sure this works, getting to work asap
+    // with English dictionaries should make things faster. This puts English first.
+    editions.sort_by_key(|ed| i32::from(*ed != Edition::En));
 
     println!("Making release with {} editions", editions.len());
     println!(
@@ -54,8 +54,7 @@ pub fn release() -> Result<()> {
             .join(", ")
     );
 
-    // First, do all the downloading like in the python script to prevent races when creating
-    // databases.
+    // First, download all jsonlines to prevent races when creating databases.
     //
     // NOTE: For some reason this takes time even when db are init, why?
     editions.par_iter().for_each(|edition| {
