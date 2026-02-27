@@ -111,81 +111,10 @@ def generate_lang_rs(langs: list[Lang], f) -> None:
     ]
     w("// The idea is from https://github.com/johnstonskj/rust-codes/tree/main\n")
     w(f"pub trait Code: {' + '.join(shared_traits)} {{}}\n\n")
-    w("impl Code for LangSpec {}\n")
     w("impl Code for Lang {}\n")
     w("impl Code for EditionSpec {}\n")
     w("impl Code for Edition {}\n")
     w("\n")
-
-    ### LangSpec start
-
-    # LangSpec
-    w("#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash)]\n")
-    w("pub enum LangSpec {\n")
-    w(f"{idt}/// All langs\n")
-    w(f"{idt}All,\n")
-    w(f"{idt}/// A `Lang`\n")
-    w(f"{idt}One(Lang),\n")
-    w("}\n\n")
-
-    # LangSpec: variants (iteration)
-    w("impl LangSpec {\n")
-    w(f"{idt}pub fn variants(&self) -> Vec<Lang> {{\n")
-    w(f"{idt * 2}match self {{\n")
-    w(f"{idt * 3}Self::All => Lang::all(),\n")
-    w(f"{idt * 3}Self::One(lang) => vec![*lang],\n")
-    w(f"{idt * 2}}}\n")
-    w(f"{idt}}}\n")
-    w("}\n\n")
-
-    # LangSpec: TryInto<Lang>
-    w("impl TryInto<Lang> for LangSpec {\n")
-    w(f"{idt}type Error = &'static str;\n\n")
-    w(f"{idt}fn try_into(self) -> Result<Lang, Self::Error> {{\n")
-    w(f"{idt * 2}match self {{\n")
-    w(f'{idt * 3}Self::All => Err("cannot convert from All"),\n')
-    w(f"{idt * 3}Self::One(lang) => Ok(lang),\n")
-    w(f"{idt * 2}}}\n")
-    w(f"{idt}}}\n")
-    w("}\n\n")
-
-    # LangSpec: From<EditionSpec>
-    w("impl From<EditionSpec> for LangSpec {\n")
-    w(f"{idt}fn from(value: EditionSpec) -> Self {{\n")
-    w(f"{idt * 2}match value {{\n")
-    w(f"{idt * 3}EditionSpec::All => Self::All,\n")
-    w(f"{idt * 3}EditionSpec::One(lang) => Self::One(lang.into()),\n")
-    w(f"{idt * 2}}}\n")
-    w(f"{idt}}}\n")
-    w("}\n\n")
-
-    # LangSpec: FromStr
-    w("impl FromStr for LangSpec {\n")
-    w(f"{idt}type Err = String;\n\n")
-    w(f"{idt}fn from_str(s: &str) -> Result<Self, Self::Err> {{\n")
-    w(f"{idt * 2}match s {{\n")
-    w(f'{idt * 3}"all" => Ok(Self::All),\n')
-    w(f"{idt * 3}other => Ok(Self::One(Lang::from_str(other)?)),\n")
-    w(f"{idt * 2}}}\n")
-    w(f"{idt}}}\n")
-    w("}\n\n")
-
-    # LangSpec: AsRef<&str>
-    w("impl AsRef<str> for LangSpec {\n")
-    w(f"{idt}fn as_ref(&self) -> &str {{\n")
-    w(f"{idt * 2}match self {{\n")
-    w(f'{idt * 3}Self::All => "all",\n')
-    w(f"{idt * 3}Self::One(lang) => lang.as_ref(),\n")
-    w(f"{idt * 2}}}\n")
-    w(f"{idt}}}\n")
-    w("}\n\n")
-
-    # LangSpec: Display
-    w("impl Display for LangSpec {\n")
-    w(f"{idt}fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {{\n")
-    w(f"{idt * 2}f.write_str(self.as_ref())\n")
-    w(f"{idt}}}\n")
-    w("}\n\n")
 
     ### Lang start
 
@@ -205,13 +134,6 @@ def generate_lang_rs(langs: list[Lang], f) -> None:
         if lang.has_edition:
             w(f"{idt * 3}Edition::{lang.iso.title()} => Self::{lang.iso.title()},\n")
     w(f"{idt * 2}}}\n")
-    w(f"{idt}}}\n")
-    w("}\n\n")
-
-    # Lang: Into<LangSpec>
-    w("impl Into<LangSpec> for Lang {\n")
-    w(f"{idt}fn into(self) -> LangSpec {{\n")
-    w(f"{idt * 2}LangSpec::One(self)\n")
     w(f"{idt}}}\n")
     w("}\n\n")
 

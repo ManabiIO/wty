@@ -12,73 +12,9 @@ use serde::{Deserialize, Serialize};
 // The idea is from https://github.com/johnstonskj/rust-codes/tree/main
 pub trait Code: Clone + Debug + Display + FromStr + AsRef<str> + PartialEq + Eq + Hash {}
 
-impl Code for LangSpec {}
 impl Code for Lang {}
 impl Code for EditionSpec {}
 impl Code for Edition {}
-
-#[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash)]
-pub enum LangSpec {
-    /// All langs
-    All,
-    /// A `Lang`
-    One(Lang),
-}
-
-impl LangSpec {
-    pub fn variants(&self) -> Vec<Lang> {
-        match self {
-            Self::All => Lang::all(),
-            Self::One(lang) => vec![*lang],
-        }
-    }
-}
-
-impl TryInto<Lang> for LangSpec {
-    type Error = &'static str;
-
-    fn try_into(self) -> Result<Lang, Self::Error> {
-        match self {
-            Self::All => Err("cannot convert from All"),
-            Self::One(lang) => Ok(lang),
-        }
-    }
-}
-
-impl From<EditionSpec> for LangSpec {
-    fn from(value: EditionSpec) -> Self {
-        match value {
-            EditionSpec::All => Self::All,
-            EditionSpec::One(lang) => Self::One(lang.into()),
-        }
-    }
-}
-
-impl FromStr for LangSpec {
-    type Err = String;
-
-    fn from_str(s: &str) -> Result<Self, Self::Err> {
-        match s {
-            "all" => Ok(Self::All),
-            other => Ok(Self::One(Lang::from_str(other)?)),
-        }
-    }
-}
-
-impl AsRef<str> for LangSpec {
-    fn as_ref(&self) -> &str {
-        match self {
-            Self::All => "all",
-            Self::One(lang) => lang.as_ref(),
-        }
-    }
-}
-
-impl Display for LangSpec {
-    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
-        f.write_str(self.as_ref())
-    }
-}
 
 #[derive(Debug, Clone, Copy, Serialize, Deserialize, PartialEq, Eq, Hash)]
 pub enum Lang {
@@ -253,12 +189,6 @@ impl From<Edition> for Lang {
             Edition::Tr => Self::Tr,
             Edition::Vi => Self::Vi,
         }
-    }
-}
-
-impl Into<LangSpec> for Lang {
-    fn into(self) -> LangSpec {
-        LangSpec::One(self)
     }
 }
 

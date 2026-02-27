@@ -6,7 +6,7 @@ use std::str::FromStr;
 use anyhow::{Ok, Result, bail};
 use clap::{Parser, Subcommand};
 
-use crate::lang::{EditionSpec, Lang, LangSpec};
+use crate::lang::{Edition, EditionSpec, Lang};
 use crate::models::kaikki::WordEntry;
 use crate::path::{DictionaryType, PathManager};
 
@@ -125,20 +125,20 @@ pub struct IsoArgs {
 #[derive(Parser, Debug, Clone)]
 pub struct MainLangs {
     /// Source language
-    pub source: LangSpec,
+    pub source: Lang,
 
     /// Target language (edition)
-    pub target: EditionSpec,
+    pub target: Edition,
 }
 
 /// Langs-like struct that validates edition for `source` and skips `edition`.
 #[derive(Parser, Debug, Clone)]
 pub struct GlossaryLangs {
     /// Source language (edition)
-    pub source: EditionSpec,
+    pub source: Edition,
 
     /// Target language
-    pub target: LangSpec,
+    pub target: Lang,
 }
 
 /// Langs-like struct that validates edition for `edition`.
@@ -148,17 +148,17 @@ pub struct GlossaryExtendedLangs {
     pub edition: EditionSpec,
 
     /// Source language
-    pub source: LangSpec,
+    pub source: Lang,
 
     /// Target language
-    pub target: LangSpec,
+    pub target: Lang,
 }
 
 /// Langs-like struct that only takes one language.
 #[derive(Parser, Debug, Clone)]
 pub struct IpaMergedLangs {
     /// Target language
-    pub target: LangSpec,
+    pub target: Lang,
 }
 
 #[expect(clippy::struct_excessive_bools)]
@@ -284,10 +284,10 @@ impl FilterKey {
     }
 }
 
-fn check_simple_english(source: &LangSpec, target: &LangSpec) -> Result<()> {
+fn check_simple_english(source: &Lang, target: &Lang) -> Result<()> {
     match (source, target) {
-        (LangSpec::One(Lang::Simple), LangSpec::One(Lang::Simple)) => Ok(()),
-        (LangSpec::One(Lang::Simple), _) | (_, LangSpec::One(Lang::Simple)) => {
+        (Lang::Simple, Lang::Simple) => Ok(()),
+        (Lang::Simple, _) | (_, Lang::Simple) => {
             anyhow::bail!("Simple English must be used as both source and target.")
         }
         _ => Ok(()),
@@ -295,22 +295,20 @@ fn check_simple_english(source: &LangSpec, target: &LangSpec) -> Result<()> {
 }
 
 // Only the main dictionary makes sense with Simple English
-fn err_on_simple_english(source: &LangSpec, target: &LangSpec) -> Result<()> {
+fn err_on_simple_english(source: &Lang, target: &Lang) -> Result<()> {
     match (source, target) {
-        (LangSpec::One(Lang::Simple), _) | (_, LangSpec::One(Lang::Simple)) => {
+        (Lang::Simple, _) | (_, Lang::Simple) => {
             anyhow::bail!("Simple English can not be used for this dictionary.")
         }
         _ => Ok(()),
     }
 }
 
-fn err_on_source_being_target(source: &LangSpec, target: &LangSpec) -> Result<()> {
-    match (source, target) {
-        (LangSpec::One(source), LangSpec::One(target)) if source == target => {
-            anyhow::bail!("in a glossary dictionary source must be different from target.");
-        }
-        _ => Ok(()),
+fn err_on_source_being_target(source: &Lang, target: &Lang) -> Result<()> {
+    if source == target {
+        anyhow::bail!("in a glossary dictionary source must be different from target.");
     }
+    Ok(())
 }
 
 impl Cli {
@@ -323,8 +321,8 @@ impl Cli {
 #[derive(Debug, Clone, Copy)]
 pub struct LangSpecs {
     pub edition: EditionSpec,
-    pub source: LangSpec,
-    pub target: LangSpec,
+    pub source: Lang,
+    pub target: Lang,
 }
 
 impl TryFrom<MainLangs> for LangSpecs {
@@ -334,7 +332,7 @@ impl TryFrom<MainLangs> for LangSpecs {
         check_simple_english(&langs.source, &langs.target.into())?;
 
         Ok(Self {
-            edition: langs.target,
+            edition: EditionSpec::One(langs.target),
             source: langs.source,
             target: langs.target.into(),
         })
@@ -349,7 +347,7 @@ impl TryFrom<GlossaryLangs> for LangSpecs {
         err_on_source_being_target(&langs.source.into(), &langs.target)?;
 
         Ok(Self {
-            edition: langs.source,
+            edition: EditionSpec::One(langs.source),
             source: langs.source.into(),
             target: langs.target,
         })

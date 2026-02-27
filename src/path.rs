@@ -3,7 +3,7 @@ use std::fs;
 use std::path::PathBuf;
 
 use crate::cli::{DictName, LangSpecs, Options};
-use crate::lang::{Edition, EditionSpec, Lang, LangSpec};
+use crate::lang::{Edition, EditionSpec, Lang};
 
 /// Enum used by `PathManager` to manage filetree operations.
 #[derive(Debug, Clone, Copy)]
@@ -93,14 +93,14 @@ impl PathManager {
     pub const fn set_edition(&mut self, edition: EditionSpec) {
         self.langs.edition = edition;
     }
-    pub const fn set_source(&mut self, source: LangSpec) {
+    pub const fn set_source(&mut self, source: Lang) {
         self.langs.source = source;
     }
-    pub const fn set_target(&mut self, target: LangSpec) {
+    pub const fn set_target(&mut self, target: Lang) {
         self.langs.target = target;
     }
 
-    pub const fn langs(&self) -> (EditionSpec, LangSpec, LangSpec) {
+    pub const fn langs(&self) -> (EditionSpec, Lang, Lang) {
         let LangSpecs {
             edition,
             source,

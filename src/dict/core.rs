@@ -9,7 +9,7 @@ use std::path::PathBuf;
 use crate::Map;
 use crate::cli::Options;
 use crate::dict::writer::write_yomitan;
-use crate::lang::{Edition, EditionSpec, Lang, LangSpec};
+use crate::lang::{Edition, EditionSpec, Lang};
 use crate::models::kaikki::WordEntry;
 use crate::models::yomitan::YomitanEntry;
 use crate::path::{PathKind, PathManager};
@@ -142,12 +142,10 @@ pub struct LangsKey {
     pub target: Lang,
 }
 
-pub trait IterLang {
-    fn iter_langs(&self, edition: Edition, source: LangSpec, target: LangSpec) -> Vec<Langs>;
-
-    /// Maps an iteration Langs to its aggregation key.
-    ///
-    /// Used by merged dictionaries to combine data across editions.
+/// Maps an iteration Langs to its aggregation key.
+///
+/// Used by merged dictionaries to combine data across editions.
+pub trait AggregationKey {
     fn langs_to_key(&self, langs: Langs) -> LangsKey {
         LangsKey {
             edition: EditionSpec::One(langs.edition),
@@ -157,59 +155,13 @@ pub trait IterLang {
     }
 }
 
-fn cartesian(edition: Edition, source: LangSpec, target: LangSpec) -> Vec<Langs> {
-    let mut out = Vec::new();
-    for s in source.variants() {
-        for t in target.variants() {
-            out.push(Langs::new(edition, s, t));
-        }
-    }
-    out
-}
+impl AggregationKey for DMain {}
+impl AggregationKey for DIpa {}
+impl AggregationKey for DGlossary {}
 
-impl IterLang for DMain {
-    fn iter_langs(&self, edition: Edition, source: LangSpec, target: LangSpec) -> Vec<Langs> {
-        match target {
-            LangSpec::All => cartesian(edition, source, LangSpec::One(edition.into())),
-            _ => cartesian(edition, source, target),
-        }
-    }
-}
-
-impl IterLang for DIpa {
-    fn iter_langs(&self, edition: Edition, source: LangSpec, target: LangSpec) -> Vec<Langs> {
-        match target {
-            LangSpec::All => cartesian(edition, source, LangSpec::One(edition.into())),
-            _ => cartesian(edition, source, target),
-        }
-    }
-}
-
-impl IterLang for DGlossary {
-    fn iter_langs(&self, edition: Edition, source: LangSpec, target: LangSpec) -> Vec<Langs> {
-        match source {
-            LangSpec::All => cartesian(edition, LangSpec::One(edition.into()), target),
-            _ => cartesian(edition, source, target),
-        }
-    }
-}
-
-impl IterLang for DIpaMerged {
-    fn iter_langs(&self, edition: Edition, _source: LangSpec, target: LangSpec) -> Vec<Langs> {
-        match target {
-            LangSpec::One(t) => vec![Langs::new(edition, t, t)],
-            LangSpec::All => {
-                let mut out = Vec::new();
-                for t in target.variants() {
-                    out.push(Langs::new(edition, t, t));
-                }
-                out
-            }
-        }
-    }
-
+impl AggregationKey for DIpaMerged {
+    // Collapse all editions into one logical key
     fn langs_to_key(&self, langs: Langs) -> LangsKey {
-        // Collapse all editions into one logical key
         LangsKey {
             edition: EditionSpec::All,
             source: langs.source,
@@ -218,14 +170,8 @@ impl IterLang for DIpaMerged {
     }
 }
 
-impl IterLang for DGlossaryExtended {
-    fn iter_langs(&self, edition: Edition, source: LangSpec, target: LangSpec) -> Vec<Langs> {
-        match source {
-            LangSpec::All => cartesian(edition, LangSpec::One(edition.into()), target),
-            _ => cartesian(edition, source, target),
-        }
-    }
-
+impl AggregationKey for DGlossaryExtended {
+    // Collapse all editions into one logical key
     fn langs_to_key(&self, langs: Langs) -> LangsKey {
         LangsKey {
             edition: EditionSpec::All,
@@ -311,18 +257,14 @@ pub fn iter_datasets(pm: &PathManager) -> impl Iterator<Item = Result<(Edition, 
     let (edition_pm, source_pm, _) = pm.langs();
 
     edition_pm.variants().into_iter().map(move |edition| {
-        let lang_opt = match source_pm {
-            LangSpec::All => None,
-            LangSpec::One(lang) => Some(lang),
-        };
-        let path_jsonl = find_or_download_jsonl(edition, lang_opt, pm)?;
+        let path_jsonl = find_or_download_jsonl(edition, Some(source_pm), pm)?;
         tracing::debug!("edition: {edition}, path: {}", path_jsonl.display());
 
         Ok((edition, path_jsonl))
     })
 }
 
-pub fn make_dict<D: Dictionary + IterLang>(dict: D, raw_args: D::A) -> Result<()> {
+pub fn make_dict<D: Dictionary + AggregationKey>(dict: D, raw_args: D::A) -> Result<()> {
     let pm: &PathManager = &raw_args.try_into()?;
     let (_, source_pm, target_pm) = pm.langs();
     let opts = &pm.opts;
@@ -368,13 +310,17 @@ pub fn make_dict<D: Dictionary + IterLang>(dict: D, raw_args: D::A) -> Result<()
                 break;
             }
 
-            for langs in dict.iter_langs(edition, source_pm, target_pm) {
-                if dict.keep_if(langs.source, &entry) {
-                    let key = dict.langs_to_key(langs);
-                    let irs = irs_map.entry(key).or_default();
-                    dict.preprocess(langs, &mut entry, opts, irs);
-                    dict.process(langs, &entry, irs);
-                }
+            let langs = Langs {
+                edition,
+                source: source_pm,
+                target: target_pm,
+            };
+
+            if dict.keep_if(langs.source, &entry) {
+                let key = dict.langs_to_key(langs);
+                let irs = irs_map.entry(key).or_default();
+                dict.preprocess(langs, &mut entry, opts, irs);
+                dict.process(langs, &entry, irs);
             }
         }
 

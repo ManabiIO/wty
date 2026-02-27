@@ -25,10 +25,11 @@ use crate::{
         IpaArgs, IpaMergedArgs, IpaMergedLangs, MainArgs, MainLangs, Options,
     },
     dict::{
-        DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, Dictionary, Intermediate, IterLang,
-        Langs, LangsKey, find_or_download_jsonl, iter_datasets, writer::write_yomitan,
+        AggregationKey, DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, Dictionary,
+        Intermediate, Langs, LangsKey, find_or_download_jsonl, iter_datasets,
+        writer::write_yomitan,
     },
-    lang::{Edition, EditionSpec, Lang, LangSpec},
+    lang::{Edition, EditionSpec, Lang},
     models::kaikki::WordEntry,
     path::PathManager,
 };
@@ -125,13 +126,13 @@ fn release_main(edition: Edition) {
 
             let langs = match (edition, source) {
                 (Edition::Simple, Lang::Simple) => MainLangs {
-                    source: LangSpec::One(edition.into()),
-                    target: EditionSpec::One(edition),
+                    source: *source,
+                    target: edition,
                 },
                 (Edition::Simple, _) | (_, Lang::Simple) => return,
                 _ => MainLangs {
-                    source: LangSpec::One(*source),
-                    target: EditionSpec::One(edition),
+                    source: *source,
+                    target: edition,
                 },
             };
 
@@ -159,13 +160,13 @@ fn release_ipa(edition: Edition) {
 
         let langs = match (edition, source) {
             (Edition::Simple, Lang::Simple) => MainLangs {
-                source: LangSpec::One(edition.into()),
-                target: EditionSpec::One(edition),
+                source: *source,
+                target: edition,
             },
             (Edition::Simple, _) | (_, Lang::Simple) => return,
             _ => MainLangs {
-                source: LangSpec::One(*source),
-                target: EditionSpec::One(edition),
+                source: *source,
+                target: edition,
             },
         };
 
@@ -192,7 +193,7 @@ fn release_ipa_merged(edition: Edition) {
     let langs = match edition {
         Edition::Simple => return,
         _ => IpaMergedLangs {
-            target: LangSpec::One(edition.into()),
+            target: edition.into(),
         },
     };
 
@@ -221,8 +222,8 @@ fn release_glossary(edition: Edition) {
             (Edition::Simple, _) | (_, Lang::Simple) => return,
             _ if Lang::from(edition) == *target => return,
             _ => GlossaryLangs {
-                source: EditionSpec::One(edition),
-                target: LangSpec::One(*target),
+                source: edition,
+                target: *target,
             },
         };
 
@@ -254,8 +255,8 @@ fn release_glossary_extended(source: Lang) {
             _ if source == *target => return,
             _ => GlossaryExtendedLangs {
                 edition: EditionSpec::All,
-                source: LangSpec::One(source),
-                target: LangSpec::One(*target),
+                source,
+                target: *target,
             },
         };
 
@@ -367,7 +368,7 @@ impl WiktextractDb {
     }
 }
 
-fn make_dict<D: Dictionary + IterLang + EditionFrom>(dict: D, raw_args: D::A) -> Result<()> {
+fn make_dict<D: Dictionary + AggregationKey + EditionFrom>(dict: D, raw_args: D::A) -> Result<()> {
     let pm: &PathManager = &raw_args.try_into()?;
     let (_, source_pm, target_pm) = pm.langs();
     let opts = &pm.opts;
@@ -383,24 +384,16 @@ fn make_dict<D: Dictionary + IterLang + EditionFrom>(dict: D, raw_args: D::A) ->
         let (edition, _path_jsonl) = pair?;
 
         let db = WiktextractDb::open(edition)?;
-        let source = match source_pm {
-            LangSpec::All => panic!(),
-            LangSpec::One(lang) => lang,
-        };
-        let target = match target_pm {
-            LangSpec::All => panic!(),
-            LangSpec::One(lang) => lang,
-        };
         let langs = Langs {
             edition,
-            source,
-            target,
+            source: source_pm,
+            target: target_pm,
         };
 
         let other = match dict.edition_is() {
-            EditionIs::Target => source,
-            EditionIs::Source => target,
-            EditionIs::All => target,
+            EditionIs::Target => source_pm,
+            EditionIs::Source => target_pm,
+            EditionIs::All => target_pm,
         };
         tracing::trace!("Opened db for {edition} edition, selecting lang {other}...");
 
