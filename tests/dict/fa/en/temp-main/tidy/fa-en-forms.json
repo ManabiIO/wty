@@ -26,5 +26,757 @@
         ]
       ]
     }
+  },
+  "پرسیدن": {
+    "پرس": {
+      "verb": [
+        "extracted",
+        [
+          "present stem"
+        ]
+      ]
+    },
+    "spelling пурсидан": {
+      "verb": [
+        "extracted",
+        [
+          "Tajik"
+        ]
+      ]
+    },
+    "پرسید": {
+      "verb": [
+        "extracted",
+        [
+          "past stem",
+          "second-person plural aorist indicative",
+          "third-person singular past indicative"
+        ]
+      ]
+    },
+    "پرسنده": {
+      "verb": [
+        "extracted",
+        [
+          "present participle"
+        ]
+      ]
+    },
+    "پرسیده": {
+      "verb": [
+        "extracted",
+        [
+          "past participle",
+          "third-person singular present perfect indicative"
+        ]
+      ]
+    },
+    "پرسم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular aorist indicative"
+        ]
+      ]
+    },
+    "پرسی": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular aorist indicative"
+        ]
+      ]
+    },
+    "پرسد": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular aorist indicative"
+        ]
+      ]
+    },
+    "پرسیم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural aorist indicative"
+        ]
+      ]
+    },
+    "پرسند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural aorist indicative"
+        ]
+      ]
+    },
+    "میپرسم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular present indicative"
+        ]
+      ]
+    },
+    "میپرسی": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular present indicative"
+        ]
+      ]
+    },
+    "میپرسد": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular present indicative"
+        ]
+      ]
+    },
+    "میپرسیم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural present indicative"
+        ]
+      ]
+    },
+    "میپرسید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural present indicative",
+          "third-person singular past indicative"
+        ]
+      ]
+    },
+    "میپرسند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural present indicative"
+        ]
+      ]
+    },
+    "دارم میپرسم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular present indicative progressive"
+        ]
+      ]
+    },
+    "داری میپرسی": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular present indicative progressive"
+        ]
+      ]
+    },
+    "دارد میپرسد": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular present indicative progressive"
+        ]
+      ]
+    },
+    "داریم میپرسیم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural present indicative progressive"
+        ]
+      ]
+    },
+    "دارید میپرسید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural present indicative progressive"
+        ]
+      ]
+    },
+    "دارند میپرسند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural present indicative progressive"
+        ]
+      ]
+    },
+    "پرسیدهام": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular present perfect indicative"
+        ]
+      ]
+    },
+    "پرسیدهای": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular present perfect indicative"
+        ]
+      ]
+    },
+    "پرسیده است": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular present perfect indicative"
+        ]
+      ]
+    },
+    "پرسیدهایم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural present perfect indicative"
+        ]
+      ]
+    },
+    "پرسیدهاید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural present perfect indicative"
+        ]
+      ]
+    },
+    "پرسیدهاند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural present perfect indicative"
+        ]
+      ]
+    },
+    "پرسیدم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular past indicative"
+        ]
+      ]
+    },
+    "پرسیدی": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular past indicative"
+        ]
+      ]
+    },
+    "پرسیدیم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural past indicative"
+        ]
+      ]
+    },
+    "پرسیدید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural past indicative"
+        ]
+      ]
+    },
+    "پرسیدند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural past indicative"
+        ]
+      ]
+    },
+    "میپرسیدم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular past indicative"
+        ]
+      ]
+    },
+    "میپرسیدی": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular past indicative"
+        ]
+      ]
+    },
+    "میپرسیدیم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural past indicative"
+        ]
+      ]
+    },
+    "میپرسیدید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural past indicative"
+        ]
+      ]
+    },
+    "میپرسیدند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural past indicative"
+        ]
+      ]
+    },
+    "داشتم میپرسیدم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular past indicative progressive"
+        ]
+      ]
+    },
+    "داشتی میپرسیدی": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular past indicative progressive"
+        ]
+      ]
+    },
+    "داشت میپرسید": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular past indicative progressive"
+        ]
+      ]
+    },
+    "داشتیم میپرسیدیم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural past indicative progressive"
+        ]
+      ]
+    },
+    "داشتید میپرسیدید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural past indicative progressive"
+        ]
+      ]
+    },
+    "داشتند میپرسیدند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural past indicative progressive"
+        ]
+      ]
+    },
+    "پرسیده بودم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular pluperfect indicative"
+        ]
+      ]
+    },
+    "پرسیده بودی": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular pluperfect indicative"
+        ]
+      ]
+    },
+    "پرسیده بود": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular pluperfect indicative"
+        ]
+      ]
+    },
+    "پرسیده بودیم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural pluperfect indicative"
+        ]
+      ]
+    },
+    "پرسیده بودید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural pluperfect indicative"
+        ]
+      ]
+    },
+    "پرسیده بودند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural pluperfect indicative"
+        ]
+      ]
+    },
+    "خواهم پرسید": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular future indicative"
+        ]
+      ]
+    },
+    "خواهی پرسید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular future indicative"
+        ]
+      ]
+    },
+    "خواهد پرسید": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular future indicative"
+        ]
+      ]
+    },
+    "خواهیم پرسید": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural future indicative"
+        ]
+      ]
+    },
+    "خواهید پرسید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural future indicative"
+        ]
+      ]
+    },
+    "خواهند پرسید": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural future indicative"
+        ]
+      ]
+    },
+    "بپرسم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular present subjunctive"
+        ]
+      ]
+    },
+    "بپرسی": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular present subjunctive"
+        ]
+      ]
+    },
+    "بپرسد": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular present subjunctive"
+        ]
+      ]
+    },
+    "بپرسیم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural present subjunctive"
+        ]
+      ]
+    },
+    "بپرسید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural imperative",
+          "second-person plural present subjunctive"
+        ]
+      ]
+    },
+    "بپرسند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural present subjunctive"
+        ]
+      ]
+    },
+    "پرسیده باشم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person singular past subjunctive"
+        ]
+      ]
+    },
+    "پرسیده باشی": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular past subjunctive"
+        ]
+      ]
+    },
+    "پرسیده باشد": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular past subjunctive"
+        ]
+      ]
+    },
+    "پرسیده باشیم": {
+      "verb": [
+        "extracted",
+        [
+          "first-person plural past subjunctive"
+        ]
+      ]
+    },
+    "پرسیده باشید": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural past subjunctive"
+        ]
+      ]
+    },
+    "پرسیده باشند": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural past subjunctive"
+        ]
+      ]
+    },
+    "بپرس": {
+      "verb": [
+        "extracted",
+        [
+          "second-person singular imperative"
+        ]
+      ]
+    },
+    "پرسه": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular aorist indicative"
+        ]
+      ]
+    },
+    "پرسین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural aorist indicative"
+        ]
+      ]
+    },
+    "پرسن": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural aorist indicative"
+        ]
+      ]
+    },
+    "میپرسه": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular present indicative"
+        ]
+      ]
+    },
+    "میپرسین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural present indicative"
+        ]
+      ]
+    },
+    "میپرسن": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural present indicative"
+        ]
+      ]
+    },
+    "داره میپرسه": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular present indicative progressive"
+        ]
+      ]
+    },
+    "دارین میپرسین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural present indicative progressive"
+        ]
+      ]
+    },
+    "دارن میپرسن": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural present indicative progressive"
+        ]
+      ]
+    },
+    "پرسیدهاین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural present perfect indicative"
+        ]
+      ]
+    },
+    "پرسیدهان": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural present perfect indicative"
+        ]
+      ]
+    },
+    "پرسیدین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural past indicative"
+        ]
+      ]
+    },
+    "میپرسیدین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural past indicative"
+        ]
+      ]
+    },
+    "میپرسیدن": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural past indicative"
+        ]
+      ]
+    },
+    "داشتین میپرسیدین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural past indicative progressive"
+        ]
+      ]
+    },
+    "داشتن میپرسیدن": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural past indicative progressive"
+        ]
+      ]
+    },
+    "پرسیده بودین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural pluperfect indicative"
+        ]
+      ]
+    },
+    "پرسیده بودن": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural pluperfect indicative"
+        ]
+      ]
+    },
+    "بپرسه": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular present subjunctive"
+        ]
+      ]
+    },
+    "بپرسین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural imperative",
+          "second-person plural present subjunctive"
+        ]
+      ]
+    },
+    "بپرسن": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural present subjunctive"
+        ]
+      ]
+    },
+    "پرسیده باشه": {
+      "verb": [
+        "extracted",
+        [
+          "third-person singular past subjunctive"
+        ]
+      ]
+    },
+    "پرسیده باشین": {
+      "verb": [
+        "extracted",
+        [
+          "second-person plural past subjunctive"
+        ]
+      ]
+    },
+    "پرسیده باشن": {
+      "verb": [
+        "extracted",
+        [
+          "third-person plural past subjunctive"
+        ]
+      ]
+    }
   }
 }
