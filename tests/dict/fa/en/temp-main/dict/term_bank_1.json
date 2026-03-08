@@ -378,5 +378,233 @@
     ],
     0,
     ""
+  ],
+  [
+    "پرسیدن",
+    "pursīdan",
+    "v",
+    "v",
+    0,
+    [
+      {
+        "type": "structured-content",
+        "content": [
+          {
+            "tag": "div",
+            "content": [
+              {
+                "tag": "div",
+                "data": {
+                  "content": "preamble"
+                },
+                "content": [
+                  {
+                    "tag": "details",
+                    "data": {
+                      "content": "details-entry-Grammar"
+                    },
+                    "content": [
+                      {
+                        "tag": "summary",
+                        "data": {
+                          "content": "summary-entry"
+                        },
+                        "content": "Grammar"
+                      },
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "Grammar-content"
+                        },
+                        "content": "پرسیدن • (pursīdan /porsidan) (present stem پرس (purs /pors), Tajik spelling пурсидан)"
+                      }
+                    ]
+                  },
+                  {
+                    "tag": "details",
+                    "data": {
+                      "content": "details-entry-Etymology"
+                    },
+                    "content": [
+                      {
+                        "tag": "summary",
+                        "data": {
+                          "content": "summary-entry"
+                        },
+                        "content": "Etymology"
+                      },
+                      {
+                        "tag": "div",
+                        "data": {
+                          "content": "Etymology-content"
+                        },
+                        "content": "From Middle Persian 𐭯𐭥𐭥𐭮𐭩𐭲𐭭 (pʿʿsytn /⁠pursīdan⁠/), from Old Persian 𐎱𐎼𐎿𐎠𐎷𐎹 (p-r-s-a-mi-y /⁠pạrsāmiy⁠/, “to ask, punish”, 1sg.pres.act.), from Proto-Iranian *pr̥sáti, from Proto-Indo-Iranian *pr̥šćáti, from Proto-Indo-European *pr̥sḱéti.\nCognate to Northern Kurdish pirsîn, Sanskrit पृच्छति (pṛcchati), Russian проси́ть (prosítʹ), Old English friġnan."
+                      }
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "ol",
+            "data": {
+              "content": "glosses"
+            },
+            "content": [
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "to ask, inquire",
+                      {
+                        "tag": "details",
+                        "data": {
+                          "content": "details-entry-examples"
+                        },
+                        "content": [
+                          {
+                            "tag": "summary",
+                            "data": {
+                              "content": "summary-entry"
+                            },
+                            "content": "3 examples"
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "اگر سؤالی دارید، لطفا بپرسید."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-b"
+                                  },
+                                  "content": "If you have a question, please ask."
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "اگه یه سؤالی دارین، لطفا بپرسین."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-b"
+                                  },
+                                  "content": "If you have a question, please ask."
+                                }
+                              ]
+                            }
+                          },
+                          {
+                            "tag": "div",
+                            "data": {
+                              "content": "extra-info"
+                            },
+                            "content": {
+                              "tag": "div",
+                              "data": {
+                                "content": "example-sentence"
+                              },
+                              "content": [
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-a"
+                                  },
+                                  "content": "از وطن پرسید و آوردش به گفت، و اندر آن پرسش بسی درها بسفت"
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-b"
+                                  },
+                                  "content": "He asked him about his native land and led him to talk and said many fine things in the course of [his] enquiry."
+                                },
+                                {
+                                  "tag": "div",
+                                  "data": {
+                                    "content": "example-sentence-c"
+                                  },
+                                  "content": "c. 1260s, Jalāl ad-Dīn Mohammad Rūmī, translated by Reynold A. Nicholson, مثنوی معنوی [Masnavi-ye-Ma'navi], volume II, verse 3178"
+                                }
+                              ]
+                            }
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              {
+                "tag": "li",
+                "content": [
+                  {
+                    "tag": "div",
+                    "content": [
+                      "to question"
+                    ]
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "tag": "div",
+            "data": {
+              "content": "backlink"
+            },
+            "content": [
+              {
+                "tag": "a",
+                "href": "https://en.wiktionary.org/wiki/پرسیدن#Persian",
+                "content": "Wiktionary"
+              },
+              " | ",
+              {
+                "tag": "a",
+                "href": "https://kaikki.org/dictionary/Persian/meaning/پ/پر/پرسیدن.html",
+                "content": "Kaikki"
+              }
+            ]
+          }
+        ]
+      }
+    ],
+    0,
+    ""
   ]
 ]

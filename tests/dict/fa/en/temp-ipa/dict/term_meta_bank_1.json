@@ -73,5 +73,43 @@
         }
       ]
     }
+  ],
+  [
+    "پرسیدن",
+    "ipa",
+    {
+      "reading": "pursīdan",
+      "transcriptions": [
+        {
+          "ipa": "/pur.siː.ˈdan/",
+          "tags": [
+            "Classical-Persian"
+          ]
+        },
+        {
+          "ipa": "[pʰʊɾ.siː.d̪án]",
+          "tags": [
+            "Dari",
+            "formal",
+            "Kabuli"
+          ]
+        },
+        {
+          "ipa": "[pʰuɾ.si.d̪án]",
+          "tags": [
+            "Hazaragi",
+            "Tajik",
+            "formal"
+          ]
+        },
+        {
+          "ipa": "[pʰoɹ.siː.d̪ǽn]",
+          "tags": [
+            "Iran",
+            "formal"
+          ]
+        }
+      ]
+    }
   ]
 ]

@@ -80,7 +80,8 @@ pub const TAG_ORDER: [&str; 76] = [
     "combined-form",
 ];
 
-pub const TAG_BANK: [(&str, &str, i32, &[&str], i32); 241] = [
+#[rustfmt::skip]
+pub const TAG_BANK: [(&str, &str, i32, &[&str], i32); 242] = [
     ("non-lemma", "", 10, &["non-lemma"], -10),
     ("r", "partOfSpeech", -1, &["root"], 1),
     ("pos-r", "partOfSpeech", -1, &["pos-root"], 1),
@@ -219,6 +220,7 @@ pub const TAG_BANK: [(&str, &str, i32, &[&str], i32); 241] = [
     ("ૐ", "", 0, &["Buddhism"], 0),
     ("✝️", "", 0, &["Christianity"], 0),
     ("🛐", "", 0, &["religion"], 0),
+    ("⛪", "", 0, &["modern Italianate Ecclesiastical"], 0),
     ("vulg", "", 0, &["vulgar"], 0),
     ("sl", "", 0, &["slang"], 0),
     ("net-sl", "", 0, &["Internet slang"], 0),

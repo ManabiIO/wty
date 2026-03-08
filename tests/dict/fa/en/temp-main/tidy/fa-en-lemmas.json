@@ -52,5 +52,37 @@
         }
       ]
     }
+  },
+  "پرسیدن": {
+    "pursīdan": {
+      "verb": [
+        {
+          "gloss_tree": {
+            "to ask, inquire": {
+              "examples": [
+                {
+                  "text": "اگر سؤالی دارید، لطفا بپرسید.",
+                  "translation": "If you have a question, please ask."
+                },
+                {
+                  "text": "اگه یه سؤالی دارین، لطفا بپرسین.",
+                  "translation": "If you have a question, please ask."
+                },
+                {
+                  "text": "از وطن پرسید و آوردش به گفت، و اندر آن پرسش بسی درها بسفت",
+                  "translation": "He asked him about his native land and led him to talk and said many fine things in the course of [his] enquiry.",
+                  "ref": "c. 1260s, Jalāl ad-Dīn Mohammad Rūmī, translated by Reynold A. Nicholson, مثنوی معنوی [Masnavi-ye-Ma'navi], volume II, verse 3178:"
+                }
+              ]
+            },
+            "to question": {}
+          },
+          "etymology_text": "From Middle Persian 𐭯𐭥𐭥𐭮𐭩𐭲𐭭 (pʿʿsytn /⁠pursīdan⁠/), from Old Persian 𐎱𐎼𐎿𐎠𐎷𐎹 (p-r-s-a-mi-y /⁠pạrsāmiy⁠/, “to ask, punish”, 1sg.pres.act.), from Proto-Iranian *pr̥sáti, from Proto-Indo-Iranian *pr̥šćáti, from Proto-Indo-European *pr̥sḱéti.\nCognate to Northern Kurdish pirsîn, Sanskrit पृच्छति (pṛcchati), Russian проси́ть (prosítʹ), Old English friġnan.",
+          "head_info_text": "پرسیدن • (pursīdan /porsidan) (present stem پرس (purs /pors), Tajik spelling пурсидан)",
+          "wlink": "https://en.wiktionary.org/wiki/پرسیدن#Persian",
+          "klink": "https://kaikki.org/dictionary/Persian/meaning/پ/پر/پرسیدن.html"
+        }
+      ]
+    }
   }
 }

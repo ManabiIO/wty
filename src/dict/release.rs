@@ -19,24 +19,20 @@ use rkyv::Archived;
 use rusqlite::{Connection, params};
 
 use crate::{
-    Map,
     cli::{
         DictName, GlossaryArgs, GlossaryExtendedArgs, GlossaryExtendedLangs, GlossaryLangs,
-        IpaArgs, IpaMergedArgs, IpaMergedLangs, MainArgs, MainLangs, Options,
+        IpaArgs, IpaMergedArgs, IpaMergedLangs, MainArgs, MainLangs, Options, ReleaseArgs,
     },
     dict::{
-        AggregationKey, DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, Dictionary,
-        Intermediate, Langs, LangsKey, find_or_download_jsonl, iter_datasets,
-        writer::write_yomitan,
+        DGlossary, DGlossaryExtended, DIpa, DIpaMerged, DMain, Dictionary, Intermediate, Langs,
+        find_or_download_jsonl, iter_datasets, writer::write_yomitan,
     },
     lang::{Edition, EditionSpec, Lang},
     models::kaikki::WordEntry,
     path::PathManager,
 };
 
-pub fn release() -> Result<()> {
-    let start = Instant::now();
-
+pub fn release(rargs: ReleaseArgs) -> Result<()> {
     // let editions = [Edition::En, Edition::De, Edition::Fr];
 
     let mut editions = Edition::all();
@@ -44,12 +40,13 @@ pub fn release() -> Result<()> {
     // with English dictionaries should make things faster. This puts English first.
     editions.sort_by_key(|ed| i32::from(*ed != Edition::En));
 
+    println!("rargs: {:?}", &rargs);
     println!("Making release with {} editions", editions.len());
     println!(
         "- {}",
         editions
             .iter()
-            .map(std::string::ToString::to_string)
+            .map(ToString::to_string)
             .collect::<Vec<_>>()
             .join(", ")
     );
@@ -57,48 +54,59 @@ pub fn release() -> Result<()> {
     // First, download all jsonlines to prevent races when creating databases.
     //
     // NOTE: For some reason this takes time even when db are init, why?
+    let _ = std::fs::create_dir(&rargs.root_dir);
+    download_and_create_db(&rargs, &editions);
+
+    let start = Instant::now();
+
+    editions.par_iter().for_each(|edition| {
+        release_main(&rargs, *edition);
+        release_ipa(&rargs, *edition);
+        release_glossary(&rargs, *edition);
+    });
+
+    let targets = Lang::all();
+    // let targets = [Lang::Afb];
+    // let targets: Vec<Lang> = editions.iter().map(|ed| (*ed).into()).collect();
+    targets.par_iter().for_each(|target| {
+        release_ipa_merged(&rargs, *target);
+        // release_glossary_extended(*target);
+    });
+
+    let elapsed = start.elapsed();
+    println!("Finished dictionaries in {elapsed:.2?}");
+
+    Ok(())
+}
+
+fn download_and_create_db(rargs: &ReleaseArgs, editions: &[Edition]) {
+    let start = Instant::now();
+
+    let dir_kaik = rargs.root_dir.join("kaikki"); // cf. same function @ path.rs
+    let _ = std::fs::create_dir(dir_kaik);
+
     editions.par_iter().for_each(|edition| {
         let now = Instant::now();
-        let lang: Lang = (*edition).into();
         let args = MainArgs {
             langs: MainLangs {
-                source: lang,
-                target: (*edition),
+                source: (*edition).into(),
+                target: *edition,
             },
             dict_name: DictName::default(),
             options: Options {
                 quiet: false,
-                root_dir: "data".into(),
+                root_dir: rargs.root_dir.clone(),
                 ..Default::default()
             },
         };
         let pm: &PathManager = &args.try_into().unwrap();
         let path_jsonl = find_or_download_jsonl(*edition, None, pm).unwrap();
         println!("Finished download for {edition} ({:.2?})", now.elapsed());
-        let _ = WiktextractDb::create(*edition, path_jsonl).unwrap();
+        let _ = WiktextractDb::create(rargs.root_dir.clone(), *edition, path_jsonl).unwrap();
         println!("Finished database for {edition} ({:.2?})", now.elapsed());
     });
+
     println!("Finished download & db creation in {:.2?}", start.elapsed());
-
-    let start = Instant::now();
-
-    editions.par_iter().for_each(|edition| {
-        release_main(*edition);
-        release_ipa(*edition);
-        release_ipa_merged(*edition);
-        release_glossary(*edition);
-    });
-
-    // let sources = Lang::all();
-    // let sources = [Lang::Afb];
-    // sources.par_iter().for_each(|source| {
-    //     release_glossary_extended(*source);
-    // });
-
-    let elapsed = start.elapsed();
-    println!("Finished dictionaries in {elapsed:.2?}");
-
-    Ok(())
 }
 
 // Pretty print utility
@@ -108,8 +116,7 @@ fn pp(dict_name: &str, first_lang: Lang, second_lang: Lang, time: Instant) {
     eprintln!("{label:<20} done in {:.2?}", time.elapsed());
 }
 
-// runs main source all
-fn release_main(edition: Edition) {
+fn release_main(rargs: &ReleaseArgs, edition: Edition) {
     // Limit only this workload (as opposed to the full logic. IPA and glossaries are completely
     // fine and will never OOM).
     let pool = ThreadPoolBuilder::new()
@@ -140,7 +147,7 @@ fn release_main(edition: Edition) {
                 dict_name: DictName::default(),
                 options: Options {
                     quiet: true,
-                    root_dir: "data".into(),
+                    root_dir: rargs.root_dir.clone(),
                     ..Default::default()
                 },
             };
@@ -153,7 +160,7 @@ fn release_main(edition: Edition) {
     });
 }
 
-fn release_ipa(edition: Edition) {
+fn release_ipa(rargs: &ReleaseArgs, edition: Edition) {
     Lang::all().par_iter().for_each(|source| {
         let start = Instant::now();
 
@@ -174,7 +181,7 @@ fn release_ipa(edition: Edition) {
             dict_name: DictName::default(),
             options: Options {
                 quiet: true,
-                root_dir: "data".into(),
+                root_dir: rargs.root_dir.clone(),
                 ..Default::default()
             },
         };
@@ -186,14 +193,12 @@ fn release_ipa(edition: Edition) {
     });
 }
 
-fn release_ipa_merged(edition: Edition) {
+fn release_ipa_merged(rargs: &ReleaseArgs, target: Lang) {
     let start = Instant::now();
 
-    let langs = match edition {
-        Edition::Simple => return,
-        _ => IpaMergedLangs {
-            target: edition.into(),
-        },
+    let langs = match target {
+        Lang::Simple => return,
+        _ => IpaMergedLangs { target },
     };
 
     let args = IpaMergedArgs {
@@ -201,19 +206,19 @@ fn release_ipa_merged(edition: Edition) {
         dict_name: DictName::default(),
         options: Options {
             quiet: true,
-            root_dir: "data".into(),
+            root_dir: rargs.root_dir.clone(),
             ..Default::default()
         },
     };
 
     match make_dict(DIpaMerged, args) {
-        // Lang::Sq is a filler, doesn't exist
-        Ok(()) => pp("gloss", Lang::Sq, edition.into(), start),
-        Err(err) => tracing::error!("[ipa-merged--{edition}] ERROR: {err:?}"),
+        // Lang::Sq is a filler, it should be EditionSpec::All
+        Ok(()) => pp("ipa-merged", target, Lang::Sq, start),
+        Err(err) => tracing::error!("[ipa-merged-{target}] ERROR: {err:?}"),
     }
 }
 
-fn release_glossary(edition: Edition) {
+fn release_glossary(rargs: &ReleaseArgs, edition: Edition) {
     Lang::all().par_iter().for_each(|target| {
         let start = Instant::now();
 
@@ -231,7 +236,7 @@ fn release_glossary(edition: Edition) {
             dict_name: DictName::default(),
             options: Options {
                 quiet: true,
-                root_dir: "data".into(),
+                root_dir: rargs.root_dir.clone(),
                 ..Default::default()
             },
         };
@@ -270,7 +275,7 @@ fn release_glossary_extended(source: Lang) {
         };
 
         match make_dict(DGlossaryExtended, args) {
-            Ok(()) => pp("gloss", source, *target, start),
+            Ok(()) => pp("gloss-all", source, *target, start),
             Err(err) => tracing::error!("[gloss-all-{source}-{target}] ERROR: {err:?}"),
         }
     });
@@ -281,24 +286,38 @@ pub struct WiktextractDb {
 }
 
 impl WiktextractDb {
-    // TODO: hardcoded at the moment, should require a PathManager
-    fn db_path_for(edition: Edition) -> String {
-        format!("data/db/wiktextract_{edition}.db")
+    /// Path to the folder that contains the databases for all editions.
+    fn db_folder<P>(root_dir: P) -> PathBuf
+    where
+        P: AsRef<Path>,
+    {
+        root_dir.as_ref().join("db")
     }
 
-    pub fn open(edition: Edition) -> Result<Self> {
-        let db_path = Self::db_path_for(edition);
+    /// Path for the database of this edition.
+    fn db_path_for<P>(root_dir: P, edition: Edition) -> PathBuf
+    where
+        P: AsRef<Path>,
+    {
+        Self::db_folder(root_dir).join(format!("wiktextract_{edition}.db"))
+    }
+
+    pub fn open<P>(root_dir: P, edition: Edition) -> Result<Self>
+    where
+        P: AsRef<Path>,
+    {
+        let db_path = Self::db_path_for(root_dir, edition);
         let conn = Connection::open(&db_path)?;
         Ok(Self { conn })
     }
 
-    pub fn create(edition: Edition, path_jsonl: PathBuf) -> Result<Self> {
-        let db_path = Self::db_path_for(edition);
+    pub fn create<P>(root_dir: P, edition: Edition, path_jsonl: PathBuf) -> Result<Self>
+    where
+        P: AsRef<Path>,
+    {
+        let _ = std::fs::create_dir(Self::db_folder(&root_dir));
 
-        if let Some(parent) = Path::new(&db_path).parent() {
-            std::fs::create_dir_all(parent)?;
-        }
-
+        let db_path = Self::db_path_for(&root_dir, edition);
         let conn = Connection::open(&db_path)?;
 
         conn.execute_batch(
@@ -367,7 +386,7 @@ impl WiktextractDb {
     }
 }
 
-fn make_dict<D: Dictionary + AggregationKey + EditionFrom>(dict: D, raw_args: D::A) -> Result<()> {
+fn make_dict<D: Dictionary + EditionFrom>(dict: D, raw_args: D::A) -> Result<()> {
     let pm: &PathManager = &raw_args.try_into()?;
     let (_, source_pm, target_pm) = pm.langs();
     let opts = &pm.opts;
@@ -375,14 +394,12 @@ fn make_dict<D: Dictionary + AggregationKey + EditionFrom>(dict: D, raw_args: D:
 
     tracing::trace!("{pm:#?}");
 
-    // (source, target) -> D::I
-    // TODO: Do we stil need a map instead of a raw vector?
-    let mut irs_map: Map<LangsKey, D::I> = Map::default();
+    let mut irs = D::I::default();
 
     for pair in iter_datasets(pm) {
         let (edition, _path_jsonl) = pair?;
 
-        let db = WiktextractDb::open(edition)?;
+        let db = WiktextractDb::open(&opts.root_dir, edition)?;
         let langs = Langs {
             edition,
             source: source_pm,
@@ -405,51 +422,30 @@ fn make_dict<D: Dictionary + AggregationKey + EditionFrom>(dict: D, raw_args: D:
             let blob: &[u8] = row.get_ref(0)?.as_blob()?;
             let mut entry = WiktextractDb::blob_to_word_entry(blob)?;
 
-            let key = dict.langs_to_key(langs);
-            let irs = irs_map.entry(key).or_default();
-            dict.preprocess(langs, &mut entry, opts, irs);
-            dict.process(langs, &entry, irs);
+            dict.preprocess(langs, &mut entry, opts, &mut irs);
+            dict.process(langs, &entry, &mut irs);
         }
     }
 
-    if irs_map.len() > 1 {
-        tracing::debug!("Matrix ({}): {:?}", irs_map.len(), irs_map.keys());
+    if !opts.quiet {
+        dict.found_ir_message(&irs);
     }
 
-    for (key, mut irs) in irs_map {
-        if !opts.quiet {
-            dict.found_ir_message(&key, &irs);
-        }
-        if irs.is_empty() {
-            continue;
-        }
-        dict.postprocess(&mut irs);
-        if opts.save_temps && dict.write_ir() {
-            irs.write(pm)?;
-        }
-        if opts.skip_yomitan {
-            continue;
-        }
-
-        let mut pm2 = pm.clone();
-        let source = key.source;
-        let target = key.target;
-        pm2.set_source(source);
-        pm2.set_target(target);
-        pm2.setup_dirs()?;
-        tracing::trace!("calling to_yomitan with (source={source}, target={target})",);
-        let labelled_entries = match key.edition {
-            EditionSpec::All => {
-                let langs = Langs::new(Edition::Zh, key.source, key.target);
-                dict.to_yomitan(langs, irs)
-            }
-            EditionSpec::One(edition) => {
-                let langs = Langs::new(edition, key.source, key.target);
-                dict.to_yomitan(langs, irs)
-            }
-        };
-        write_yomitan(source, target, opts, &pm2, labelled_entries)?;
+    if irs.is_empty() {
+        return Ok(());
     }
+
+    dict.postprocess(&mut irs);
+
+    if opts.save_temps && dict.write_ir() {
+        irs.write(pm)?;
+    }
+
+    if !opts.skip_yomitan {
+        let labelled_entries = dict.to_yomitan(pm.langs, irs);
+        write_yomitan(source_pm, target_pm, opts, &pm, labelled_entries)?;
+    }
+
     Ok(())
 }
 

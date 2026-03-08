@@ -8,10 +8,9 @@ use unicode_normalization::UnicodeNormalization;
 
 use crate::{
     Map, Set,
-    cli::{MainArgs, Options},
+    cli::{LangSpecs, MainArgs, Options},
     dict::{
-        Dictionary, Intermediate, LabelledYomitanEntry, Langs, LangsKey,
-        locale::localize_examples_string,
+        Dictionary, Intermediate, LabelledYomitanEntry, Langs, locale::localize_examples_string,
     },
     lang::{Edition, Lang},
     models::{
@@ -296,7 +295,7 @@ impl Dictionary for DMain {
         process_main(langs.edition, langs.source, entry, irs);
     }
 
-    fn found_ir_message(&self, key: &LangsKey, irs: &Self::I) {
+    fn found_ir_message(&self, irs: &Self::I) {
         let n_lemmas = irs.lemma_map.len();
         let n_forms = irs.form_map.len();
         let n_irs = n_lemmas + n_forms;
@@ -317,16 +316,14 @@ impl Dictionary for DMain {
         let form_heap_msg = crate::utils::human_size(form_heap);
         let irs_heap_msg = crate::utils::human_size(irs_heap);
 
-        let prefix = format!("[{}-{}]", key.source, key.target);
-
         //         println!(
-        //             "{prefix} Found {n_irs} irs: {n_lemmas} lemmas, {n_forms} forms \
+        //             "Found {n_irs} irs: {n_lemmas} lemmas, {n_forms} forms \
         // ({n_forms_inflection} inflections, {n_forms_extracted} extracted, {n_forms_alt_of} alt_of)"
         //         );
 
         const MB: f64 = 1024.0 * 1024.0;
         if irs_heap > 500.0 * MB {
-            tracing::debug!("{prefix} Found {} irs ({})", n_irs, irs_heap_msg,);
+            tracing::debug!("Found {} irs ({})", n_irs, irs_heap_msg,);
             tracing::debug!("├─ lemmas: {} ({})", n_lemmas, lemma_heap_msg,);
             tracing::debug!(
                 "└─ forms : {} ({}) [infl {}, extr {}, alt {}]",
@@ -347,7 +344,7 @@ impl Dictionary for DMain {
         postprocess_forms(&mut irs.form_map);
     }
 
-    fn to_yomitan(&self, langs: Langs, irs: Self::I) -> Vec<LabelledYomitanEntry> {
+    fn to_yomitan(&self, langs: LangSpecs, irs: Self::I) -> Vec<LabelledYomitanEntry> {
         vec![
             LabelledYomitanEntry::new("lemma", to_yomitan_lemmas(langs.target, irs.lemma_map)),
             LabelledYomitanEntry::new("form", to_yomitan_forms(langs.source, irs.form_map)),
@@ -982,7 +979,9 @@ pub fn get_reading(edition: Edition, source: Lang, entry: &WordEntry) -> Option<
 /// this will return fāma).
 fn get_canonical_word(source: Lang, entry: &WordEntry) -> Option<String> {
     match source {
-        Lang::La | Lang::Ru | Lang::Grc => entry.canonical_form().map(|f| f.form.to_string()),
+        Lang::La | Lang::Ru | Lang::Grc | Lang::Ar | Lang::Fa => {
+            entry.canonical_form().map(|f| f.form.to_string())
+        }
         _ => None,
     }
 }
