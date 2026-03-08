@@ -4,10 +4,20 @@ use crate::lang::Edition;
 
 const KAIKKI_ROOT_URL_ENV_VAR: &str = "WTY_KAIKKI_ROOT_URL";
 
+fn kaikki_root_url() -> String {
+    #[cfg(debug_assertions)]
+    {
+        if let Ok(root) = std::env::var(KAIKKI_ROOT_URL_ENV_VAR) {
+            return root;
+        }
+    }
+
+    "https://kaikki.org".to_string()
+}
+
 /// Return the url of the "raw" dataset.
 fn url_jsonl_gz(edition: Edition) -> Result<String> {
-    let root =
-        std::env::var(KAIKKI_ROOT_URL_ENV_VAR).unwrap_or_else(|_| "https://kaikki.org".to_string());
+    let root = kaikki_root_url();
 
     match edition {
         Edition::En => Ok(format!("{root}/dictionary/raw-wiktextract-data.jsonl.gz")),
